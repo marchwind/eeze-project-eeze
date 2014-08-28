@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- Appenders -->
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
+		</layout>
+	</appender>
+	
+	<!-- 
+	<appender name="FILE" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="append" value="true" />
+		<param name="file" value="/logs/smartAD/smart_ad_web.log" />
+		<param name="maxFileSize" value="10MB" />
+		<param name="maxBackupIndex" value="100" />
+		<param name='DatePattern' value=".yyyy-MM-dd"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%-5p] %d{HH:mm:ss} - %m%n" />
+		</layout>
+	</appender>
+	 -->
+	
+	<!-- Application Loggers -->
+	<logger name="train" additivity="false">
+		<level value="info" />
+		<appender-ref ref="console"/>
+		<!-- <appender-ref ref="FILE"/>  -->
+	</logger>
+	
+	<!-- 3rdparty Loggers -->
+	<logger name="org.springframework.core" additivity="false">
+		<level value="info" />
+		<appender-ref ref="console"/>
+		<!-- <appender-ref ref="FILE"/>  -->
+	</logger>
+	
+	<logger name="org.springframework.beans" additivity="false">
+		<level value="info" />
+		<appender-ref ref="console"/>
+		<!-- <appender-ref ref="FILE"/>  -->
+	</logger>
+	
+	<logger name="org.springframework.context" additivity="false">
+		<level value="info" />
+		<appender-ref ref="console"/>
+		<!-- <appender-ref ref="FILE"/>  -->
+	</logger>
+
+	<logger name="org.springframework.web" additivity="false">
+		<level value="info" />
+		<appender-ref ref="console"/>
+		<!-- <appender-ref ref="FILE"/>  -->
+	</logger>
+
+	<!-- Root Logger -->
+	<root>
+		<priority value="warn" />
+		<appender-ref ref="console" />
+		<!-- <appender-ref ref="FILE"/>  -->
+	</root>
+	
+</log4j:configuration>

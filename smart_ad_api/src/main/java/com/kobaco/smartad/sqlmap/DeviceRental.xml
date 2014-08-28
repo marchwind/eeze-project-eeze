@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kobaco.smartad.deviceRental">
+
+	 <select id="list" parameterType="com.kobaco.smartad.model.data.SADeviceRental" resultType="com.kobaco.smartad.model.data.SADeviceRental">
+		SELECT
+			USR_NO    
+			,EQPM_NO
+			,RNT_DTT
+			,DEV_RNT_NO	 					
+			,REG_DTT   		
+			,UPD_DTT   		
+			,REG_ID    		
+			,UPD_ID  
+			,RTN_DTT  		
+		 FROM TB_DEV_RNT
+		 WHERE #{DEV_RNT_NO} = #{DEV_RNT_NO}
+		 <!-- 조건 설정 방법 구상 -->
+		 <!-- 정렬 설정 방법 구상 -->
+		<!-- LIMIT #{startRecordNo}, #{resultRecordCnt}  -->
+	</select>
+	
+	<select id="info" parameterType="com.kobaco.smartad.model.data.SADeviceRental" resultType="com.kobaco.smartad.model.data.SADeviceRental">
+        SELECT
+			 USR_NO    
+			,EQPM_NO
+			,RNT_DTT
+			,DEV_RNT_NO	 					
+			,REG_DTT   		
+			,UPD_DTT   		
+			,REG_ID    		
+			,UPD_ID    
+			,RTN_DTT 		
+		 FROM TB_DEV_RNT
+		WHERE DEV_MGMT_NO = #{DEV_MGMT_NO}
+	</select>
+	
+	<insert id="insert" parameterType="com.kobaco.smartad.model.data.SADeviceRental">
+	<selectKey keyProperty="DEV_RNT_NO" resultType="String" order="BEFORE">
+			SELECT FN_GET_SEQ('DR','TB_DEV_RNT')
+		</selectKey>
+		INSERT INTO TB_DEV_RNT (
+			 USR_NO    
+			,EQPM_NO
+			,RNT_DTT
+			,DEV_RNT_NO	 					
+			,REG_DTT   		
+			,UPD_DTT   		
+			,REG_ID    		
+			,UPD_ID  		
+		) VALUES (
+			 #{USR_NO} 
+			,#{EQPM_NO}
+			,#{RNT_DTT} 
+			,#{DEV_RNT_NO}
+			,NOW()
+			,NOW()
+			,#{REG_ID}
+			,#{UPD_ID}
+		)
+	</insert>
+	
+	<update id="update"  parameterType="com.kobaco.smartad.model.data.SADeviceRental">
+		UPDATE TB_DEV_RNT
+		   SET							
+			 RTN_DTT = NOW(),
+			 UPD_ID  = #{UPD_ID}
+		 WHERE DEV_RNT_NO = #{DEV_RNT_NO}
+	</update>
+	
+	<delete id="delete" parameterType="com.kobaco.smartad.model.data.SADeviceRental">
+		DELETE FROM TB_DEV_RNT WHERE DEV_RNT_NO 		= #{DEV_RNT_NO}
+	</delete>	
+	
+	<select id="infoRent" parameterType="com.kobaco.smartad.model.data.SADeviceRental" resultType="com.kobaco.smartad.model.data.SADeviceRental">
+        SELECT
+			 R.USR_NO    
+			,R.EQPM_NO
+			,R.RNT_DTT
+			,R.DEV_RNT_NO	 					
+			,R.REG_DTT   		
+			,R.UPD_DTT   		
+			,R.REG_ID    		
+			,R.UPD_ID
+			,U.USR_NM
+			,U.USR_ID   
+			,R.RTN_DTT  		
+		 FROM TB_DEV_RNT R
+		 INNER JOIN TB_USR U on U.USR_NO = R.USR_NO		 
+		WHERE R.DEV_RNT_NO = #{equipRentalNo} AND R.EQPM_NO = #{equipNo}
+
+	</select>
+	<select id="listFilterPage" parameterType="hashMap" resultType="com.kobaco.smartad.model.data.SADeviceRental">
+        SELECT
+			 R.USR_NO    
+			,R.EQPM_NO
+			,R.RNT_DTT
+			,R.DEV_RNT_NO	 					
+			,R.REG_DTT   		
+			,R.UPD_DTT   		
+			,R.REG_ID    		
+			,R.UPD_ID
+			,U.USR_NM
+			,U.USR_ID   
+			,R.RTN_DTT  		
+			,E.ENTP_NM
+			,C.CHK_CNTT
+		 FROM TB_DEV_RNT R
+		 INNER JOIN TB_USR U on U.USR_NO = R.USR_NO		
+		 INNER JOIN TB_ENTP E on E.ENTP_NO = U.ENTP_NO
+		 INNER JOIN TB_EQPM_CHK C on C.DEV_RNT_NO = R.DEV_RNT_NO 
+		 WHERE R.EQPM_NO = #{equipNo}
+		 ORDER BY R.REG_DTT DESC
+		LIMIT #{startRow},#{endRow}
+	</select>
+	<select id="countFilter" parameterType="hashMap" resultType="int">
+        SELECT
+			count(R.DEV_RNT_NO)				
+		 FROM TB_DEV_RNT R
+		 INNER JOIN TB_USR U on U.USR_NO = R.USR_NO		
+		 INNER JOIN TB_ENTP E on E.ENTP_NO = U.ENTP_NO
+		 INNER JOIN TB_EQPM_CHK C on C.DEV_RNT_NO = R.DEV_RNT_NO 
+		WHERE R.EQPM_NO = #{equipNo}
+	</select>
+</mapper>

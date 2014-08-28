@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kobaco.smartad.facilityVisitHistory">
+
+	 <select id="list" parameterType="com.kobaco.smartad.model.data.SAFacilityVisitHistory" resultType="com.kobaco.smartad.model.data.SAFacilityVisitHistory">
+		SELECT
+			 VST_NO    		
+			,VST_DTT   		
+			,RSRV_NO  
+			,RSRV_DTL_NO
+			,CHKIN_DTT
+			,CHKIN_CNFMR
+			,CHKOUT_DTT
+			,CHKOUT_CNFMR    	
+			,REG_DTT   		
+			,UPD_DTT   		
+			,REG_ID    		
+			,UPD_ID    		
+		 FROM TB_FCLT_VST_HIST
+		 WHERE #{VST_NO} = #{VST_NO}
+		 <!-- 조건 설정 방법 구상 -->
+		 <!-- 정렬 설정 방법 구상 -->
+		<!-- LIMIT #{startRecordNo}, #{resultRecordCnt}  -->
+	</select>
+	
+	<select id="info" parameterType="com.kobaco.smartad.model.data.SAFacilityVisitHistory" resultType="com.kobaco.smartad.model.data.SAFacilityVisitHistory">
+        SELECT
+			 VST_NO    		
+			,VST_DTT   		
+			,RSRV_NO 
+			,RSRV_DTL_NO
+			,CHKIN_DTT
+			,CHKIN_CNFMR
+			,CHKOUT_DTT
+			,CHKOUT_CNFMR         	
+			,REG_DTT   		
+			,UPD_DTT   		
+			,REG_ID    		
+			,UPD_ID    		
+		 FROM TB_FCLT_VST_HIST
+		WHERE VST_NO = #{VST_NO}
+	</select>
+	
+	<insert id="insert" parameterType="com.kobaco.smartad.model.data.SAFacilityVisitHistory">
+		<selectKey keyProperty="VST_NO" resultType="String" order="BEFORE">
+			SELECT FN_GET_SEQ('VH','TB_FCLT_VST_HIST')
+		</selectKey>
+		INSERT INTO TB_FCLT_VST_HIST (
+			 VST_NO    		
+			,VST_DTT 
+			,RSRV_NO  
+			,RSRV_DTL_NO 
+			,CHKIN_DTT
+			,CHKIN_CNFMR
+			,CHKOUT_DTT
+			,CHKOUT_CNFMR    
+			,REG_DTT   		
+			,UPD_DTT   		
+			,REG_ID    		
+			,UPD_ID    		
+		) VALUES (
+			 #{VST_NO}
+			,NOW()
+			,#{RSRV_NO}	
+			,#{RSRV_DTL_NO}
+			,#{CHKIN_DTT}
+			,#{CHKIN_CNFMR}
+			,#{CHKOUT_DTT}
+			,#{CHKOUT_CNFMR}   		
+			,NOW()
+			,NOW()
+			,#{REG_ID}
+			,#{UPD_ID}
+		)
+	</insert>
+	
+	<update id="update"  parameterType="com.kobaco.smartad.model.data.SAFacilityVisitHistory">
+		UPDATE TB_FCLT_VST_HIST
+		   SET 
+			 VST_DTT  	    = NOW()			
+			,CHKOUT_DTT		= #{CHKOUT_DTT}
+			,CHKOUT_CNFMR	= #{CHKOUT_CNFMR} 	
+		 WHERE VST_NO 		= #{VST_NO}
+	</update>
+	
+	<delete id="delete" parameterType="com.kobaco.smartad.model.data.SAFacilityVisitHistory">
+		DELETE FROM TB_FCLT_VST_HIST WHERE VST_NO 	= #{VST_NO}
+	</delete>	
+	<delete id="deleteFilter" parameterType="hashMap">
+		DELETE FROM TB_FCLT_VST_HIST WHERE RSRV_DTL_NO 	= #{RSRV_DTL_NO}
+	</delete>
+</mapper>
