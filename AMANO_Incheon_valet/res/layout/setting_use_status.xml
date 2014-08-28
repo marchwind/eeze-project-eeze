@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/setcommon_background_color" >
+
+    <LinearLayout
+        android:id="@+id/used_setting_head"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/headline_heigh"
+        android:background="@color/setcommon_color"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/set_use_home"
+            android:layout_width="@dimen/setting_head_home_icon_width"
+            android:layout_height="@dimen/setting_head_home_icon_height" 
+            android:drawableTop="@drawable/home_icon"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/setting_head_margin_left"
+            android:text="@string/home"
+            android:textStyle="bold"
+            android:textColor="@color/common_white_color"
+            android:textSize="@dimen/setting_head_icon_text_size"
+            android:background="@null"
+            />
+        
+        <Button
+            android:id="@+id/set_use_back"
+            android:layout_width="@dimen/setting_head_home_icon_width"
+            android:layout_height="@dimen/setting_head_home_icon_height" 
+            android:drawableTop="@drawable/return_icon"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/setting_head_margin_left"
+            android:text="@string/back"
+            android:textStyle="bold"
+            android:textColor="@color/common_white_color"
+            android:textSize="@dimen/setting_head_icon_text_size"
+            android:background="@null"
+            />
+        
+        <TextView
+            android:id="@+id/set_use_head"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:text="사용 현황"
+            android:textStyle="bold"
+            android:textColor="@color/common_white_color"
+            android:textSize="@dimen/setting_head_text_size" />
+        
+    </LinearLayout>
+    
+    <ListView 
+        android:layout_below="@id/used_setting_head"
+        android:id="@+id/use_status_list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        
+    </ListView>
+</RelativeLayout>

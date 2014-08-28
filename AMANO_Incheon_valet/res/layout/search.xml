@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/common_white_color" >
+	
+    <LinearLayout
+        android:id="@+id/search_head"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/headline_heigh"
+        android:background="@color/setcommon_color"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/search_home"
+            android:layout_width="@dimen/setting_head_home_icon_width"
+            android:layout_height="@dimen/setting_head_home_icon_height" 
+            android:drawableTop="@drawable/home_icon"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/setting_head_margin_left"
+            android:text="@string/home"
+            android:textStyle="bold"
+            android:textColor="@color/common_white_color"
+            android:textSize="@dimen/setting_head_icon_text_size"
+            android:background="@null"
+            />
+        
+        <TextView
+            android:id="@+id/search_headline_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:text="차량 조회"
+            android:textStyle="bold"
+            android:textColor="@color/common_white_color"
+            android:textSize="@dimen/setting_head_text_size" />
+        
+    </LinearLayout>
+    
+    <RelativeLayout
+        android:id="@+id/search_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="74dp"
+        android:layout_below="@id/search_head"
+        android:background="@color/search_linear_color"
+        android:padding="11dp" >
+
+        <EditText
+            android:id="@+id/search_edit"
+            android:layout_width="252dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/edit_line"
+            android:hint="차량번호를 입력하세요"
+            android:imeOptions="actionDone"
+            android:inputType="numberSigned"
+            android:maxLength="4"
+            android:paddingLeft="@dimen/search_keyword_edit_padding"
+            android:textColorHint="@color/search_edit_color"
+            android:textSize="23sp" />
+
+        <Button
+            android:id="@+id/car_search_btn"
+            android:layout_width="76.5dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/search_btn"
+            android:text="조회"
+            android:textColor="@color/search_btn_color"
+            android:textSize="24sp" />
+
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/search_list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search_layout" >
+    </ListView>
+
+</RelativeLayout>

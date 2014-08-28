@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="db_ancm_table_name">AM_ANCM</string>
+    <string name="db_table_ancm">
+	CREATE TABLE AM_ANCM (
+		ANCM_SN              INTEGER NOT NULL,
+		ANCM_NM              VARCHAR(100) NULL,
+		BEGIN_DE             VARCHAR(8) NULL,
+		END_DE               VARCHAR(8) NULL,
+		MAKE_USR_NM          VARCHAR(50) NULL,
+		ANCM_CONT            VARCHAR(1000) NULL,
+		READ_AT              VARCHAR(1) NULL,
+		PRIMARY KEY (ANCM_SN)
+	)
+	</string>
+	
+    <string name="db_carinfo_table_name">AM_CAR_INFO</string>
+    <string name="db_table_carinfo">
+	CREATE TABLE AM_CAR_INFO (
+		CAR_SERS_CD          VARCHAR(6) NOT NULL,
+		CAR_SERS_NM          VARCHAR(50) NULL,
+		PRIMARY KEY (CAR_SERS_CD)
+	)
+	</string>
+	
+    <string name="db_device_table_name">AM_DEVICE</string>
+    <string name="db_table_device">
+	CREATE TABLE AM_DEVICE (
+		AUTH_NO              VARCHAR(20) NOT NULL,
+		DEV_NO               VARCHAR(20) NULL,
+		MAC_ADRES            VARCHAR(50) NULL,
+		PRG_VER              VARCHAR(20) NULL,
+		VIDEO_UP_BEGIN_HM    VARCHAR(4)  NULL,
+		PRIMARY KEY (AUTH_NO)
+	)
+	</string>
+    
+    <string name="db_login_table_name">AM_LOGIN</string>
+    <string name="db_table_login">
+	CREATE TABLE AM_LOGIN (
+		USR_ID               VARCHAR(20) NULL,
+		LOGIN_DT             DATETIME NULL,
+		LOGIN_SEQ            INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL
+	)
+	</string>
+	
+    <string name="db_rect_table_name">AM_RECT</string>
+	<string name="db_table_rect">
+	CREATE TABLE AM_RECT (
+		VL_NO                VARCHAR(13) NOT NULL,
+		RECT_USR_NM 		 VARCHAR(20) NULL,
+		RECT_USR_ID          VARCHAR(20) NULL,
+		RECT_DT              DATETIME NULL,
+		CAR_NO               VARCHAR(20) NULL,
+		CARNO_AUTO_RECG_AT   VARCHAR(1) NULL,
+		CAR_SERS_CD          VARCHAR(6) NULL,
+		TRVL_TERM            INTEGER NULL,
+		ENTRY_DT             DATETIME NULL,
+		CAR_SERS_NM          VARCHAR(20) NULL,
+		CAR_DAMG_AT          VARCHAR(1) NULL,
+		CAR_DAMG_FILE_NM     VARCHAR(50) NULL,
+		RESV_AT              VARCHAR(1) NULL,
+		CAR_TRANS_CD         VARCHAR(2) NULL,
+		CSTMR_SIGN_AT        VARCHAR(1) NULL,
+		CSTMR_SIGN_FILE_NM   VARCHAR(50) NULL,
+		LNG_SHRT_TY_CD       VARCHAR(1) NULL,
+		REG_DT               DATETIME NULL,
+		UPD_DT               DATETIME NULL,
+		PRIMARY KEY (VL_NO)
+	)
+	</string>
+	
+	<string name="db_mm_table_name">AM_MM</string>
+	<string name="db_table_mm">
+	CREATE TABLE AM_MM (
+		VL_NO                VARCHAR(13) NULL,
+		UPD_DT               DATETIME NULL,
+		FILE_NM              VARCHAR(50) NULL,
+		R_FILE_PATH          VARCHAR(100) NULL,
+		L_FILE_PATH          VARCHAR(100) NULL,
+		SVR_IP               VARCHAR(20) NULL,
+		REG_DT               DATETIME NULL,
+		MM_TYPE              VARCHAR(1) NULL,
+		PRIMARY KEY (VL_NO, FILE_NM)
+	)
+	</string>
+	
+	<string name="db_user_table_name">AM_USR</string>
+	<string name="db_table_user">
+	CREATE TABLE AM_USR (
+		USR_ID               VARCHAR(20) NOT NULL,
+		USR_PWD              VARCHAR(20) NULL,
+		USR_TY_CD            VARCHAR(2) NULL,
+		USR_NM               VARCHAR(50) NULL,
+		PRIMARY KEY (USR_ID)
+	)
+	</string>
+</resources>

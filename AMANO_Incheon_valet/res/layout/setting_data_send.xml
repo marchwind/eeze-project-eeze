@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/setcommon_background_color" >
+
+    <LinearLayout
+        android:id="@+id/send_setting_head"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/headline_heigh"
+        android:background="@color/setcommon_color"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/set_send_home"
+            android:layout_width="@dimen/setting_head_home_icon_width"
+            android:layout_height="@dimen/setting_head_home_icon_height" 
+            android:drawableTop="@drawable/home_icon"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/setting_head_margin_left"
+            android:text="@string/home"
+            android:textStyle="bold"
+            android:textColor="@color/common_white_color"
+            android:textSize="@dimen/setting_head_icon_text_size"
+            android:background="@null"
+            />
+        
+        <Button
+            android:id="@+id/set_send_back"
+            android:layout_width="@dimen/setting_head_home_icon_width"
+            android:layout_height="@dimen/setting_head_home_icon_height" 
+            android:drawableTop="@drawable/return_icon"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/setting_head_margin_left"
+            android:text="@string/back"
+            android:textStyle="bold"
+            android:textColor="@color/common_white_color"
+            android:textSize="@dimen/setting_head_icon_text_size"
+            android:background="@null"
+            />
+        
+        <TextView
+            android:id="@+id/set_send_head"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:text="데이터 전송 현황"
+            android:textStyle="bold"
+            android:textColor="@color/common_white_color"
+            android:textSize="@dimen/setting_head_text_size" />
+        
+    </LinearLayout>
+    
+    <RelativeLayout
+        android:id="@+id/media_data_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/send_menu_height"
+        android:layout_below="@id/send_setting_head"
+        android:background="@color/send_linear_color"
+        android:gravity="center" >
+
+        <Button
+	        android:id="@+id/all_data_btn"
+	        android:layout_width="@dimen/send_btn_width"
+	        android:layout_height="@dimen/send_btn_height"
+	        android:gravity="center"
+	        android:background="@drawable/long_width_btn_selector"
+	        android:text="전체 데이터 일괄전송"
+	        android:textColor="@color/send_btn_color"
+	        android:textSize="@dimen/send_btn_text_size"
+	        />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/media_data_layout"
+        android:background="@color/send_line2_color"
+        android:id="@+id/listline" />
+        
+	<ListView
+        android:id="@+id/media_data_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+   
+        android:layout_below="@id/listline">
+    </ListView>
+   
+</RelativeLayout>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/video_common_color" >
+
+    <FrameLayout
+        android:id="@+id/vview"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <VideoView
+            android:id="@+id/car_video_view"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/carv_layout_height" />
+
+        <ImageView 
+            android:id="@+id/rec_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/rec_icon"
+            android:layout_marginTop="9dp"
+            android:layout_marginLeft="9dp"
+            android:visibility="gone"/>
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="76dp"
+            android:text="차량 손상부위를 기록합니다."
+            android:textColor="@color/common_white_color"
+            android:textSize="13sp"
+            />
+        
+    </FrameLayout>
+
+    <RelativeLayout 
+	    android:layout_alignParentBottom="true"
+	    android:layout_height="178dp"
+	    android:layout_width="fill_parent"
+	    android:background="@color/camera_box_back_color">
+		
+        <View
+           android:layout_width="fill_parent"
+           android:layout_height="1dp"           
+           android:background="@color/video_line_color" />
+        
+        <Button
+            android:id="@+id/video_onoff_btn"
+            android:layout_width="157dp"
+            android:layout_height="145dp"
+           	android:layout_marginTop="20dp"
+            android:layout_marginLeft="@dimen/carv_videobtn_left"
+            android:background="@drawable/video_onoff_select"
+            android:drawableLeft="@drawable/video_on_icon"
+            android:paddingLeft="@dimen/carv_videobtn_padding"
+            android:text="촬영"
+            android:textColor="@color/video_common_color"
+            android:textSize="@dimen/carv_videotext_size"
+            android:textStyle="bold" />
+        
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="145dp"
+            android:layout_toRightOf="@id/video_onoff_btn"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp">
+            
+		     <CheckBox
+		        android:id="@+id/video_flash_btn"
+		        android:layout_gravity="center_horizontal"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:button="@drawable/ischecked"
+		        android:checked="false"
+		        android:paddingLeft="@dimen/camera_flash_padding"
+		        android:text="@string/camera_flash_text"
+		        android:textSize="@dimen/camera_falsh_text_size" 
+		        android:textStyle="bold"/>
+		     
+		     <Button
+		        android:id="@+id/video_cancel_btn"
+		        android:layout_width="157dp"
+		        android:layout_height="100dp"
+		        android:layout_marginTop="10dp"
+		        android:layout_gravity="center_horizontal|bottom"
+		        android:background="@drawable/receipt_cancel_selector"
+		        android:text="취소"
+		        android:textColor="@color/video_common_color"
+		        android:textSize="@dimen/carv_cancelbtn_size"
+		        android:textStyle="bold" />
+		
+		     
+		 </LinearLayout>
+         
+         <LinearLayout 
+        android:id="@+id/layout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"></LinearLayout>
+        
+	</RelativeLayout>
+
+</RelativeLayout>
