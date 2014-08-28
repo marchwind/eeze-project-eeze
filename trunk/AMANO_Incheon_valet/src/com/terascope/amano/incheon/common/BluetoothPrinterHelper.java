@@ -268,36 +268,37 @@ public class BluetoothPrinterHelper {
 	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"접 수 자  : " + rec.getRECT_USR_NM() + LF);
 	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"차량번호 : " + rec.getCAR_NO() + LF);
 	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"차     종 : " + rec.getCAR_SERS_NM() + LF);
-	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"귀국일시 : " + rec.getENTRY_FULL_DT() + LF);      
-	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"흠집유무 : " + LF);
+	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"귀국일시 : " + rec.getENTRY_FULL_DT() + LF);   
+	        
+	        String checkString = "없음";
+	        if(rec.getCAR_DAMG_AT().equals("Y")){
+	        	checkString = "있음";
+	        }
+	        
+	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"흠집유무 : " + checkString + LF);
 	        try {
 				posPtr.printBitmap(CommonSet.SAVE_PATH + rec.getCAR_DAMG_FILE_NM(), LKPrint.LK_ALIGNMENT_CENTER, LKPrint.LK_BITMAP_NORMAL);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+	        
+	        posPtr.setCharSet("Big5");
+	        posPtr.printBarCode(rec.getVL_NO(), LKPrint.LK_BCS_Code93, 40, 2, LKPrint.LK_ALIGNMENT_CENTER, LKPrint.LK_HRI_TEXT_BELOW);
+	        posPtr.setCharSet("EUC-KR");
+	        
 	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"고객서명 : " + LF);
 	        try {
 				posPtr.printBitmap(CommonSet.SAVE_PATH + rec.getCSTMR_SIGN_FILE_NM(),  LKPrint.LK_ALIGNMENT_CENTER, LKPrint.LK_BITMAP_NORMAL);//rec.filepath삭제
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+	        
 	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"차량찾는곳: " + LF);
 	        posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" + ESC + "|3C" + rec.getCAR_TRANS_NM() +LF);
-	        
-	        posPtr.setCharSet("Big5");
-	        
-	        posPtr.printBarCode(rec.getVL_NO(), LKPrint.LK_BCS_Code93, 40, 2, LKPrint.LK_ALIGNMENT_CENTER, LKPrint.LK_HRI_TEXT_BELOW);
-	       
-	        posPtr.setCharSet("EUC-KR");
-	        
 	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"※차량보관장소 : 장기옥외주차장 " + LF);
 	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"※고지사항 : 뒷면 약관내용 고객 필독 사항임. " + LF);
 	    	posPtr.lineFeed(3);
@@ -320,16 +321,17 @@ public class BluetoothPrinterHelper {
 		if(res.getRTN_CD().equals(CommonSet.RESULT_SUCCESS_CODE)){
 			
 			boolean shortTerm = false;
-			if(Integer.parseInt(rec.getTRVL_TERM()) < 3) {
+			if(Integer.parseInt(rec.getTRVL_TERM()) < 2) {
 				shortTerm = true;
 			}
 			
 			posPtr.printNormal(ESC + "|cA" + ESC + "|bC" + ESC + "|3C" + "차량보관증(보관용)" + LF + LF);
-	
 			posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"접수번호 : " + rec.getVL_NO() +LF);
 			
 			if(shortTerm) {
-				posPtr.printNormal(ESC + "|cA"+ ESC + "|bC"  +"==============================" +LF);
+				posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" +"==============================" +LF);
+			} else {
+				posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" + LF);
 			}
 			
 	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"접수일시 : " + rec.getRECT_FULL_DT() +LF);
@@ -340,21 +342,37 @@ public class BluetoothPrinterHelper {
 	        
 	        if(shortTerm) {
 				posPtr.printNormal(ESC + "|cA"+ ESC + "|bC"  +"==============================" +LF);
+			} else {
+				posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" + LF);
 			}
 	        
-	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"흠집유무 : " + LF);
+	        String checkString = "없음";
+	        if(rec.getCAR_DAMG_AT().equals("Y")){
+	        	checkString = "있음";
+	        }
+	        
+	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"흠집유무 : " + checkString + LF);
 	        try {
 				posPtr.printBitmap(CommonSet.SAVE_PATH + rec.getCAR_DAMG_FILE_NM(), LKPrint.LK_ALIGNMENT_CENTER, LKPrint.LK_BITMAP_NORMAL);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 	        
 	        if(shortTerm) {
 				posPtr.printNormal(ESC + "|cA"+ ESC + "|bC"  +"==============================" +LF);
+			} else {
+				posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" + LF);
+			}
+	        posPtr.setCharSet("Big5");
+	        posPtr.printBarCode(rec.getVL_NO(), LKPrint.LK_BCS_Code93, 40, 2, LKPrint.LK_ALIGNMENT_CENTER, LKPrint.LK_HRI_TEXT_BELOW);
+	        posPtr.setCharSet("EUC-KR");
+	        
+	        if(shortTerm) {
+				posPtr.printNormal(ESC + "|cA"+ ESC + "|bC"  +"==============================" +LF);
+			} else {
+				posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" + LF);
 			}
 	        
 	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"장기주차요원 : " + LF);
@@ -364,16 +382,8 @@ public class BluetoothPrinterHelper {
 	        
 	        if(shortTerm) {
 				posPtr.printNormal(ESC + "|cA"+ ESC + "|bC"  +"==============================" +LF);
-			}
-	        
-	        posPtr.setCharSet("Big5");
-	        
-	        posPtr.printBarCode(rec.getVL_NO(), LKPrint.LK_BCS_Code93, 40, 2, LKPrint.LK_ALIGNMENT_CENTER, LKPrint.LK_HRI_TEXT_BELOW);
-	        
-	        posPtr.setCharSet("EUC-KR");
-	        
-	        if(shortTerm) {
-				posPtr.printNormal(ESC + "|cA"+ ESC + "|bC"  +"==============================" +LF);
+			} else {
+				posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" + LF);
 			}
 	        
 	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"단기주차요원: " + LF);
