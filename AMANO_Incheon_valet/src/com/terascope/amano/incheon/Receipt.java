@@ -89,7 +89,7 @@ public class Receipt extends Activity implements OnClickListener {
 	private EditText phon_num1, phon_num2, phon_num3, car_name,
 			receipt_travel_term, receipt_return_time;
 	private String receipt_car_name, travel_term, return_time, check,
-			car_check, transcd, user_id, user_pw, mac, checksign, mac_Addr;
+			car_check = "N", transcd, user_id, user_pw, mac, checksign, mac_Addr;
 	ArrayAdapter<CharSequence> timespin, datespin, carspin;
 
 	private ImageView carImg;
@@ -451,8 +451,7 @@ public class Receipt extends Activity implements OnClickListener {
 				new AlertDialog.Builder(Receipt.this)
 						.setTitle(getString(R.string.alert_title_text))
 						.setMessage(
-								getResources().getString(
-										R.string.receipt_need_alert))
+								getResources().getString(R.string.receipt_need_alert))
 						.setPositiveButton(getString(R.string.alert_Ok_text),
 								new DialogInterface.OnClickListener() {
 									@Override
@@ -493,9 +492,8 @@ public class Receipt extends Activity implements OnClickListener {
 				BitmapDrawable d = (BitmapDrawable) carImg.getDrawable();
 				Bitmap carBit = d.getBitmap();
 				
-				
 				int term = Integer.parseInt(rec.getTRVL_TERM());
-				if(term>=3){
+				if(term >= 3){
 					rec.setLNG_SHRT_TY_CD("2");
 				}else{
 					rec.setLNG_SHRT_TY_CD("1");

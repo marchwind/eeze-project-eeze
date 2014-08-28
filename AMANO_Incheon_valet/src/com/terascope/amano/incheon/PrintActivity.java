@@ -190,6 +190,7 @@ public class PrintActivity extends Activity implements OnClickListener {
 			rec.setENTRY_DE(cursor.getString(cursor.getColumnIndex("ENTRY_DT")));
 			
 			StringBuffer sb2 = new StringBuffer(cursor.getString(cursor.getColumnIndex("ENTRY_DT")));
+			Log.i(TAG,"entry date : " + sb2.toString());
 			sb2.insert(4, "/");
 			sb2.insert(7, "/");
 			sb2.insert(10, " ");

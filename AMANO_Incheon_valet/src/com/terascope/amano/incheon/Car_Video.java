@@ -345,7 +345,7 @@ public class Car_Video extends Activity implements SurfaceHolder.Callback {
 		values.put("CAR_SERS_CD", rec.getCAR_SERS_CD());
 		values.put("CAR_SERS_NM", rec.getCAR_SERS_NM());
 		values.put("TRVL_TERM", rec.getTRVL_TERM());
-		values.put("ENTRY_DT", rec.getENTRY_DE() + " " + rec.getENTRY_HM());
+		values.put("ENTRY_DT", rec.getENTRY_DE() + rec.getENTRY_HM());
 		values.put("CAR_DAMG_AT", rec.getCAR_DAMG_AT());
 		values.put("CAR_DAMG_FILE_NM", rec.getCAR_DAMG_FILE_NM());
 		
