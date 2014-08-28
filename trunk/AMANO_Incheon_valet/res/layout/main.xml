@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/AbsoluteLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gray_main_back" >
+
+    <RelativeLayout
+        android:id="@+id/main_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/main_top_left"
+        android:layout_marginTop="@dimen/main_top_top"
+        android:layout_marginRight="@dimen/main_top_right" >
+
+        <TextView
+            android:id="@+id/main_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="@dimen/main_text_top"
+            android:text="@string/main_text"
+            android:textColor="@color/common_white_color"
+            android:textSize="@dimen/main_text_size" />
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true" >
+
+            <Button
+                android:id="@+id/notice_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/main_notice_height"
+                android:background="@drawable/notice_back"
+                android:drawableLeft="@drawable/inform_icon"
+                android:paddingLeft="@dimen/main_notice_text_padding"
+                android:layout_marginTop="@dimen/main_notice_top"
+                android:text="@string/main_notice_text"
+                android:textColor="@color/common_white_color"
+                android:textSize="@dimen/main_notice_text_size"
+                android:textStyle="bold" />
+            
+            <ImageView
+		        android:id="@+id/notice_new_icon"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="top|right"
+		        android:background="@drawable/notice_new_icon"
+		        android:visibility="visible"
+		        android:contentDescription="@string/main_notice_text" />
+        </FrameLayout>
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/main_receipt_btn"
+        android:layout_below="@id/main_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/main_btn_height"
+        android:drawableLeft="@drawable/receipt_icon"
+        android:layout_marginTop="@dimen/main_receipt_btn_top"
+        android:layout_marginLeft="@dimen/main_btn_left"
+        android:layout_marginRight="@dimen/main_btn_left"
+        android:background="@drawable/main_receiptbtn_select"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="@dimen/main_receipt_btn_padding"
+        android:drawablePadding="@dimen/btn_icon_text_between"
+        android:text="서비스 접수"
+        android:textColor="@color/main_text_color"
+        android:textSize="@dimen/main_btn_text_size"
+        android:textStyle="bold" />
+    
+    <Button
+        android:id="@+id/main_search_btn"
+        android:layout_below="@id/main_receipt_btn"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/main_btn_height"
+        android:drawableLeft="@drawable/search_icon"
+        android:layout_marginTop="@dimen/main_btn_between"
+        android:layout_marginLeft="@dimen/main_btn_left"
+        android:layout_marginRight="@dimen/main_btn_left"
+        android:background="@drawable/main_searchbtn_select"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="@dimen/main_search_btn_padding"
+        android:drawablePadding="@dimen/btn_icon_text_between"
+        android:text="차량 조회"
+        android:textColor="@color/main_text_color"
+        android:textSize="@dimen/main_btn_text_size"
+        android:textStyle="bold" />
+    
+    <Button
+        android:id="@+id/main_setting_btn"
+        android:layout_below="@id/main_search_btn"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/main_btn_height"
+        android:drawableLeft="@drawable/setting_icon"
+        android:layout_marginTop="@dimen/main_btn_between"
+        android:layout_marginLeft="@dimen/main_btn_left"
+        android:layout_marginRight="@dimen/main_btn_left"
+        android:background="@drawable/main_settingbtn_select"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="@dimen/main_setting_btn_padding"
+        android:drawablePadding="@dimen/btn_icon_text_between"
+        android:text="설정"
+        android:textColor="@color/main_text_color"
+        android:textSize="@dimen/main_btn_text_size"
+        android:textStyle="bold" />    
+        
+    <LinearLayout 
+        android:id="@+id/layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_x="100px"
+        android:layout_y="300px"
+        android:visibility="gone"></LinearLayout>
+
+</RelativeLayout>

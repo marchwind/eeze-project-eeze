@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bluetooth_line_color" >
+
+    <FrameLayout 
+        android:id="@+id/search_row_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/btooth_row_height"
+        android:background="@color/common_white_color"
+        android:layout_marginBottom="1px"
+        >
+       
+        <LinearLayout 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/btooth_row_side_margin"
+            android:layout_gravity="center_vertical">
+            
+            <TextView 
+                android:id="@+id/s_carname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"                
+                android:textSize="32sp"
+                android:text="제네시스"
+                android:textColor="@color/search_common_color"
+                />
+        </LinearLayout>
+        
+
+        <ImageView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/next_icon"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginRight="@dimen/btooth_row_side_margin"/>
+       
+   </FrameLayout> 	
+</RelativeLayout>
+

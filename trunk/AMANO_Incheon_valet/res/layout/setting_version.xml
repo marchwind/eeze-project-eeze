@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/setcommon_background_color" >
+
+    <LinearLayout
+        android:id="@+id/version_setting_head"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/headline_heigh"
+        android:background="@color/setcommon_color"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/set_version_home"
+            android:layout_width="@dimen/setting_head_home_icon_width"
+            android:layout_height="@dimen/setting_head_home_icon_height" 
+            android:drawableTop="@drawable/home_icon"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/setting_head_margin_left"
+            android:text="@string/home"
+            android:textStyle="bold"
+            android:textColor="@color/common_white_color"
+            android:textSize="@dimen/setting_head_icon_text_size"
+            android:background="@null"
+            />
+        
+        <Button
+            android:id="@+id/set_version_back"
+            android:layout_width="@dimen/setting_head_home_icon_width"
+            android:layout_height="@dimen/setting_head_home_icon_height" 
+            android:drawableTop="@drawable/return_icon"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/setting_head_margin_left"
+            android:text="@string/back"
+            android:textStyle="bold"
+            android:textColor="@color/common_white_color"
+            android:textSize="@dimen/setting_head_icon_text_size"
+            android:background="@null"
+            />
+        
+        <TextView
+            android:id="@+id/set_version_head"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:text="버전 관리"
+            android:textStyle="bold"
+            android:textColor="@color/common_white_color"
+            android:textSize="@dimen/setting_head_text_size" />
+        
+    </LinearLayout>
+    
+    
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/version_setting_head"
+        android:background="@color/common_white_color" >
+
+        <RelativeLayout
+            android:id="@+id/new_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/version_list_height" >
+
+            <TextView
+                android:id="@+id/new_version_text"
+                android:layout_width="@dimen/version_list_text_width"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/version_list_text_top"
+                android:paddingLeft="@dimen/version_list_text_paddint_left"
+                android:text="최신 버전"
+                android:textColor="@color/version_text"
+                android:textSize="@dimen/version_list_text_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/new_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/version_list_num_text_top"
+                android:layout_toRightOf="@id/new_version_text"
+                android:text="버전 2.0"
+                android:textColor="@color/version_new"
+                android:textSize="@dimen/version_list_num_text_size" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/new_layout"
+            android:background="@color/setting_line_color" />
+
+        <RelativeLayout
+            android:id="@+id/now_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/version_list_height"
+            android:layout_below="@id/new_layout" >
+
+            <TextView
+                android:id="@+id/now_version_text"
+                android:layout_width="@dimen/version_list_text_width"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/version_list_num_text_top"
+                android:paddingLeft="@dimen/version_list_text_paddint_left"
+                android:text="현재 버전"
+                 android:textColor="@color/version_text"
+                android:textSize="@dimen/version_list_text_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/now_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/version_list_num_text_top"
+                android:layout_toRightOf="@id/now_version_text"
+                android:text="버전 1.0"
+                android:textColor="@color/version_text"
+                android:textSize="@dimen/version_list_num_text_size" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/now_layout"
+            android:background="@color/setting_line_color" />
+
+        <Button
+            android:layout_below="@id/now_layout"
+            android:id="@+id/version_update_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/version_updata_btn_left"
+            android:layout_marginRight="@dimen/version_updata_btn_rigth"
+            android:layout_marginTop="@dimen/version_updata_btn_top"
+            android:drawableLeft="@drawable/updata_icon"
+            android:paddingLeft="@dimen/version_updata_text_left"
+            android:text="업데이트 하기"
+            android:background="@drawable/long_width_btn_selector"
+            android:textSize="@dimen/version_updata_text_size" />
+    </RelativeLayout>
+</RelativeLayout>

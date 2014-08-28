@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/common_white_color" >
+
+    <FrameLayout 
+        android:id="@+id/carSearch_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/car_search_back">
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="차량 조회"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:textColor="@color/common_black_color"/>
+        
+        <Button 
+            android:id="@+id/carSearch_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/popup_close"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginRight="10dp"
+            android:text="닫기"
+            android:background="@null"/>
+        
+    </FrameLayout>
+    
+    <RelativeLayout
+        android:layout_below="@id/carSearch_top"
+        android:id="@+id/car_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="70dp"
+        android:background="#d0d0d0"
+        android:padding="11dp" >
+
+        <EditText
+            android:id="@+id/car_edit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/edit_line"
+            android:hint="차종을 검색하세요"
+            android:padding="@dimen/search_keyword_edit_padding"
+            android:textColorHint="@color/search_edit_color"
+            android:textSize="23sp" />
+        
+        <!-- <Button 
+            android:id="@+id/carSearch_btn"
+            android:layout_toRightOf="@id/car_edit"
+            android:layout_marginLeft="5dp"
+            android:layout_width="70.5dp"
+            android:layout_height="48dp"
+            android:text="조회"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:background="@drawable/car_search_btn"/> -->
+        
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/android:list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/car_layout" >
+    </ListView>
+
+</RelativeLayout>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/AbsoluteLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/camera_common_color" >
+
+    <FrameLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">    
+    
+	    <makemachine.android.examples.Preview
+	        android:id="@+id/preview"
+	        android:layout_width="fill_parent"
+	       	android:layout_height="fill_parent"
+	      />
+	    
+	    <ImageView 
+	        android:layout_gravity="bottom|center_horizontal"
+	        android:layout_width="@dimen/camera_red_box_width"
+	        android:layout_height="@dimen/camera_red_box_height"
+	        android:background="@drawable/camera_red_box"
+	        android:layout_marginBottom="@dimen/camera_red_box_bottom"
+	        />
+    
+    </FrameLayout>
+    
+	<RelativeLayout 
+	    android:layout_alignParentBottom="true"
+	    android:layout_height="@dimen/camera_box"
+	    android:layout_width="fill_parent"
+	    android:background="@color/camera_box_back_color">
+	    
+	    <View
+	        android:layout_width="fill_parent"
+	        android:layout_height="1dp"
+	        android:background="@color/camera_line_color" />
+		
+	    <FrameLayout 
+	        android:id="@+id/camera_edit_box"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="@dimen/camera_editBox_top"
+	        android:layout_marginLeft="@dimen/camera_editBox_padding"
+	        android:layout_marginRight="@dimen/camera_editBox_padding">
+	        
+	        <LinearLayout 
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:orientation="vertical"
+	            android:focusable="true"
+	            android:focusableInTouchMode="true">
+	            
+	            <EditText
+			       	android:id="@+id/plate"
+					android:layout_height="wrap_content"
+					android:layout_width="match_parent"
+			        android:background="@null"
+			        android:textColor="@color/common_white_color"
+			        android:textSize="@dimen/camera_et_text_size"
+			        android:gravity="center"
+			        android:imeOptions="actionDone"
+			        android:inputType="text"
+			        android:singleLine="true"
+			        />	
+			        
+	           	<ImageView 
+	           	    android:layout_width="@dimen/camera_field_width"
+	           	    android:layout_height="@dimen/camera_field_height"
+	           	    android:src="@drawable/field"/>
+	        </LinearLayout>				
+		    
+		    
+		    <CheckBox
+		        android:id="@+id/camera_flash_radio"
+		        android:layout_gravity="right|center_vertical"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:button="@drawable/camera_flash_radio"
+		        android:checked="false"
+		        android:paddingLeft="@dimen/camera_flash_padding"
+		        android:text="@string/camera_flash_text"
+		        android:textSize="@dimen/camera_falsh_text_size" 
+		        android:textStyle="bold"/>
+			 
+	    </FrameLayout>
+	    
+	    <Button 
+	        android:id="@+id/recamera_btn"
+	        android:layout_width="match_parent"
+	        android:layout_height="@dimen/camera_rebtn_height"
+	        android:layout_below="@id/camera_edit_box"
+	        android:background="@drawable/recamerabtn_select"
+	        android:layout_marginTop="@dimen/camera_btn_between_padding"
+	        android:layout_marginLeft="@dimen/camera_btn_side_padding"
+	        android:layout_marginRight="@dimen/camera_btn_side_padding"
+	        android:drawableLeft="@drawable/camera_icon"
+	        android:gravity="left|center_vertical"
+	        android:paddingLeft="@dimen/camera_rebtn_padding"
+	        android:drawablePadding="@dimen/btn_icon_text_between"
+	        android:text="@string/camera_rebtn_text"
+	        android:textColor="@color/camera_common_color"
+	        android:textSize="@dimen/camera_btn_text1_size"
+	        android:textStyle="bold"/>
+
+	    
+	    <LinearLayout 
+	        android:id="@+id/camera_btn_box"
+	        android:layout_below="@id/recamera_btn"
+	        android:orientation="horizontal"
+	        android:layout_height="wrap_content"
+	        android:layout_width="match_parent"
+	        android:layout_marginTop="@dimen/camera_btn_between_padding"
+	        android:layout_marginLeft="@dimen/camera_btn_side_padding"
+	        android:layout_marginRight="@dimen/camera_btn_side_padding"
+	        >
+		    
+		    <Button 
+		        android:id="@+id/camera_receipt_btn"
+		        android:layout_width="@dimen/camera_btn_width"
+		        android:layout_height="@dimen/camera_btn_height"
+		        android:text="@string/receipt_text"
+		        android:textColor="@color/camera_common_color"
+		        android:textStyle="bold"
+		        android:textSize="@dimen/camera_btn_text2_size"
+		        android:background="@drawable/receipt_btn_selector"
+		        android:layout_marginRight="@dimen/camera_btn_between_padding"/>
+		    
+		    <Button
+		        android:id="@+id/camera_cancel_btn"
+		        android:layout_width="@dimen/camera_btn_width"
+		        android:layout_height="@dimen/camera_btn_height"
+		        android:layout_gravity="right"
+		        android:background="@drawable/receipt_cancel_selector"
+		        android:text="@string/cacel_text"
+		        android:textColor="@color/camera_common_color"
+		        android:textSize="@dimen/camera_btn_text2_size"
+		        android:textStyle="bold" />
+		    
+    	</LinearLayout>
+	</RelativeLayout>
+</RelativeLayout>

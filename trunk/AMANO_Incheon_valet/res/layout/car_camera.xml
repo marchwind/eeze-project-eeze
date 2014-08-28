@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/video_common_color" >
+
+    <FrameLayout
+        android:id="@+id/cview"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <com.terascope.amano.incheon.MyCameraSurface
+            android:id="@+id/previewFrame"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/carv_layout_height" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/previewFrame"
+            android:background="@color/video_line_color" />
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/vview_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cview" >
+
+        <Button
+            android:id="@+id/mShutter"
+            android:layout_width="@dimen/carv_videobtn_width"
+            android:layout_height="@dimen/carv_videobtn_height"
+            android:layout_marginLeft="@dimen/carv_videobtn_left"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/video_onoff_select"
+            android:drawableLeft="@drawable/camera_icon"
+            android:paddingLeft="@dimen/carv_videobtn_padding"
+            android:text="촬영"
+            android:textColor="@color/video_common_color"
+            android:textSize="@dimen/carv_videotext_size"
+            android:textStyle="bold" />
+        
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/car_camera_cancel_btn"
+        android:layout_width="@dimen/camera_btn_width"
+        android:layout_height="@dimen/camera_btn_height"
+        android:layout_marginLeft="@dimen/carv_cancelbtn_left"
+        android:layout_marginTop="@dimen/carv_cancelbtn_top"
+        android:background="@drawable/receipt_cancel_selector"
+        android:text="취소"
+        android:textColor="@color/video_common_color"
+        android:textSize="@dimen/carv_cancelbtn_size"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:id="@+id/btn_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/car_camera_cancel_btn"
+        android:layout_alignTop="@+id/vview_bottom"
+        android:layout_marginLeft="19dp"
+        android:layout_marginTop="18dp" >
+
+        <CheckBox
+            android:id="@+id/car_camera_flash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/ischecked"
+            android:button="@null"/>
+
+        <TextView
+            android:id="@+id/car_camera_flash_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/car_camera_flash"
+            android:text="후레쉬"
+            android:textColor="@color/common_white_color"
+            android:textSize="@dimen/carv_flash_text_size" />
+    </RelativeLayout>
+
+</RelativeLayout>
