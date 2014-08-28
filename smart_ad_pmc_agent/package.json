@@ -1,0 +1,17 @@
+{
+  "name": "smart_ad_pmc_agent",
+  "version": "0.1.0",
+  "description": "smart_ad_pmc_agent",
+  "main": "hello-world-server.njs",
+  "scripts": {
+    "test": "echo \"Error: no test specified! Configure in package.json\" && exit 1"
+  },
+  "repository": "",
+  "keywords": [
+    "node.js",
+    "eclipse",
+    "nodeclipse"
+  ],
+  "author": "bhna",
+  "readmeFilename": "README.md"
+}
