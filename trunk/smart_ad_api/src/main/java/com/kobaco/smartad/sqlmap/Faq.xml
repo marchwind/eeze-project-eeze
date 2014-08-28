@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kobaco.smartad.faq">
+
+	 <select id="list" parameterType="com.kobaco.smartad.model.data.SAFaq" resultType="com.kobaco.smartad.model.data.SAFaq">
+		SELECT
+			 FAQ_NO    
+			,A_SBJT  
+			,A_CNTT
+			,Q_SBJT
+			,Q_CNTT  
+			,REG_DTT   
+			,UPD_DTT   
+			,REG_ID    
+			,UPD_ID    
+		 FROM TB_FAQ
+		 WHERE 1 =1 OR #{FAQ_NO} = #{FAQ_NO}
+		 <!-- 조건 설정 방법 구상 -->
+		 <!-- 정렬 설정 방법 구상 -->
+		<!-- LIMIT #{startRecordNo}, #{resultRecordCnt}  -->
+	</select>
+	
+	<select id="info" parameterType="com.kobaco.smartad.model.data.SAFaq" resultType="com.kobaco.smartad.model.data.SAFaq">
+		SELECT
+			 FAQ_NO    
+			,A_SBJT  
+			,A_CNTT
+			,Q_SBJT
+			,Q_CNTT  
+			,REG_DTT   
+			,UPD_DTT   
+			,REG_ID    
+			,UPD_ID    
+		 FROM TB_FAQ
+		WHERE FAQ_NO = #{FAQ_NO}
+	</select>
+	
+	<insert id="insert" parameterType="com.kobaco.smartad.model.data.SAFaq">
+		<selectKey keyProperty="FAQ_NO" resultType="String" order="BEFORE">
+			SELECT FN_GET_SEQ('FQ','TB_FAQ')
+		</selectKey>
+		INSERT INTO TB_FAQ (
+			 FAQ_NO    
+			,A_SBJT  
+			,A_CNTT
+			,Q_SBJT
+			,Q_CNTT  			
+			,REG_DTT 
+			,UPD_DTT 
+			,REG_ID 
+			,UPD_ID  
+		) VALUES (
+			 #{FAQ_NO}
+			,#{A_SBJT} 
+			,#{A_CNTT}
+			,#{Q_SBJT} 
+			,#{Q_CNTT}
+			,NOW()
+			,NOW()
+			,#{REG_ID}
+			,#{UPD_ID}
+		)
+	</insert>
+	
+	<update id="update"  parameterType="com.kobaco.smartad.model.data.SAFaq">
+		UPDATE TB_FAQ
+		   SET 	
+			 A_CNTT 	= #{A_CNTT}						
+			,Q_CNTT 	= #{Q_CNTT}	
+			,UPD_DTT   	= NOW()
+			,UPD_ID    	= #{UPD_ID}
+		 WHERE FAQ_NO 	= #{FAQ_NO}
+	</update>
+	
+	<delete id="delete" parameterType="com.kobaco.smartad.model.data.SAFaq">
+		DELETE FROM TB_FAQ WHERE FAQ_NO = #{FAQ_NO}
+	</delete>	
+	
+	
+	<select id="listPage" parameterType="java.util.HashMap" resultType="com.kobaco.smartad.model.data.SAFaq">
+        SELECT
+			 FAQ_NO    
+			,A_SBJT  
+			,A_CNTT
+			,Q_SBJT
+			,Q_CNTT  
+			,REG_DTT   
+			,UPD_DTT   
+			,REG_ID    
+			,UPD_ID    
+		 FROM TB_FAQ
+		LIMIT #{startRow},#{endRow}
+	</select>
+	
+	<select id="count" parameterType="com.kobaco.smartad.model.data.SAFaq" resultType="int">
+		SELECT
+			 count(FAQ_NO) as totalCount   
+		FROM TB_FAQ
+	</select>
+</mapper>

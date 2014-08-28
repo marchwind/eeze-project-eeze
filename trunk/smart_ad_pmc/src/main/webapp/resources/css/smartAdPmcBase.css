@@ -1,0 +1,375 @@
+@charset "utf-8";
+
+@font-face {
+ font-family: 'Nanum Barun Gothic';
+ font-style: normal;
+ font-weight: 400;
+ src: local('Nanum Barun Gothic Regular'), local('Nanum Barun Gothic-Regular'), local('NanumBarunGothic Regular');
+ src: url(../asset/font/NanumBarunGothic.eot);
+ src: url(../asset/font/NanumBarunGothic.eot?#iefix) format('embedded-opentype'),
+ url(../asset/font/NanumBarunGothic.woff) format('woff'),
+ url(../asset/font/NanumBarunGothic.ttf) format('truetype');
+ }
+ @font-face {
+ font-family: 'Nanum Barun Gothic';
+ font-style: normal;
+ font-weight: 700;
+ src: local('Nanum Barun Gothic Bold'), local('Nanum Barun Gothic-Bold'), local('NanumBarunGothic Bold');
+ src: url(../asset/font/NanumBarunGothicBold.eot);
+ src: url(../asset/font/NanumBarunGothicBold.eot?#iefix) format('embedded-opentype'),
+ url(../asset/font/NanumBarunGothicBold.woff) format('woff'),
+ url(../asset/font/NanumBarunGothicBold.ttf) format('truetype');
+ }
+
+html, html a {-webkit-font-smoothing: antialiased; text-shadow: 1px 1px 1px rgba(0,0,0,0.004);}
+html, body {height:100%;color:#444444}
+html,body,div,span,applet,object,iframe,input,button,h1,h2,h3,h4,h5,h6,p,blockquote,pre,
+a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,
+small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,
+fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,pre
+article,aside,details,figcaption,figure,dialog,footer,header,hgroup,menu,nav,section {margin:0px;padding:0px;border:0px}
+article,aside,details,figcaption,figure,dialog,footer,header,hgroup,menu,nav,section {display:block}
+body, pre {font-size: 13px; font-family: 'Nanum Barun Gothic','Apple SD Gothic Neo',sans-serif !important; color:#646464;}
+h1,h2,h3,h4,h5,h6 {font-size:100%;font-weight:normal}
+ol,ul,li {list-style:none;}
+
+table {border-collapse: collapse;}
+table.tc td{text-align: center !important;}
+
+input, select {font-family: 'Nanum Barun Gothic','Apple SD Gothic Neo',sans-serif !important;}
+input[type=button] {cursor: pointer;}
+
+.roundBox {	width:100%;
+			border : 1px solid #d6d6d6;
+			behavior: url(border-radius.htc);
+    		border-radius: 10px;
+    		-moz-border-radius: 10px;
+    		-webkit-border-radius: 10px;
+    		-khtml-border-radius: 10px;}
+    		
+body {background-color: #f4f4f4}
+
+body.login {background: url(../images/login_back.jpg) no-repeat center center fixed; 
+  			-webkit-background-size: cover;
+  			-moz-background-size: cover;
+  			-o-background-size: cover;
+  			background-size: cover;
+  			text-align: center;}
+
+a {color:#444444; text-decoration: none;}
+a:hover {text-decoration: underline;}
+
+
+.fl {float: left;}
+.fr {float: right;}
+.clear {clear: both;}
+
+.mb5 {margin-bottom: 5px;}
+.mb10 {margin-bottom: 10px;}
+
+.tl {text-align: left !important;}
+.tc {text-align: center !important;}
+
+.font17 {font-size: 17px;}
+
+.hint_text {color:#b2b2b2;}
+
+.btn_big_red {background: url("../images/btn_big_red.png") 0 0 no-repeat; width:170px; height: 85px; color:#fff; font-size: 25px; font-weight: bold;}
+.btn_big_gray {background: url("../images/btn_big_gray.png") 0 0 no-repeat; width:170px; height: 85px; color:#2e2e2e; font-size: 25px; font-weight: bold;}
+.btn_big_mr {margin-right: 25px;}
+.btn_small_red {background: url("../images/btn_small_red.png") 0 0 no-repeat; width:66px; height: 47px; color:#fff; font-size: 20px; font-weight: bold;}
+.btn_logout_gray {background: url("../images/btn_logout_gray.png") 0 0 no-repeat; width:102px; height: 44px; color:#fff; font-size: 17px; font-weight: bold;}
+.btn_normal_red {background: url("../images/btn_normal_red.png") 0 0 no-repeat; width:126px; height: 47px; color:#fff; font-size: 19px; font-weight: bold; }
+.btn_small2_red {background: url("../images/btn_small2_red.png") 0 0 no-repeat; width:114px; height: 43px; color:#fff; font-size: 19px; font-weight: bold; }
+.btn_small2_gray {background: url("../images/btn_small2_gray.png") 0 0 no-repeat; width:114px; height: 43px; color:#fff; font-size: 19px; font-weight: bold; }
+.btn_squre {width:225px; height: 52px; border: 1px solid #cbcbcb; color:#d81847; background-color: #ffffff; font-size: 21px; font-weight: bold;}
+.btn_squre.on {background-color: #d81847; color:#ffffff;}
+.btn_popup_close {background: url("../images/btn_close.png") 0 0 no-repeat; width:42px; height: 43px; }
+
+.bottom_right_btn {float: right; margin-top: -43px;}
+
+.search_icon {background: url(../images/icon_search.png) no-repeat scroll 14px 13px; 
+			background-color:#fff; padding-left:50px; height: 46px; width:400px; font-size:21px; font-weight:bold;
+			border:1px solid #cbcbcb;
+			behavior: url(border-radius.htc);
+    		border-radius: 2px;
+    		-moz-border-radius: 2px;
+    		-webkit-border-radius: 2px;
+    		-khtml-border-radius: 2px; }
+
+.search_select {height: 48px; vertical-align: top; border: 1px solid #cbcbcb; padding: 5px; font-size: 19px; font-weight: bold; color:#646464}
+
+.page {width:100%; text-align: center; margin-top: 30px;}
+.page ul {display: inline-block;}
+.page li {float: left; font-size: 21px; margin-left: 20px; font-weight: bold; cursor: pointer;}
+.page li:hover {color:#d81847;}
+.page li.on {color:#d81847;}
+
+select.input_red {height: 40px;}
+.input_red {height: 28px; border: 1px solid #d81847; font-size: 15px; padding:5px;}
+.input_type1 {width:190px;}
+.input_type2 {width:80px;}
+.input_type3 {width:110px;}
+
+.input_gray {border:1px solid #cacaca;}
+
+.input_fill {width:100%; padding:5px 0;}
+
+textarea {font-size: 13px !important;}
+
+.noClick td {cursor: default !important;}
+
+/* login */
+#loginWrap {display: inline-block; background-color: rgba(51,51,51, 0.8); margin-top: 150px;}
+#loginHeader.login_big_head {margin: 50px 90px;}
+#loginCont {margin: 15px 90px 50px 90px;}
+#loginCont #loginForm {display: inline-block;}
+#loginCont dl {clear: both;}
+#loginCont dl dt {float: left; text-align:left; width:125px; line-height: 50px; margin-right: 13px; font-size: 25px; color: #fff; font-weight: bold;}
+#loginCont dl dd {float: left; margin-bottom: 20px;}
+#loginCont dl dd input {width: 245px; height: 50px; padding:0 10px; font-size: 19px;}
+#loginCont .loginBtnContainer {clear: both; margin-top: 30px; }
+
+#loginHeader.login_small_head {display: inline-block; width: 100%;}
+#loginHeader.login_small_head span {margin: 25px;}
+.loginSubTitle {font-size: 24px; font-weight: bold; color:#fff; line-height: 53px;}
+
+#loginCont.login_small dl dt {font-size: 20px; line-height: 40px;}
+#loginCont.login_small dl dd {margin-bottom: 10px; color:#fff; font-weight: bold;}
+#loginCont dl dd .input_1 {width:145px; height: 40px;}
+#loginCont dl dd .input_2 {width:218px; height: 40px;}
+#loginCont dl dd .input_3 {width:50px; height: 40px;}
+
+#loginCont.login_small #changePwForm dl dt {width:195px;}
+
+/* main */
+#wrap {width: 100%; height: 100%; min-width: 1220px;}
+#header {width: 100%; height: 121px;}
+#header #siteTop {width:100%; height:65px; background-color: #767676; display: table;}
+#header #siteTop > div {display: table-cell; vertical-align: middle;}
+#header #siteTop #topLogo {text-align: left; width:20%; padding-left:15px; cursor: pointer;}
+#header #siteTop #topSearch {text-align: center; width:60%;}
+#header #siteTop #topSearch .search_icon {background: url(../images/icon_search.png) no-repeat scroll 14px 13px; 
+			background-color:#fff; padding-left:40px; height: 43px; width:538px; font-size:26px; font-weight:bold;
+			border:1px solid #292929;
+			behavior: url(border-radius.htc);
+    		border-radius: 2px;
+    		-moz-border-radius: 2px;
+    		-webkit-border-radius: 2px;
+    		-khtml-border-radius: 2px; }
+#header #siteTop #topLogout { text-align: right; width:20%; padding-right:15px;}
+
+#header #gnb {height: 55px; width:100%; background-color: #fff; border-bottom: 1px solid #e1e1e1; line-height: 55px;}
+#header #gnb ul {height: 100%;}
+#header #gnb li {float: left; font-size: 22px; color:#646464; font-weight: bold; padding:0 48px; height: 47px; cursor: pointer;}
+#header #gnb li:hover {border-bottom: 8px solid #d81847;}
+#header #gnb li.on {border-bottom: 8px solid #d81847; color:#d81847;}
+#header #gnb #gnb_member_greeting {font-size: 16px; font-weight:bold; color:#767676; margin-right: 20px; }
+
+#content {background-color: #f4f4f4; width:100%; height: 100%;}
+
+#footer {background-color: #767676; border-top:1px solid #767676; position:fixed; height: 5px; bottom: 0px; width:100%;}
+
+h1 {font-size:19px; font-weight: bold; color:#646464}
+
+#content .title {padding-top: 22px; padding-left: 30px;}
+#content .title img {vertical-align: inherit; margin-right: 10px;}
+#content .title h1 {display: inline-block;}
+
+#content #listTop {width:100%; display: inline-block; margin-top: 22px;}
+#content #listTop .fl {margin-left: 22px;}
+#content #listTop .fr {margin-right: 22px;}
+
+#content #listTop #tabSelect {margin-left: 22px;}
+#content #listTop #tabSelect li {float: left; margin-right: 10px;}
+
+.mainTable {/*height: 100%;*/ margin: 10px 22px 22px 22px; clear: both;}
+.mainTable #mainLeftLayer {float: left; width:49%;}
+.mainTable #mainRightLayer {float: right; width:49%;}
+.mainTable #mainRightLayer .mt {margin-top: 10px;}
+.mainTable #mainBottomLayer {clear: both; margin-top: 20px; display: inline-block; width: 100%;}
+.mainTable #mainBottomLayer li {float: left; margin-left: 10px;}
+#mainBottomLayer .cen {text-align: center;}
+#mainBottomLayer .cen ul {display: inline-block;}
+
+.mainTable .mainBox {width:100%;}
+.mainTable.search .mainBox {margin-bottom: 20px;}
+.mainTable .mainBox dl {width:100%;}
+.mainTable .mainBox dl dt {width:100%; height:41px; background-color: #bababa; border: 1px solid #bababa; color:#fff; line-height: 40px; position: relative; }
+.mainTable .mainBox dl dt h2 {font-size: 18px; font-weight: bold; display: inline-block; float: left; margin-left: 18px;}
+.mainTable .mainBox dl dt span {font-size: 14px; display: inline-block; float: right; margin-right: 18px;}
+.mainTable .mainBox dl dd {background-color: #fff; width:100%; border: 1px solid #bababa; position: relative; }
+
+.mainTable .mainBox dl dd .searchResult {margin: 20px; font-size: 21px; font-weight: bold;}
+
+#equipStatisticsTop, #equipStatisticsList {margin-top: 20px;}
+#equipStatisticsList {display: inline-block; width:100%;}
+#equipStatisticsTop .mainBox {width:49%;}
+#equipStatisticsTop .mainBox dd,
+#equipStatisticsList .mainBox dd {height: 240px;}
+.chart {height: 100%;}
+
+
+.mainTable #facilityAlert {position: absolute; display: inline-block; margin-top: 15px;}
+.mainTable #facilityAlert h3 {font-size:16px; color:#454545; border-bottom: 1px solid #000; line-height: 30px;}
+.mainTable #facilityAlert > div {float: left; width:130px; margin-left: 30px; font-size: 16px; color:#454545;}
+.mainTable #facilityAlert > div ul {margin-top: 10px;}
+.mainTable #facilityAlert > div ul li {margin-bottom: 5px;}
+.mainTable #facilityAlert > div ul li label {width:50px; display: inline-block;}
+.mainTable #facilityAlert #equipmentBox svg {width:15px; height: 15px;}
+.mainTable #facilityAlert #facilityBox svg {width:30px; height: 10px;}
+
+.mainTable #facilityMap {clear: both; width: 100%; height: 370px; padding-top: 125px; }
+.mainTable #facilityMap iframe {width:100%; height:100%;}
+
+.mainTable .facility #facilityMap {height:550px; padding-bottom: 50px; }
+.mainTable .facility #facility_list_Container {padding:15px; overflow-x:auto; }
+.mainTable .facility #facility_list_Container #facility_list {display: inline-block; width:1410px;}
+.mainTable .facility #facility_list_Container #facility_list li {float:left; width:334px; height: 229px; border: 1px solid #bababa; margin-right: 15px; text-align: center; overflow: hidden;}
+.mainTable .facility #facility_list_Container #facility_list li img {width:100%; height: 100%;}
+.mainTable .facility #facility_list_Container #facility_list li input[type=button] {margin-top: 90px;}
+.mainTable .facility .facility_detail {margin-top: 20px;}
+.mainTable .facility .facility_detail div#map {vertical-align: top; float: right; height: 150px;}
+
+.mainTable .facility #facility_table_form .table_bottom {margin-top: 15px;}
+.mainTable .facility #facility_table_form .table_bottom .fl {}
+.mainTable .facility #facility_table_form .table_bottom p.fl {margin-left: 175px; font-size: 19px;}
+.mainTable .facility #facility_table_form .table_bottom .fr input {margin-left: 10px;}
+
+.mainTable #facilityGuide {margin-top: 15px; margin-left: 30px; display: inline-block;}
+.mainTable #facilityGuide ul {float: left; margin-right: 50px;}
+.mainTable #facilityGuide li {margin-bottom: 10px; }
+.mainTable #facilityGuide li span {background-color: #aeaeae; color:#fff; width:15px; height:15px; line-height:18px; font-size:12px; display: inline-block; text-align: center; margin-right: 10px;} 
+
+.mainTable #pieChart {height:310px; width:100%;}
+.mainTable #lineChart {height:185px; width:100%; margin-bottom: 20px;}
+
+.mainTable #memberState {margin: 20px 0 10px 20px;}
+.mainTable #memberState span {font-size: 16px; color:#d81847;}
+.mainTable #memberState span label {color:#454545;}
+.mainTable #memberState span em {font-style: normal;}
+
+.mainTable table {width:100%;}
+.mainTable table th {height:41px; font-size:21px; background-color: #bababa; border: 1px solid #cacaca; color:#fff; }
+.mainTable table td {height:46px; font-size:18px; background-color: #ffffff; border: 1px solid #cacaca; text-align: left; padding:3px 10px; line-height: 30px; word-break: break-all;}
+
+.mainTable td {cursor: pointer;}
+
+.mainTable .tableType dt, .mainTable .tableType dd {float: left; border:1px solid #cacaca; background-color: #ffffff; padding:15px;}
+.mainTable .tableType dt {border-right:0px; }
+
+.mainTable .tableType dl {clear: both; width:100%; display: inline-block; font-size: 21px; margin-bottom: -5px;}
+.mainTable .tableType dt {width:20%; }
+.mainTable .tableType dd {width:67%; }
+
+.mainTable .tableType dd.input {padding:7px 15px;}
+
+.mainTable #mainLeftLayer.equipment {width:40%;}
+.mainTable #mainRightLayer.equipment {width:58%;}
+
+.equipment .table_bottom {margin-top: 10px;}
+.equipmentIamage {width:330px; margin-top: 40px; }
+.equipment_position {margin-top: 35px; margin-bottom: 50px;}
+.equipment_position #map {width: 265px; display: inline-block; margin-top: 25px;}
+.equipment_position p {color:#d81847; font-size: 21px; font-weight: bold;}
+
+#usedList {margin-top: 20px;}
+
+.table_bottom_overlap_btn {position: absolute; margin-top: 10px;}
+.table_bottom_overlap_btn.fr {right:20px}
+
+.mainTable #mainLeftLayer.member {width:50%;}
+.mainTable #mainRightLayer.member {width:50%;}
+
+.mainTable.memberJoinForm {padding: 10px 23%;}
+.mainTable.memberJoinForm .tableType dd {width:69%}
+
+.mainTable.cmsCenter {padding: 10px 13%;}
+
+/* FAQ */
+.question.on td {background-color: #fce8ed !important;}
+.answer {display: none;}
+.answer td:first-child {color:#d81847}
+.answer td {background-color: #fafafa !important;}
+
+/* calendar */
+#cal_top {display: table; width:100%; margin-bottom: 10px;}
+#cal_top > div {display: table-cell; width:33%;}
+#cal_top #cal_title {text-align: center; vertical-align: middle;}
+#cal_top #cal_top_btn {text-align: right;}
+
+#cal_top #cal_title ul {display: inline-block;}
+#cal_top #cal_title li {float: left; font-size: 25px; margin-left: 20px; font-weight: bold; cursor: pointer;}
+.red {color:#d81847}
+
+#cal_list {}
+#cal_list input[type=button] {behavior: url(border-radius.htc);
+    		border-radius: 5px;
+    		-moz-border-radius: 5px;
+    		-webkit-border-radius: 5px;
+    		-khtml-border-radius: 5px;}
+.btn_over_period {width:150px; height: 35px; background-color: #dfdfdf; font-size: 19px; color:#464646 }
+.btn_used_period {width:150px; height: 35px; background-color: #b18c76; font-size: 19px; color:#ffffff }
+.btn_reserve_period {width:150px; height: 35px; background-color: #1fa7ed; font-size: 19px; color:#ffffff }
+.btn_possible_period {width:150px; height: 35px; background-color: #25d38b; font-size: 19px; color:#ffffff }
+.btn_today_period {width:150px; height: 35px; background-color: #ffc000; font-size: 19px; color:#ffffff }
+
+#cal_list input[type=button].on {width:150px; height: 35px; background-color: #d81847; font-size: 19px; color:#ffffff }
+
+#cal_list th, #cal_list td {width:14% !important; }
+#cal_list td {height: 100px !important; text-align: right !important; vertical-align: top !important; font-weight: bold;}
+#cal_list td input {margin-bottom: 5px;}
+
+.mainTable.reserveForm {padding: 10px 27%;}
+
+.mainTable.reserveForm textarea {width: 97%; height: 80px;}
+
+
+/* popup */
+.popup {display: none; min-width: 625px;}
+.btn_popup_close { position: absolute; top: 0; right: 0; margin-top: -14px; margin-right: -12px;}
+
+.popup h1 {text-align: left; font-size: 24px; margin-bottom: 25px; float: left;}
+
+.popup #listTop {margin-bottom: 20px;}
+.popup #listTop input[type=text] {width: 220px;}
+
+.popup table {width:100%;}
+.popup table th {height:41px; font-size:21px; background-color: #bababa; border: 1px solid #cacaca; color:#fff; }
+.popup table td {height:50px; font-size:18px; background-color: #ffffff; border: 1px solid #cacaca; text-align: center; padding:5px 10px; line-height: 30px}
+.popup table.select td {cursor: pointer;}
+
+.popup .popupBtnContainer { margin-top: 25px;}
+.popup .popupBtnContainer input {margin-right: 30px;}
+.popup .popupBtnContainer input:last-child {margin-right: 0px}
+
+.popup .popup_write {width: 100%; text-align: left;}
+.popup .popup_write h2 {font-size: 21px; margin:15px 0 5px 0; }
+.popup .popup_write textarea {padding:5px 10px; width:96.5%; height:85px; }
+
+.popup textarea.intable {width: 100%; height: 85px;}
+
+.blockUI {min-width: 625px;}
+
+#popupMemberList tbody tr.on td {background-color: #fce8ed;}
+
+/* nfc */
+#wrap.nfc {width:100%; background-color: #fff; min-width: 100%;}
+.nfc #header {width:100%; background: url(../images/nfc_top.png) repeat-x; height: 65px; }
+.nfc #header img {vertical-align: middle;}
+.nfc #header h2 {color:#fff; font-size: 20px; font-weight: bold; display: inline-block;}
+.nfc #content {width:100%;}
+.nfc #content li {width:100%; display: inline-block; 
+	background: -webkit-linear-gradient(top, white, white, white, white, white, white, #eaeaea); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(top, white, white, white, white, white, white, #eaeaea); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(top, white, white, white, white, white, white, #eaeaea); /* For Fx 3.6 to 15 */
+    background: linear-gradient(to bottom, white, white, white, white, white, white, #eaeaea); /* Standard syntax (must be last) */}
+.nfc #content li span {display: inline-block; margin:0 25px; vertical-align: middle;}
+.nfc #content li dl {display: inline-block; vertical-align: middle;}
+.nfc #content li dl dt {font-size: 18px; font-weight: bold; margin-bottom: 15px;}
+.nfc #content li dl dd {font-size: 16px; word-break: break-all; word-wrap: break-word;}
+
+
+
+
+

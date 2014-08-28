@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kobaco.smartad.equipement">
+
+<!-- 	 <select id="list" parameterType="com.kobaco.smartad.model.data.SAEquipement" resultType="com.kobaco.smartad.model.data.SAEquipement"> -->
+<!-- 		SELECT -->
+<!-- 			 EQPM_NO    -->
+<!-- 			,FCLT_MGMT_NO   -->
+<!-- 			,EQPM_NM 		 -->
+<!-- 			,EQPM_IP         -->
+<!-- 			,EQPM_STTS_CD -->
+<!-- 			,MDL_NM -->
+<!-- 			,NFC_TAG_ID -->
+<!-- 			,EQPM_EXPL -->
+<!-- 			,MFTR       				 -->
+<!-- 			,REG_DTT   		 -->
+<!-- 			,UPD_DTT   		 -->
+<!-- 			,REG_ID    		 -->
+<!-- 			,UPD_ID    		 -->
+<!-- 		 FROM TB_EQPM -->
+<!-- 		WHERE #{EQPM_NO} = #{EQPM_NO} -->
+<!-- 	</select> -->
+	
+	<select id="info" parameterType="com.kobaco.smartad.model.data.SAEquipement" resultType="com.kobaco.smartad.model.data.SAEquipement">
+	   SELECT
+		     EQPM_NO
+			,FCLT_MGMT_NO
+			,(SELECT FCLT_NM FROM TB_FCLT WHERE FCLT_MGMT_NO = A.FCLT_MGMT_NO) AS FCLT_NM
+			,EQPM_NM
+			,EQPM_IP
+			,EQPM_STTS_CD
+			,MDL_NM
+			,EQPM_EXPL
+			,MFTR
+			,NFC_TAG_ID
+			,EQPM_SPC
+			,EQPM_MAC
+			,EQPM_MEMO
+			,EQPM_TP
+			,EQPM_OS
+			,REG_DTT
+			,UPD_DTT
+			,REG_ID
+			,UPD_ID
+			,EQPM_PWR_STTS_CD
+			,(SELECT MAX(CHK_DTT) FROM TB_EQPM_CHK WHERE EQPM_NO = A.EQPM_NO) AS LST_CHK_DTT
+			,(SELECT MAX(DEV_RNT_NO) 
+			    FROM TB_DEV_RNT R 
+			   WHERE R.EQPM_NO = A.EQPM_NO 
+			     AND RNT_DTT IS NOT NULL 
+				  AND RTN_DTT IS NULL ) AS LST_DEV_RNT_NO
+			,CASE EQPM_PWR_STTS_CD WHEN 'E05001' THEN (SELECT COUNT(*) FROM TB_EQPM_STTS_HIST H WHERE H.EQPM_NO = A.EQPM_NO AND H.GTH_DTT >= DATE_ADD(NOW(), INTERVAL -10 MINUTE))
+			                       WHEN 'E05002' THEN 1
+			                       WHEN 'E05003' THEN 0
+										  ELSE 0 END AS EQPM_ALV_CNT
+		 FROM TB_EQPM A
+		WHERE 1=1
+		<if test=" EQPM_NO != null and EQPM_NO != '' "> AND EQPM_NO = #{EQPM_NO}</if>
+		<if test=" NFC_TAG_ID != null and NFC_TAG_ID != '' "> AND NFC_TAG_ID = #{NFC_TAG_ID}</if>
+		LIMIT 0,1
+	</select>
+	
+	<insert id="insert" parameterType="com.kobaco.smartad.model.data.SAEquipement">
+		<selectKey keyProperty="EQPM_NO" resultType="String" order="BEFORE">
+			SELECT FN_GET_SEQ('EQ','TB_EQPM')
+		</selectKey>
+	INSERT INTO TB_EQPM
+			(EQPM_NO,
+			FCLT_MGMT_NO,
+			EQPM_NM,
+			EQPM_IP,
+			EQPM_STTS_CD,
+			MDL_NM,
+			EQPM_EXPL,
+			MFTR,
+			NFC_TAG_ID,
+			EQPM_SPC,
+			EQPM_MAC,
+			EQPM_MEMO,
+			EQPM_TP,
+			EQPM_OS,
+			REG_DTT,
+			UPD_DTT,
+			REG_ID,
+			UPD_ID) 
+			VALUES(
+			#{EQPM_NO},
+			#{FCLT_MGMT_NO},
+			#{EQPM_NM},
+			#{EQPM_IP},
+			'E01001',
+			#{MDL_NM},
+			#{EQPM_EXPL},
+			#{MFTR},
+			#{NFC_TAG_ID},
+			#{EQPM_SPC},
+			#{EQPM_MAC},
+			#{EQPM_MEMO},
+			#{EQPM_TP},
+			#{EQPM_OS},
+			NOW(),
+			NOW(),
+			#{REG_ID},
+			#{UPD_ID});
+	</insert>
+	
+	<update id="update"  parameterType="com.kobaco.smartad.model.data.SAEquipement">
+		UPDATE TB_EQPM
+		   SET 
+			 EQPM_NM 			= #{EQPM_NM}
+			,EQPM_IP      		= #{EQPM_IP}
+			,EQPM_STTS_CD		= #{EQPM_STTS_CD}
+			,MDL_NM				= #{MDL_NM}
+			,EQPM_EXPL			= #{EQPM_EXPL}
+			,EQPM_SPC           = #{EQPM_SPC}
+			,EQPM_MEMO          = #{EQPM_MEMO}
+			,MFTR     			= #{MFTR}
+			,UPD_DTT   			= NOW()
+			,UPD_ID    			= #{UPD_ID}
+			,EQPM_NM      = #{EQPM_NM}
+			,EQPM_TP 	  = #{EQPM_TP}
+			,MDL_NM  	  = #{MDL_NM}
+			,EQPM_OS	  = #{EQPM_OS}
+			,EQPM_MAC 	  = #{EQPM_MAC}
+			,FCLT_MGMT_NO = #{FCLT_MGMT_NO}
+			,EQPM_STTS_CD = #{EQPM_STTS_CD}
+		 WHERE EQPM_NO 			= #{EQPM_NO}
+	</update>
+
+	<update id="updateFilterPower"  parameterType="hashMap">
+		UPDATE TB_EQPM
+		   SET 
+			  EQPM_PWR_STTS_CD = #{EQPM_PWR_STTS_CD}
+			 ,UPD_ID  = #{UPD_ID}
+			 ,UPD_DTT = NOW()
+		 WHERE EQPM_NO 	= #{EQPM_NO}
+	</update>
+	
+	<delete id="delete" parameterType="com.kobaco.smartad.model.data.SAEquipement">
+		DELETE FROM TB_EQPM WHERE EQPM_NO = #{EQPM_NO}
+	</delete>	
+	
+	
+	 <select id="listFilterPage" parameterType="hashMap" resultType="com.kobaco.smartad.model.data.SAEquipement">
+		SELECT
+			 E.EQPM_NO
+			,E.FCLT_MGMT_NO
+			,E.EQPM_NM
+			,E.EQPM_IP
+			,E.EQPM_STTS_CD
+			,E.MDL_NM
+			,E.EQPM_EXPL
+			,E.MFTR
+			,E.NFC_TAG_ID
+			,E.EQPM_SPC
+			,E.EQPM_MAC
+			,E.EQPM_MEMO
+			,E.EQPM_TP
+			,E.EQPM_OS
+			,E.REG_DTT
+			,E.UPD_DTT
+			,E.REG_ID
+			,E.UPD_ID		   	
+			,F.FCLT_NM			
+			,(SELECT MAX(DEV_RNT_NO) 
+			    FROM TB_DEV_RNT R 
+			   WHERE R.EQPM_NO = E.EQPM_NO 
+			     AND RNT_DTT IS NOT NULL 
+				 AND RTN_DTT IS NULL ) AS LST_DEV_RNT_NO  		
+		 FROM TB_EQPM E 
+		 INNER JOIN TB_FCLT F on F.FCLT_MGMT_NO = E.FCLT_MGMT_NO
+		 WHERE 1=1
+		 <if test=' grpTp == "1" '>AND E.EQPM_TP <![CDATA[<>]]> 'E04003'  </if>
+		 <if test=' grpTp == "2" '>AND E.EQPM_TP = 'E04003'</if> 
+		 <if test=' FCLT_MGMT_NO != null and FCLT_MGMT_NO != "" '> AND E.FCLT_MGMT_NO = #{FCLT_MGMT_NO}</if> 
+		 <if test=' EQPM_STTS_CD != null and EQPM_STTS_CD != "" '> AND E.EQPM_STTS_CD = #{EQPM_STTS_CD}</if> 
+		 ORDER BY E.EQPM_NO DESC
+		 LIMIT #{startRow},#{endRow}
+	</select>
+	
+	<select id="countFilter" parameterType="hashMap" resultType="int">
+		SELECT
+			count( E.EQPM_NO)				
+		 FROM TB_EQPM E 
+		 INNER JOIN TB_FCLT F on F.FCLT_MGMT_NO = E.FCLT_MGMT_NO
+		 WHERE 1=1
+		 <if test=' grpTp == "1" '>AND E.EQPM_TP <![CDATA[<>]]> 'E04003'  </if>
+		 <if test=' grpTp == "2" '>AND E.EQPM_TP = 'E04003'</if> 
+		 <if test=' FCLT_MGMT_NO != null and FCLT_MGMT_NO != "" '> AND E.FCLT_MGMT_NO = #{FCLT_MGMT_NO}</if> 
+		 <if test=' EQPM_STTS_CD != null and EQPM_STTS_CD != "" '> AND E.EQPM_STTS_CD = #{EQPM_STTS_CD}</if> 
+	</select>
+
+	<update id="updateAgentSubscribe"  parameterType="com.kobaco.smartad.model.data.SAEquipement">
+		UPDATE TB_EQPM
+		   SET 
+			 EQPM_IP  = #{EQPM_IP}
+			,UPD_DTT  = NOW()
+			,UPD_ID   = #{UPD_ID}
+		 WHERE EQPM_NO = #{EQPM_NO}
+	</update>
+</mapper>
