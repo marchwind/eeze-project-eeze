@@ -191,7 +191,9 @@ public class ParkInProcess_CameraLPR extends Activity {
 	
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
+		if (mPreview.mCamera == null) {
+			mPreview.startView();
+		}
 		super.onResume();
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 	}
@@ -242,7 +244,9 @@ public class ParkInProcess_CameraLPR extends Activity {
 					
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-						mPreview.mCamera.stopPreview();
+						if(mPreview.mCamera != null){
+							mPreview.mCamera.stopPreview();
+						}
 						finish();
 					}
 				})
@@ -332,8 +336,21 @@ public class ParkInProcess_CameraLPR extends Activity {
 
 
 	@Override
+	protected void onPause() {
+		if (mPreview != null) {
+			Log.e("onDestroy", "onDestroy...");
+
+			if (mPreview.mCamera != null) {
+				mPreview.mCamera.stopPreview();
+				mPreview.mCamera.release();
+				mPreview.mCamera = null;
+			}
+		}
+		super.onPause();
+	}
+	
+	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
 		if (mPreview != null) {
 			Log.e("onDestroy", "onDestroy...");
 
@@ -346,7 +363,7 @@ public class ParkInProcess_CameraLPR extends Activity {
 		super.onDestroy();
 	}
 
-		private int getPreFileName() {
+	private int getPreFileName() {
 		if (sPrefs == null) {
 			sPrefs = getSharedPreferences(KEY_POPUP_ENV, Context.MODE_PRIVATE);
 		}
