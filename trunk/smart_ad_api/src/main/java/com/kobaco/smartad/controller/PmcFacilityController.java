@@ -15,9 +15,10 @@ import com.kobaco.smartad.model.service.CommonListResult;
 import com.kobaco.smartad.model.service.CommonPage;
 import com.kobaco.smartad.model.service.CommonSingleResult;
 import com.kobaco.smartad.model.service.FacilityInfo;
+import com.kobaco.smartad.model.service.NotificationInfo;
 import com.kobaco.smartad.model.service.PmcMnagerInfo;
-import com.kobaco.smartad.model.service.PmcSessionInfo;
 import com.kobaco.smartad.service.PmcFacilityService;
+import com.kobaco.smartad.service.PmcQnaService;
 
 
 @Controller
@@ -36,41 +37,41 @@ public class PmcFacilityController {
         return "pmcfaci/"+id+"Form";
    }
 	@ModelAttribute("sessionManagerInfo")
-	public PmcSessionInfo setSessionManagerinfo() {
-		return new PmcSessionInfo(){{
+	public PmcMnagerInfo setSessionManagerinfo() {
+		return new PmcMnagerInfo(){{
 			setLogin(false);
 		}};
 	}	
 	
 	@RequestMapping(value = "/get", method = RequestMethod.POST)
 	public @ResponseBody CommonSingleResult<FacilityInfo> get(@ModelAttribute PmcMnagerInfo info,
-														@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser,
+														@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser,
 														@ModelAttribute FacilityInfo facilityInfo){				
-		CommonSingleResult<FacilityInfo> is = facService.getFac(info, new PmcMnagerInfo(sessUser), facilityInfo);			
+		CommonSingleResult<FacilityInfo> is = facService.getFac(info, sessUser, facilityInfo);			
 		return is;
 	}
 	
 	@RequestMapping(value = "/main", method = RequestMethod.POST)
-	public @ResponseBody CommonListResult<FacilityInfo>  list(@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser,
+	public @ResponseBody CommonListResult<FacilityInfo>  list(@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser,
 														 @ModelAttribute PmcMnagerInfo info,
 														 @ModelAttribute FacilityInfo facilityInfo){	
-		CommonListResult<FacilityInfo> is = facService.getFacList(info,new PmcMnagerInfo(sessUser),facilityInfo);		
+		CommonListResult<FacilityInfo> is = facService.getFacList(info,sessUser,facilityInfo);		
 		return is;
 	}
 
 	@RequestMapping(value = "/usedHistory", method = RequestMethod.POST)
 	public @ResponseBody CommonListResult<FacilityInfo>  usedHistory(@ModelAttribute CommonPage cp,
-														 @ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser,
+														 @ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser,
 														 @ModelAttribute PmcMnagerInfo info,
 														 @ModelAttribute FacilityInfo facilityInfo){	
-		CommonListResult<FacilityInfo> is = facService.getFacUsedHistory(info,cp,new PmcMnagerInfo(sessUser),facilityInfo);		
+		CommonListResult<FacilityInfo> is = facService.getFacUsedHistory(info,cp,sessUser,facilityInfo);		
 		return is;
 	}
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public @ResponseBody CommonSingleResult<FacilityInfo> update(@ModelAttribute PmcMnagerInfo info,
-														@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser,
+														@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser,
 														@ModelAttribute FacilityInfo facilityInfo){				
-		CommonSingleResult<FacilityInfo> is = facService.getUpdate(info, new PmcMnagerInfo(sessUser), facilityInfo);			
+		CommonSingleResult<FacilityInfo> is = facService.getUpdate(info, sessUser, facilityInfo);			
 		return is;
 	}
 

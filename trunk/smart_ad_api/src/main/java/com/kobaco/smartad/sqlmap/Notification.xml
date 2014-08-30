@@ -30,7 +30,7 @@
 			,UPD_DTT    
 			,REG_ID     
 			,UPD_ID 
-			,VW_CNT as NTFC_COUNT	
+			,(SELECT count(NTFC_NO)  FROM TB_NTFC_CNFM WHERE  NTFC_NO =TB_NTFC.NTFC_NO) as NTFC_COUNT 	
 		 FROM TB_NTFC
 		WHERE NTFC_NO = #{NTFC_NO}
 	</select>
@@ -68,13 +68,6 @@
 		 WHERE NTFC_NO = #{NTFC_NO}
 	</update>
 	
-	
-	<update id="updateFilterCount"  parameterType="java.util.HashMap">
-		UPDATE TB_NTFC 
-		   SET VW_CNT = VW_CNT + 1
-		 WHERE NTFC_NO = #{NTFC_NO}
-	</update>
-
 	<delete id="delete" parameterType="com.kobaco.smartad.model.data.SANotification">
 		DELETE FROM TB_NTFC WHERE NTFC_NO = #{NTFC_NO}
 	</delete>	
@@ -88,42 +81,14 @@
 			,UPD_DTT    
 			,REG_ID     
 			,UPD_ID
-			,VW_CNT as NTFC_COUNT
+			,(SELECT count(NTFC_NO)  FROM TB_NTFC_CNFM WHERE  NTFC_NO =TB_NTFC.NTFC_NO)as NTFC_COUNT  	
 		 FROM TB_NTFC
-		ORDER BY NTFC_NO DESC
 		LIMIT #{startRow},#{endRow}
 	</select>
-	
-	<select id="count" parameterType="com.kobaco.smartad.model.data.SANotification" resultType="int">
+		<select id="count" parameterType="com.kobaco.smartad.model.data.SANotification" resultType="int">
 		SELECT
 			 count(NTFC_NO) as totalCount   
 		FROM TB_NTFC
 	</select>
 	
-	<select id="listFilterPage" parameterType="java.util.HashMap" resultType="com.kobaco.smartad.model.data.SANotification">
-		SELECT
-			 NTFC_NO   	
-			,NTFC_SBJT  
-			,NTFC_CNTT 	
-			,REG_DTT    
-			,UPD_DTT    
-			,REG_ID     
-			,UPD_ID
-			,VW_CNT as NTFC_COUNT	
-		 FROM TB_NTFC
-		WHERE 1=1
-		<if test='NTFC_SBJT != null and NTFC_SBJT != "" '>AND NTFC_SBJT LIKE CONCAT('%',#{NTFC_SBJT},'%') </if>
-		<if test='NTFC_CNTT != null and NTFC_CNTT != "" '>AND NTFC_CNTT LIKE CONCAT('%',#{NTFC_CNTT},'%') </if>
-		ORDER BY NTFC_NO DESC
-		LIMIT #{startRow},#{endRow}
-	</select>
-	
-	<select id="countFilter" parameterType="com.kobaco.smartad.model.data.SANotification" resultType="int">
-		SELECT
-			 count(NTFC_NO) as totalCount   
-		FROM TB_NTFC
-	   WHERE 1=1
-		<if test='NTFC_SBJT != null and NTFC_SBJT != "" '>AND NTFC_SBJT LIKE CONCAT('%',#{NTFC_SBJT},'%') </if>
-		<if test='NTFC_CNTT != null and NTFC_CNTT != "" '>AND NTFC_CNTT LIKE CONCAT('%',#{NTFC_CNTT},'%') </if>
-	</select>
 </mapper>

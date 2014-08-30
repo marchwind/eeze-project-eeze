@@ -11,15 +11,7 @@ public class SAEquipementStateHistory /* extends SAFacilityReserveDate */ implem
 	private String EQPM_CNST_NO;
 	private String CPU;
 	private String MEM;
-	private String GTH_T;
 	
-	public String getGTH_T() {
-		return GTH_T;
-	}
-
-	public void setGTH_T(String gTH_T) {
-		GTH_T = gTH_T;
-	}
 	
 	public String getEQPM_NO() {
 		return EQPM_NO;

@@ -32,11 +32,11 @@ public class MailSendService  {
 
 				//String[] Receiver = {"hjs6877@siksco.co.kr", "edonay@siksco.co.kr"};  
 				//message.setTo(Receiver); 
-				final MimeMessageHelper message = new MimeMessageHelper(mimeMessage,"UTF-8");
+				final MimeMessageHelper message = new MimeMessageHelper(mimeMessage);
 				message.setFrom(mailDto.getSendFrom());
 				message.setTo(mailDto.getSendTo());
 				message.setSubject(mailDto.getSendSubject());
-				final String text = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, mailDto.getSendPath(), "UTF-8", mailDto.getSendMessage());
+				final String text = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, mailDto.getSendPath(), mailDto.getSendMessage());
 				message.setText(text,true);				
 			}
 		};		

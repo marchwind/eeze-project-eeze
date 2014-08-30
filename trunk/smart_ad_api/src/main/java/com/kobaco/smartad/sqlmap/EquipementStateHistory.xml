@@ -5,18 +5,15 @@
 
 <mapper namespace="com.kobaco.smartad.equipementStateHistory">
 
-	 <select id="list" parameterType="com.kobaco.smartad.model.data.SAEquipementStateHistory" resultType="com.kobaco.smartad.model.data.SAEquipementStateHistory">
-		SELECT
-			 HIST_CNTT   
-			,EQPM_CNST_NO  
-			,GTH_DTT 		
-			,DATE_FORMAT(GTH_DTT, '%H:%m') AS GTH_T
-			,EQPM_NO     		
-		 FROM TB_EQPM_STTS_HIST
-		 WHERE EQPM_NO = #{EQPM_NO}  	
-		 ORDER BY GTH_DTT DESC
-		 LIMIT 0,6 
-	</select>
+<!-- 	 <select id="list" parameterType="com.kobaco.smartad.model.data.SAEquipementStateHistory" resultType="com.kobaco.smartad.model.data.SAEquipementStateHistory"> -->
+<!-- 		SELECT -->
+<!-- 			 HIST_CNTT    -->
+<!-- 			,EQPM_CNST_NO   -->
+<!-- 			,GTH_DTT 		 -->
+<!-- 			,EQPM_NO     		 -->
+<!-- 		 FROM TB_EQPM_STTS_HIST -->
+<!-- 		 WHERE #{GTH_DTT} = #{GTH_DTT}  AND  #{EQPM_NO} = #{EQPM_NO}  AND  #{EQPM_CNST_NO} = #{EQPM_CNST_NO}  -->
+<!-- 	</select> -->
 	
 <!-- 	<select id="info" parameterType="com.kobaco.smartad.model.data.SAEquipementStateHistory" resultType="com.kobaco.smartad.model.data.SAEquipementStateHistory"> -->
 <!--         SELECT -->

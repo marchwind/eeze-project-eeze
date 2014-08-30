@@ -56,9 +56,9 @@ public class PmcQnaServiceImpl implements PmcQnaService {
 		}
 		ParamsCommonNamespace params = new ParamsCommonNamespace();
 		Map<String, Object> k=new HashMap<String, Object>();
-		k.put("QNA_NO",   qnaInfo.getQnaNo());
-		k.put("A_SBJT",   qnaInfo.getAnswerSubject());
-		k.put("A_CNTT",   qnaInfo.getAnswerContent());
+		k.put("QNA_NO", qnaInfo.getQnaNo());
+		k.put("A_SBJT", qnaInfo.getAnswerSubject());
+		k.put("A_CNTT", qnaInfo.getAnswerContent());
 		k.put("A_MNGR_NO",sessUser.getManagerNo());
 		params.setColumns(k, "Answer");
 		int infoResult = qnaDao.update(new SAQna(),params); 
@@ -83,7 +83,7 @@ public class PmcQnaServiceImpl implements PmcQnaService {
 				map.put("answerDate", aDate);
 				map.put("answerContent", is.getA_CNTT());
 				MailSend mailDto = new MailSend(CommonMsg.EmailMsgService.ADD_FROM,
-						is.getQ_EML(),map ,
+						is.getUSR_EML(),map ,
 				CommonMsg.EmailMsgService.QNA_MSG, CommonMsg.EmailMsgService.QNA_EAMIL);
 				mail.mailSend(mailDto);
 			}
@@ -145,7 +145,6 @@ public class PmcQnaServiceImpl implements PmcQnaService {
 				temp.setQueryDate(is.getQ_DTT());
 				temp.setAnswerManagerNo(is.getA_MNGR_NO());
 				temp.setAnswerManagerId(is.getMNGR_ID());
-				temp.setQueryEmail(is.getQ_EML());
 				resultList.add(temp);
 			}
 			CommonResult k = new CommonResult(CommonMsg.successCode,CommonMsg.successMsg);	

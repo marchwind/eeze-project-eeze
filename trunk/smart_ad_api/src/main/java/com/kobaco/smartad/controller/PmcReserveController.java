@@ -17,10 +17,10 @@ import com.kobaco.smartad.model.service.CommonListResult;
 import com.kobaco.smartad.model.service.CommonPage;
 import com.kobaco.smartad.model.service.CommonSingleResult;
 import com.kobaco.smartad.model.service.PmcMnagerInfo;
-import com.kobaco.smartad.model.service.PmcSessionInfo;
 import com.kobaco.smartad.model.service.ReserveInfo;
 import com.kobaco.smartad.model.service.UserInfo;
 import com.kobaco.smartad.service.PmcReserveService;
+import com.kobaco.smartad.service.PmcUserService;
 
 
 @Controller
@@ -39,8 +39,8 @@ public class PmcReserveController {
         return "pmcreserve/"+id+"Form";
    }
 	@ModelAttribute("sessionManagerInfo")
-	public PmcSessionInfo setSessionManagerinfo() {
-		return new PmcSessionInfo(){{
+	public PmcMnagerInfo setSessionManagerinfo() {
+		return new PmcMnagerInfo(){{
 			setLogin(false);
 		}};
 	}	
@@ -48,54 +48,54 @@ public class PmcReserveController {
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public @ResponseBody CommonSingleResult<ReserveInfo> add(@ModelAttribute UserInfo user,
 														@ModelAttribute PmcMnagerInfo info,
-														@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser,
+														@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser,
 														@ModelAttribute ReserveInfo rev,
 														@RequestParam(value="reserveArray[]",defaultValue="")List<String> k){				
-		CommonSingleResult<ReserveInfo> is = reserveService.getPmcReserveAdd(info, new PmcMnagerInfo(sessUser), user, rev, k);			
+		CommonSingleResult<ReserveInfo> is = reserveService.getPmcReserveAdd(info, sessUser, user, rev, k);			
 		return is;
 	}
 	
 	@RequestMapping(value = "/list", method = RequestMethod.POST)
 	public @ResponseBody CommonListResult<ReserveInfo>  list(@ModelAttribute CommonPage cp,
-														 @ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser,
+														 @ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser,
 														 @ModelAttribute ReserveInfo rev,
 														 @ModelAttribute PmcMnagerInfo info ){	
-		CommonListResult<ReserveInfo> is = reserveService.getPmcReserveList(info,cp,new PmcMnagerInfo(sessUser),rev);		
+		CommonListResult<ReserveInfo> is = reserveService.getPmcReserveList(info,cp,sessUser,rev);		
 		return is;
 	}
 	@RequestMapping(value = "/get", method = RequestMethod.POST)
 	public @ResponseBody CommonSingleResult<ReserveInfo> get(@ModelAttribute PmcMnagerInfo info,
-														@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser,
+														@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser,
 														@ModelAttribute ReserveInfo rev){				
-		CommonSingleResult<ReserveInfo> is = reserveService.getPmcReserveGet(info, new PmcMnagerInfo(sessUser), rev);			
+		CommonSingleResult<ReserveInfo> is = reserveService.getPmcReserveGet(info, sessUser, rev);			
 		return is;
 	}
 	@RequestMapping(value = "/getCheckIn", method = RequestMethod.POST)
 	public @ResponseBody CommonSingleResult<ReserveInfo> getCheckIn(@ModelAttribute PmcMnagerInfo info,
-														@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser,
+														@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser,
 														@ModelAttribute ReserveInfo rev){				
-		CommonSingleResult<ReserveInfo> is = reserveService.getPmcReserveGetCheckIn(info, new PmcMnagerInfo(sessUser), rev);			
+		CommonSingleResult<ReserveInfo> is = reserveService.getPmcReserveGetCheckIn(info, sessUser, rev);			
 		return is;
 	}
 	@RequestMapping(value = "/checkIn", method = RequestMethod.POST)
 	public @ResponseBody CommonSingleResult<ReserveInfo> checkIn(@ModelAttribute PmcMnagerInfo info,
-														@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser,
+														@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser,
 														@ModelAttribute ReserveInfo rev){				
-		CommonSingleResult<ReserveInfo> is = reserveService.setPmcReserveCheckIn(info, new PmcMnagerInfo(sessUser), rev);			
+		CommonSingleResult<ReserveInfo> is = reserveService.setPmcReserveCheckIn(info, sessUser, rev);			
 		return is;
 	}
 	@RequestMapping(value = "/cancle", method = RequestMethod.POST)
 	public @ResponseBody CommonSingleResult<ReserveInfo> cancle(@ModelAttribute PmcMnagerInfo info,
-														@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser,
+														@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser,
 														@ModelAttribute ReserveInfo rev){				
-		CommonSingleResult<ReserveInfo> is = reserveService.pmcReserveCancle(info, new PmcMnagerInfo(sessUser), rev);			
+		CommonSingleResult<ReserveInfo> is = reserveService.pmcReserveCancle(info, sessUser, rev);			
 		return is;
 	}
 	@RequestMapping(value = "/checkOut", method = RequestMethod.POST)
 	public @ResponseBody CommonSingleResult<ReserveInfo> checkOut(@ModelAttribute PmcMnagerInfo info,
-														@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser,
+														@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser,
 														@ModelAttribute ReserveInfo rev){				
-		CommonSingleResult<ReserveInfo> is = reserveService.pmcReserveCheckOut(info, new PmcMnagerInfo(sessUser), rev);			
+		CommonSingleResult<ReserveInfo> is = reserveService.pmcReserveCheckOut(info, sessUser, rev);			
 		return is;
 	}
 	

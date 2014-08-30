@@ -129,8 +129,7 @@
 		 INNER JOIN TB_FCLT F on F.FCLT_MGMT_NO = R.FCLT_MGMT_NO
 		 LEFT OUTER JOIN TB_FCLT_VST_HIST H on H.RSRV_DTL_NO = D.RSRV_DTL_NO
 		 LEFT OUTER JOIN TB_FCLT_CHK C on C.VST_NO = H.VST_NO	
-		WHERE D.RSRV_DT LIKE CONCAT('%',#{date},'%')   AND R.FCLT_MGMT_NO = #{facilityiesNo} AND D.CNCL_YN='N'
-		ORDER BY R.REG_DTT DESC
+		  WHERE D.RSRV_DT LIKE CONCAT('%',#{date},'%')   AND R.FCLT_MGMT_NO = #{facilityiesNo} AND D.CNCL_YN='N'
 	</select>
 	
 	<select id="listMyPage" parameterType="hashMap" resultType="com.kobaco.smartad.model.data.SAFacilityReserve">

@@ -15,7 +15,6 @@ import com.kobaco.smartad.model.service.CommonListResult;
 import com.kobaco.smartad.model.service.CommonPage;
 import com.kobaco.smartad.model.service.CommonSingleResult;
 import com.kobaco.smartad.model.service.PmcMnagerInfo;
-import com.kobaco.smartad.model.service.PmcSessionInfo;
 import com.kobaco.smartad.model.service.ReserveInfo;
 import com.kobaco.smartad.model.service.UserInfo;
 import com.kobaco.smartad.service.PmcUserService;
@@ -37,8 +36,8 @@ public class PmcUserController {
         return "pmcuser/"+id+"Form";
    }
 	@ModelAttribute("sessionManagerInfo")
-	public PmcSessionInfo setSessionManagerinfo() {
-		return new PmcSessionInfo(){{
+	public PmcMnagerInfo setSessionManagerinfo() {
+		return new PmcMnagerInfo(){{
 			setLogin(false);
 		}};
 	}
@@ -47,46 +46,46 @@ public class PmcUserController {
 	@RequestMapping(value = "/get", method = RequestMethod.POST)
 	public @ResponseBody CommonSingleResult<UserInfo> get(@ModelAttribute UserInfo user,
 														@ModelAttribute PmcMnagerInfo info,
-														@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser){				
-		CommonSingleResult<UserInfo> is = userService.getPmcUserGet(info, new PmcMnagerInfo(sessUser), user);			
+														@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser){				
+		CommonSingleResult<UserInfo> is = userService.getPmcUserGet(info, sessUser, user);			
 		return is;
 	}
 	
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	public @ResponseBody CommonListResult<UserInfo>  list(@ModelAttribute UserInfo user,
 														 @ModelAttribute CommonPage cp,
-														 @ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser,
+														 @ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser,
 														 @ModelAttribute PmcMnagerInfo info ){	
-		CommonListResult<UserInfo> is = userService.getPmcUserSearch(info,cp,new PmcMnagerInfo(sessUser),user);		
+		CommonListResult<UserInfo> is = userService.getPmcUserSearch(info,cp,sessUser,user);		
 		return is;
 	}
 	@RequestMapping(value = "/reserve/list", method = RequestMethod.POST)
 	public @ResponseBody CommonListResult<ReserveInfo>  reserveList(@ModelAttribute UserInfo user,
 														 @ModelAttribute CommonPage cp,
-														 @ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser,
+														 @ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser,
 														 @ModelAttribute PmcMnagerInfo info ){	
-		CommonListResult<ReserveInfo> is = userService.getPmcReserveList(info,cp,new PmcMnagerInfo(sessUser),user);		
+		CommonListResult<ReserveInfo> is = userService.getPmcReserveList(info,cp,sessUser,user);		
 		return is;
 	}
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public @ResponseBody CommonSingleResult<UserInfo> update(@ModelAttribute UserInfo user,
 														@ModelAttribute PmcMnagerInfo info,
-														@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser){				
-		CommonSingleResult<UserInfo> is = userService.getPmcUserUpdate(info, new PmcMnagerInfo(sessUser), user);			
+														@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser){				
+		CommonSingleResult<UserInfo> is = userService.getPmcUserUpdate(info, sessUser, user);			
 		return is;
 	}
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public @ResponseBody CommonSingleResult<UserInfo> add(@ModelAttribute UserInfo user,
 														@ModelAttribute PmcMnagerInfo info,
-														@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser){				
-		CommonSingleResult<UserInfo> is = userService.getPmcUserAdd(info, new PmcMnagerInfo(sessUser), user);	
+														@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser){				
+		CommonSingleResult<UserInfo> is = userService.getPmcUserAdd(info, sessUser, user);	
 		return is;
 	}
 	@RequestMapping(value = "/updateStatus", method = RequestMethod.POST)
 	public @ResponseBody CommonSingleResult<UserInfo> updateStatus(@ModelAttribute UserInfo user,
 														@ModelAttribute PmcMnagerInfo info,
-														@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser){				
-		CommonSingleResult<UserInfo> is = userService.getPmcUserUpdateStatus(info, new PmcMnagerInfo(sessUser), user);	
+														@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser){				
+		CommonSingleResult<UserInfo> is = userService.getPmcUserUpdateStatus(info, sessUser, user);	
 		return is;
 	}
 	

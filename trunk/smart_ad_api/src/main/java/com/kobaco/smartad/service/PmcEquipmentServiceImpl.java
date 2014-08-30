@@ -329,7 +329,6 @@ public class PmcEquipmentServiceImpl implements PmcEquipmentService {
 		
 		saSh.setEQPM_NO(log.getEquipNo());
 		saSh.setMEM(log.getEquipFreeMemory());
-		saSh.setCPU(log.getEquipCpuLoad());
 		saSh.setGTH_DTT(new Date());
 		saSh.setEQPM_CNST_NO("000000000000");
 		saSh = equStateDao.insert(saSh); 

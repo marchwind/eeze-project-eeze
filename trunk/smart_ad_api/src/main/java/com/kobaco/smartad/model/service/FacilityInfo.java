@@ -17,7 +17,6 @@ public class FacilityInfo implements ValueObject {
 	private Date visitDate;
 	private String userEnterpriseName;
 	private String userEmail;
-	private String userName;
 	private String etc;
 	private String facilityCheckInYn;
 
@@ -27,8 +26,6 @@ public class FacilityInfo implements ValueObject {
 		this.visitDate = dr.getVST_DTT();
 		this.userEmail = dr.getUSR_EML();
 		this.etc       = dr.getCHK_CNTT();
-		this.userEnterpriseName = dr.getENTP_NM();
-		this.userName = dr.getUSR_NM();
 	}
 	
 	public FacilityInfo() {
@@ -95,14 +92,6 @@ public class FacilityInfo implements ValueObject {
 	}
 	public void setFacilityExplain(String facilityExplain) {
 		this.facilityExplain = facilityExplain;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
 	}
 
 	

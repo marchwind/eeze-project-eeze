@@ -192,11 +192,12 @@
 		 <if test=' FCLT_MGMT_NO != null and FCLT_MGMT_NO != "" '> AND E.FCLT_MGMT_NO = #{FCLT_MGMT_NO}</if> 
 		 <if test=' EQPM_STTS_CD != null and EQPM_STTS_CD != "" '> AND E.EQPM_STTS_CD = #{EQPM_STTS_CD}</if> 
 	</select>
-
+	
 	<update id="updateAgentSubscribe"  parameterType="com.kobaco.smartad.model.data.SAEquipement">
 		UPDATE TB_EQPM
 		   SET 
 			 EQPM_IP  = #{EQPM_IP}
+			,EQPM_OS  = #{EQPM_OS}
 			,UPD_DTT  = NOW()
 			,UPD_ID   = #{UPD_ID}
 		 WHERE EQPM_NO = #{EQPM_NO}

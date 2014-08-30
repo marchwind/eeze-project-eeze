@@ -36,7 +36,6 @@ public class QnaInfo implements ValueObject {
 		this.answerContent =qna.getA_CNTT();
 		this.queryDate=qna.getQ_DTT();
 		this.anwserDate=qna.getA_DTT();
-		this.answerManagerId=qna.getMNGR_ID();
 	}
 	
 	public String getQueryAttachedFile() {

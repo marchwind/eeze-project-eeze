@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.kobaco.smartad.model.service.CommonListResult;
 import com.kobaco.smartad.model.service.CommonPage;
 import com.kobaco.smartad.model.service.CommonSingleResult;
-import com.kobaco.smartad.model.service.PmcMnagerInfo;
-import com.kobaco.smartad.model.service.PmcSessionInfo;
 import com.kobaco.smartad.model.service.QnaInfo;
+import com.kobaco.smartad.model.service.NotificationInfo;
+import com.kobaco.smartad.model.service.PmcMnagerInfo;
 import com.kobaco.smartad.service.PmcQnaService;
 
 
@@ -36,33 +36,33 @@ public class PmcQnaController {
         return "pmcqna/"+id+"Form";
    }
 	@ModelAttribute("sessionManagerInfo")
-	public PmcSessionInfo setSessionManagerinfo() {
-		return new PmcSessionInfo(){{
+	public PmcMnagerInfo setSessionManagerinfo() {
+		return new PmcMnagerInfo(){{
 			setLogin(false);
 		}};
 	}	
 	
 	@RequestMapping(value = "/get", method = RequestMethod.POST)
 	public @ResponseBody CommonSingleResult<QnaInfo> get(@ModelAttribute PmcMnagerInfo info,
-														@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser,
+														@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser,
 														@ModelAttribute QnaInfo QnaInfo){				
-		CommonSingleResult<QnaInfo> is = qnaService.getPmcQna(info, new PmcMnagerInfo(sessUser), QnaInfo);			
+		CommonSingleResult<QnaInfo> is = qnaService.getPmcQna(info, sessUser, QnaInfo);			
 		return is;
 	}
 	
 	@RequestMapping(value = "/list", method = RequestMethod.POST)
 	public @ResponseBody CommonListResult<QnaInfo>  list(@ModelAttribute CommonPage cp,
-														 @ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser,
+														 @ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser,
 														 @ModelAttribute PmcMnagerInfo info ){	
-		CommonListResult<QnaInfo> is = qnaService.getPmcList(info,cp,new PmcMnagerInfo(sessUser));		
+		CommonListResult<QnaInfo> is = qnaService.getPmcList(info,cp,sessUser);		
 		return is;
 	}
 
 	@RequestMapping(value = "/answer", method = RequestMethod.POST)
 	public @ResponseBody CommonSingleResult<QnaInfo> update(@ModelAttribute PmcMnagerInfo info,
-														@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser,
+														@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser,
 														@ModelAttribute QnaInfo QnaInfo){				
-		CommonSingleResult<QnaInfo> is = qnaService.getPmcAnswer(info, new PmcMnagerInfo(sessUser), QnaInfo);			
+		CommonSingleResult<QnaInfo> is = qnaService.getPmcAnswer(info, sessUser, QnaInfo);			
 		return is;
 	}
 

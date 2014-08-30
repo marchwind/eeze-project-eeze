@@ -15,8 +15,8 @@ import com.kobaco.smartad.model.service.CommonListResult;
 import com.kobaco.smartad.model.service.CommonPage;
 import com.kobaco.smartad.model.service.CommonSingleResult;
 import com.kobaco.smartad.model.service.FaqInfo;
+import com.kobaco.smartad.model.service.NotificationInfo;
 import com.kobaco.smartad.model.service.PmcMnagerInfo;
-import com.kobaco.smartad.model.service.PmcSessionInfo;
 import com.kobaco.smartad.service.PmcFaqService;
 
 
@@ -44,32 +44,32 @@ public class PmcFaqController {
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public @ResponseBody CommonSingleResult<FaqInfo> get(@ModelAttribute PmcMnagerInfo info,
-														@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser,
+														@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser,
 														@ModelAttribute FaqInfo faqInfo){				
-		CommonSingleResult<FaqInfo> is = faqService.getPmcAdd(info, new PmcMnagerInfo(sessUser), faqInfo);			
+		CommonSingleResult<FaqInfo> is = faqService.getPmcAdd(info, sessUser, faqInfo);			
 		return is;
 	}
 	
 	@RequestMapping(value = "/list", method = RequestMethod.POST)
 	public @ResponseBody CommonListResult<FaqInfo>  list(@ModelAttribute CommonPage cp,
-														 @ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser,
+														 @ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser,
 														 @ModelAttribute PmcMnagerInfo info ){	
-		CommonListResult<FaqInfo> is = faqService.getPmcFaqList(info,cp,new PmcMnagerInfo(sessUser));		
+		CommonListResult<FaqInfo> is = faqService.getPmcFaqList(info,cp,sessUser);		
 		return is;
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public @ResponseBody CommonSingleResult<FaqInfo> update(@ModelAttribute PmcMnagerInfo info,
-														@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser,
+														@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser,
 														@ModelAttribute FaqInfo faqInfo){				
-		CommonSingleResult<FaqInfo> is = faqService.getPmcUpdate(info, new PmcMnagerInfo(sessUser), faqInfo);			
+		CommonSingleResult<FaqInfo> is = faqService.getPmcUpdate(info, sessUser, faqInfo);			
 		return is;
 	}
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public @ResponseBody CommonSingleResult<FaqInfo> delete(@ModelAttribute PmcMnagerInfo info,
-														@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser,
+														@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser,
 														@ModelAttribute FaqInfo faqInfo){				
-		CommonSingleResult<FaqInfo> is = faqService.getPmcDelete(info, new PmcMnagerInfo(sessUser), faqInfo);			
+		CommonSingleResult<FaqInfo> is = faqService.getPmcDelete(info, sessUser, faqInfo);			
 		return is;
 	}
 }

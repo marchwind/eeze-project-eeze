@@ -353,11 +353,10 @@ public class PmcUserServiceImpl implements PmcUserService{
 					saUser.getUSR_EML(), new HashMap<String, Object>(),
 					CommonMsg.EmailMsgService.ADD_MSG , CommonMsg.EmailMsgService.ADD_EAMIL);
 			mail.mailSend(mailDto);
-			
-//			MailSend mailDtoUrl = new MailSend(CommonMsg.EmailMsgService.ADD_FROM,
-//					saUser.getUSR_EML(), new HashMap<String, Object>(),
-//					CommonMsg.EmailMsgService.AUTH_MSG , CommonMsg.EmailMsgService.AUTH_EMAIL);
-//			mail.mailSend(mailDtoUrl);
+			MailSend mailDtoUrl = new MailSend(CommonMsg.EmailMsgService.ADD_FROM,
+					saUser.getUSR_EML(), new HashMap<String, Object>(),
+					CommonMsg.EmailMsgService.AUTH_MSG , CommonMsg.EmailMsgService.AUTH_EMAIL);
+			mail.mailSend(mailDtoUrl);
 			
 		} else {
 			result = new CommonSingleResult<UserInfo>(

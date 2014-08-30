@@ -179,8 +179,6 @@ public class PmcFacilityServiceImpl implements PmcFacilityService {
 		ParamsCommonPage p = new ParamsCommonPage();
 		p.setCurrentPage(cp.getCurrentPage());
 		p.setUnitPerPage(cp.getUnitPerPage());		
-		p.setTotalCount(cp.getTotalCount());
-		p.setTotalPage(cp.getTotalPage());
 		
 		ParamsCommonAggregator list = new ParamsCommonAggregator();
 		list.filter(filter);
@@ -192,7 +190,7 @@ public class PmcFacilityServiceImpl implements PmcFacilityService {
 				eqResult.add(new FacilityInfo(dr));
 			}
 			result.setList(eqResult);
-			result.setPage(p);
+			result.setPage(cp);
 			result.setResult(new CommonResult(CommonMsg.successCode,CommonMsg.successMsg));
 		}else {
 			result.setResult(new CommonResult(CommonMsg.failCodeNotFound,

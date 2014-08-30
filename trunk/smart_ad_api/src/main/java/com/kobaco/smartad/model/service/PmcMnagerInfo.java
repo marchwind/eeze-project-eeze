@@ -39,14 +39,7 @@ public class PmcMnagerInfo implements ValueObject{
 		this.cellPhone = sa.getCPHN();
 	}	
 	
-	public PmcMnagerInfo(PmcSessionInfo sess){
-		
-		this.managerNo=sess.getManagerNo();
-		this.managerId=sess.getManagerId();
-		this.managerName=sess.getManagerName();
-		this.managerEmail=sess.getManagerEmail();
-		this.isLogin = sess.isLogin();
-	}
+	
 	
 	public String getPwReset() {
 		return pwReset;
@@ -137,7 +130,7 @@ public class PmcMnagerInfo implements ValueObject{
 		if ( "".equals(this.cellPhone) || this.cellPhone==null) {
 			return this.phone;
 		} else {
-			return this.cellPhone;
+			return managerPhone;
 		}
 	}
 	

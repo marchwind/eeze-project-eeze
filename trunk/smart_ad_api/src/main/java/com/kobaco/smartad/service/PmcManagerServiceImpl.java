@@ -21,7 +21,6 @@ import com.kobaco.smartad.model.service.CommonResult;
 import com.kobaco.smartad.model.service.CommonSingleResult;
 import com.kobaco.smartad.model.service.MailSend;
 import com.kobaco.smartad.model.service.PmcMnagerInfo;
-import com.kobaco.smartad.model.service.PmcSessionInfo;
 import com.kobaco.smartad.utils.CommonCode;
 import com.kobaco.smartad.utils.CommonMsg;
 import com.kobaco.smartad.utils.email.MailSendService;
@@ -36,7 +35,7 @@ public class PmcManagerServiceImpl implements PmcManagerService {
 	MailSendService mail = new MailSendService() ;	
 
 	@Override
-	public CommonSingleResult<PmcMnagerInfo> getPmcMangerList(PmcMnagerInfo info,PmcSessionInfo sessUser) {
+	public CommonSingleResult<PmcMnagerInfo> getPmcMangerList(PmcMnagerInfo info,PmcMnagerInfo sessUser) {
 		// TODO Auto-generated method stub
 		CommonSingleResult<PmcMnagerInfo> result = new CommonSingleResult<PmcMnagerInfo>();
 		if(!sessUser.isLogin() ||info.getManagerMode().equals(CommonCode.PmcManagerCode.PMC_NOT) ||info.getManagerMode().equals("")){	
@@ -94,7 +93,7 @@ public class PmcManagerServiceImpl implements PmcManagerService {
 	}
 
 	@Override
-	public CommonSingleResult<PmcMnagerInfo>  logout(PmcSessionInfo session) {
+	public CommonSingleResult<PmcMnagerInfo>  logout(PmcMnagerInfo session) {
 		// TODO Auto-generated method stub
 		if(session.isLogin()){
 			return 	new CommonSingleResult<PmcMnagerInfo> (new CommonResult(CommonMsg.successCode,CommonMsg.successMsg));			
@@ -104,7 +103,7 @@ public class PmcManagerServiceImpl implements PmcManagerService {
 	}
 
 	@Override
-	public CommonListResult<PmcMnagerInfo> getPmcMnagerList(PmcMnagerInfo info,CommonPage cp, PmcSessionInfo sessUser) {
+	public CommonListResult<PmcMnagerInfo> getPmcMnagerList(PmcMnagerInfo info,CommonPage cp, PmcMnagerInfo sessUser) {
 		// TODO Auto-generated method stub
 		CommonListResult<PmcMnagerInfo> result = new CommonListResult<PmcMnagerInfo>();
 		if(sessUser.getManagerNo()==null ||sessUser.getManagerNo().equals("") || info.getManagerMode()==null || 
@@ -154,7 +153,7 @@ public class PmcManagerServiceImpl implements PmcManagerService {
 	}
 
 	@Override
-	public CommonSingleResult<PmcMnagerInfo> getPmcMangerRegister(PmcMnagerInfo info, PmcSessionInfo sessUser) {
+	public CommonSingleResult<PmcMnagerInfo> getPmcMangerRegister(PmcMnagerInfo info, PmcMnagerInfo sessUser) {
 		// TODO Auto-generated method stub
 		CommonSingleResult<PmcMnagerInfo> result = new CommonSingleResult<PmcMnagerInfo>();
 		if(sessUser.getManagerNo()==null || sessUser.getManagerNo().equals("") ||info.getManagerMode()==null || 
@@ -260,7 +259,7 @@ public class PmcManagerServiceImpl implements PmcManagerService {
 
 	@Override
 	public CommonSingleResult<PmcMnagerInfo> getPmcMangerUpdate(
-			PmcMnagerInfo info, PmcSessionInfo sessUser) {
+			PmcMnagerInfo info, PmcMnagerInfo sessUser) {
 		// TODO Auto-generated method stub
 		CommonSingleResult<PmcMnagerInfo> result = new CommonSingleResult<PmcMnagerInfo>();
 		if(sessUser.getManagerNo()==null ||sessUser.getManagerNo().equals("") || info.getManagerMode()==null || 
@@ -268,8 +267,7 @@ public class PmcManagerServiceImpl implements PmcManagerService {
 				result.setResult(new CommonResult(CommonMsg.failCodeUnAuthrized,CommonMsg.failMsgUnAuthrized));
 				return result;
 		}
-		
-		//info.setManagerNo(sessUser.getManagerNo());		
+		info.setManagerNo(sessUser.getManagerNo());		
 		SAPMCManager saResult = managerDao.info(new SAPMCManager(info));
 		if(info.getPosition()!=null && info.getPosition().equals("")){
 			saResult.setPST_CD(positionChangeCode(info.getPosition()));
@@ -279,8 +277,6 @@ public class PmcManagerServiceImpl implements PmcManagerService {
 		saResult.setPWD(info.getManagerPassword());
 		saResult.setBLT(info.getDepartment());
 		saResult.setUPD_ID(info.getManagerId());
-		saResult.setCPHN(info.getCellPhone());
-		saResult.setPHN(info.getPhone());
 		int resultUpdate = managerDao.update(saResult);
 		if(resultUpdate>0){
 			result.setInfo(new PmcMnagerInfo(saResult));
@@ -295,10 +291,9 @@ public class PmcManagerServiceImpl implements PmcManagerService {
 
 	@Override
 	public CommonSingleResult<PmcMnagerInfo> getPmcMangerModify(
-			PmcMnagerInfo info, PmcSessionInfo sessUser) {
+			PmcMnagerInfo info, PmcMnagerInfo sessUser) {
 		// TODO Auto-generated method stub
 		CommonSingleResult<PmcMnagerInfo> result = new CommonSingleResult<PmcMnagerInfo>();
-		
 		if(sessUser.getManagerNo()==null || sessUser.getManagerNo().equals("") ||info.getManagerMode()==null || 
 				info.getManagerMode().equals(CommonCode.PmcManagerCode.PMC_NOT) ||info.getManagerMode().equals("")){	
 				result.setResult(new CommonResult(CommonMsg.failCodeUnAuthrized,CommonMsg.failMsgUnAuthrized));
@@ -309,7 +304,6 @@ public class PmcManagerServiceImpl implements PmcManagerService {
 			result.setResult(new CommonResult(CommonMsg.failCodeInvalidInput,CommonMsg.failMsgeInvalidInput));
 			return result;
 		}
-		
 		ParamsCommonNamespace param = new ParamsCommonNamespace();
 		Map<String,Object> columns = new HashMap<String, Object>();
 		columns.put("managerNo", info.getManagerNo());
@@ -328,7 +322,7 @@ public class PmcManagerServiceImpl implements PmcManagerService {
 
 	@Override
 	public CommonSingleResult<PmcMnagerInfo> getPmcMangerDelete(
-			PmcMnagerInfo info, PmcSessionInfo sessUser) {
+			PmcMnagerInfo info, PmcMnagerInfo sessUser) {
 		// TODO Auto-generated method stub
 		CommonSingleResult<PmcMnagerInfo> result = new CommonSingleResult<PmcMnagerInfo>();
 		if(sessUser.getManagerNo()==null || sessUser.getManagerNo().equals("") ||info.getManagerMode()==null || 
@@ -357,7 +351,7 @@ public class PmcManagerServiceImpl implements PmcManagerService {
 
 	@Override
 	public CommonSingleResult<PmcMnagerInfo> getPmcMangerAck(
-			PmcMnagerInfo info, PmcSessionInfo sessUser) {
+			PmcMnagerInfo info, PmcMnagerInfo sessUser) {
 		// TODO Auto-generated method stub
 		CommonSingleResult<PmcMnagerInfo> result = new CommonSingleResult<PmcMnagerInfo>();
 		if(sessUser.getManagerNo()==null || sessUser.getManagerNo().equals("") ||info.getManagerMode()==null || 
@@ -388,7 +382,7 @@ public class PmcManagerServiceImpl implements PmcManagerService {
 	}
 
 	@Override
-	public CommonSingleResult<PmcMnagerInfo> getPmcMangerReset(PmcMnagerInfo info, PmcSessionInfo sessUser) {
+	public CommonSingleResult<PmcMnagerInfo> getPmcMangerReset(PmcMnagerInfo info, PmcMnagerInfo sessUser) {
 		// TODO Auto-generated method stub
 		CommonSingleResult<PmcMnagerInfo> result = new CommonSingleResult<PmcMnagerInfo>();
 		if(sessUser.getManagerNo()==null || sessUser.getManagerNo().equals("") ||info.getManagerMode()==null || 

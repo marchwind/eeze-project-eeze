@@ -21,7 +21,6 @@ import com.kobaco.smartad.model.service.CommonPage;
 import com.kobaco.smartad.model.service.CommonResult;
 import com.kobaco.smartad.model.service.CommonSingleResult;
 import com.kobaco.smartad.model.service.PmcMnagerInfo;
-import com.kobaco.smartad.model.service.PmcSessionInfo;
 import com.kobaco.smartad.model.service.QnaInfo;
 import com.kobaco.smartad.model.service.UserInfo;
 import com.kobaco.smartad.service.PmcManagerService;
@@ -42,26 +41,23 @@ public class PmcManagerController {
 	public String form(@RequestParam (value="id",defaultValue="" )String id){	
       
         return "manager/"+id+"Form";
-	}
-	
+   }
 	@ModelAttribute("sessionManagerInfo")
-	public PmcSessionInfo setSessionManagerinfo() {
-		return new PmcSessionInfo(){{
+	public PmcMnagerInfo setSessionManagerinfo() {
+		return new PmcMnagerInfo(){{
 			setLogin(false);
 		}};
 	}
 
 	@RequestMapping(value = "/getSession", method = RequestMethod.GET)
-	public @ResponseBody CommonSingleResult<PmcSessionInfo> getSession(
-			@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser,
+	public @ResponseBody CommonSingleResult<PmcMnagerInfo> getSession(@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser,
 			HttpSession session) {	
-		
-		if (!sessUser.isLogin()) {
-			return new CommonSingleResult<PmcSessionInfo> (
+		if (sessUser.getManagerNo() == null || !sessUser.isLogin()) {
+			return new CommonSingleResult<PmcMnagerInfo> (
 					new CommonResult(CommonMsg.failCodeUnAuthrized, CommonMsg.failMsgUnAuthrized));
 		} else {
-			//sessUser.setManagerPassword(null);
-			return new CommonSingleResult<PmcSessionInfo> (
+			sessUser.setManagerPassword(null);
+			return new CommonSingleResult<PmcMnagerInfo> (
 					new CommonResult(CommonMsg.successCode, CommonMsg.successMsg),
 					sessUser);
 		}
@@ -69,35 +65,26 @@ public class PmcManagerController {
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public @ResponseBody CommonSingleResult<PmcMnagerInfo> login(
-			@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser, 
+			@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser, 
 			@ModelAttribute PmcMnagerInfo manager, 
 			HttpSession session) {
 		// HttpSession session, HttpServletRequest request
 		
 		CommonSingleResult<PmcMnagerInfo> is = managerService.login(manager);
 		if(is.getResult().getResultCode().equals(CommonMsg.successCode)) {
-			PmcMnagerInfo inf = new PmcMnagerInfo();
-			//inf.setLogin(true);
-			inf.setManagerId(is.getInfo().getManagerId());
-			inf.setManagerName(is.getInfo().getManagerName());
-			inf.setManagerNo(is.getInfo().getManagerNo());
-			inf.setManagerEmail(is.getInfo().getManagerEmail());
-			inf.setLoginDate(new Date());
 			sessUser.setLogin(true);
-			sessUser.setLoginInfo(inf);
-//			sessUser.setLogin(true);
-//			sessUser.setManagerId(is.getInfo().getManagerId());
-//			sessUser.setManagerName(is.getInfo().getManagerName());
-//			sessUser.setManagerNo(is.getInfo().getManagerNo());
-//			sessUser.setManagerEmail(is.getInfo().getManagerEmail());
-//			sessUser.setLoginDate(new Date());
+			sessUser.setManagerId(is.getInfo().getManagerId());
+			sessUser.setManagerName(is.getInfo().getManagerName());
+			sessUser.setManagerNo(is.getInfo().getManagerNo());
+			sessUser.setManagerEmail(is.getInfo().getManagerEmail());
+			sessUser.setLoginDate(new Date());
 		}
-		return is;
+			return is;
 	}
 	
 	@RequestMapping("/logout")
 	public @ResponseBody CommonSingleResult<PmcMnagerInfo> logout(
-			@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser, 
+			@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser, 
 			SessionStatus session) {
 		session.setComplete();
 		CommonSingleResult<PmcMnagerInfo> is = managerService.logout(sessUser);
@@ -106,7 +93,7 @@ public class PmcManagerController {
 	
 	@RequestMapping(value = "/get", method = RequestMethod.POST)
 	public @ResponseBody CommonSingleResult<PmcMnagerInfo> get(@ModelAttribute PmcMnagerInfo info
-			,@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser){				
+			,@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser){				
 		CommonSingleResult<PmcMnagerInfo> is = managerService.getPmcMangerList(info, sessUser);			
 		return is;
 	}
@@ -114,14 +101,14 @@ public class PmcManagerController {
 	@RequestMapping(value = "/list", method = RequestMethod.POST)
 	public @ResponseBody CommonListResult<PmcMnagerInfo>  list(@ModelAttribute PmcMnagerInfo info,
 														 @ModelAttribute CommonPage cp,
-														 @ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser ){	
+														 @ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser ){	
 		CommonListResult<PmcMnagerInfo> is = managerService.getPmcMnagerList(info,cp,sessUser);
 		return is;
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public @ResponseBody CommonSingleResult<PmcMnagerInfo> add(PmcMnagerInfo info
-			,@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser){				
+	public @ResponseBody CommonSingleResult<PmcMnagerInfo> add(@ModelAttribute PmcMnagerInfo info
+			,@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser){				
 		CommonSingleResult<PmcMnagerInfo> is = managerService.getPmcMangerRegister(info, sessUser)	;	
 		return is;
 	}
@@ -133,36 +120,36 @@ public class PmcManagerController {
 	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public @ResponseBody CommonSingleResult<PmcMnagerInfo> update(PmcMnagerInfo info
-			,@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser){				
-		CommonSingleResult<PmcMnagerInfo> is = managerService.getPmcMangerUpdate(info, sessUser);		
+	public @ResponseBody CommonSingleResult<PmcMnagerInfo> update(@ModelAttribute PmcMnagerInfo info
+			,@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser){				
+		CommonSingleResult<PmcMnagerInfo> is = managerService.getPmcMangerUpdate(info,sessUser);		
 		return is;
 	}
 	
 	@RequestMapping(value = "/updatePassword", method = RequestMethod.POST)
-	public @ResponseBody CommonSingleResult<PmcMnagerInfo> modify(PmcMnagerInfo info
-			,@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser){				
-		CommonSingleResult<PmcMnagerInfo> is = managerService.getPmcMangerModify(info, sessUser);		
+	public @ResponseBody CommonSingleResult<PmcMnagerInfo> modify(@ModelAttribute PmcMnagerInfo info
+			,@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser){				
+		CommonSingleResult<PmcMnagerInfo> is = managerService.getPmcMangerModify(info,sessUser);		
 		return is;
 	}
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public @ResponseBody CommonSingleResult<PmcMnagerInfo> delete(@ModelAttribute PmcMnagerInfo info
-			,@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser){				
+			,@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser){				
 		CommonSingleResult<PmcMnagerInfo> is = managerService.getPmcMangerDelete(info,sessUser);		
 		return is;
 	}
 	
 	@RequestMapping(value = "/ack", method = RequestMethod.POST)
 	public @ResponseBody CommonSingleResult<PmcMnagerInfo> ack(@ModelAttribute PmcMnagerInfo info
-			,@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser){				
+			,@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser){				
 		CommonSingleResult<PmcMnagerInfo> is = managerService.getPmcMangerAck(info,sessUser);		
 		return is;
 	}
 	
 	@RequestMapping(value = "/passwordReset", method = RequestMethod.POST)
 	public @ResponseBody CommonSingleResult<PmcMnagerInfo> passwordReset(@ModelAttribute PmcMnagerInfo info
-			,@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser){				
+			,@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser){				
 		CommonSingleResult<PmcMnagerInfo> is = managerService.getPmcMangerReset(info,sessUser);		
 		return is;
 	}

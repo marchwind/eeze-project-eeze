@@ -206,8 +206,7 @@
 		   SET 				
 			 CNFM_YN 	 = #{CNFM_YN}
 			,CNFR_ID 	 = #{CNFR_ID}
-			,CNFM_DTT 	 = NOW()	
-			,MNGR_STTS_CD = 'P02002'
+			,CNFM_DTT 	 = NOW()		
 		 WHERE MNGR_NO 	 = #{managerNo}
 	</update>
 </mapper>
