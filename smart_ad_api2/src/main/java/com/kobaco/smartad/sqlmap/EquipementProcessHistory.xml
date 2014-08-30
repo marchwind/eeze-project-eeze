@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kobaco.smartad.equipementProcessHistory">
+
+	<select id="list" parameterType="com.kobaco.smartad.model.data.SAEquipementProcessHistory" resultType="com.kobaco.smartad.model.data.SAEquipementProcessHistory">
+		SELECT
+			 HIST_CNTT   
+			,SW_MGMT_NO  
+			,GTH_DTT
+			,DATE_FORMAT(GTH_DTT, '%H:%m') AS GTH_T 		
+			,EQPM_NO     		
+		 FROM TB_EQPM_PRCS_HIST
+		 WHERE EQPM_NO = #{EQPM_NO}  	
+		 ORDER BY GTH_DTT DESC
+		 LIMIT 0,6 	
+	</select>
+	
+	 <select id="listFilterEquipPage" parameterType="hashMap" resultType="com.kobaco.smartad.model.data.SAEquipementProcessHistory">
+		SELECT
+			 HIST_CNTT   
+			,SW_MGMT_NO  
+			,GTH_DTT 		
+			,EQPM_NO     		
+		 FROM TB_EQPM_PRCS_HIST
+		 WHERE EQPM_NO = #{EQPM_NO}  	
+		 ORDER BY GTH_DTT DESC
+		 LIMIT #{startRow},#{endRow}
+	</select>
+
+	 <select id="countFilterEquipPage" parameterType="hashMap" resultType="int">
+		SELECT COUNT(*)     		
+		 FROM TB_EQPM_PRCS_HIST
+		 WHERE EQPM_NO = #{EQPM_NO}  
+		 LIMIT #{startRow},#{endRow}
+	</select>
+	
+	<select id="info" parameterType="com.kobaco.smartad.model.data.SAEquipementProcessHistory" resultType="com.kobaco.smartad.model.data.SAEquipementProcessHistory">
+        SELECT
+			 HIST_CNTT   
+			,SW_MGMT_NO  
+			,GTH_DTT 		
+			,EQPM_NO 		
+		 FROM TB_EQPM_PRCS_HIST
+		WHERE  GTH_DTT = #{GTH_DTT}  AND EQPM_NO = #{EQPM_NO}  AND SW_MGMT_NO = #{SW_MGMT_NO} 
+	</select>
+	
+	<insert id="insert" parameterType="com.kobaco.smartad.model.data.SAEquipementProcessHistory">
+		INSERT INTO TB_EQPM_PRCS_HIST (
+			 HIST_CNTT   
+			,SW_MGMT_NO  
+			,GTH_DTT 		
+			,EQPM_NO 		
+		) VALUES (
+		     #{HIST_CNTT}
+			,#{SW_MGMT_NO}
+			,#{GTH_DTT} 
+			,#{EQPM_NO}			
+		)
+	</insert>
+	
+	<update id="update"  parameterType="com.kobaco.smartad.model.data.SAEquipementProcessHistory">
+		UPDATE TB_EQPM_PRCS_HIST
+		   SET 
+			 HIST_CNTT 			= #{HIST_CNTT}
+			WHERE  GTH_DTT		= #{GTH_DTT}  AND EQPM_NO = #{EQPM_NO}  AND SW_MGMT_NO = #{SW_MGMT_NO} 
+	</update>
+	
+	<delete id="delete" parameterType="com.kobaco.smartad.model.data.SAEquipementProcessHistory">
+		DELETE FROM TB_EQPM_PRCS_HIST WHERE   GTH_DTT = #{GTH_DTT}  AND EQPM_NO = #{EQPM_NO}  AND SW_MGMT_NO = #{SW_MGMT_NO} 
+	</delete>	
+</mapper>

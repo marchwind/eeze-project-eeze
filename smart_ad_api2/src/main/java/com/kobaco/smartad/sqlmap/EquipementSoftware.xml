@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kobaco.smartad.equipementSoftware">
+
+	 <select id="list" parameterType="com.kobaco.smartad.model.data.SAEquipementSoftware" resultType="com.kobaco.smartad.model.data.SAEquipementSoftware">
+		SELECT
+			 EQPM_NO
+			,SW_MGMT_NO 						
+			,REG_DTT   		
+			,UPD_DTT   		
+			,REG_ID    		
+			,UPD_ID    		
+		 FROM TB_EQPM_SW
+		 WHERE #{SW_MGMT_NO} = #{SW_MGMT_NO}  AND  #{EQPM_NO} = #{EQPM_NO} 
+		 <!-- 조건 설정 방법 구상 -->
+		 <!-- 정렬 설정 방법 구상 -->
+		<!-- LIMIT #{startRecordNo}, #{resultRecordCnt}  -->
+	</select>
+	
+	<select id="info" parameterType="com.kobaco.smartad.model.data.SAEquipementSoftware" resultType="com.kobaco.smartad.model.data.SAEquipementSoftware">
+        SELECT
+			 EQPM_NO
+			,SW_MGMT_NO			
+			,REG_DTT   		
+			,UPD_DTT   		
+			,REG_ID    		
+			,UPD_ID    		
+		 FROM TB_EQPM_SW
+		WHERE SW_MGMT_NO = #{SW_MGMT_NO}  AND  EQPM_NO = #{EQPM_NO} 
+	</select>
+	
+	<insert id="insert" parameterType="com.kobaco.smartad.model.data.SAEquipementSoftware">	
+	
+		INSERT INTO TB_EQPM_SW (
+			 EQPM_NO
+			,SW_MGMT_NO			
+			,REG_DTT   		
+			,UPD_DTT   		
+			,REG_ID    		
+			,UPD_ID     		
+		) VALUES (
+		     #{EQPM_NO}
+			,#{SW_MGMT_NO}			
+			,NOW()
+			,NOW()
+			,#{REG_ID}
+			,#{UPD_ID}
+		)
+	</insert>
+	
+	<update id="update"  parameterType="com.kobaco.smartad.model.data.SAEquipementSoftware">
+		UPDATE TB_EQPM_SW
+		   SET 
+			 UPD_DTT   				= NOW()
+			,UPD_ID    				= #{UPD_ID}
+		  WHERE SW_MGMT_NO 			= #{SW_MGMT_NO}  AND  EQPM_NO = #{EQPM_NO} 
+	</update>
+	
+	<delete id="delete" parameterType="com.kobaco.smartad.model.data.SAEquipementSoftware">
+		DELETE FROM TB_EQPM_SW 	WHERE SW_MGMT_NO = #{SW_MGMT_NO}  AND  EQPM_NO = #{EQPM_NO} 
+	</delete>	
+</mapper>

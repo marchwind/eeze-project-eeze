@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kobaco.smartad.notificationConfirm">
+
+	 <select id="list" parameterType="com.kobaco.smartad.model.data.SANotificationConfirm" resultType="com.kobaco.smartad.model.data.SANotificationConfirm">
+		SELECT
+			 USR_NO   	
+			,NTFC_NO    		
+			,REG_DTT    
+			,UPD_DTT    
+			,REG_ID     
+			,UPD_ID  	
+		 FROM TB_NTFC_CNFM
+		 WHERE #{NTFC_NO} = #{NTFC_NO} AND  #{USR_NO} = #{USR_NO} 
+		 <!-- 조건 설정 방법 구상 -->
+		 <!-- 정렬 설정 방법 구상 -->
+		<!-- LIMIT #{startRecordNo}, #{resultRecordCnt}  -->
+	</select>
+	
+	<select id="info" parameterType="com.kobaco.smartad.model.data.SANotificationConfirm" resultType="com.kobaco.smartad.model.data.SANotificationConfirm">
+        SELECT
+			 USR_NO   	
+			,NTFC_NO    		
+			,REG_DTT    
+			,UPD_DTT    
+			,REG_ID     
+			,UPD_ID  	
+		 FROM TB_NTFC_CNFM
+		WHERE NTFC_NO = #{NTFC_NO} AND USR_NO = #{USR_NO} 
+	</select>
+	
+	<insert id="insert" parameterType="com.kobaco.smartad.model.data.SANotificationConfirm">
+		
+		INSERT INTO TB_NTFC_CNFM (
+			 USR_NO
+			,NTFC_NO		
+			,REG_DTT 	 
+			,UPD_DTT 
+			,REG_ID 
+			,UPD_ID  
+		) VALUES (
+			 #{USR_NO}
+			,#{NTFC_NO}	
+			,NOW()
+			,NOW()
+			,#{REG_ID}
+			,#{UPD_ID}
+		)
+	</insert>
+	
+	<update id="update"  parameterType="com.kobaco.smartad.model.data.SANotificationConfirm">
+		UPDATE TB_NTFC_CNFM 
+		   SET			 	
+			 UPD_DTT   = NOW()
+			,UPD_ID    = #{UPD_ID}
+		 WHERE NTFC_NO = #{NTFC_NO} AND USR_NO = #{USR_NO}
+	</update>
+	
+	<delete id="delete" parameterType="String">
+		DELETE FROM TB_NTFC_CNFM WHERE NTFC_NO = #{NTFC_NO} and USR_NO = #{USR_NO}
+	</delete>	
+</mapper>

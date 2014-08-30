@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kobaco.smartad.device">
+
+	 <select id="list" parameterType="com.kobaco.smartad.model.data.SADevice" resultType="com.kobaco.smartad.model.data.SADevice">
+		SELECT
+			 DEV_MGMT_NO  		
+			,MDL_NM    
+			,WDT_RESO
+			,HGT_RESO
+			,MFTR
+			,DEV_NM
+			,DEV_STTS_CD
+			,OS 					
+			,REG_DTT   		
+			,UPD_DTT   		
+			,REG_ID    		
+			,UPD_ID    		
+		 FROM TB_DEV
+		 WHERE #{DEV_MGMT_NO} = #{DEV_MGMT_NO}
+		 <!-- 조건 설정 방법 구상 -->
+		 <!-- 정렬 설정 방법 구상 -->
+		<!-- LIMIT #{startRecordNo}, #{resultRecordCnt}  -->
+	</select>
+	
+	<select id="info" parameterType="com.kobaco.smartad.model.data.SADevice" resultType="com.kobaco.smartad.model.data.SADevice">
+        SELECT
+			 DEV_MGMT_NO  		
+			,MDL_NM    
+			,WDT_RESO
+			,HGT_RESO
+			,MFTR
+			,DEV_NM
+			,DEV_STTS_CD
+			,OS 							
+			,REG_DTT   		
+			,UPD_DTT   		
+			,REG_ID    		
+			,UPD_ID    		
+		 FROM TB_DEV
+		WHERE DEV_MGMT_NO = #{DEV_MGMT_NO}
+	</select>
+	
+	<insert id="insert" parameterType="com.kobaco.smartad.model.data.SADevice">
+		<selectKey keyProperty="DEV_MGMT_NO" resultType="String" order="BEFORE">
+			SELECT FN_GET_SEQ('DE','TB_DEV')
+		</selectKey>
+		INSERT INTO TB_DEV (
+			 DEV_MGMT_NO  		
+			,MDL_NM    
+			,WDT_RESO
+			,HGT_RESO
+			,MFTR
+			,DEV_NM
+			,DEV_STTS_CD
+			,OS 			 					
+			,REG_DTT   		
+			,UPD_DTT   		
+			,REG_ID    		
+			,UPD_ID    		
+		) VALUES (
+			 #{DEV_MGMT_NO}
+			,#{MDL_NM} 
+			,#{WDT_RESO}
+			,#{HGT_RESO} 
+			,#{MFTR}
+			,#{DEV_NM} 
+			,#{DEV_STTS_CD}
+			,#{OS} 
+			,NOW()
+			,NOW()
+			,#{REG_ID}
+			,#{UPD_ID}
+		)
+	</insert>
+	
+	<update id="update"  parameterType="com.kobaco.smartad.model.data.SADevice">
+		UPDATE TB_DEV
+		   SET 			   		
+			 MDL_NM    			= #{MDL_NM} 
+			,WDT_RESO			= #{WDT_RESO} 
+			,HGT_RESO			= #{HGT_RESO} 
+			,MFTR				= #{MFTR} 
+			,DEV_NM				= #{DEV_NM} 
+			,DEV_STTS_CD		= #{DEV_STTS_CD} 
+			,OS 			 	= #{OS}
+			,UPD_DTT   			= NOW()
+			,UPD_ID    			= #{UPD_ID}
+		 WHERE DEV_MGMT_NO 		= #{DEV_MGMT_NO}
+	</update>
+	
+	<delete id="delete" parameterType="com.kobaco.smartad.model.data.SADevice">
+		DELETE FROM TB_DEV WHERE DEV_MGMT_NO 		= #{DEV_MGMT_NO}
+	</delete>	
+</mapper>

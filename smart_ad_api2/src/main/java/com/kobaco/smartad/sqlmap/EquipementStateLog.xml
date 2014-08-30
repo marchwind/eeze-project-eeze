@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kobaco.smartad.equipementStateLog">
+
+	 <select id="list" parameterType="com.kobaco.smartad.model.data.SAEquipementStateLog" resultType="com.kobaco.smartad.model.data.SAEquipementStateLog">
+		SELECT
+			 EQPM_NO
+			,SEQ   
+			,LOG_GTH_DTT  
+			,LOG_TP_CD 		
+			,LOG_CNTT				
+			,REG_DTT   		
+			,UPD_DTT   		
+			,REG_ID    		
+			,UPD_ID    		
+		 FROM TB_EQPM_STTS_LOG
+		 WHERE #{EQPM_NO} = #{EQPM_NO} 
+		 <!-- 조건 설정 방법 구상 -->
+		 <!-- 정렬 설정 방법 구상 -->
+		<!-- LIMIT #{startRecordNo}, #{resultRecordCnt}  -->
+	</select>
+	
+	<select id="info" parameterType="com.kobaco.smartad.model.data.SAEquipementStateLog" resultType="com.kobaco.smartad.model.data.SAEquipementStateLog">
+        SELECT
+			 EQPM_NO
+			,SEQ   
+			,LOG_GTH_DTT  
+			,LOG_TP_CD 		
+			,LOG_CNTT				
+			,REG_DTT   		
+			,UPD_DTT   		
+			,REG_ID    		
+			,UPD_ID    		
+		 FROM TB_EQPM_STTS_LOG
+		WHERE   EQPM_NO = #{EQPM_NO} 
+	</select>
+	
+	<insert id="insert" parameterType="com.kobaco.smartad.model.data.SAEquipementStateLog">	
+		INSERT INTO TB_EQPM_STTS_LOG (
+			 EQPM_NO
+			,LOG_GTH_DTT  
+			,LOG_TP_CD 		
+			,LOG_CNTT				
+			,REG_DTT   		
+			,UPD_DTT   		
+			,REG_ID    		
+			,UPD_ID     		
+		) VALUES (
+		     #{EQPM_NO}
+			,#{LOG_GTH_DTT} 
+			,#{LOG_TP_CD}
+			,#{LOG_CNTT}
+			,NOW()
+			,NOW()
+			,#{REG_ID}
+			,#{UPD_ID}
+		)
+	</insert>
+	
+	<update id="update"  parameterType="com.kobaco.smartad.model.data.SAEquipementStateLog">
+		UPDATE TB_EQPM_STTS_LOG
+		   SET 
+			 LOG_GTH_DTT 			= #{LOG_GTH_DTT}
+			,LOG_TP_CD      		= #{LOG_TP_CD}
+			,LOG_CNTT       		= #{LOG_CNTT}
+			,UPD_DTT   				= NOW()
+			,UPD_ID    				= #{UPD_ID}
+		  WHERE  EQPM_NO = #{EQPM_NO} 
+	</update>
+	
+	<delete id="delete" parameterType="com.kobaco.smartad.model.data.SAEquipementStateLog">
+		DELETE FROM TB_EQPM_STTS_LOG 	WHERE  EQPM_NO = #{EQPM_NO} 
+	</delete>	
+</mapper>
