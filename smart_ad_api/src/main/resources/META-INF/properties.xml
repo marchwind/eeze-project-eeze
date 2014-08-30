@@ -26,27 +26,27 @@
     <prop key="jdbc.password">smartad12#$</prop>
   </util:properties>
 
-<!--   <util:properties id="email_local"> -->
-<!-- 	<prop key="mail.host">192.168.0.195</prop> -->
-<!-- 	<prop key="mail.port">25</prop> -->
-<!-- 	<prop key="mail.user">terascope</prop> -->
-<!-- 	<prop key="mail.pwd">831455</prop> -->
-<!-- 	<prop key="mail.protocol">smtp</prop> -->
-<!-- 	<prop key="mail.auth">true</prop> -->
-<!-- 	<prop key="mail.starttls">false</prop> -->
-<!-- 	<prop key="mail.debug">true</prop> -->
-<!--   </util:properties> -->
-
- <util:properties id="email_local">
-	<prop key="mail.host">192.168.20.5</prop>
+  <util:properties id="email_local">
+	<prop key="mail.host">192.168.0.195</prop>
 	<prop key="mail.port">25</prop>
-	<prop key="mail.user">smartad</prop>
-	<prop key="mail.pwd">smartad12#$</prop>
+	<prop key="mail.user">terascope</prop>
+	<prop key="mail.pwd">831455</prop>
 	<prop key="mail.protocol">smtp</prop>
 	<prop key="mail.auth">true</prop>
 	<prop key="mail.starttls">false</prop>
 	<prop key="mail.debug">true</prop>
   </util:properties>
+
+<!--  <util:properties id="email_local"> -->
+<!-- 	<prop key="mail.host">192.168.20.5</prop> -->
+<!-- 	<prop key="mail.port">25</prop> -->
+<!-- 	<prop key="mail.user">smartad</prop> -->
+<!-- 	<prop key="mail.pwd">smartad12#$</prop> -->
+<!-- 	<prop key="mail.protocol">smtp</prop> -->
+<!-- 	<prop key="mail.auth">true</prop> -->
+<!-- 	<prop key="mail.starttls">false</prop> -->
+<!-- 	<prop key="mail.debug">true</prop> -->
+<!--   </util:properties> -->
   
  <util:properties id="email_product">
 	<prop key="mail.host">192.168.20.5</prop>
@@ -68,14 +68,10 @@
 	<prop key="user.log.emailcert">U10006</prop>
 	<prop key="user.state.act.nml">U01100</prop>
 	<prop key="user.state.unsub.nml">U01110</prop>
+	<prop key="user.state.block.nml">U01120</prop>
 	<prop key="user.state.act.ent">U01200</prop>
 	<prop key="user.state.unsub.ent">U01210</prop>
 	<prop key="tscs.tp.tscs">T01001</prop>
 	<prop key="tscs.tp.reif">T01002</prop>
-	
   </util:properties>
-  
-
-  
-  
 </beans>
