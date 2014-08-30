@@ -243,18 +243,7 @@ function page(curPage, totalPage) {
 	
 	var tag = "<li class='btn_6 prePage' data-page='pre' onclick='pageGo(this)'><</li>";
 	
-	var roopStart = Math.floor(curPage / 10) * 10 + 1;
-	if((curPage % 10) == 0) {
-		roopStart -= 10;
-	}
-	
-	var endPage = roopStart + 9;
-	
-	if(endPage > totalPage) {
-		endPage = totalPage;
-	}
-	
-	for(var i = roopStart; i <= endPage; i++) {
+	for(var i=1; i <= totalPage; i++) {
 		if(i == curPage) {
 			tag += "<li class='btn_6 on' data-page='"+i+"'>"+i+"</li>";	
 		} else {
