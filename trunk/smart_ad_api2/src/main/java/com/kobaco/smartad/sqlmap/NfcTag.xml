@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kobaco.smartad.nfcTag">
+
+	 <select id="list" parameterType="com.kobaco.smartad.model.data.SANfcTag" resultType="com.kobaco.smartad.model.data.SANfcTag">
+		SELECT
+			 NFC_TAG_ID			
+			,REG_DTT   		
+			,UPD_DTT   		
+			,REG_ID    		
+			,UPD_ID    		
+		 FROM TB_NFC_TAG_MGMT
+		 WHERE #{NFC_TAG_ID} = #{NFC_TAG_ID}
+		 <!-- 조건 설정 방법 구상 -->
+		 <!-- 정렬 설정 방법 구상 -->
+		<!-- LIMIT #{startRecordNo}, #{resultRecordCnt}  -->
+	</select>
+	
+	<select id="info" parameterType="com.kobaco.smartad.model.data.SANfcTag" resultType="com.kobaco.smartad.model.data.SANfcTag">
+        SELECT
+			 NFC_TAG_ID			
+			,REG_DTT   		
+			,UPD_DTT   		
+			,REG_ID    		
+			,UPD_ID    		
+		 FROM TB_NFC_TAG_MGMT
+		WHERE NFC_TAG_ID = #{NFC_TAG_ID}
+	</select>
+	
+	<insert id="insert" parameterType="com.kobaco.smartad.model.data.SANfcTag">
+		<selectKey keyProperty="NFC_TAG_ID" resultType="String" order="BEFORE">
+			SELECT FN_GET_SEQ('NT','TB_NFC_TAG_MGMT')
+		</selectKey>
+		INSERT INTO TB_NFC_TAG_MGMT (
+			 NFC_TAG_ID	
+			,REG_DTT   		
+			,UPD_DTT   		
+			,REG_ID    		
+			,UPD_ID    		
+		) VALUES (
+			 #{NFC_TAG_ID}
+			,NOW()
+			,NOW()
+			,#{REG_ID}
+			,#{UPD_ID}
+		)
+	</insert>
+	
+	<update id="update"  parameterType="com.kobaco.smartad.model.data.SANfcTag">
+		UPDATE TB_NFC_TAG_MGMT
+		   SET			 
+			 UPD_DTT   			= NOW()
+			,UPD_ID    			= #{UPD_ID}
+		 WHERE NFC_TAG_ID      	= #{NFC_TAG_ID}
+	</update>
+	
+	<delete id="delete" parameterType="com.kobaco.smartad.model.data.SANfcTag">
+		DELETE FROM TB_NFC_TAG_MGMT  WHERE NFC_TAG_ID  = #{NFC_TAG_ID}
+	</delete>	
+</mapper>

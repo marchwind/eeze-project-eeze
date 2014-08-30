@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kobaco.smartad.equipementStateHistory">
+
+	 <select id="list" parameterType="com.kobaco.smartad.model.data.SAEquipementStateHistory" resultType="com.kobaco.smartad.model.data.SAEquipementStateHistory">
+		SELECT
+			 HIST_CNTT   
+			,EQPM_CNST_NO  
+			,GTH_DTT 		
+			,DATE_FORMAT(GTH_DTT, '%H:%m') AS GTH_T
+			,EQPM_NO     		
+		 FROM TB_EQPM_STTS_HIST
+		 WHERE EQPM_NO = #{EQPM_NO}  	
+		 ORDER BY GTH_DTT DESC
+		 LIMIT 0,6 
+	</select>
+	
+<!-- 	<select id="info" parameterType="com.kobaco.smartad.model.data.SAEquipementStateHistory" resultType="com.kobaco.smartad.model.data.SAEquipementStateHistory"> -->
+<!--         SELECT -->
+<!-- 			 HIST_CNTT    -->
+<!-- 			,EQPM_CNST_NO   -->
+<!-- 			,GTH_DTT 		 -->
+<!-- 			,EQPM_NO 		 -->
+<!-- 		 FROM TB_EQPM_STTS_HIST -->
+<!-- 		WHERE  GTH_DTT = #{GTH_DTT}  AND  EQPM_NO = #{EQPM_NO}  AND  EQPM_CNST_NO = #{EQPM_CNST_NO}  -->
+<!-- 	</select> -->
+	
+	<insert id="insert" parameterType="com.kobaco.smartad.model.data.SAEquipementStateHistory">
+		INSERT INTO TB_EQPM_STTS_HIST (
+			 CPU
+			,MEM   
+			,EQPM_CNST_NO  
+			,GTH_DTT 		
+			,EQPM_NO 		
+		) VALUES (
+		     #{CPU}
+		    ,#{MEM}
+			,#{EQPM_CNST_NO}
+			,#{GTH_DTT} 
+			,#{EQPM_NO}			
+		)
+	</insert>
+	
+<!-- 	<update id="update"  parameterType="com.kobaco.smartad.model.data.SAEquipementStateHistory"> -->
+<!-- 		UPDATE TB_EQPM_STTS_HIST -->
+<!-- 		   SET  -->
+<!-- 			 HIST_CNTT 			= #{HIST_CNTT} -->
+<!-- 			WHERE GTH_DTT = #{GTH_DTT}  AND  EQPM_NO = #{EQPM_NO}  AND  EQPM_CNST_NO = #{EQPM_CNST_NO}   -->
+<!-- 	</update> -->
+	
+<!-- 	<delete id="delete" parameterType="com.kobaco.smartad.model.data.SAEquipementStateHistory"> -->
+<!-- 		DELETE FROM TB_EQPM_STTS_HIST 	WHERE  GTH_DTT = #{GTH_DTT}  AND  EQPM_NO = #{EQPM_NO}  AND  EQPM_CNST_NO = #{EQPM_CNST_NO}  -->
+<!-- 	</delete>	 -->
+</mapper>

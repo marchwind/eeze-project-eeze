@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kobaco.smartad.pmcScreenManagement">
+
+	 <select id="list" parameterType="com.kobaco.smartad.model.data.SAPMCScreenManagement" resultType="com.kobaco.smartad.model.data.SAPMCScreenManagement">
+		SELECT
+			 PMC_SCRN_NO    
+			,SCRN_NM  		
+			,REG_DTT  		
+			,UPD_DTT   		
+			,REG_ID    		
+			,UPD_ID    		
+		 FROM TB_PMC_SCRN_MGMT
+		 WHERE #{PMC_SCRN_NO} = #{PMC_SCRN_NO}
+		 <!-- 조건 설정 방법 구상 -->
+		 <!-- 정렬 설정 방법 구상 -->
+		<!-- LIMIT #{startRecordNo}, #{resultRecordCnt}  -->
+	</select>
+	
+	<select id="info" parameterType="com.kobaco.smartad.model.data.SAPMCScreenManagement" resultType="com.kobaco.smartad.model.data.SAPMCScreenManagement">
+		SELECT
+			 PMC_SCRN_NO    
+			,SCRN_NM  		
+			,REG_DTT   	    
+			,UPD_DTT   	    
+			,REG_ID    	    
+			,UPD_ID    	    
+		 FROM TB_PMC_SCRN_MGMT
+		 WHERE PMC_SCRN_NO = #{PMC_SCRN_NO}
+	</select>
+	
+	<insert id="insert" parameterType="com.kobaco.smartad.model.data.SAPMCScreenManagement">
+		<selectKey keyProperty="PMC_SCRN_NO" resultType="String" order="BEFORE">
+			SELECT FN_GET_SEQ('SM','TB_PMC_SCRN_MGMT')
+		</selectKey>
+		INSERT INTO TB_PMC_SCRN_MGMT (
+			PMC_SCRN_NO,
+			SCRN_NM,
+			REG_DTT,
+			UPD_DTT,
+			REG_ID,
+			UPD_ID
+			) VALUES (
+			 #{PMC_SCRN_NO}
+			,#{SCRN_NM} 
+			,NOW()
+			,NOW()
+			,#{REG_ID}
+			,#{UPD_ID}
+		)
+	</insert>
+	
+	<update id="update"  parameterType="com.kobaco.smartad.model.data.SAPMCScreenManagement">
+		UPDATE TB_PMC_SCRN_MGMT
+		   SET 	
+			 SCRN_NM 		= #{SCRN_NM}	
+			,UPD_DTT   		= NOW()
+			,UPD_ID   		= #{UPD_ID}
+		 WHERE PMC_SCRN_NO 	= #{PMC_SCRN_NO}
+	</update>
+	
+	<delete id="delete" parameterType="com.kobaco.smartad.model.data.SAPMCScreenManagement">
+		DELETE FROM TB_PMC_SCRN_MGMT WHERE PMC_SCRN_NO 	= #{PMC_SCRN_NO}
+	</delete>	
+</mapper>

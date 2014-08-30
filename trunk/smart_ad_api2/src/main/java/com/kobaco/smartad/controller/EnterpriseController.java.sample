@@ -1,0 +1,62 @@
+package com.kobaco.smartad.controller;
+
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.kobaco.smartad.model.data.SAEnterprise;
+import com.kobaco.smartad.model.service.CommonSingleResult;
+import com.kobaco.smartad.service.EnterpriseService;
+
+@Controller
+public class EnterpriseController {
+	
+	@Autowired
+	public EnterpriseService entService;
+
+	private static final Logger logger = LoggerFactory.getLogger(EnterpriseController.class);
+	
+	@RequestMapping(value="/enterprise" , method = RequestMethod.GET)
+    public String form(@RequestParam (value="id",defaultValue="" )String id){	
+        
+        return "enterprise/"+id+"Form";
+   }
+
+//	@RequestMapping("/enterprise/insert")
+//    public @ResponseBody CommonSingleResult insert(@ModelAttribute SAEnterprise ent ){		
+//		CommonSingleResult result = entService.insertEnterprise(ent);        
+//        return result;
+//   }
+	
+	@RequestMapping("/enterprise/update")
+    public @ResponseBody CommonSingleResult update(@ModelAttribute SAEnterprise ent){		
+		CommonSingleResult result = entService.updatetEnterprise(ent);        
+        return result;
+   }
+	
+	@RequestMapping("/enterprise/delete")
+    public @ResponseBody CommonSingleResult delete(@ModelAttribute SAEnterprise ent){			
+		CommonSingleResult result = entService.deleteEnterprise(ent);        
+        return result;
+   }
+	
+//	@RequestMapping("/enterprise/list")
+//    public @ResponseBody CommonSingleResult<SAEnterprise> list(@ModelAttribute SAEnterprise ent){		
+//		CommonSingleResult<SAEnterprise> result = entService.listEnterprise(ent);        
+//        return result;
+//   }
+	
+//	@RequestMapping("/enterprise/info")
+//    public @ResponseBody CommonSingleResult<SAEnterprise> info(@ModelAttribute SAEnterprise ent){		
+//		CommonSingleResult<SAEnterprise> result = entService.infoEnterprise(ent);        
+//        return result;
+//   }
+}
