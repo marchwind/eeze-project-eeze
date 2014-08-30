@@ -11,7 +11,6 @@ var user = {
 	enterpriseName : ""
 }
 
-
 var reserve = {
 	facName : "",
 	fac : "FC0000000852",
@@ -30,10 +29,10 @@ var facility = {
 }
 
 var uri = {
-	serverUrl : "http://localhost:8080/smart_ad_api",
+	//serverUrl : "http://localhost:8080/smart_ad_api",
 	//serverUrl : "http://pms.app4u.kr:8080/smart_ad_api",
 	//serverUrl : "http://106.247.240.10/api",
-	//serverUrl : "http://www.smartad.or.kr/api",
+	serverUrl : "http://www.smartad.or.kr/api",
 	loginUrl : "/user/login",
 	logoutUrl : "/user/logout",
 	sessionCheck : "/user/session",
