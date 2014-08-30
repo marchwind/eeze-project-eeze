@@ -3,24 +3,12 @@
 <html>
 <head>
 <%@ include file="../common/common.jsp" %>
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript">
-
-var colors = ['#8095f1','#80d1f1','#80efa6','#f2d07c','#e1ef7c','#f26bf0','#b56bf1'
-              ,'#8095f1','#80d1f1','#80efa6','#f2d07c','#e1ef7c','#f26bf0','#b56bf1'
-              ,'#8095f1','#80d1f1','#80efa6','#f2d07c','#e1ef7c','#f26bf0','#b56bf1'];
-
-// Load the Visualization API and the piechart package.
-google.load('visualization', '1.0', {'packages':['corechart']});
-
-// Set a callback to run when the Google Visualization API is loaded.
-google.setOnLoadCallback(statisticsLoad);
-
 $(document).ready(function(){
 	var url = uri.serverUrl + uri.equipGetUrl;
 	sendRequestJson(url, {equipNo : "${no}"}, equipGetSuccess, error);
 	
-	//pageListCall();	
+	pageListCall();	
 });
 
 function equipGetSuccess(res) {
@@ -33,97 +21,11 @@ function equipGetSuccess(res) {
 function pageListCall(){
 	var param = pageValue;
 	param['equipNo'] = "${no}"; 
-	var url = uri.serverUrl + uri.equipUsedStatistics;
+	var url = uri.serverUrl + uri.equipUsedHistoryUrl;
 	sendRequestJson(url, param, equipUsedListSuccess, error);
 }
 
-function statisticsLoad() {
-	var url = uri.serverUrl + uri.equipUsedStatistics;
-	sendRequestJson(url, {equipNo : "${no}"}, statisticsLoadSuccess, error);
-}
-
-function statisticsLoadSuccess(res){
-	
-	var cpuData = [['Time', 'CPU']];
-	$(res.info.cpuUse).each(function(){
-		var el = [];
-		el.push(this.gTime);
-		el.push(Number(this.gValue));
-		
-		cpuData.push(el);
-	});
-	
-	var data = google.visualization.arrayToDataTable(cpuData);
-
-	var options = {
-		legend : {position: 'none'},
-	  	hAxis: {title: 'Time',  titleTextStyle: {color: '#333'}},
-	  	vAxis: {minValue: 0},
-	  	pointShape : "circle",
-	  	pointSize : 5,
-	  	series : { 0 : {color : colors[0]} }
-	};
-	
-	var chart = new google.visualization.AreaChart(document.getElementById('cpuChart'));
-	chart.draw(data, options);
-	
-	memoryChartDraw(res);
-}
-
-function memoryChartDraw(res){
-	
-	var memoryData = [['Time', 'Memory']];
-	$(res.info.memoryUse).each(function(){
-		var el = [];
-		el.push(this.gTime);
-		el.push(Number(this.gValue));
-		
-		memoryData.push(el);
-	});
-	
-	var data = google.visualization.arrayToDataTable(memoryData);
-
- 	var options = {
- 		legend : {position: 'none'},
- 	  	hAxis: {title: 'Time',  titleTextStyle: {color: '#333'}},
- 	  	vAxis: {minValue: 0},
- 	  	pointShape : "circle",
- 	  	pointSize : 5,
- 	  	series : { 0 : {color : colors[1]} }
- 	};
- 	
- 	var chart = new google.visualization.AreaChart(document.getElementById('memoryChart'));
- 	chart.draw(data, options);
- 	
- 	processChartDraw(res);
-}
-
-function processChartDraw(res) {
-	
-	var pData = [['Process', '지속율', { role: 'style' }]];
-	
-	$(res.info.process).each(function(idx){
-		var el = [];
-		el.push(this.pName);
-		el.push(this.cRate);
-		el.push(colors[idx]);
-		
-		pData.push(el);
-	});
-	
-	var data = google.visualization.arrayToDataTable(pData);
-
-	var options = {
-  		legend : {position: 'none'},
-  		bar: {groupWidth: "95%"}
-  	};
-  	
-  	var chart = new google.visualization.ColumnChart(document.getElementById('processChart'));
-  	chart.draw(data, options);
-}
-
 function equipUsedListSuccess(res){
-	/*
 	var $table = $("#usedList tbody");
 	$table.empty();
 	if(res.result.resultCode == "0000") {
@@ -141,9 +43,6 @@ function equipUsedListSuccess(res){
 		$table.html('<tr><td class="tc" colspan="2">데이터가 없습니다.</td></tr>');
 		page(pageValue.currentPage, 0);
 	}
-	*/
-	
-	
 }
 
 function error(){
@@ -183,54 +82,13 @@ function back() {
 				</thead>
 				<tbody>
 					<tr>
-						<td class="tc" id="equipName"></td>
-						<td class="tc" id="facilityName"></td>
-						<td class="tc" id="equipIp"></td>
-						<td class="tc" id="equipOs"></td>
+						<td class="tc" id="equipName">MAXPro</td>
+						<td class="tc" id="facilityName">창작지원1실</td>
+						<td class="tc" id="equipIp">192.168.10.12</td>
+						<td class="tc" id="equipOs">MAC</td>
 					</tr>
 				</tbody>
 			</table>
-			
-			<div id="equipStatisticsTop">
-				<div class="fl mainBox">
-					<dl>
-						<dt>
-							<h2>CPU 분포 그래프</h2>
-							<span>CPU 사용 현황</span>
-						</dt>
-						<dd>
-							<div id="cpuChart" class="chart"></div>
-						</dd>
-					</dl>
-				</div>
-				<div class="fr mainBox">
-					<dl>
-						<dt>
-							<h2>메모리 분포 그래프</h2>
-							<span>메모리 사용 현황</span>
-						</dt>
-						<dd>
-							<div id="memoryChart" class="chart"></div>
-						</dd>
-					</dl>
-				</div>
-			</div>
-			
-			<div id="equipStatisticsList" class="clear">
-				<div class="mainBox">
-					<dl>
-						<dt>
-							<h2>프로세스 사용 그래프</h2>
-							<span>프로세스 사용 현황</span>
-						</dt>
-						<dd>
-							<div id="processChart" class="chart"></div>
-						</dd>
-					</dl>
-				</div>
-			</div>
-			
-			<!-- 
 			<table id="usedList" class="noClick">
 				<colgroup>
 					<col width="20%" />
@@ -260,7 +118,6 @@ function back() {
 					<li> >> </li>
 				</ul>
 			</div>
-			 -->
 		</div>
 		
 	</div>

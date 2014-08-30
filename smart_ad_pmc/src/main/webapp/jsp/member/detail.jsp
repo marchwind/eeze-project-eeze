@@ -90,7 +90,39 @@ function passwordReset(){
 }
 
 function memberBlock() {
-	
+	if(confirm(msg.userBlockConfirm)){
+		var url = uri.serverUrl + uri.userBlockUrl;
+		sendRequestJson(url, {userNo : userInfo.userNo }, userBlockSuccess, error);	
+	}
+}
+
+function userBlockSuccess(res) {
+	alert(msg.userBlock);
+	location.reload();
+}
+
+function memberBlockCancel() {
+	if(confirm(msg.userNormalConfirm)){
+		var url = uri.serverUrl + uri.userNormalUrl;
+		sendRequestJson(url, {userNo : userInfo.userNo }, userNormalSuccess, error);	
+	}
+}
+
+function userNormalSuccess(res) {
+	alert(msg.userNormal);
+	location.reload();
+}
+
+function memberDel(){
+	if(confirm(msg.userDelConfirm)){
+		var url = uri.serverUrl + uri.userDeleteUrl;
+		sendRequestJson(url, {userNo : userInfo.userNo }, userDelSuccess, error);	
+	}
+}
+
+function userDelSuccess(res){
+	alert(msg.userDel);
+	goPage('${contextPath}/member/list.do');
 }
 
 function modifySubmit() {
@@ -198,8 +230,10 @@ function updateSuccess(res){
 				<div class="fr">
 					<ul id="detail_btn">
 						<!-- <li><input type="button" value="암호초기화" class="btn_normal_red" onclick="passwordReset()"/></li> -->
-						<li><input type="button" value="회원 수정" class="btn_normal_red" onclick="callModifyPage()"/></li>
-						<!-- <li><input type="button" value="회원차단" class="btn_normal_red" onclick="memberBlock()"/></li> -->
+						<li><input type="button" value="회원수정" class="btn_normal_red" onclick="callModifyPage()"/></li>
+						<li><input id="memberBlockBtn" type="button" value="회원차단" class="btn_normal_red" onclick="memberBlock()"/></li>
+						<li><input id="memberBlockCancelBtn" type="button" value="차단해제" class="btn_normal_red" onclick="memberBlockCancel()"/></li>
+						<li><input type="button" value="회원삭제" class="btn_normal_red" onclick="memberDel()"/></li>
 					</ul>
 					<ul id="modify_btn">
 						<li><input type="button" value="수정완료" class="btn_normal_red" onclick="modifySubmit()"/></li>
