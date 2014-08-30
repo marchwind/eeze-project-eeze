@@ -16,8 +16,9 @@ import com.kobaco.smartad.model.service.CommonPage;
 import com.kobaco.smartad.model.service.CommonSingleResult;
 import com.kobaco.smartad.model.service.NotificationInfo;
 import com.kobaco.smartad.model.service.PmcMnagerInfo;
-import com.kobaco.smartad.model.service.PmcSessionInfo;
+import com.kobaco.smartad.model.service.ReserveInfo;
 import com.kobaco.smartad.service.PmcNotificationService;
+import com.kobaco.smartad.service.PmcReserveService;
 
 
 @Controller
@@ -36,46 +37,46 @@ public class PmcNotificationController {
         return "pmcnoti/"+id+"Form";
    }
 	@ModelAttribute("sessionManagerInfo")
-	public PmcSessionInfo setSessionManagerinfo() {
-		return new PmcSessionInfo(){{
+	public PmcMnagerInfo setSessionManagerinfo() {
+		return new PmcMnagerInfo(){{
 			setLogin(false);
 		}};
 	}	
 	
 	@RequestMapping(value = "/get", method = RequestMethod.POST)
 	public @ResponseBody CommonSingleResult<NotificationInfo> get(@ModelAttribute PmcMnagerInfo info,
-														@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser,
+														@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser,
 														@ModelAttribute NotificationInfo notiInfo){				
-		CommonSingleResult<NotificationInfo> is = notiService.getPmcNotification(info, new PmcMnagerInfo(sessUser), notiInfo);			
+		CommonSingleResult<NotificationInfo> is = notiService.getPmcNotification(info, sessUser, notiInfo);			
 		return is;
 	}
 	
 	@RequestMapping(value = "/list", method = RequestMethod.POST)
 	public @ResponseBody CommonListResult<NotificationInfo>  list(@ModelAttribute CommonPage cp,
-														 @ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser,
+														 @ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser,
 														 @ModelAttribute PmcMnagerInfo info ){	
-		CommonListResult<NotificationInfo> is = notiService.getPmcNotificationList(info,cp,new PmcMnagerInfo(sessUser));		
+		CommonListResult<NotificationInfo> is = notiService.getPmcNotificationList(info,cp,sessUser);		
 		return is;
 	}
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public @ResponseBody CommonSingleResult<NotificationInfo> add(@ModelAttribute PmcMnagerInfo info,
-														@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser,
+														@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser,
 														@ModelAttribute NotificationInfo notiInfo){				
-		CommonSingleResult<NotificationInfo> is = notiService.getPmcNotificationAdd(info, new PmcMnagerInfo(sessUser), notiInfo);			
+		CommonSingleResult<NotificationInfo> is = notiService.getPmcNotificationAdd(info, sessUser, notiInfo);			
 		return is;
 	}
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public @ResponseBody CommonSingleResult<NotificationInfo> update(@ModelAttribute PmcMnagerInfo info,
-														@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser,
+														@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser,
 														@ModelAttribute NotificationInfo notiInfo){				
-		CommonSingleResult<NotificationInfo> is = notiService.getPmcNotificationUpdate(info, new PmcMnagerInfo(sessUser), notiInfo);			
+		CommonSingleResult<NotificationInfo> is = notiService.getPmcNotificationUpdate(info, sessUser, notiInfo);			
 		return is;
 	}
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public @ResponseBody CommonSingleResult<NotificationInfo> delete(@ModelAttribute PmcMnagerInfo info,
-														@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser,
+														@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser,
 														@ModelAttribute NotificationInfo notiInfo){				
-		CommonSingleResult<NotificationInfo> is = notiService.getPmcNotificationDelete(info, new PmcMnagerInfo(sessUser), notiInfo);			
+		CommonSingleResult<NotificationInfo> is = notiService.getPmcNotificationDelete(info, sessUser, notiInfo);			
 		return is;
 	}
 

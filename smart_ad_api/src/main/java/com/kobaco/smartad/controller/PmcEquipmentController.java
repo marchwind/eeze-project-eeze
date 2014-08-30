@@ -22,7 +22,6 @@ import com.kobaco.smartad.model.service.EquipCheckRefData;
 import com.kobaco.smartad.model.service.EquipInfo;
 import com.kobaco.smartad.model.service.EquipUsedRefData;
 import com.kobaco.smartad.model.service.PmcMnagerInfo;
-import com.kobaco.smartad.model.service.PmcSessionInfo;
 import com.kobaco.smartad.model.service.UserInfo;
 import com.kobaco.smartad.service.PmcEquipmentService;
 import com.kobaco.smartad.utils.CommonCode;
@@ -45,67 +44,67 @@ public class PmcEquipmentController {
         return "pmcequip/"+id+"Form";
    }
 	@ModelAttribute("sessionManagerInfo")
-	public PmcSessionInfo setSessionManagerinfo() {
-		return new PmcSessionInfo(){{
+	public PmcMnagerInfo setSessionManagerinfo() {
+		return new PmcMnagerInfo(){{
 			setLogin(false);
 		}};
 	}	
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public @ResponseBody CommonSingleResult<EquipInfo> add(@ModelAttribute PmcMnagerInfo info,
-														@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser,
+														@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser,
 														@ModelAttribute EquipInfo equipInfo){				
-		CommonSingleResult<EquipInfo> is = equipService.equipAdd(info, new PmcMnagerInfo(sessUser), equipInfo);			
+		CommonSingleResult<EquipInfo> is = equipService.equipAdd(info, sessUser, equipInfo);			
 		return is;
 	}
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public @ResponseBody CommonSingleResult<EquipInfo> delete(@ModelAttribute PmcMnagerInfo info,
-														@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser,
+														@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser,
 														@ModelAttribute EquipInfo equipInfo){				
-		CommonSingleResult<EquipInfo> is = equipService.equipDelete(info, new PmcMnagerInfo(sessUser), equipInfo);			
+		CommonSingleResult<EquipInfo> is = equipService.equipDelete(info, sessUser, equipInfo);			
 		return is;
 	}
 	@RequestMapping(value = "/rent", method = RequestMethod.POST)
 	public @ResponseBody CommonSingleResult<EquipInfo> rent(@ModelAttribute PmcMnagerInfo info,
-														@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser,
+														@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser,
 														@ModelAttribute EquipInfo equipInfo,
 														@ModelAttribute UserInfo userInfo){				
-		CommonSingleResult<EquipInfo> is = equipService.equipRent(info, new PmcMnagerInfo(sessUser), equipInfo, userInfo);			
+		CommonSingleResult<EquipInfo> is = equipService.equipRent(info, sessUser, equipInfo, userInfo);			
 		return is;
 	}
 	@RequestMapping(value = "/rentInfo", method = RequestMethod.POST)
 	public @ResponseBody CommonSingleResult<EquipInfo> rentInfo(@ModelAttribute PmcMnagerInfo info,
-														@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser,
+														@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser,
 														@ModelAttribute EquipInfo equipInfo){				
-		CommonSingleResult<EquipInfo> is = equipService.equipRentInfo(info, new PmcMnagerInfo(sessUser), equipInfo);			
+		CommonSingleResult<EquipInfo> is = equipService.equipRentInfo(info, sessUser, equipInfo);			
 		return is;
 	}
 	@RequestMapping(value = "/return", method = RequestMethod.POST)
 	public @ResponseBody CommonSingleResult<EquipInfo> returnRent(@ModelAttribute PmcMnagerInfo info,
-														@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser,
+														@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser,
 														@ModelAttribute EquipInfo equipInfo){				
-		CommonSingleResult<EquipInfo> is = equipService.equipRentReturn(info, new PmcMnagerInfo(sessUser), equipInfo);			
+		CommonSingleResult<EquipInfo> is = equipService.equipRentReturn(info, sessUser, equipInfo);			
 		return is;
 	}
 	@RequestMapping(value = "/rentList", method = RequestMethod.POST)
 	public @ResponseBody CommonListResult<EquipInfo>  rentList(@ModelAttribute CommonPage cp,
-														 @ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser,
+														 @ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser,
 														 @ModelAttribute EquipInfo equipInfo,
 														 @ModelAttribute PmcMnagerInfo info){	
-		CommonListResult<EquipInfo> is = equipService.getRentList(equipInfo,cp,new PmcMnagerInfo(sessUser),info);		
+		CommonListResult<EquipInfo> is = equipService.getRentList(equipInfo,cp,sessUser,info);		
 		return is;
 	}
 	@RequestMapping(value = "/list", method = RequestMethod.POST)
 	public @ResponseBody CommonListResult<EquipInfo>  list(@ModelAttribute CommonPage cp,
-														 @ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser,
+														 @ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser,
 														 @ModelAttribute EquipInfo equipInfo,
 														 @ModelAttribute PmcMnagerInfo info){	
-		CommonListResult<EquipInfo> is = equipService.getList(equipInfo,cp,new PmcMnagerInfo(sessUser),info);		
+		CommonListResult<EquipInfo> is = equipService.getList(equipInfo,cp,sessUser,info);		
 		return is;
 	}
 	
 	@RequestMapping(value = "/get", method = RequestMethod.POST)
-	public @ResponseBody CommonSingleResult<EquipInfo>  get(@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser,
+	public @ResponseBody CommonSingleResult<EquipInfo>  get(@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser,
 			@RequestParam (value="managerMode",defaultValue="" ) String mode,
 			@RequestParam (value="equipNo",defaultValue=""     ) String equipNo) 
 			{	
@@ -125,7 +124,7 @@ public class PmcEquipmentController {
 	
 	@RequestMapping(value = "/checkHistory", method = RequestMethod.POST)
 	public @ResponseBody CommonListResult<EquipCheckRefData>  checkHistory(@ModelAttribute CommonPage cp,
-			@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser,
+			@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser,
 			@RequestParam (value="managerMode",defaultValue="" ) String mode,
 			@RequestParam (value="equipNo",defaultValue=""     ) String equipNo) {	
 		
@@ -140,7 +139,7 @@ public class PmcEquipmentController {
 	
 	@RequestMapping(value = "/usedHistory", method = RequestMethod.POST)
 	public @ResponseBody CommonListResult<EquipUsedRefData>  usedHistory(@ModelAttribute CommonPage cp,
-			@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser,
+			@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser,
 			@RequestParam (value="managerMode",defaultValue="" ) String mode,
 			@RequestParam (value="equipNo",defaultValue=""     ) String equipNo) {	
 		
@@ -158,36 +157,36 @@ public class PmcEquipmentController {
 			@RequestParam (value="managerMode", defaultValue="") String mode,
 			@RequestParam (value="equipNo",     defaultValue="") String equipNo,
 			@RequestParam (value="powerStateCd",defaultValue="") String powerStateCd, 
-			@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser){	
+			@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser){	
 		if( !sessUser.isLogin() ||  !CommonCode.PmcManagerCode.PMC_YES.equals(mode)) {	
 			return new CommonSingleResult<EquipInfo> (new CommonResult(CommonMsg.failCodeUnAuthrized, CommonMsg.failMsgUnAuthrized),
 					null);
 		}
-		return equipService.updatePowerState(equipNo, powerStateCd, new PmcMnagerInfo(sessUser));			
+		return equipService.updatePowerState(equipNo, powerStateCd, sessUser);			
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public @ResponseBody CommonSingleResult<EquipInfo> update(@RequestParam (value="managerMode",defaultValue="" ) String mode,
-														@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser,
+														@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser,
 														@ModelAttribute EquipInfo equipInfo){	
 		if( !sessUser.isLogin() ||  !CommonCode.PmcManagerCode.PMC_YES.equals(mode)) {	
 			return new CommonSingleResult<EquipInfo> (new CommonResult(CommonMsg.failCodeUnAuthrized, CommonMsg.failMsgUnAuthrized),
 					null);
 		}
 		
-		return equipService.update(equipInfo, new PmcMnagerInfo(sessUser));			
+		return equipService.update(equipInfo, sessUser);			
 	}
 	
 	@RequestMapping(value = "/check", method = RequestMethod.POST)
 	public @ResponseBody CommonSingleResult<EquipCheckInfo> check(@RequestParam (value="managerMode",defaultValue="" ) String mode,
-														@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser,
+														@ModelAttribute("sessionManagerInfo") PmcMnagerInfo sessUser,
 														@ModelAttribute EquipCheckInfo checkInfo){	
 		if( !sessUser.isLogin() ||  !CommonCode.PmcManagerCode.PMC_YES.equals(mode)) {	
 			return new CommonSingleResult<EquipCheckInfo> (new CommonResult(CommonMsg.failCodeUnAuthrized, CommonMsg.failMsgUnAuthrized),
 					null);
 		}
 		
-		return equipService.check(checkInfo, new PmcMnagerInfo(sessUser));			
+		return equipService.check(checkInfo, sessUser);			
 	}
 	
 }

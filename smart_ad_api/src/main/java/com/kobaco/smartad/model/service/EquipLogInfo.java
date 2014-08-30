@@ -13,7 +13,6 @@ public class EquipLogInfo implements ValueObject{
 	private String equipOs;
 	private String equipIp;
 	private String equipFreeMemory;
-	private String equipCpuLoad;
 	private List<String> equipProcesses;
 	
 	public EquipLogInfo() {
@@ -87,14 +86,6 @@ public class EquipLogInfo implements ValueObject{
 
 	public void setEquipIp(String equipIp) {
 		this.equipIp = equipIp;
-	}
-
-	public String getEquipCpuLoad() {
-		return equipCpuLoad;
-	}
-
-	public void setEquipCpuLoad(String equipCpuLoad) {
-		this.equipCpuLoad = equipCpuLoad;
 	}
 	
 }

@@ -113,7 +113,6 @@
 		 INNER JOIN TB_ENTP E on E.ENTP_NO = U.ENTP_NO
 		 INNER JOIN TB_EQPM_CHK C on C.DEV_RNT_NO = R.DEV_RNT_NO 
 		 WHERE R.EQPM_NO = #{equipNo}
-		 ORDER BY R.REG_DTT DESC
 		LIMIT #{startRow},#{endRow}
 	</select>
 	<select id="countFilter" parameterType="hashMap" resultType="int">

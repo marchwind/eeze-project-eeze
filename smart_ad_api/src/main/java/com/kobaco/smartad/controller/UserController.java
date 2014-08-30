@@ -156,13 +156,13 @@ public class UserController {
 		
 		if ( sessUser.getUserNo().equals(userInfo.getUserNo()) ) {
 			result = userService.unsubscribe(userInfo);  
-			session.setComplete();
 		} else {
 			result = new CommonSingleResult<UserInfo> (
 					new CommonResult(CommonMsg.failCodeUnAuthrized, CommonMsg.failMsgUnAuthrized),
 					null);
 		}
-
+		
+		      
         return result;
    }
 

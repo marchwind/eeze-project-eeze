@@ -364,41 +364,15 @@ public class UserServiceImpl  implements UserService{
 		k.put("userId", user.getUserId());
 		filter.setColumns(k);
 		SAUser resultUser = userDao.info(new SAUser(),filter);
-		
 		if(resultUser==null ){
 			return new CommonSingleResult<UserInfo>(new CommonResult(CommonMsg.failCodeNotFound,
 					CommonMsg.failMsgNotFound));
 		}else {
-		
-			String newPw = this.randomPassword(8);
-			// 비밀번호 초기화
-			ParamsCommonNamespace param = new ParamsCommonNamespace();
-			Map<String, Object> cols = new HashMap<String, Object>();
-			cols.put("USR_NO", resultUser.getUSR_NO());
-			cols.put("USR_NPWD", newPw);
-			param.setColumns(cols, "ForPassword");
-			if (userDao.update(new SAUser(),param)==1) {				
-				// 이메일 발송
-				HashMap<String, Object> map = new HashMap<String, Object>();
-				map.put("managerPw", newPw);
-				MailSend mailDto = new MailSend(CommonMsg.EmailMsgService.ADD_FROM,
-						resultUser.getUSR_EML(), 
-						map,
-						CommonMsg.EmailMsgService.RESET_MSG , 
-						CommonMsg.EmailMsgService.RESET_EAMIL);
-				try{
-					mail.mailSend(mailDto);
-				}catch(Exception e){
-					e.printStackTrace();
-				}
-				return new CommonSingleResult<UserInfo>(new CommonResult(CommonMsg.successCode,
-						CommonMsg.successMsg),new UserInfo(resultUser));
-			} else {
-				return new CommonSingleResult<UserInfo>(
-						new CommonResult(CommonMsg.failCodeNotFound, CommonMsg.failMsgNotFound),
-						null);
-			}
+			return new CommonSingleResult<UserInfo>(new CommonResult(CommonMsg.successCode,
+					CommonMsg.successMsg),new UserInfo(resultUser));
 		}
+		
+	
 	}
 
 	@Override
@@ -437,20 +411,5 @@ public class UserServiceImpl  implements UserService{
 		}
 		return result;
 	
-	}
-	
-	public String randomPassword (int length){
-		int index=0;
-		char[] charSet = new char[] {
-				'0','1','2','3','4','5','6','7','8','9'
-				,'q','w','e','r','t','y','u','i','o','p','a','s','d','f','g','h','j','k','l','z','x','c','v','b','n','m'
-				,'Q','W','E','R','T','Y','U','I','O','P','A','S','D','F','G','H','J','K','L','Z','X','C','V','B','N','M'
-		};
-		StringBuffer sb  = new StringBuffer();
-		for(int i=0; i<length; i++){
-			index = (int) (charSet.length * Math.random());
-			sb.append(charSet[index]);
-		}
-		return sb.toString();
 	}
 }

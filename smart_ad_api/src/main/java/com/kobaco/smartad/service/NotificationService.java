@@ -9,7 +9,7 @@ import com.kobaco.smartad.model.service.UserInfo;
 
 public interface NotificationService {	
 
-	public CommonListResult<NotificationInfo> getNotificationList(NotificationInfo notiInfo, CommonPage page);
+	public CommonListResult<NotificationInfo> getNotificationList(CommonPage page);
 	public CommonSingleResult<NotificationInfo> getNoti(NotificationInfo notiInfo,UserInfo sessUser);
 	
 }

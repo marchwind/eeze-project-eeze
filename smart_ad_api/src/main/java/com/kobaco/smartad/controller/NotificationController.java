@@ -53,11 +53,10 @@ public class NotificationController {
 	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.POST)
-	public @ResponseBody CommonListResult<NotificationInfo> list(
-			@ModelAttribute CommonPage page,
-			@ModelAttribute NotificationInfo notiSearchInfo){
+	public @ResponseBody CommonListResult<NotificationInfo> list(@ModelAttribute CommonPage page){
+		System.out.println(page.getCurrentPage());
 				
-		CommonListResult<NotificationInfo> is = notiService.getNotificationList(notiSearchInfo, page);
+		CommonListResult<NotificationInfo> is = notiService.getNotificationList(page);
 		
 		return is;
 	}

@@ -23,10 +23,8 @@ public class SAFacility extends SAEquipement implements Bean, Entity{
 	
 	private Date VST_DTT;
 	private String USR_EML;
-	private String USR_NM;
 	private String CHK_CNTT;
-	private String ENTP_NM;
-	
+
 	public SAFacility() {
 		// TODO Auto-generated constructor stub
 	}
@@ -177,23 +175,6 @@ public class SAFacility extends SAEquipement implements Bean, Entity{
 
 	public void setCHK_CNTT(String cHK_CNTT) {
 		CHK_CNTT = cHK_CNTT;
-	}
-
-	public String getENTP_NM() {
-		return ENTP_NM;
-	}
-
-	public void setENTP_NM(String eNTP_NM) {
-		ENTP_NM = eNTP_NM;
-	}
-
-	
-	public String getUSR_NM() {
-		return USR_NM;
-	}
-
-	public void setUSR_NM(String uSR_NM) {
-		USR_NM = uSR_NM;
 	}
 
 	@Override

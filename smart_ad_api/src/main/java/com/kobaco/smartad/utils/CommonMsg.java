@@ -40,7 +40,7 @@ public class CommonMsg {
 		public static final String QNA_MSG = "문의하신 질문에 대한 답변 입니다.";
 		public static final String QNA_EAMIL="email_inquery.html";
 		
-		public static final String ADD_FROM = "smartad@smartad.or.kr";
+		public static final String ADD_FROM = "eoclehdrla@gmail.com";
 		
 	}
 	public class FailCodeNotificationService {

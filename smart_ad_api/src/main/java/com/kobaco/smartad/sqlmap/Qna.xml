@@ -42,16 +42,14 @@
 			,Q_ATC_FL_NM  
 			,Q_DTT
 			,A_DTT  
-			,q.REG_DTT   
-			,q.UPD_DTT   
-			,q.REG_ID    
-			,q.UPD_ID  
+			,REG_DTT   
+			,UPD_DTT   
+			,REG_ID    
+			,UPD_ID  
 			,Q_NM
 			,Q_PHN
-			,Q_EML
-            ,MNGR_ID			
-		 FROM TB_QNA q
-	          LEFT OUTER JOIN TB_PMC_MNGR m on m.MNGR_NO = q.A_MNGR_NO
+			,Q_EML      
+		 FROM TB_QNA
 		WHERE QNA_NO = #{QNA_NO}
 	</select>
 	
@@ -152,7 +150,6 @@
 	 	<if test = "querySubject !=null and  querySubject!='' "> AND q.Q_SBJT  LIKE CONCAT('%',#{querySubject},'%')</if>
 	 	<if test = "queryContent !=null  and  queryContent!='' ">   AND q.Q_CNTT LIKE CONCAT('%',#{queryContent},'%')</if>	
 	</where>
-	ORDER BY q.QNA_NO DESC
 	LIMIT #{startRow},#{endRow}
 	</select>	
 
@@ -178,12 +175,11 @@
 		UPDATE TB_QNA
 		   SET 				
 			 A_SBJT			= #{A_SBJT}
-			,A_CNTT 		= #{A_CNTT}
-            ,A_MNGR_NO      = #{A_MNGR_NO}			
+			,A_CNTT 		= #{A_CNTT}			
 			,A_DTT  		= NOW()  
 		 WHERE QNA_NO 		= #{QNA_NO}
 	</update>
-	<select id="infoAnswer" parameterType="hashMap" resultType="com.kobaco.smartad.model.data.SAQna">
+		<select id="infoAnswer" parameterType="hashMap" resultType="com.kobaco.smartad.model.data.SAQna">
 		SELECT
 			 q.QNA_NO    
 			,q.Q_USR_NO  

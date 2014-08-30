@@ -26,28 +26,17 @@
     <prop key="jdbc.password">smartad12#$</prop>
   </util:properties>
 
-<!--   <util:properties id="email_local"> -->
-<!-- 	<prop key="mail.host">192.168.0.195</prop> -->
-<!-- 	<prop key="mail.port">25</prop> -->
-<!-- 	<prop key="mail.user">terascope</prop> -->
-<!-- 	<prop key="mail.pwd">831455</prop> -->
-<!-- 	<prop key="mail.protocol">smtp</prop> -->
-<!-- 	<prop key="mail.auth">true</prop> -->
-<!-- 	<prop key="mail.starttls">false</prop> -->
-<!-- 	<prop key="mail.debug">true</prop> -->
-<!--   </util:properties> -->
-
- <util:properties id="email_local">
-	<prop key="mail.host">192.168.20.5</prop>
+  <util:properties id="email_local">
+	<prop key="mail.host">192.168.0.195</prop>
 	<prop key="mail.port">25</prop>
-	<prop key="mail.user">smartad</prop>
-	<prop key="mail.pwd">smartad12#$</prop>
+	<prop key="mail.user">terascope</prop>
+	<prop key="mail.pwd">831455</prop>
 	<prop key="mail.protocol">smtp</prop>
 	<prop key="mail.auth">true</prop>
 	<prop key="mail.starttls">false</prop>
 	<prop key="mail.debug">true</prop>
   </util:properties>
-  
+
  <util:properties id="email_product">
 	<prop key="mail.host">192.168.20.5</prop>
 	<prop key="mail.port">25</prop>

@@ -76,7 +76,6 @@
 		 FROM TB_USR
 		WHERE USR_ID  = #{USR_ID} 
 		  AND USR_PWD = #{USR_PWD} 
-		  AND USR_STTS_CD = 'U01100'
 	</select>
 	
 	<insert id="insert" parameterType="com.kobaco.smartad.model.data.SAUser">
@@ -176,12 +175,12 @@
 		  AND USR_PWD = #{USR_PWD} 
 	</select>
 	
-	<update id="updateForPassword" parameterType="java.util.HashMap">
+	<select id="updateForPassword" parameterType="java.util.HashMap" resultType="com.kobaco.smartad.model.data.SAUser">
         UPDATE TB_USR
 		   SET 
 			 USR_PWD  		= #{USR_NPWD}
 		 WHERE USR_NO 		= #{USR_NO}
-	</update>
+	</select>
 	
 	<select id="countFilter" parameterType="hashMap" resultType="int">
         SELECT
@@ -215,7 +214,6 @@
 			,B.ENTP_ADDR  
 		FROM TB_USR  A
 		     LEFT JOIN TB_ENTP B ON (A.ENTP_NO = B.ENTP_NO)
-		ORDER BY A.USR_NO DESC
 	<where>	 
 		<if test = "userId !=null and  userId!='' "> A.USR_ID   LIKE CONCAT('%', #{userId},'%')  </if>
 	 	<if test = "userName !=null and  userName!=''"> A.USR_NM  LIKE CONCAT('%', #{userName},'%')  </if>

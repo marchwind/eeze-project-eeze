@@ -5,19 +5,6 @@
 
 <mapper namespace="com.kobaco.smartad.equipementProcessHistory">
 
-	<select id="list" parameterType="com.kobaco.smartad.model.data.SAEquipementProcessHistory" resultType="com.kobaco.smartad.model.data.SAEquipementProcessHistory">
-		SELECT
-			 HIST_CNTT   
-			,SW_MGMT_NO  
-			,GTH_DTT
-			,DATE_FORMAT(GTH_DTT, '%H:%m') AS GTH_T 		
-			,EQPM_NO     		
-		 FROM TB_EQPM_PRCS_HIST
-		 WHERE EQPM_NO = #{EQPM_NO}  	
-		 ORDER BY GTH_DTT DESC
-		 LIMIT 0,6 	
-	</select>
-	
 	 <select id="listFilterEquipPage" parameterType="hashMap" resultType="com.kobaco.smartad.model.data.SAEquipementProcessHistory">
 		SELECT
 			 HIST_CNTT   
@@ -27,7 +14,7 @@
 		 FROM TB_EQPM_PRCS_HIST
 		 WHERE EQPM_NO = #{EQPM_NO}  	
 		 ORDER BY GTH_DTT DESC
-		 LIMIT #{startRow},#{endRow}
+		 	 LIMIT #{startRow},#{endRow}
 	</select>
 
 	 <select id="countFilterEquipPage" parameterType="hashMap" resultType="int">
