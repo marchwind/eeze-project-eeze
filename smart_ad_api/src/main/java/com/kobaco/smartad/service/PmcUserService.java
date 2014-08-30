@@ -21,6 +21,6 @@ public interface PmcUserService {
 
 	CommonSingleResult<UserInfo> getPmcUserUpdateStatus(PmcMnagerInfo info,PmcMnagerInfo sessUser, UserInfo user);
 
-	
+	CommonSingleResult<UserInfo> delete(UserInfo user);
 
 }

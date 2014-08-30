@@ -407,7 +407,21 @@ public class PmcUserServiceImpl implements PmcUserService{
 		}
 		return result;
 	}
-
 	
+	@Override
+	public CommonSingleResult<UserInfo> delete(UserInfo user) {
+
+		SAUser u = new SAUser();
+		u.setUSR_NO(user.getUserNo());
+		
+		CommonSingleResult<UserInfo> result = new CommonSingleResult<UserInfo>();
+		if(userDao.delete(u)>0){
+			result.setInfo(user);
+			result.setResult(new CommonResult(CommonMsg.successCode,CommonMsg.successMsg));
+		}else {
+			result.setResult(new CommonResult(CommonMsg.failCodeNotFound, CommonMsg.failMsgNotFound));		
+		}
+		return result;
+	}	
 
 }
