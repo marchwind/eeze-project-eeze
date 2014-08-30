@@ -21,6 +21,18 @@ function detailContSuceess(res){
 		userInfo.enterpriseName = res.info.enterpriseName;
 		userInfo.enterpriseAddress = res.info.enterpriseAddress;
 		
+		if(res.info.userStatus == "U01120") {
+			$("#memberBlockBtn").hide();
+			$("#memberBlockCancelBtn").show();	
+		} else if(res.info.userStatus == "U01110"){
+			$("#memberBlockBtn").hide();
+			$("#memberBlockCancelBtn").hide();
+		} else {
+			$("#memberBlockBtn").show();
+			$("#memberBlockCancelBtn").hide();
+		}
+		
+		
 		var state = "일반회원";
 		switch(res.info.userStatus){
 		case "U01100" : state = "일반회원"; break;
