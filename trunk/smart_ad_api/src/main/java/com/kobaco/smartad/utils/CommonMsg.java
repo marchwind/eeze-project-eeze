@@ -9,6 +9,7 @@ public class CommonMsg {
 	public static final String failCodeNotFound="0400";
 	public static final String failCodeNoUpdateCount="0500";
 	public static final String failCodeUnknown="0900";
+	public static final String failCodeFileSystemErr="0910";	
 	public static final String failCode="0900";
 	
 	
@@ -109,5 +110,6 @@ public class CommonMsg {
 	public static final String failMsgNotFound="Data Not Found";
 	public static final String failMsgUnknown="Unknown Error";
 	public static final String failMsgNoUpdateCount="Update Fail";
+	public static final String failMsgFileSystemErr="File System Error";	
 	public static final String failMsg="Unknown Error";
 }

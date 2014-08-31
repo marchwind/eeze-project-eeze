@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kobaco.smartad.archive">
+
+	<select id="info" parameterType="com.kobaco.smartad.model.data.SAArchive" resultType="com.kobaco.smartad.model.data.SAArchive">
+        SELECT
+			 ARCV_NO   	
+			,ARCV_SBJT  
+			,ARCV_CNTT 	
+			,REG_DTT    
+			,UPD_DTT    
+			,REG_ID     
+			,UPD_ID 
+			,VW_CNT
+			,ATT_FL_PATH
+			,ATT_FL_NM
+		 FROM TB_ARCV
+		WHERE ARCV_NO = #{ARCV_NO}
+	</select>
+	
+	
+	<insert id="insert" parameterType="com.kobaco.smartad.model.data.SAArchive">
+		<selectKey keyProperty="ARCV_NO" resultType="String" order="BEFORE">
+			SELECT FN_GET_SEQ('AR','TB_ARCV')
+		</selectKey>
+		INSERT INTO TB_ARCV (
+			 ARCV_NO   
+			,ARCV_SBJT
+			,ARCV_CNTT		
+			,REG_DTT 
+			,UPD_DTT 
+			,REG_ID 
+			,UPD_ID  
+			,ATT_FL_PATH
+			,ATT_Fl_NM
+		) VALUES (
+			 #{ARCV_NO}
+			,#{ARCV_SBJT} 
+			,#{ARCV_CNTT}		
+			,NOW()
+			,NOW()
+			,#{REG_ID}
+			,#{UPD_ID}
+			,#{ATT_FL_PATH}
+			,#{ATT_Fl_NM}
+		)
+	</insert>
+	
+	<update id="update"  parameterType="com.kobaco.smartad.model.data.SAArchive">
+		UPDATE TB_ARCV 
+		   SET 			 
+			 ARCV_SBJT  = #{ARCV_SBJT}
+			,ARCV_CNTT  = #{ARCV_CNTT}
+			<if test=" ATT_FL_PATH!=null and ATT_FL_PATH!='' ">,ATT_FL_PATH= #{ATT_FL_PATH}</if>
+			<if test=" ATT_FL_NM!=null and ATT_FL_NM!='' ">,ATT_FL_PATH= #{ATT_FL_NM}</if>
+			,UPD_DTT    = NOW()
+			,UPD_ID     = #{UPD_ID}
+		 WHERE ARCV_NO  = #{ARCV_NO}
+	</update>
+	
+	<update id="updateFilterFile"  parameterType="java.util.HashMap">
+		UPDATE TB_ARCV 
+		   SET ATT_FL_PATH= #{ATT_FL_PATH}
+		      ,ATT_FL_NM  = #{ATT_FL_NM}
+		 WHERE ARCV_NO = #{ARCV_NO}
+	</update>
+	
+	<update id="updateFilterCount"  parameterType="java.util.HashMap">
+		UPDATE TB_ARCV 
+		   SET VW_CNT = VW_CNT + 1
+		 WHERE ARCV_NO = #{ARCV_NO}
+	</update>
+
+	<delete id="delete" parameterType="com.kobaco.smartad.model.data.SAArchive">
+		DELETE FROM TB_ARCV WHERE ARCV_NO = #{ARCV_NO}
+	</delete>	
+	
+	 <select id="listPage" parameterType="java.util.HashMap" resultType="com.kobaco.smartad.model.data.SAArchive">
+		SELECT
+			 ARCV_NO   	
+			,ARCV_SBJT  
+			,ARCV_CNTT 	
+			,ATT_FL_NM
+			,REG_DTT
+		 FROM TB_ARCV
+		ORDER BY ARCV_NO DESC
+		LIMIT #{startRow},#{endRow}
+	</select>
+	
+	<select id="count" parameterType="com.kobaco.smartad.model.data.SANotification" resultType="int">
+		SELECT
+			 count(ARCV_NO) as totalCount   
+		FROM TB_ARCV
+	</select>
+	
+	<select id="listFilterPage" parameterType="java.util.HashMap" resultType="com.kobaco.smartad.model.data.SAArchive">
+		SELECT
+			 ARCV_NO   	
+			,ARCV_SBJT  
+			,ARCV_CNTT 	
+			,REG_DTT    
+			,ATT_FL_PATH
+			,ATT_FL_NM
+			,VW_CNT
+		 FROM TB_ARCV
+		WHERE 1=1
+		<if test='ARCV_SBJT != null and ARCV_SBJT != "" '>AND ARCV_SBJT LIKE CONCAT('%',#{ARCV_SBJT},'%') </if>
+		<if test='ARCV_CNTT != null and ARCV_CNTT != "" '>AND ARCV_CNTT LIKE CONCAT('%',#{ARCV_CNTT},'%') </if>
+		ORDER BY ARCV_NO DESC
+		LIMIT #{startRow},#{endRow}
+	</select>
+	
+	<select id="countFilter" parameterType="com.kobaco.smartad.model.data.SANotification" resultType="int">
+		SELECT
+			 count(ARCV_NO) as totalCount   
+		FROM TB_ARCV
+	   WHERE 1=1
+		<if test='ARCV_SBJT != null and ARCV_SBJT != "" '>AND ARCV_SBJT LIKE CONCAT('%',#{ARCV_SBJT},'%') </if>
+		<if test='ARCV_CNTT != null and ARCV_CNTT != "" '>AND ARCV_CNTT LIKE CONCAT('%',#{ARCV_CNTT},'%') </if>
+	</select>
+</mapper>
