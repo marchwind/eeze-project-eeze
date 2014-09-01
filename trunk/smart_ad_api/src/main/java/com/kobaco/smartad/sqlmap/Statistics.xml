@@ -54,5 +54,25 @@
 				  FROM (SELECT DISTINCT  RSRV_DT FROM TB_FCLT_RSRV A INNER JOIN TB_FCLT_RSRV_DT C ON (C.RSRV_NO = A.RSRV_NO)) B ) T
 	]]>
 	</select>
+
+	<select id="listFilterEQStatus" parameterType="hashMap" resultType="com.kobaco.smartad.model.data.SAStatisticsEQS">	
+	SELECT DATE_FORMAT(GTH_DTT,'%H:%i') AS GTH_TM
+			,GTH_DTT
+			,CPU
+			,MEM 
+	  FROM TB_EQPM_STTS_HIST
+	 WHERE EQPM_NO = #{EQPM_NO}
+	 ORDER BY 2 DESC
+	 LIMIT 0,6
+	</select>
+	
+	<select id="listFilterEQProcess" parameterType="hashMap" resultType="com.kobaco.smartad.model.data.SAStatisticsEQS">	
+	SELECT HIST_CNTT AS PRCS
+		  ,GTH_DTT
+	  FROM TB_EQPM_PRCS_HIST
+	 WHERE EQPM_NO = #{EQPM_NO}
+	 ORDER BY GTH_DTT DESC
+	 LIMIT 0,6
+	</select>
 	
 </mapper>

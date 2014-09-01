@@ -7,7 +7,7 @@
 
   <util:properties id="db_local">
     <prop key="jdbc.driver">com.mysql.jdbc.Driver</prop>
-    <prop key="jdbc.url">jdbc:mysql://pms.app4u.kr:3306/smartad?useUnicode=true&amp;characterEncoding=utf8</prop>
+    <prop key="jdbc.url">jdbc:mysql://smartad.or.kr:3306/smartad?useUnicode=true&amp;characterEncoding=utf8</prop>
     <prop key="jdbc.username">smartad</prop>
     <prop key="jdbc.password">smartad12#$</prop>
   </util:properties>

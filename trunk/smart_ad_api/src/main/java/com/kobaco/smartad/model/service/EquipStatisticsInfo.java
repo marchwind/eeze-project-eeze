@@ -12,8 +12,8 @@ public class EquipStatisticsInfo implements ValueObject {
 	
 	public class GValue {
 		public String gTime;
-		public String gValue;
-		public GValue(String t, String v) {
+		public float gValue;
+		public GValue(String t, float v) {
 			this.gTime = t;
 			this.gValue = v;
 		}
