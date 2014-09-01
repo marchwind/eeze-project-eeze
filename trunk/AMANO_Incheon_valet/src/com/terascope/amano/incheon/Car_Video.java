@@ -61,8 +61,7 @@ public class Car_Video extends Activity implements SurfaceHolder.Callback {
 	// 레코더 객체 생성
 	private MediaRecorder recorder = null;
 	// 아웃풋 파일 경로
-	private static final String OUTPUT_FILE = Environment
-			.getExternalStorageDirectory() + "/";
+	private static final String OUTPUT_FILE = Environment.getExternalStorageDirectory() + "/";
 	private static final String OUTPUT_FILE_NAME = "_VDO.mp4";
 	// 녹화 시간 - 10초
 	private static final int RECORDING_TIME = 30000;
@@ -81,8 +80,7 @@ public class Car_Video extends Activity implements SurfaceHolder.Callback {
 	private Util util;
 	private BluetoothPrinterHelper bp;
 	private int vwidth=640, vheight=480;
-	public static String tempDir = Environment.getExternalStorageDirectory()
-			+ "/Amano/";
+
 	
 	ProgressDialog dialog;
 

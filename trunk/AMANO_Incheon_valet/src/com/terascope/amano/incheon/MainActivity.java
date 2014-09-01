@@ -451,7 +451,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		} else {
 			super.onBackPressed();
 			stopMainService();
-			startActivity(new Intent(MainActivity.this, LoginActivity.class));
+			//startActivity(new Intent(MainActivity.this, LoginActivity.class));
 			finish();
 		}
 
