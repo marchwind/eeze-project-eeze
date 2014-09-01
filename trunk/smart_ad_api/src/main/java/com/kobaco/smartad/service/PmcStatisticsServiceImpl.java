@@ -3,6 +3,7 @@ package com.kobaco.smartad.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ import com.kobaco.smartad.model.service.EquipStatisticsInfo;
 import com.kobaco.smartad.model.service.PmcMnagerInfo;
 import com.kobaco.smartad.model.service.StatisticsInfo;
 import com.kobaco.smartad.utils.CommonMsg;
+import com.kobaco.smartad.utils.ProcessFilter;
 
 @Service
 public class PmcStatisticsServiceImpl implements PmcStatisticsService {
@@ -126,15 +128,24 @@ public class PmcStatisticsServiceImpl implements PmcStatisticsService {
 		filter.setColumns(new HashMap());
 		filter.getColumns().put("EQPM_NO", equipNo);
 		filter.addNamespace("EQProcess");
-		//List<SAStatisticsEQS> listOfEqp = stttsEqsDao.list(new SAStatisticsEQS(), filter);
+		List<SAStatisticsEQS> listOfEqp = stttsEqsDao.list(new SAStatisticsEQS(), filter);
 		
+		String fullProcessString = "";
+		for(SAStatisticsEQS prc: listOfEqp) {
+			fullProcessString += prc.getPRCS();
+		}
+		
+		Map<String, Integer> pList = ProcessFilter.filter(fullProcessString);
 		List<EquipStatisticsInfo.PValue> process = new ArrayList<EquipStatisticsInfo.PValue>();
-		process.add(info.new PValue("Crome", 6));
-		process.add(info.new PValue("Inter Explorer", 1));
-		process.add(info.new PValue("Microsoft Excel", 1));
-		process.add(info.new PValue("Microsoft Word", 2));
-		process.add(info.new PValue("Adobe", 3));
 		
+		for(String key: pList.keySet()) {
+			process.add(info.new PValue(key, pList.get(key)));
+	//		process.add(info.new PValue("Crome", 6));
+	//		process.add(info.new PValue("Inter Explorer", 1));
+	//		process.add(info.new PValue("Microsoft Excel", 1));
+	//		process.add(info.new PValue("Microsoft Word", 2));
+	//		process.add(info.new PValue("Adobe", 3));
+		}
 		info.setCpuUse(cpuUse);
 		info.setMemoryUse(memUse);
 		info.setProcess(process);
