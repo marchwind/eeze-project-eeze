@@ -7,9 +7,11 @@ import java.util.Date;
 import makemachine.android.examples.ParkInProcess_CameraLPR;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
@@ -20,6 +22,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -193,7 +196,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
+		stopMainService();
 		super.onDestroy();
 
 	}
@@ -432,36 +435,37 @@ public class MainActivity extends Activity implements OnClickListener {
 			}
 		}
 	}
-
+	
 	@Override
 	public void onBackPressed() {
 		if (mPopupWindow != null) {
 			if (mPopupWindow.isShowing()) {
 				mPopupWindow.dismiss();
 			}
-		} else if (m_close_flag == false) {
-
-			new AlertView().showAlert("Back 버튼을 한번 더 터치하시면 앱이 종료됩니다.", this);
-			// 상태값 변경
-			m_close_flag = true;
-
-			m_close_handler.sendEmptyMessageDelayed(0, 3000);
-			// stopMainService();
-
 		} else {
-			super.onBackPressed();
-			stopMainService();
-			//startActivity(new Intent(MainActivity.this, LoginActivity.class));
-			finish();
+
+			new AlertDialog.Builder(this)
+            .setTitle("경고")
+            .setMessage("인천공항 발렛 서비스를 종료하시겠습니까?")
+            .setPositiveButton(getString(R.string.alert_Ok_text),
+                  new DialogInterface.OnClickListener() {
+                     @Override
+                     public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                     }
+                  })
+            .setNegativeButton(getString(R.string.alert_Cancel_text),
+                  new DialogInterface.OnClickListener() {
+                     @Override
+                     public void onClick(DialogInterface dialog,int which) {}
+                  }).show();
+			
 		}
 
 	}
 
 	protected void onStop() {
 		super.onStop();
-
-		// 핸드러에 등록된 0번 메세지를 모두 지운다.
-		m_close_handler.removeMessages(0);
 	}
 
 	protected void startMainService() {

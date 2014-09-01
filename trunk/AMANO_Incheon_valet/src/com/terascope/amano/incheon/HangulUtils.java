@@ -47,6 +47,10 @@ public class HangulUtils {
 	private static boolean isHangul(char c) {
 		return HANGUL_BEGIN_UNICODE <= c && c <= HANGUL_LAST_UNICODE;
 	}
+	
+	public static boolean isKorean(char c) {
+		return Character.getType(c) == 5 ? true : false;
+	}
 
 	/**
 	 * 생성자.

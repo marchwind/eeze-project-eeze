@@ -262,14 +262,7 @@ public class Car_Video extends Activity implements SurfaceHolder.Callback {
 						setCameraPreview(mVideoView.getHolder()); // 프리뷰 재시작
 						mCamera.startPreview();
 					}
-					
-				
-
-					// BusBuilder.getInstance().post(new
-					// UploadCommand("MAIN_ACTIVITY", upd));
-					
-
-					recieptSuccess();
+					sendRecieptData();
 				}
 
 			}
@@ -279,54 +272,46 @@ public class Car_Video extends Activity implements SurfaceHolder.Callback {
 
 			@Override
 			public void onClick(View v) {
-
-				new AlertDialog.Builder(Car_Video.this)
-						.setTitle(
-								getString(R.string.alert_receipt_cancel_title))
-						.setMessage(
-								getResources().getString(
-										R.string.receipt_cancel_alert))
-						.setPositiveButton(getString(R.string.alert_Ok_text),
-								new DialogInterface.OnClickListener() {
-
-									@Override
-									public void onClick(DialogInterface dialog,
-											int which) {
-
-										if (recorder != null) {
-											Log.e("CAM TEST","CAMERA STOP!!!!!");
-											recorder.stop();
-											recorder.release();
-											recorder = null;
-										}
-
-										if (mCamera != null) {
-											mCamera.stopPreview();
-											// mCamera.release();
-											mCamera = null;
-											Log.e("CAM TEST", "#3 Release Camera  _---> OK!!!");
-										}
-									
-
-										finish();
-									}
-								})
-						.setNegativeButton(
-								getString(R.string.alert_Cancel_text),
-								new DialogInterface.OnClickListener() {
-
-									@Override
-									public void onClick(DialogInterface dialog,
-											int which) {
-									}
-								}).show();
-
+				cancelReciept();
 			}
-
 		});
 
 	}
+	
+	public void sendRecieptData(){
+		dialogLoadingView();
+		BusBuilder.getInstance().post(new RectCommand("RECIEPT", rec));
+		
+	}
+	
 
+	@Subscribe
+	public void onCommandResult(CommandResult cr) {
+		dialog.dismiss();
+		if (cr.getResultCd() == CommandResult.CD_SUCCESS){
+			recieptSuccess();
+		} else {
+			new AlertDialog.Builder(Car_Video.this)
+			.setTitle("접수오류")
+			.setMessage("접수 통신에 오류가 발생하였습니다.\n다시 시도하시겠습니까?")
+			.setPositiveButton(getString(R.string.alert_Ok_text),
+					new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							sendRecieptData();
+						}
+					})
+			.setNegativeButton(getString(R.string.alert_Cancel_text), 
+					new DialogInterface.OnClickListener() {
+						
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							
+						}
+					}).show();
+		}
+	}
+	
 	private void recieptSuccess() {
 
 		DbHelper db = new DbHelper(this);
@@ -358,42 +343,9 @@ public class Car_Video extends Activity implements SurfaceHolder.Callback {
 		values.clear();
 		db.close();
 		
-		sendRecieptData();
+		multiSuccess();
 	}
 	
-	public void sendRecieptData(){
-		dialogLoadingView();
-		BusBuilder.getInstance().post(new RectCommand("RECIEPT", rec));
-		
-	}
-	
-
-	@Subscribe
-	public void onCommandResult(CommandResult cr) {
-		dialog.dismiss();
-		if (cr.getResultCd() == CommandResult.CD_SUCCESS){
-			multiSuccess();
-		} else {
-			new AlertDialog.Builder(Car_Video.this)
-			.setTitle("접수오류")
-			.setMessage("접수 통신에 오류가 발생하였습니다.\n다시 시도하시겠습니까?")
-			.setPositiveButton(getString(R.string.alert_Ok_text),
-					new DialogInterface.OnClickListener() {
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							sendRecieptData();
-						}
-					})
-			.setNegativeButton(getString(R.string.alert_Cancel_text), 
-					new DialogInterface.OnClickListener() {
-						
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							
-						}
-					}).show();
-		}
-	}
 	
 	private void multiSuccess() {
 		DbHelper dhel = new DbHelper(this);
@@ -623,32 +575,42 @@ public class Car_Video extends Activity implements SurfaceHolder.Callback {
 
 		}
 	}
+	
+	public void cancelReciept() {
+		new AlertDialog.Builder(this)
+		.setTitle(getString(R.string.alert_receipt_cancel_title))
+		.setMessage(getResources().getString(R.string.receipt_cancel_alert))
+		.setPositiveButton(getString(R.string.alert_Ok_text),
+				new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						if (recorder != null) {
+							Log.e("CAM TEST","CAMERA STOP!!!!!");
+							recorder.stop();
+							recorder.release();
+							recorder = null;
+						}
+
+						if (mCamera != null) {
+							mCamera.stopPreview();
+							// mCamera.release();
+							mCamera = null;
+							Log.e("CAM TEST", "#3 Release Camera  _---> OK!!!");
+						}
+						
+						finish();
+					}
+				})
+		.setNegativeButton(getString(R.string.alert_Cancel_text),
+				new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {}
+				}).show();
+	}
 
 	@Override
 	public void onBackPressed() {
-
-		new AlertDialog.Builder(this)
-				.setTitle(getString(R.string.alert_receipt_cancel_title))
-				.setMessage(
-						getResources().getString(R.string.receipt_cancel_alert))
-				.setPositiveButton(getString(R.string.alert_Ok_text),
-						new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
-								finish();
-							}
-						})
-				.setNegativeButton(getString(R.string.alert_Cancel_text),
-						new DialogInterface.OnClickListener() {
-
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
-								// TODO Auto-generated method stub
-
-							}
-						}).show();
+		cancelReciept();
 	}
 
 	
@@ -657,6 +619,8 @@ public class Car_Video extends Activity implements SurfaceHolder.Callback {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.car_video);
 
+		startMainService();
+		
 		TAG = this.getClass().getName();
 		
 		util = new Util(this);
@@ -722,16 +686,16 @@ public class Car_Video extends Activity implements SurfaceHolder.Callback {
 	
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 		BusBuilder.getInstance().register(this);
 	}
 	
 	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
-		super.onDestroy();
+		stopMainService();
 		bp.btDisconn();
+		super.onDestroy();
+		
 	}
 	
 }

@@ -539,36 +539,9 @@ public class Receipt extends Activity implements OnClickListener {
 
 			}
 
-			// i = new Intent(this, Car_Camera.class);
-
 			break;
 		case R.id.receipt_cancel:
-			new AlertDialog.Builder(this)
-					.setTitle(getString(R.string.alert_receipt_cancel_title))
-					.setMessage(
-							getResources().getString(
-									R.string.receipt_cancel_alert))
-					.setPositiveButton(getString(R.string.alert_Ok_text),
-							new DialogInterface.OnClickListener() {
-
-								@Override
-								public void onClick(DialogInterface dialog,
-										int which) {
-									
-									finish();
-								}
-							})
-					.setNegativeButton(getString(R.string.alert_Cancel_text),
-							new DialogInterface.OnClickListener() {
-
-								@Override
-								public void onClick(DialogInterface dialog,
-										int which) {
-									// TODO Auto-generated method stub
-
-								}
-							}).show();
-
+			cancelReciept();
 			break;
 		default:
 			break;
@@ -576,10 +549,36 @@ public class Receipt extends Activity implements OnClickListener {
 
 	}
 
+	public void cancelReciept() {
+		new AlertDialog.Builder(this)
+		.setTitle(getString(R.string.alert_receipt_cancel_title))
+		.setMessage(getResources().getString(R.string.receipt_cancel_alert))
+		.setPositiveButton(getString(R.string.alert_Ok_text),
+				new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						finish();
+					}
+				})
+		.setNegativeButton(getString(R.string.alert_Cancel_text),
+				new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {}
+				}).show();
+
+	}
+	
+	@Override
+	public void onBackPressed() {
+		cancelReciept();
+   }
+	
 	@Override
 	protected void onDestroy() {
 		Log.w("GetSignature", "onDestory");
-		
+		stopMainService();
 		super.onDestroy();
 	}
 	
@@ -813,33 +812,6 @@ public class Receipt extends Activity implements OnClickListener {
 		}
 
 	}
-
-	@Override
-	   public void onBackPressed() {
-	      // TODO Auto-generated method stub
-	      new AlertDialog.Builder(this)
-	            .setTitle(getString(R.string.alert_receipt_cancel_title))
-	            .setMessage(
-	                  getResources().getString(R.string.receipt_cancel_alert))
-	            .setPositiveButton(getString(R.string.alert_Ok_text),
-	                  new DialogInterface.OnClickListener() {
-	                     @Override
-	                     public void onClick(DialogInterface dialog,
-	                           int which) {
-	                        finish();
-	                     }
-	                  })
-	            .setNegativeButton(getString(R.string.alert_Cancel_text),
-	                  new DialogInterface.OnClickListener() {
-
-	                     @Override
-	                     public void onClick(DialogInterface dialog,
-	                           int which) {
-	                        // TODO Auto-generated method stub
-
-	                     }
-	                  }).show();
-	   }
 
 	protected void startMainService() {
 		Intent intent = new Intent(getApplicationContext(),

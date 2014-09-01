@@ -7,6 +7,7 @@ import java.util.Set;
 import com.sewoo.jpos.command.CPCLConst;
 import com.sewoo.jpos.command.ESCPOS;
 import com.sewoo.jpos.command.ESCPOSConst;
+import com.sewoo.jpos.printer.CPCLPrinter;
 import com.sewoo.jpos.printer.ESCPOSPrinter;
 import com.sewoo.jpos.printer.LKPrint;
 import com.sewoo.port.android.BluetoothPort;
@@ -39,6 +40,8 @@ public class BluetoothPrinterHelper {
 	private ESCPOSPrinter posPtr = new ESCPOSPrinter("EUC-KR");
 	private final char ESC = ESCPOS.ESC;
 	private final char LF = ESCPOS.LF;
+	private CPCLPrinter cpclPrinter = new CPCLPrinter("EUC-KR");
+	private int paperType = CPCLConst.LK_CPCL_CONTINUOUS;
 	
 	private BluetoothPort bp;
 	private BluetoothAdapter mBluetoothAdapter;
@@ -240,7 +243,6 @@ public class BluetoothPrinterHelper {
 				res = ParkPrintMember();
 			} 
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			res = new ResultDto();
 			res.setRTN_CD(CommonSet.BLUETHOOTH_ERROR_CODE);
@@ -265,9 +267,9 @@ public class BluetoothPrinterHelper {
 			posPtr.printNormal(ESC + "|cA" + ESC + "|bC" + ESC + "|3C" + "차량보관증(고객용)" + LF + LF);
 			posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"접수번호 : " + rec.getVL_NO() + LF + LF);
 	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"접수일시 : " + rec.getRECT_FULL_DT() + LF);
-	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"접 수 자  : " + rec.getRECT_USR_NM() + LF);
+	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"접 수 자 : " + rec.getRECT_USR_NM() + LF);
 	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"차량번호 : " + rec.getCAR_NO() + LF);
-	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"차     종 : " + rec.getCAR_SERS_NM() + LF);
+	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"차    종 : " + rec.getCAR_SERS_NM() + LF);
 	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"귀국일시 : " + rec.getENTRY_FULL_DT() + LF);   
 	        
 	        String checkString = "없음";
@@ -297,7 +299,7 @@ public class BluetoothPrinterHelper {
 				e.printStackTrace();
 			}
 	        
-	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"차량찾는곳: " + LF);
+	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"차량 찾는곳: " + LF);
 	        posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" + ESC + "|3C" + rec.getCAR_TRANS_NM() +LF);
 	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"※차량보관장소 : 장기옥외주차장 " + LF);
 	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"※고지사항 : 뒷면 약관내용 고객 필독 사항임. " + LF);
@@ -329,22 +331,19 @@ public class BluetoothPrinterHelper {
 			posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"접수번호 : " + rec.getVL_NO() +LF);
 			
 			if(shortTerm) {
-				posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" +"■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■" +LF);
-				//posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" +"==============================" +LF);
-				
+				linePrint();
 			} else {
 				posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" + LF);
 			}
 			
 	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"접수일시 : " + rec.getRECT_FULL_DT() +LF);
-	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"접 수 자  : " + rec.getRECT_USR_NM() +LF);
+	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"접 수 자 : " + rec.getRECT_USR_NM() +LF);
 	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"차량번호 : " + rec.getCAR_NO() +LF);
-	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"차     종 : " + rec.getCAR_SERS_NM() +LF);
+	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"차    종 : " + rec.getCAR_SERS_NM() +LF);
 	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"귀국일시 : " + rec.getENTRY_FULL_DT() +LF);      
 	        
 	        if(shortTerm) {
-	        	posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" +"■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■" +LF);
-				//posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" +"==============================" +LF);
+	        	linePrint();
 			} else {
 				posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" + LF);
 			}
@@ -364,9 +363,10 @@ public class BluetoothPrinterHelper {
 			}
 	        
 	        if(shortTerm) {
-	        	posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" +"■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■" +LF);
-				//posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" +"==============================" +LF);
+	        	linePrint();
+	        	posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" + LF);
 			} else {
+				posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" + LF);
 				posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" + LF);
 			}
 	        posPtr.setCharSet("Big5");
@@ -374,26 +374,31 @@ public class BluetoothPrinterHelper {
 	        posPtr.setCharSet("EUC-KR");
 	        
 	        if(shortTerm) {
-	        	posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" +"■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■" +LF);
-				//posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" +"==============================" +LF);
+	        	linePrint();
 			} else {
 				posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" + LF);
 			}
 	        
 	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"장기주차요원 : " + LF);
 	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"장기주차위치 : " + LF);
-	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"차량찾는곳 : " + LF);
+	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"차량 찾는곳 : " + LF);
 	        posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" + ESC + "|3C" + rec.getCAR_TRANS_NM() +LF);
 	        
 	        if(shortTerm) {
-	        	posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" +"■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■" +LF);
-				//posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" +"==============================" +LF);
+	        	linePrint();
 			} else {
 				posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" + LF);
 			}
 	        
 	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"단기주차요원: " + LF);
 	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"단기주차위치: " + LF);
+	        
+	        if(shortTerm) {
+	        	linePrint();
+			} else {
+				posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" + LF);
+			}
+	        
 	    	posPtr.lineFeed(3);
 		} else {
 			Toast.makeText(ac, res.getRTN_MSG(), Toast.LENGTH_LONG).show();
@@ -412,5 +417,23 @@ public class BluetoothPrinterHelper {
 		}
 		*/
     }
+	
+	@SuppressWarnings("deprecation")
+	public void linePrint() throws UnsupportedEncodingException {
+		posPtr.setPageMode(true);
+		posPtr.setDPI(203);
+		posPtr.setPrintDirection(LKPrint.DIRECTION_LEFT_RIGHT);
+    	// 399 dot x 630 dot.
+		posPtr.setPrintingArea(60);
+    	posPtr.setAbsoluteHorizontal(0);
+    	posPtr.setAbsoluteVertical(0);
+		posPtr.printText("■",  LKPrint.LK_ALIGNMENT_CENTER, LKPrint.LK_FNT_DEFAULT, LKPrint.LK_TXT_8WIDTH | LKPrint.LK_TXT_1HEIGHT);
+		posPtr.setAbsoluteHorizontal(100);
+    	posPtr.printText("■",  LKPrint.LK_ALIGNMENT_CENTER, LKPrint.LK_FNT_DEFAULT, LKPrint.LK_TXT_8WIDTH | LKPrint.LK_TXT_1HEIGHT);
+    	posPtr.setAbsoluteHorizontal(200);
+    	posPtr.printText("■",  LKPrint.LK_ALIGNMENT_CENTER, LKPrint.LK_FNT_DEFAULT, LKPrint.LK_TXT_7WIDTH | LKPrint.LK_TXT_1HEIGHT);
+    	posPtr.printPageModeData();
+    	posPtr.setPageMode(false);
+	}
 	
 }
