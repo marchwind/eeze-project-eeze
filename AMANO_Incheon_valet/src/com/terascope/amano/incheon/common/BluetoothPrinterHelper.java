@@ -329,7 +329,9 @@ public class BluetoothPrinterHelper {
 			posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"접수번호 : " + rec.getVL_NO() +LF);
 			
 			if(shortTerm) {
-				posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" +"==============================" +LF);
+				posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" +"■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■" +LF);
+				//posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" +"==============================" +LF);
+				
 			} else {
 				posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" + LF);
 			}
@@ -341,7 +343,8 @@ public class BluetoothPrinterHelper {
 	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"귀국일시 : " + rec.getENTRY_FULL_DT() +LF);      
 	        
 	        if(shortTerm) {
-				posPtr.printNormal(ESC + "|cA"+ ESC + "|bC"  +"==============================" +LF);
+	        	posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" +"■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■" +LF);
+				//posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" +"==============================" +LF);
 			} else {
 				posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" + LF);
 			}
@@ -361,7 +364,8 @@ public class BluetoothPrinterHelper {
 			}
 	        
 	        if(shortTerm) {
-				posPtr.printNormal(ESC + "|cA"+ ESC + "|bC"  +"==============================" +LF);
+	        	posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" +"■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■" +LF);
+				//posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" +"==============================" +LF);
 			} else {
 				posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" + LF);
 			}
@@ -370,7 +374,8 @@ public class BluetoothPrinterHelper {
 	        posPtr.setCharSet("EUC-KR");
 	        
 	        if(shortTerm) {
-				posPtr.printNormal(ESC + "|cA"+ ESC + "|bC"  +"==============================" +LF);
+	        	posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" +"■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■" +LF);
+				//posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" +"==============================" +LF);
 			} else {
 				posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" + LF);
 			}
@@ -381,7 +386,8 @@ public class BluetoothPrinterHelper {
 	        posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" + ESC + "|3C" + rec.getCAR_TRANS_NM() +LF);
 	        
 	        if(shortTerm) {
-				posPtr.printNormal(ESC + "|cA"+ ESC + "|bC"  +"==============================" +LF);
+	        	posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" +"■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■" +LF);
+				//posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" +"==============================" +LF);
 			} else {
 				posPtr.printNormal(ESC + "|cA"+ ESC + "|bC" + LF);
 			}
