@@ -664,7 +664,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/receipt_table_sign_height"
                         android:orientation="vertical"
-                        android:padding="@dimen/receipt_table_padding1" >
+                        android:padding="@dimen/receipt_table_padding1"
+                        android:scrollbars="none" >
                     </LinearLayout>
                 </LinearLayout>
             </TableRow>
