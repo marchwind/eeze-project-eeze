@@ -3,6 +3,8 @@ package com.terascope.amano.incheon.dao.helper;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import android.util.Log;
+
 
 public class IvpFtpHelper extends FtpHelper {
 	private SimpleDateFormat format = new SimpleDateFormat("yyyyMM");
@@ -47,6 +49,12 @@ public class IvpFtpHelper extends FtpHelper {
 			super.ftpMakeDirectory(destPath);
 			super.ftpMakeDirectory(destPath+dd);
 		}
+		
+		desFileName = desFileName.substring(0, desFileName.lastIndexOf("."));
+		desFileName += ".avi";
+		
+		Log.i("uploadFile", "upLoadFileName : " + desFileName);
+		
 		return super.ftpUpload(srcFilePath, desFileName, destPath+dd);
 	}
 }

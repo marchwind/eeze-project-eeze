@@ -127,12 +127,12 @@ public class PrintActivity extends Activity implements OnClickListener {
 		printback = (Button) findViewById(R.id.print_back_btn);
 		print_cat_img = (ImageView) findViewById(R.id.print_car_img);
 				
-		StringBuffer sb = new StringBuffer(dto.getENTRY_DE());
+		/*StringBuffer sb = new StringBuffer(dto.getENTRY_DE());
 		sb.insert(4, "/");
 		sb.insert(7, "/");
 		sb.insert(10, " ");
 		sb.insert(14, ":");
-		sb.insert(17, ":");
+		sb.insert(17, ":");*/
 		
 		print_receipt_name.setText(dto.getRECT_USR_NM());
 		print_headline_text.setText(dto.getCAR_NO());
@@ -140,7 +140,7 @@ public class PrintActivity extends Activity implements OnClickListener {
 		print_car_name.setText(dto.getCAR_SERS_NM());
 		print_receipt_num.setText(dto.getVL_NO());
 		print_receipt_date.setText(dto.getRECT_DE());
-		print_return_date.setText(sb.toString());
+		print_return_date.setText(dto.getENTRY_FULL_DT());
 		print_car_search.setText(dto.getCAR_TRANS_NM());
 		
 		Bitmap bmImg = BitmapFactory.decodeFile(CommonSet.SAVE_PATH + dto.getCAR_DAMG_FILE_NM());
@@ -199,6 +199,7 @@ public class PrintActivity extends Activity implements OnClickListener {
 			
 			rec.setENTRY_FULL_DT(sb2.toString());
 			Log.e("entry",rec.getENTRY_DE());
+			rec.setCAR_DAMG_AT(cursor.getString(cursor.getColumnIndex("CAR_DAMG_AT")));
 			rec.setCAR_DAMG_FILE_NM(cursor.getString(cursor.getColumnIndex("CAR_DAMG_FILE_NM")));
 			rec.setCSTMR_SIGN_FILE_NM(cursor.getString(cursor.getColumnIndex("CSTMR_SIGN_FILE_NM")));
 			

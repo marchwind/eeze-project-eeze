@@ -237,34 +237,37 @@ public class ParkInProcess_CameraLPR extends Activity {
 				break;
 			case R.id.camera_cancel_btn :
 				mPreview.stopView();
-				new AlertDialog.Builder(ParkInProcess_CameraLPR.this)
-				.setTitle(getString(R.string.alert_receipt_cancel_title))
-				.setMessage(getResources().getString(R.string.receipt_cancel_alert))
-				.setPositiveButton(getString(R.string.alert_Ok_text), new DialogInterface.OnClickListener() {
-					
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						if(mPreview.mCamera != null){
-							mPreview.mCamera.stopPreview();
-						}
-						finish();
-					}
-				})
-				.setNegativeButton(getString(R.string.alert_Cancel_text), new DialogInterface.OnClickListener() {
-					
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						// TODO Auto-generated method stub
-						
-					}
-				})
-				.show();
+				cancelRecieptAlert();
 				
 				break;
 			}
 			
 		}
 	}; 
+	
+	public void cancelRecieptAlert() {
+		new AlertDialog.Builder(this)
+        .setTitle(getString(R.string.alert_receipt_cancel_title))
+        .setMessage(
+              getResources().getString(R.string.receipt_cancel_alert))
+        .setPositiveButton(getString(R.string.alert_Ok_text),
+              new DialogInterface.OnClickListener() {
+                 @Override
+                 public void onClick(DialogInterface dialog, int which) {
+                	 finish();
+                 }
+              })
+        .setNegativeButton(getString(R.string.alert_Cancel_text),
+              new DialogInterface.OnClickListener() {
+                 @Override
+                 public void onClick(DialogInterface dialog, int which) {}
+              }).show();
+	}
+	
+	@Override
+	public void onBackPressed() {
+		cancelRecieptAlert();
+   }
 	
 	CompoundButton.OnCheckedChangeListener checkToggleListner = new CompoundButton.OnCheckedChangeListener() {
  		@Override
