@@ -40,9 +40,23 @@ public class CmsController {
 		return mav;
 	}
 	
-	@RequestMapping("/noticeModify.do")
-	public ModelAndView noticeModify() {
-		ModelAndView mav = new ModelAndView("jsp/cms/notice_modify");		
+	@RequestMapping("/dataList.do")
+	public ModelAndView dataList() {
+		ModelAndView mav = new ModelAndView("jsp/cms/data_list");		
+		return mav;
+	}
+	
+	@RequestMapping("/dataDetail.do")
+	public ModelAndView dataDetail(@RequestParam (value="no",defaultValue="" )String no) {
+		ModelAndView mav = new ModelAndView("jsp/cms/data_detail");
+		
+		mav.addObject("no", no);
+		return mav;
+	}
+	
+	@RequestMapping("/dataReg.do")
+	public ModelAndView dataRegister() {
+		ModelAndView mav = new ModelAndView("jsp/cms/data_reg");		
 		return mav;
 	}
 	
