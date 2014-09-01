@@ -96,40 +96,6 @@ public class PmcStatistics {
 //					null,
 //					null);
 //		}
-		//return statisticsService.getReserve(new PmcMnagerInfo(sessUser));
-		
-		
-		EquipStatisticsInfo info = new EquipStatisticsInfo();
-		List<EquipStatisticsInfo.GValue> cpuUse = new ArrayList<EquipStatisticsInfo.GValue>();
-		cpuUse.add(info.new GValue("12:00", "1"));
-		cpuUse.add(info.new GValue("12:10", "2"));
-		cpuUse.add(info.new GValue("12:20", "2.1"));
-		cpuUse.add(info.new GValue("12:30", "3"));
-		cpuUse.add(info.new GValue("12:40", "4.1"));
-		cpuUse.add(info.new GValue("12:50", "1.4"));
-		
-		List<EquipStatisticsInfo.GValue> memUse = new ArrayList<EquipStatisticsInfo.GValue>();
-		memUse.add(info.new GValue("12:00", "1212344"));
-		memUse.add(info.new GValue("12:10", "1323454"));
-		memUse.add(info.new GValue("12:20", "2323454"));
-		memUse.add(info.new GValue("12:30", "1423454"));
-		memUse.add(info.new GValue("12:40", "3323454"));
-		memUse.add(info.new GValue("12:50", "4323454"));
-		
-		List<EquipStatisticsInfo.PValue> process = new ArrayList<EquipStatisticsInfo.PValue>();
-		process.add(info.new PValue("Crome", 6));
-		process.add(info.new PValue("Inter Explorer", 1));
-		process.add(info.new PValue("Microsoft Excel", 1));
-		process.add(info.new PValue("Microsoft Word", 2));
-		process.add(info.new PValue("Adobe", 3));
-		
-		info.setCpuUse(cpuUse);
-		info.setMemoryUse(memUse);
-		info.setProcess(process);
-		CommonSingleResult<EquipStatisticsInfo> result = 
-				new CommonSingleResult<EquipStatisticsInfo> (
-						new CommonResult(CommonMsg.successCode, CommonMsg.successMsg),
-						info);
-		return result;
+		return statisticsService.getEquipStatus(equipNo);
 	}
 }
