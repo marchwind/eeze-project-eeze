@@ -62,7 +62,7 @@ function noticeModifyCheck(){
 	}
 	
 	var url = uri.serverUrl + uri.noticeUpdateUrl;
-	sendRequest("noticeModifyForm", url, noticeModifySuccess, noticeModifyError);
+	sendRequestFile("noticeModifyForm", url, noticeModifySuccess, noticeModifyError);
 }
 
 function noticeModifySuccess(res) {
@@ -98,6 +98,10 @@ function noticeModifyError(res){
 						<td class="tl" id="notiSubject"></td>
 					</tr>
 					<tr>
+						<td>첨부파일</td>
+						<td class="tl" id="notiFile"></td>
+					</tr>
+					<tr>
 						<td>내용</td>
 						<td class="tl">
 							<p id="notiContent"></p>
@@ -106,7 +110,7 @@ function noticeModifyError(res){
 				</tbody>
 			</table>
 			
-			<form id="noticeModifyForm">
+			<form id="noticeModifyForm"  enctype="multipart/form-data">
 			<input type="hidden" name="notiNo" id="notiNo" value="${no}" />
 			<table class="noticeDetailModify noClick">
 				<colgroup>
@@ -117,6 +121,10 @@ function noticeModifyError(res){
 					<tr>
 						<td>제목</td>
 						<td class="tl"><input type="text" id="notiSubjectEle" name="notiSubject" class="input_red input_fill" /></td>
+					</tr>
+					<tr>
+						<td>첨부파일</td>
+						<td class="tl"><input type="file" id="notiFile" name="notiFile" class="input_red input_fill" /></td>
 					</tr>
 					<tr>
 						<td>내용</td>

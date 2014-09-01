@@ -12,6 +12,8 @@ $(document).ready(function(){
 		$("#tab_faq").trigger("click");
 	} else if(type == "inquiry") {
 		$("#tab_inquiry").trigger("click");
+	} else if(type == "data") {
+		$("#tab_data").trigger("click");
 	} else {
 		$("#tab_notice").trigger("click");
 	}
@@ -26,6 +28,11 @@ function tabButton(obj){
 function noticeListCall(obj) {
 	tabButton(obj);
 	sendRequestHtml('${contextPath}/cms/noticeList.do', listCallSuccess, error);
+}
+
+function dataListCall(obj) {
+	tabButton(obj);
+	sendRequestHtml('${contextPath}/cms/dataList.do', listCallSuccess, error);
 }
 
 function faqListCall(obj){
@@ -58,6 +65,7 @@ function error() {
 			<div id="tabSelect">
 				<ul>
 					<li><input type="button" value="공지사항" id="tab_notice" class="btn_squre on" onclick="noticeListCall(this)"/></li>
+					<li><input type="button" value="자료실" id="tab_data" class="btn_squre on" onclick="dataListCall(this)"/></li>
 					<li><input type="button" value="FAQ" id="tab_faq" class="btn_squre" onclick="faqListCall(this)"/></li>
 					<li><input type="button" value="1:1문의" id="tab_inquiry" class="btn_squre" onclick="inquiryListCall(this)" /></li>
 				</ul>

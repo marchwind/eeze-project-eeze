@@ -153,6 +153,32 @@ function sendRequest(form, url, successCall, errorCall) {
 	});
 };
 
+function sendRequestFile(form, url, successCall, errorCall) {
+	
+	var $form = $("#"+form);
+	//var url = form.attr("action");
+	var paramBody = new FormData($form[0]);
+	
+	log(paramBody);
+	$.ajax({
+		url: url,
+		type: "POST",
+		data: paramBody,
+		mimeType:"multipart/form-data",
+		cache : false,	
+		processData: false,
+        contentType: false,
+		success : function(res){
+			log(res);
+			successCall(res);
+		},
+		error : function(xhr, textStatus, errorThrown){
+			log(xhr);
+			errorCall(xhr);
+		}			
+	});
+};
+
 function sendRequestJson(url, paraData, successCall, errorCall) {
 	
 	var paramBody = paraData;

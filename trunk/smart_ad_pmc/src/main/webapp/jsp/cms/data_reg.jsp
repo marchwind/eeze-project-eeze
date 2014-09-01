@@ -4,25 +4,25 @@
 <head>
 <%@ include file="../common/common.jsp" %>
 <script type="text/javascript">
-function checkAddNotice(){
-	if($("#notiSubject").val().trim() == "") {
+function checkAddData(){
+	if($("#dataSubject").val().trim() == "") {
 		alert(msg.mostSubject);
 		return false;
-	} else if($("#notiContent").val().trim() == ""){
+	} else if($("#dataContent").val().trim() == ""){
 		alert(msg.mostContent);
 		return false;
 	}
 	
-	var url = uri.serverUrl + uri.noticeAddUrl;
-	sendRequestFile("noticeAddForm", url, noticeAddSuccess, noticeAddError);
+	var url = uri.serverUrl + uri.dataAddUrl;
+	sendRequestFile("dataAddForm", url, dataAddSuccess, dataAddError);
 }
 
-function noticeAddSuccess(res){
-	goPage('${contextPath}/cms/list.do');
+function dataAddSuccess(res){
+	goPage('${contextPath}/cms/list.do?type=data');
 }
 
-function noticeAddError(res){
-	alert(msg.noticeAddFail);
+function dataAddError(res){
+	alert(msg.dataAddFail);
 }
 </script>
 </head>
@@ -36,7 +36,7 @@ function noticeAddError(res){
 			<img src="${contextPath}/resources/images/icon_bullet_red.png" /><h1>웹CMS > 공지사항등록</h1>
 		</div>
 		<div class="mainTable cmsCenter">
-			<form id="noticeAddForm" enctype="multipart/form-data">
+			<form id="dataAddForm" enctype="multipart/form-data">
 			<table>
 				<colgroup>
 					<col width="10%" />
@@ -45,16 +45,16 @@ function noticeAddError(res){
 				<tbody>
 					<tr>
 						<td>제목</td>
-						<td class="tl"><input type="text" id="notiSubject" name="notiSubject" class="input_red input_fill" /></td>
+						<td class="tl"><input type="text" id="archiveSubject" name="archiveSubject" class="input_red input_fill" /></td>
 					</tr>
 					<tr>
 						<td>첨부파일</td>
-						<td class="tl"><input type="file" id="notiFile" name="notiFile" class="input_red input_fill" /></td>
+						<td class="tl"><input type="file" id="file" name="file" class="input_red input_fill" /></td>
 					</tr>
 					<tr>
 						<td>내용</td>
 						<td class="tl">
-							<textarea id="notiContent" name="notiContent" class="input_red input_fill" style="height: 200px"></textarea>
+							<textarea id="archiveContent" name="archiveContent" class="input_red input_fill" style="height: 200px"></textarea>
 						</td>
 					</tr>
 				</tbody>
@@ -66,8 +66,8 @@ function noticeAddError(res){
 				</div>
 				<div class="fr">
 					<ul>
-						<li><input type="button" value="등록" class="btn_normal_red" onclick="checkAddNotice()"/></li>
-						<li><input type="button" value="취소" class="btn_normal_red" onclick="goPage('${contextPath}/cms/list.do')" /></li>
+						<li><input type="button" value="등록" class="btn_normal_red" onclick="checkAddData()"/></li>
+						<li><input type="button" value="취소" class="btn_normal_red" onclick="goPage('${contextPath}/cms/list.do?type=data')" /></li>
 					</ul>
 				</div>
 			</div>

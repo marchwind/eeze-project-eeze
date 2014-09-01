@@ -78,7 +78,9 @@ function qnaAnswerSuccess(res) {
 				<tbody>
 					<tr>
 						<td>문의</td>
-						<td colspan="3" class="tl" id="querySubject"></td>
+						<td class="tl" id="querySubject"></td>
+						<td>첨부파일</td>
+						<td class="tl" id="queryFile"></td>
 					</tr>
 					<tr>
 						<td>문의자 이메일</td>
