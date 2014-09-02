@@ -7,10 +7,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.kobaco.smartad.controller.PmcArchiveController;
 import com.kobaco.smartad.dao.CommonDao;
 import com.kobaco.smartad.model.data.ParamsCommonFilter;
 import com.kobaco.smartad.model.data.ParamsCommonPage;
@@ -36,6 +39,8 @@ public class ArchiveServiceImpl implements ArchiveService {
 	@Qualifier("paths")
 	private Properties paths;
 	
+	private static final Logger logger = LoggerFactory.getLogger(ArchiveServiceImpl.class);
+
 	@Override
 	public CommonListResult<ArchiveInfo> getList(CommonPage page) {		
 		int totalCount = arcvDao.count(new SAArchive());
@@ -96,12 +101,12 @@ public class ArchiveServiceImpl implements ArchiveService {
 		if(sa != null){
 			if (FileUtils.isFile(info.getFile())) {
 				try {
-					sa.setATT_FL_PATH(FileUtils.fileCopy(info.getFile(), paths.getProperty("archive.file") + File.separator + sa.getARCV_NO() + "_" ));
+					sa.setATT_FL_PTH(FileUtils.fileCopy(info.getFile(), paths.getProperty("archive.file") + File.separator + sa.getARCV_NO() + "_" ));
 					sa.setATT_FL_NM(info.getFile().getOriginalFilename());
 					
 					ParamsCommonFilter filter = new ParamsCommonFilter();
 					filter.setColumns(new HashMap());
-					filter.getColumns().put("ATT_FL_PATH", sa.getATT_FL_PATH());
+					filter.getColumns().put("ATT_FL_PATH", sa.getATT_FL_PTH());
 					filter.getColumns().put("ATT_FL_NM",   sa.getATT_FL_NM());
 					filter.getColumns().put("ARCV_NO",     sa.getARCV_NO());
 					filter.addNamespace("File");
@@ -109,6 +114,7 @@ public class ArchiveServiceImpl implements ArchiveService {
 					arcvDao.update(new SAArchive(), filter);
 					
 					if(arcvDao.update(sa)>0){
+						info.setFile(null);
 						return new CommonSingleResult<ArchiveInfo>(new CommonResult(CommonMsg.successCode,CommonMsg.successMsg),
 								info);
 					}else{
@@ -116,6 +122,7 @@ public class ArchiveServiceImpl implements ArchiveService {
 								null);
 					}
 				} catch (IOException e) {
+					e.printStackTrace();
 					return new CommonSingleResult<ArchiveInfo>(new CommonResult(CommonMsg.failCodeFileSystemErr, CommonMsg.failMsgFileSystemErr),
 							null);
 					
@@ -139,7 +146,7 @@ public class ArchiveServiceImpl implements ArchiveService {
 		sa.setARCV_SBJT(info.getArchiveSubject());
 		if (FileUtils.isFile(info.getFile())) {
 			try {
-				sa.setATT_FL_PATH(FileUtils.fileCopy(info.getFile(), paths.getProperty("archive.file") + File.separator + sa.getARCV_NO() + "_" ));
+				sa.setATT_FL_PTH(FileUtils.fileCopy(info.getFile(), paths.getProperty("archive.file") + File.separator + sa.getARCV_NO() + "_" ));
 				sa.setATT_FL_NM(info.getFile().getOriginalFilename());
 			} catch (IOException e) {
 				e.printStackTrace();

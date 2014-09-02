@@ -7,14 +7,18 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Properties;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.kobaco.smartad.service.ArchiveServiceImpl;
+
 public class FileUtils {
 
-	
-	
+	private static final Logger logger = LoggerFactory.getLogger(FileUtils.class);
+
 	public static boolean isFile(MultipartFile srcFile) {
 		return (srcFile!=null && !srcFile.isEmpty());
 	}
@@ -34,7 +38,8 @@ public class FileUtils {
 			while((read=in.read(buf))!=-1) {
 				out.write(buf, 0, read);
 			}
-			
+			out.flush();
+			out.close();
 			return destPath + fileName;
 		}
 		

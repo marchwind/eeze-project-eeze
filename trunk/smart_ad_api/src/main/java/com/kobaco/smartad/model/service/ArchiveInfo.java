@@ -27,7 +27,7 @@ public class ArchiveInfo implements ValueObject {
 		this.archiveSubject = arcv.getARCV_SBJT();
 		this.archiveContent = arcv.getARCV_CNTT();
 		this.viewCount      = arcv.getVW_CNT();
-		this.attachedFilePath=arcv.getATT_FL_PATH();
+		this.attachedFilePath=arcv.getATT_FL_PTH();
 		this.attachedFileName=arcv.getATT_FL_NM();
 		this.registeDate     =arcv.getREG_DTT();
 	}
