@@ -5,10 +5,10 @@
 <%@ include file="../common/common.jsp" %>
 <script type="text/javascript">
 function checkAddData(){
-	if($("#dataSubject").val().trim() == "") {
+	if($("#archiveSubject").val().trim() == "") {
 		alert(msg.mostSubject);
 		return false;
-	} else if($("#dataContent").val().trim() == ""){
+	} else if($("#archiveContent").val().trim() == ""){
 		alert(msg.mostContent);
 		return false;
 	}
