@@ -2,6 +2,8 @@ package com.kobaco.smartad.model.service;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.kobaco.smartad.model.ValueObject;
 import com.kobaco.smartad.model.data.SAArchive;
 
@@ -14,7 +16,7 @@ public class ArchiveInfo implements ValueObject {
 	private String attachedFilePath;
 	private String attachedFileName;
 	private Date registeDate;
-	
+	private MultipartFile file;
 	
 	public ArchiveInfo(){
 		
@@ -85,5 +87,12 @@ public class ArchiveInfo implements ValueObject {
 	public void setRegisteDate(Date registeDate) {
 		this.registeDate = registeDate;
 	}
-	
+
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}	
 }

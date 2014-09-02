@@ -15,7 +15,8 @@ public class SAUserEmailCertification implements Bean, Entity{
 	private Date UPD_DTT;
 	private String REG_ID;
 	private String UPD_ID;
-
+	private String USR_EML;
+	
 	
 	public String getEML_CRTK() {
 		return EML_CRTK;
@@ -96,11 +97,20 @@ public class SAUserEmailCertification implements Bean, Entity{
 		UPD_ID = uPD_ID;
 	}
 
+	public String getUSR_EML() {
+		return USR_EML;
+	}
+
+
+	public void setUSR_EML(String uSR_EML) {
+		USR_EML = uSR_EML;
+	}
 
 	@Override
 	public String getEntityName() {
 		return "userEmailCertification";
 	}
+
 	
 
 }

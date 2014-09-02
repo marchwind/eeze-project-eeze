@@ -15,7 +15,7 @@ public interface UserService {
 	public CommonResult logout(String userNo);
 	public CommonSingleResult<UserInfo> subscribe(UserInfo userInfo);
 	public CommonSingleResult<UserInfo> unsubscribe(UserInfo userInfo);
-	public CommonResult emailCert(String certKey);
+	public CommonSingleResult<UserEmailCert> emailCert(String certKey);
 	public CommonSingleResult<UserInfo> update(UserInfo userInfo);
 	public CommonListResult<UserInfo> getList(ParamsCommonFilter test, ParamsCommonOrder order, ParamsCommonPage page);
 	public CommonSingleResult<UserInfo> get(UserInfo userInfo);

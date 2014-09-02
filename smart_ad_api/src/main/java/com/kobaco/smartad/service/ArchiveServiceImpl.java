@@ -37,7 +37,7 @@ public class ArchiveServiceImpl implements ArchiveService {
 	private Properties paths;
 	
 	@Override
-	public CommonListResult<ArchiveInfo> getList(PmcMnagerInfo info, CommonPage page) {		
+	public CommonListResult<ArchiveInfo> getList(CommonPage page) {		
 		int totalCount = arcvDao.count(new SAArchive());
 		//int totalPage  =  (int) Math.ceil((double)totalCount /(double) page.getUnitPerPage() );
 		ParamsCommonPage pcp = new ParamsCommonPage();
@@ -64,7 +64,7 @@ public class ArchiveServiceImpl implements ArchiveService {
 	}
 	
 	@Override
-	public CommonSingleResult<ArchiveInfo> getInfo(PmcMnagerInfo mng, ArchiveInfo info) {
+	public CommonSingleResult<ArchiveInfo> getInfo(ArchiveInfo info) {
 		
 		SAArchive sa = new SAArchive();
 		sa.setARCV_NO(info.getArchiveNo());
@@ -81,7 +81,7 @@ public class ArchiveServiceImpl implements ArchiveService {
 	}
 	
 	@Override
-	public CommonSingleResult<ArchiveInfo> add(PmcMnagerInfo mng, ArchiveInfo info, UploadedFile file) {
+	public CommonSingleResult<ArchiveInfo> add(PmcMnagerInfo mng, ArchiveInfo info) {
 		// TODO Auto-generated method stub
 		CommonSingleResult<NotificationInfo> result = new CommonSingleResult<NotificationInfo>();	
 		
@@ -94,10 +94,10 @@ public class ArchiveServiceImpl implements ArchiveService {
 		sa = arcvDao.insert(sa);
 
 		if(sa != null){
-			if (FileUtils.isFile(file.getFile())) {
+			if (FileUtils.isFile(info.getFile())) {
 				try {
-					sa.setATT_FL_PATH(FileUtils.fileCopy(file.getFile(), paths.getProperty("archive.file") + File.separator + sa.getARCV_NO() + "_" ));
-					sa.setATT_FL_NM(file.getFile().getOriginalFilename());
+					sa.setATT_FL_PATH(FileUtils.fileCopy(info.getFile(), paths.getProperty("archive.file") + File.separator + sa.getARCV_NO() + "_" ));
+					sa.setATT_FL_NM(info.getFile().getOriginalFilename());
 					
 					ParamsCommonFilter filter = new ParamsCommonFilter();
 					filter.setColumns(new HashMap());
@@ -132,15 +132,15 @@ public class ArchiveServiceImpl implements ArchiveService {
 	}
 	
 	@Override
-	public CommonSingleResult<ArchiveInfo> update(PmcMnagerInfo mng, ArchiveInfo info, UploadedFile file) {
+	public CommonSingleResult<ArchiveInfo> update(PmcMnagerInfo mng, ArchiveInfo info) {
 		SAArchive sa =	new SAArchive();
 		sa.setARCV_NO(info.getArchiveNo());
 		sa.setARCV_CNTT(info.getArchiveContent());
 		sa.setARCV_SBJT(info.getArchiveSubject());
-		if (FileUtils.isFile(file.getFile())) {
+		if (FileUtils.isFile(info.getFile())) {
 			try {
-				sa.setATT_FL_PATH(FileUtils.fileCopy(file.getFile(), paths.getProperty("archive.file") + File.separator + sa.getARCV_NO() + "_" ));
-				sa.setATT_FL_NM(file.getFile().getOriginalFilename());
+				sa.setATT_FL_PATH(FileUtils.fileCopy(info.getFile(), paths.getProperty("archive.file") + File.separator + sa.getARCV_NO() + "_" ));
+				sa.setATT_FL_NM(info.getFile().getOriginalFilename());
 			} catch (IOException e) {
 				e.printStackTrace();
 				return new CommonSingleResult<ArchiveInfo>(new CommonResult(CommonMsg.failCodeFileSystemErr, CommonMsg.failMsgFileSystemErr),

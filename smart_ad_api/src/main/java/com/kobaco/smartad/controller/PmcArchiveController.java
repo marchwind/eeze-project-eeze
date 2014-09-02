@@ -58,7 +58,7 @@ public class PmcArchiveController {
 			return new CommonSingleResult<ArchiveInfo> (new CommonResult(CommonMsg.failCodeUnAuthrized, CommonMsg.failMsgUnAuthrized),
 					null);
 		}	
-		return archiveService.getInfo(new PmcMnagerInfo(sessUser), info);
+		return archiveService.getInfo(info);
 	}
 	
 	
@@ -79,15 +79,14 @@ public class PmcArchiveController {
 					null,
 					null);
 		}	
-		return archiveService.getList(new PmcMnagerInfo(sessUser), cp);
+		return archiveService.getList(cp);
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public @ResponseBody CommonSingleResult<ArchiveInfo> add(
 			@RequestParam (value="managerMode",defaultValue="" ) String mode,	
 			@ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser,
-			@ModelAttribute ArchiveInfo info,
-			@ModelAttribute UploadedFile file ) {
+			@ModelAttribute ArchiveInfo info) {
 		
 		if(info==null){
 			return new CommonSingleResult<ArchiveInfo> (new CommonResult(CommonMsg.failCodeInvalidInput,CommonMsg.failMsgeInvalidInput),
@@ -97,8 +96,9 @@ public class PmcArchiveController {
 			return new CommonSingleResult<ArchiveInfo> (new CommonResult(CommonMsg.failCodeUnAuthrized, CommonMsg.failMsgUnAuthrized),
 					null);
 		}
-		return archiveService.add(new PmcMnagerInfo(sessUser), info, file);			
+		return archiveService.add(new PmcMnagerInfo(sessUser), info);			
 	}
+	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public @ResponseBody CommonSingleResult<ArchiveInfo> update(
 			@RequestParam (value="managerMode",defaultValue="" ) String mode,
@@ -115,7 +115,7 @@ public class PmcArchiveController {
 					null);
 		}
 		
-		return archiveService.update(new PmcMnagerInfo(sessUser), info, file);			
+		return archiveService.update(new PmcMnagerInfo(sessUser), info);			
 	}
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public @ResponseBody CommonSingleResult<ArchiveInfo> delete(
