@@ -4,7 +4,27 @@
 <head>
 <%@ include file="/common/common.jsp" %>
 <script type="text/javascript">
- 
+var key = "${emailCertKey}";
+
+$(document).ready(function(){
+	var url = uri.serverUrl + uri.emailCeriUrl;
+	sendRequestJson(url, {emailCertKey : key}, ceriSuccess, error);
+});
+
+function ceriSuccess(res){
+	if(res.result.resultCode == "0000"){
+		$("#certTitle").text("스마트광고창작공간AD 회원가입을 환영합니다!");
+		$("#certMsg").html('메일 계정 <span class="userEmail">'+res.info+'</span>');
+	} else {
+		error();
+	}
+}
+
+function error(){
+	$("#certTitle").text("이메일 인증 오류");
+	$("#certMsg").text("이메일 인증에 실패하였습니다. 관리자에게 문의해 주세요.");
+}
+
 </script>
 </head>
 <body>
@@ -49,19 +69,15 @@
                         <div class="memberResult">
                         	<span class="memberComplete">
                                 <img src="${contextPath}/resources/images/common/kobaco_logo.png" />
-                                <p>스마트광고창작공간AD 회원가입을 환영합니다!</p>
+                                <p id="certTitle"></p>
                                 <span class="grayBox">
-                                	<p>
-                                	메일 계정 <span class="userEmail">parkjongsok@naver.com</span><br/>
-                                	(가입일: 2014.06.05)
-                                	</p>
+                                	<p id="certMsg" ></p>
                                 </span>
                             </span>
                         </div>
                     </div>                    
                     <div class="btnContainer">
-                    	<input type="button" class="btn_3" value="확인" />
-                        
+                    	<input type="button" class="btn_3" value="로그인하기" onclick="${contextPath}/member/login.do" />
                     </div>
                 </div>
             </div>
