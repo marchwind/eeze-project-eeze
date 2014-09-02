@@ -15,11 +15,13 @@ function pageListCall() {
 }
 
 function dataListSuccess(res) {
-	if(res.result.resultCode = "0000"){
-		var $table = $("#dataList tbody");
+	var $table = $("#dataList tbody");
+	$table.empty();
+	
+	if(res.result.resultCode == "0000"){
+		
 		var cnt = 1;
 		
-		$table.empty();
 		$(res.list).each(function(){
 			var tag = "<tr onclick='goDetail(\""+this.archiveNo+"\")'>" +
 					"<td>" + cnt + "</td>" +
@@ -33,6 +35,9 @@ function dataListSuccess(res) {
 		});
 		
 		page(pageValue.currentPage, res.page.totalPage);
+	} else if(res.result.resultCode == "0400") {
+		$table.append("<tr><td colspan='4'>자료가 없습니다.</td></tr>");
+		page(pageValue.currentPage, 0);
 	} else {
 		error();
 	}

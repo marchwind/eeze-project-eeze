@@ -15,11 +15,13 @@ function pageListCall() {
 }
 
 function noticeListSuccess(res) {
-	if(res.result.resultCode = "0000"){
-		var $table = $("#noticeList tbody");
-		var cnt = 1;
+	var $table = $("#noticeList tbody");
+	$table.empty();
+	
+	if(res.result.resultCode == "0000"){
 		
-		$table.empty();
+		var cnt = 1;
+	
 		$(res.list).each(function(){
 			var tag = "<tr onclick='goDetail(\""+this.notiNo+"\")'>" +
 					"<td>" + cnt + "</td>" +
@@ -33,6 +35,9 @@ function noticeListSuccess(res) {
 		});
 		
 		page(pageValue.currentPage, res.page.totalPage);
+	} else if(res.result.resultCode == "0400"){
+		$table.append("<tr><td colspan='4'>공지사항이 없습니다.</td></tr>");
+		page(pageValue.currentPage, 0);
 	} else {
 		error();
 	}

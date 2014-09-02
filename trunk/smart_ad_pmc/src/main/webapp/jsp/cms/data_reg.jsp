@@ -18,10 +18,15 @@ function checkAddData(){
 }
 
 function dataAddSuccess(res){
-	goPage('${contextPath}/cms/list.do?type=data');
+	log("data log : " + res.result);
+	if(res.result.resultCode == "0000") {
+		goPage('${contextPath}/cms/list.do?type=data');	
+	} else {
+		dataAddError();
+	}
 }
 
-function dataAddError(res){
+function dataAddError(){
 	alert(msg.dataAddFail);
 }
 </script>

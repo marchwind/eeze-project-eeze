@@ -8,7 +8,7 @@
 function checkForm() {
 	var tel = $("#telSelect").val() + "-" + $("#tel1").val() + "-" + $("#tel2").val();
 	var mobile = $("#mobileSelect").val() + "-" + $("#mobile1").val() + "-" + $("#mobile2").val();
-	var email = $("#emailId1").val() + "@" + $("#email2").val();
+	var email = $("#emailId1").val() + "@" + $("#emailId2").val();
 		
 	if($("#userId").val().trim() == "") {
 		alert(msg.mostId);
@@ -46,7 +46,7 @@ function checkForm() {
 		}
 	} 
 	
-	if(!$("#mobile1").val().isNum() || !$("#mobile1").val().isNum()) {
+	if(!$("#mobile1").val().isNum() || !$("#mobile2").val().isNum()) {
 		alert(msg.checkNum);
 		return false;
 	} else if(mobile.length < 12){
