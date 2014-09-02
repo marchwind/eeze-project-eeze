@@ -106,14 +106,14 @@ public class ArchiveServiceImpl implements ArchiveService {
 					
 					ParamsCommonFilter filter = new ParamsCommonFilter();
 					filter.setColumns(new HashMap());
-					filter.getColumns().put("ATT_FL_PATH", sa.getATT_FL_PTH());
+					filter.getColumns().put("ATT_FL_PTH", sa.getATT_FL_PTH());
 					filter.getColumns().put("ATT_FL_NM",   sa.getATT_FL_NM());
 					filter.getColumns().put("ARCV_NO",     sa.getARCV_NO());
 					filter.addNamespace("File");
 					
-					arcvDao.update(new SAArchive(), filter);
+					//arcvDao.update(new SAArchive(), filter);
 					
-					if(arcvDao.update(sa)>0){
+					if(arcvDao.update(sa, filter)>0){
 						info.setFile(null);
 						return new CommonSingleResult<ArchiveInfo>(new CommonResult(CommonMsg.successCode,CommonMsg.successMsg),
 								info);
