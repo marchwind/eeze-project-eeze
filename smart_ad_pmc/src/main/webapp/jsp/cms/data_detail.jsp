@@ -24,9 +24,12 @@ function dataDetailSuccess(res){
 		$("#dataContent").html(content);
 		$("#dataContentEle").val(res.info.archiveContent);		
 		
-		var downloadTag = "<a href='" + res.info.attachedFilePath + res.info.attachedFileName + "'>"+res.info.attachedFileName+"</a>";
+		if(res.info.attachedFileName != null){
+			var downloadTag = "<a href='" + window.location.host + uri.fileDownloadUrl + "/" +res.info.attachedFileName + "?filePath=c:/'>"+res.info.attachedFileName+"</a>";
+			
+			$("#dataFile").html(downloadTag);	
+		}
 		
-		$("#dataFile").html(downloadTag);
 	} else {
 		error();
 	}
@@ -34,7 +37,7 @@ function dataDetailSuccess(res){
 
 function dataDelCall(){
 	var url = uri.serverUrl + uri.dataDelUrl;
-	sendRequestJson(url, {archiveNo : no}, dataDelSuccess, noticeDelError);
+	sendRequestJson(url, {archiveNo : no}, dataDelSuccess, dataDelError);
 }
 
 function dataDelSuccess(res){
@@ -88,7 +91,7 @@ function dataModifyError(res){
 	<%@ include file="../common/header.jsp" %>
 	<div id="content">
 		<div class="title">
-			<img src="${contextPath}/resources/images/icon_bullet_red.png" /><h1>웹CMS > 공지사항 상세</h1>
+			<img src="${contextPath}/resources/images/icon_bullet_red.png" /><h1>웹CMS > 자료실 상세</h1>
 		</div>
 		<div class="mainTable cmsCenter">
 			<table class="dataDetailView noClick">
@@ -99,7 +102,7 @@ function dataModifyError(res){
 				<tbody>
 					<tr>
 						<td>제목</td>
-						<td class="tl" id="dataubject"></td>
+						<td class="tl" id="dataSubject"></td>
 					</tr>
 					<tr>
 						<td>첨부파일</td>

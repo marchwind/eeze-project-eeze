@@ -36,7 +36,6 @@ var pageValue = {
 }
 
 
-
 var uri = {
 	//serverUrl : window.location.protocol + "//" + window.location.host + "/smart_ad_api",
 	serverUrl : window.location.protocol + "//" + window.location.host + "/api",
@@ -70,6 +69,7 @@ var uri = {
 	dataAddUrl : "/pmc/archive/add",
 	dataUpdateUrl : "/pmc/archive/update",
 	dataDelUrl : "/pmc/archive/delete",
+	fileDownloadUrl : "/files",
 	faqListUrl : "/pmc/faq/list",
 	faqAddUrl : "/pmc/faq/add",
 	faqUpdateUrl : "/pmc/faq/update",
