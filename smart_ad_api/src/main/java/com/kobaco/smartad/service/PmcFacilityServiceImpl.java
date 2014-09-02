@@ -141,7 +141,10 @@ public class PmcFacilityServiceImpl implements PmcFacilityService {
 					}
 					eListResult.add(ei);
 				}
-				
+				if ( fListResult != null ) {
+					fListResult.setList(eListResult);
+					returnList.add(fListResult);
+				}
 			}
 			result.setList(returnList);
 			result.setResult(new CommonResult(CommonMsg.successCode,CommonMsg.successMsg));
