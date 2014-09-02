@@ -151,7 +151,7 @@ function modifySubmit() {
 		}
 	} 
 	
-	if(!$("#mobile1").val().isNum() || !$("#mobile1").val().isNum()) {
+	if(!$("#mobile1").val().isNum() || !$("#mobile2").val().isNum()) {
 		alert(msg.checkNum);
 		return false;
 	} else if(mobile.length < 12){

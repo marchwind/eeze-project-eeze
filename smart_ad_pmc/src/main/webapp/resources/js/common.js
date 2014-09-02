@@ -1,5 +1,5 @@
 function log(msg) {
-	//console.log(msg);
+	console.log(msg);
 }
 
 function numberToDate(num){
@@ -158,6 +158,7 @@ function sendRequestFile(form, url, successCall, errorCall) {
 	var $form = $("#"+form);
 	//var url = form.attr("action");
 	var paramBody = new FormData($form[0]);
+	paramBody.append("managerMode", user.managerMode);
 	
 	log(paramBody);
 	$.ajax({
@@ -168,6 +169,7 @@ function sendRequestFile(form, url, successCall, errorCall) {
 		cache : false,	
 		processData: false,
         contentType: false,
+        dataType: "json",
 		success : function(res){
 			log(res);
 			successCall(res);

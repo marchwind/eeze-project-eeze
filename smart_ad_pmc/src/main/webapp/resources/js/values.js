@@ -38,11 +38,8 @@ var pageValue = {
 
 
 var uri = {
-	//serverUrl : window.location.protocol + "//" + window.location.host + "/smart_ad_api",
-	serverUrl : window.location.protocol + "//" + window.location.host + "/api",
-	//serverUrl : "http://www.smartad.or.kr/api",
-	//serverUrl : "http://localhost:8080/smart_ad_api",
-	//serverUrl : "http://pms.app4u.kr:8080/smart_ad_api",
+	serverUrl : window.location.protocol + "//" + window.location.host + "/smart_ad_api",
+	//serverUrl : window.location.protocol + "//" + window.location.host + "/api",
 	loginUrl : "/pmc/manager/login",
 	logoutUrl : "/pmc/manager/logout",
 	sessionCheck : "/pmc/manager/getSession",
