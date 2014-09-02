@@ -23,16 +23,15 @@
 	</select>
 	
 	<select id="info" parameterType="com.kobaco.smartad.model.data.SAUserEmailCertification" resultType="com.kobaco.smartad.model.data.SAUserEmailCertification">
-        SELECT
+	   SELECT
 			 EML_CRTK  		
 			,EML_CRTF_YN  	
 			,EML_CRTF_DTT 	
-			,USR_NO  		
-			,REG_DTT 		
-			,REG_ID  		
-			,UPD_DTT 		
-			,UPD_ID  		
-		 FROM TB_USR_EML_CRTF
+			,U.USR_NO  		
+			,U.USR_EML
+			,E.REG_DTT 		
+		 FROM TB_USR_EML_CRTF E
+		     INNER JOIN TB_USR U ON (E.USR_NO = U.USR_NO )
 		WHERE EML_CRTK = #{EML_CRTK}
 	</select>
 	

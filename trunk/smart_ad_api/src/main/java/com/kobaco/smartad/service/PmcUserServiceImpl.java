@@ -341,23 +341,29 @@ public class PmcUserServiceImpl implements PmcUserService{
 		//}
 		
 		// Send Email Cert	
-		
-	
 		if (saUser.getUSR_NO() != null &&
 			saUserEmail.getEML_CRTK() != null) {
 			result = new CommonSingleResult<UserInfo>(
 					new CommonResult(CommonMsg.successCode, CommonMsg.successMsg),
 					new UserInfo(saUser, ent));
-			//SEND ADD EMAIL			
-			MailSend mailDto = new MailSend(CommonMsg.EmailMsgService.ADD_FROM,
-					saUser.getUSR_EML(), new HashMap<String, Object>(),
-					CommonMsg.EmailMsgService.ADD_MSG , CommonMsg.EmailMsgService.ADD_EAMIL);
-			mail.mailSend(mailDto);
-			
-//			MailSend mailDtoUrl = new MailSend(CommonMsg.EmailMsgService.ADD_FROM,
-//					saUser.getUSR_EML(), new HashMap<String, Object>(),
-//					CommonMsg.EmailMsgService.AUTH_MSG , CommonMsg.EmailMsgService.AUTH_EMAIL);
-//			mail.mailSend(mailDtoUrl);
+			try{
+				mail.mailSend(new MailSend(CommonMsg.EmailMsgService.ADD_FROM,
+						saUser.getUSR_EML(), 
+						new HashMap<String, Object>(),
+						CommonMsg.EmailMsgService.ADD_MSG , 
+						CommonMsg.EmailMsgService.ADD_EAMIL));
+				
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("emailCertKey", saUserEmail.getEML_CRTK());
+				//emailCertKey=${emailCertKey}
+				mail.mailSend(new MailSend(CommonMsg.EmailMsgService.ADD_FROM,
+						saUser.getUSR_EML(), 
+						map,
+						CommonMsg.EmailMsgService.AUTH_MSG, 
+						CommonMsg.EmailMsgService.AUTH_EMAIL));
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 			
 		} else {
 			result = new CommonSingleResult<UserInfo>(

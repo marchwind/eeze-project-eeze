@@ -26,6 +26,7 @@ import com.kobaco.smartad.model.service.CommonListResult;
 import com.kobaco.smartad.model.service.CommonResult;
 import com.kobaco.smartad.model.service.CommonSingleResult;
 import com.kobaco.smartad.model.service.MailSend;
+import com.kobaco.smartad.model.service.UserEmailCert;
 import com.kobaco.smartad.model.service.UserInfo;
 import com.kobaco.smartad.utils.CommonMsg;
 import com.kobaco.smartad.utils.CommonMsg.FailCodeUserService;
@@ -150,21 +151,32 @@ public class UserServiceImpl  implements UserService{
 		
 		
 		CommonSingleResult<UserInfo> result;
+		
 		if (saUser.getUSR_NO() != null &&
 			saUserEmail.getEML_CRTK() != null) {
 			result = new CommonSingleResult<UserInfo>(
 					new CommonResult(CommonMsg.successCode, CommonMsg.successMsg),
 					new UserInfo(saUser, ent));
+		
 			//SEND ADD EMAIL			
-			MailSend mailDto = new MailSend(CommonMsg.EmailMsgService.ADD_FROM,
-					saUser.getUSR_EML(), new HashMap<String, Object>(),
-					CommonMsg.EmailMsgService.ADD_MSG , CommonMsg.EmailMsgService.ADD_EAMIL);
 			try{
-				mail.mailSend(mailDto);
+				mail.mailSend(new MailSend(CommonMsg.EmailMsgService.ADD_FROM,
+						saUser.getUSR_EML(), 
+						new HashMap<String, Object>(),
+						CommonMsg.EmailMsgService.ADD_MSG , 
+						CommonMsg.EmailMsgService.ADD_EAMIL));
+			
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("emailCertKey", saUserEmail.getEML_CRTK());
+				//emailCertKey=${emailCertKey}
+				mail.mailSend(new MailSend(CommonMsg.EmailMsgService.ADD_FROM,
+						saUser.getUSR_EML(), 
+						map,
+						CommonMsg.EmailMsgService.AUTH_MSG, 
+						CommonMsg.EmailMsgService.AUTH_EMAIL));
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-	
 			
 		} else {
 			result = new CommonSingleResult<UserInfo>(
@@ -200,22 +212,28 @@ public class UserServiceImpl  implements UserService{
 	}
 
 	@Override
-	public CommonResult emailCert(String certKey) {
+	public CommonSingleResult<UserEmailCert> emailCert(String certKey) {
 		
 		SAUserEmailCertification saUserEmailCert = new SAUserEmailCertification();
 		saUserEmailCert.setEML_CRTK(certKey);
 		saUserEmailCert = userEmailDao.info(saUserEmailCert);
 		
-		CommonResult result;
+		CommonSingleResult<UserEmailCert> result;
 		if (saUserEmailCert != null) {
 			saUserEmailCert.setEML_CRTF_YN("Y");
 			saUserEmailCert.setEML_CRTF_DTT(new Date());
-			userEmailDao.update(saUserEmailCert);
 			
+			if (userEmailDao.update(saUserEmailCert)>0) {
+				UserEmailCert cert = new UserEmailCert(saUserEmailCert);
+				result = new CommonSingleResult<UserEmailCert>(new CommonResult(CommonMsg.successCode, CommonMsg.successMsg),
+						cert);
+			} else {
+				result = new CommonSingleResult<UserEmailCert>(new CommonResult(CommonMsg.failCodeNotFound, CommonMsg.failMsgNotFound),
+						null);
+			};
 			addUserLog(saUserEmailCert.getUSR_NO(), props.getProperty("user.log.emailcert"),"user.log.emailcert");
-			result = new CommonResult(CommonMsg.successCode, CommonMsg.successMsg);
 		} else {
-			result = new CommonResult(CommonMsg.failCode, CommonMsg.failMsg);
+			result = new CommonSingleResult<UserEmailCert>(new CommonResult(CommonMsg.failCode, CommonMsg.failMsg), null);
 		}
 		return result;
 	}

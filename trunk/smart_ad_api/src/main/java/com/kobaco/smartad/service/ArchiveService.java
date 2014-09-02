@@ -10,16 +10,16 @@ import com.kobaco.smartad.model.service.UploadedFile;
 public interface ArchiveService {
 
 	public CommonListResult<ArchiveInfo> getList(
-			PmcMnagerInfo mng, CommonPage cp);
+			CommonPage cp);
 
 	public CommonSingleResult<ArchiveInfo> getInfo(
-			PmcMnagerInfo mng, ArchiveInfo info);
+			ArchiveInfo info);
 
 	public CommonSingleResult<ArchiveInfo> add(
-			PmcMnagerInfo mng, ArchiveInfo info, UploadedFile file);
+			PmcMnagerInfo mng, ArchiveInfo info);
 
 	public CommonSingleResult<ArchiveInfo> update(
-			PmcMnagerInfo mng, ArchiveInfo info, UploadedFile file);
+			PmcMnagerInfo mng, ArchiveInfo info);
 
 	public CommonSingleResult<ArchiveInfo> delete(
 			PmcMnagerInfo mng, ArchiveInfo info);

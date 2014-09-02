@@ -19,6 +19,7 @@ import com.kobaco.smartad.model.service.CommonPage;
 import com.kobaco.smartad.model.service.CommonResult;
 import com.kobaco.smartad.model.service.CommonSingleResult;
 import com.kobaco.smartad.model.service.ReserveInfo;
+import com.kobaco.smartad.model.service.UserEmailCert;
 import com.kobaco.smartad.model.service.UserInfo;
 import com.kobaco.smartad.service.ReserveService;
 import com.kobaco.smartad.service.UserService;
@@ -198,9 +199,8 @@ public class UserController {
 	}
 	
 	@RequestMapping("/certEmail")
-    public @ResponseBody CommonResult certEmail(@RequestParam (value="emailCertKey",defaultValue="" )String emailCertKey){		
-		CommonResult result = userService.emailCert(emailCertKey);        
-        return result;
+    public @ResponseBody CommonSingleResult<UserEmailCert> certEmail(@RequestParam (value="emailCertKey",defaultValue="" )String emailCertKey){		
+		return  userService.emailCert(emailCertKey);        
 	}
 	
 	//id check
