@@ -29,15 +29,14 @@ var facility = {
 }
 
 var uri = {
-	//serverUrl : "http://localhost:8080/smart_ad_api",
-	//serverUrl : "http://pms.app4u.kr:8080/smart_ad_api",
-	//serverUrl : "http://106.247.240.10/api",
-	serverUrl : "http://www.smartad.or.kr/api",
+	//serverUrl : window.location.protocol + "//" + window.location.host + "/smart_ad_api",
+	serverUrl : window.location.protocol + "//" + window.location.host + "/api",
 	loginUrl : "/user/login",
 	logoutUrl : "/user/logout",
 	sessionCheck : "/user/session",
 	idCheckUrl : "/user/idCheck",
 	joinUrl : "/user/subscribe",
+	emailCeriUrl : "/user/certEmail",
 	noticeListUrl : "/noti/list",
 	noticeDetailUrl : "/noti/get",
 	faqListUrl : "/faq/list",
@@ -73,6 +72,7 @@ var msg = {
 	checkNum : "전화번호와 휴대전화는 숫자로 기입하셔야 합니다.",
 	mostMobile : "휴대전화는 필수 입니다.",
 	failJoin : "회원가입에 실패하였습니다.\n다시 시도해 주세요.",
+	certiFail : "이메일 인증에 실패하였습니다.\n관리자에게 문의해 주세요.",
 	noticeListFail : "공지사항을 로드하는데 실패하였습니다.\n페이지를 reload해 주세요.",
 	mostSubject : "제목은 필수 입니다.",
 	mostContent : "내용은 필수 입니다.",

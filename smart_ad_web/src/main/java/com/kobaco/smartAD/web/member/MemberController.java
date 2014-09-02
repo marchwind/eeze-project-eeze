@@ -102,8 +102,9 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/member/emailCerti.do")
-	public ModelAndView emailCerti() {
+	public ModelAndView emailCerti(@RequestParam (value="emailCertKey",defaultValue="" )String emailCertKey) {
 		ModelAndView mav = new ModelAndView("jsp/member/emailCerti");		
+		mav.addObject("emailCertKey", emailCertKey);
 		return mav;
 	}
 	
