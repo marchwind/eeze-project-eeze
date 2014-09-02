@@ -12,7 +12,7 @@ public class SAArchive implements Bean , Entity{
 	private String ARCV_SBJT;
 	private String ARCV_CNTT;
 	private int VW_CNT;
-	private String ATT_FL_PATH;
+	private String ATT_FL_PTH;
 	private String ATT_FL_NM;
 	private Date REG_DTT;
 	private Date UPD_DTT;
@@ -64,13 +64,13 @@ public class SAArchive implements Bean , Entity{
 	}
 
 
-	public String getATT_FL_PATH() {
-		return ATT_FL_PATH;
+	public String getATT_FL_PTH() {
+		return ATT_FL_PTH;
 	}
 
 
-	public void setATT_FL_PATH(String aTT_FL_PATH) {
-		ATT_FL_PATH = aTT_FL_PATH;
+	public void setATT_FL_PTH(String aTT_FL_PATH) {
+		ATT_FL_PTH = aTT_FL_PATH;
 	}
 
 

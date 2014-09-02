@@ -15,7 +15,7 @@
 			,REG_ID     
 			,UPD_ID 
 			,VW_CNT
-			,ATT_FL_PATH
+			,ATT_FL_PTH
 			,ATT_FL_NM
 		 FROM TB_ARCV
 		WHERE ARCV_NO = #{ARCV_NO}
@@ -34,8 +34,8 @@
 			,UPD_DTT 
 			,REG_ID 
 			,UPD_ID  
-			,ATT_FL_PATH
-			,ATT_Fl_NM
+			,ATT_FL_PTH
+			,ATT_FL_NM
 		) VALUES (
 			 #{ARCV_NO}
 			,#{ARCV_SBJT} 
@@ -44,8 +44,8 @@
 			,NOW()
 			,#{REG_ID}
 			,#{UPD_ID}
-			,#{ATT_FL_PATH}
-			,#{ATT_Fl_NM}
+			,#{ATT_FL_PTH}
+			,#{ATT_FL_NM}
 		)
 	</insert>
 	
@@ -54,8 +54,8 @@
 		   SET 			 
 			 ARCV_SBJT  = #{ARCV_SBJT}
 			,ARCV_CNTT  = #{ARCV_CNTT}
-			<if test=" ATT_FL_PATH!=null and ATT_FL_PATH!='' ">,ATT_FL_PATH= #{ATT_FL_PATH}</if>
-			<if test=" ATT_FL_NM!=null and ATT_FL_NM!='' ">,ATT_FL_PATH= #{ATT_FL_NM}</if>
+			<if test=" ATT_FL_PTH!=null and ATT_FL_PTH!='' ">,ATT_FL_PTH= #{ATT_FL_PTH}</if>
+			<if test=" ATT_FL_NM!=null and ATT_FL_NM!='' ">,ATT_FL_PTH= #{ATT_FL_NM}</if>
 			,UPD_DTT    = NOW()
 			,UPD_ID     = #{UPD_ID}
 		 WHERE ARCV_NO  = #{ARCV_NO}
@@ -63,7 +63,7 @@
 	
 	<update id="updateFilterFile"  parameterType="java.util.HashMap">
 		UPDATE TB_ARCV 
-		   SET ATT_FL_PATH= #{ATT_FL_PATH}
+		   SET ATT_FL_PTH= #{ATT_FL_PTH}
 		      ,ATT_FL_NM  = #{ATT_FL_NM}
 		 WHERE ARCV_NO = #{ARCV_NO}
 	</update>
@@ -102,7 +102,7 @@
 			,ARCV_SBJT  
 			,ARCV_CNTT 	
 			,REG_DTT    
-			,ATT_FL_PATH
+			,ATT_FL_PTH
 			,ATT_FL_NM
 			,VW_CNT
 		 FROM TB_ARCV
