@@ -73,48 +73,57 @@ function error(){
 
 function viewPhoto(){
 	var tag = "";
+	var title = "";
 	switch(no){
 	case "FC0000000856" :
+		title = "녹음스튜디오";
 		tag += '<li><img src="${contextPath}/resources/images/facility/record_1.jpg" /></li>'+
 			'<li><img src="${contextPath}/resources/images/facility/record_2.jpg" /></li>'+
 			'<li><img src="${contextPath}/resources/images/facility/record_3.jpg" /></li>'+
 			'<li><img src="${contextPath}/resources/images/facility/record_4.jpg" /></li>';
 		break;
-	case "FC0000000852" :	
+	case "FC0000000852" :
+		title = "창작지원1실";
 		tag += '<li><img src="${contextPath}/resources/images/facility/create1_1.jpg" /></li>'+
 			'<li><img src="${contextPath}/resources/images/facility/create1_2.jpg" /></li>'+
 			'<li><img src="${contextPath}/resources/images/facility/create1_3.jpg" /></li>'+
 			'<li><img src="${contextPath}/resources/images/facility/create1_4.jpg" /></li>';
 		break;
-	case "FC0000000853" :	
+	case "FC0000000853" :
+		title = "창작지원2실";
 		tag += '<li><img src="${contextPath}/resources/images/facility/create2_1.jpg" /></li>'+
 			'<li><img src="${contextPath}/resources/images/facility/create2_2.jpg" /></li>'+
 			'<li><img src="${contextPath}/resources/images/facility/create2_3.jpg" /></li>'+
 			'<li><img src="${contextPath}/resources/images/facility/create2_4.jpg" /></li>';
 		break;
-	case "FC0000000854" :	
+	case "FC0000000854" :
+		title = "창작지원3실";
 		tag += '<li><img src="${contextPath}/resources/images/facility/create3_1.jpg" /></li>'+
 			'<li><img src="${contextPath}/resources/images/facility/create3_2.jpg" /></li>'+
 			'<li><img src="${contextPath}/resources/images/facility/create3_3.jpg" /></li>'+
 			'<li><img src="${contextPath}/resources/images/facility/create3_4.jpg" /></li>';
 		break;
-	case "FC0000000855" :	
+	case "FC0000000855" :
+		title = "창작지원4실";
 		tag += '<li><img src="${contextPath}/resources/images/facility/create4_1.jpg" /></li>'+
 			'<li><img src="${contextPath}/resources/images/facility/create4_2.jpg" /></li>'+
 			'<li><img src="${contextPath}/resources/images/facility/create4_3.jpg" /></li>'+
 			'<li><img src="${contextPath}/resources/images/facility/create4_4.jpg" /></li>';
 		break;
-	case "FC0000000857" :	
+	case "FC0000000857" :
+		title = "매체적합성테스트실";
 		tag += '<li><img src="${contextPath}/resources/images/facility/test_1.jpg" /></li>'+
 			'<li><img src="${contextPath}/resources/images/facility/test_2.jpg" /></li>'+
 			'<li><img src="${contextPath}/resources/images/facility/test_3.jpg" /></li>'+
 			'<li><img src="${contextPath}/resources/images/facility/test_4.jpg" /></li>';
 		break;
 	case "FC0000000858" :	
+		title = "서버실";
 		tag += '<li><img src="${contextPath}/resources/images/facility/server_1.jpg" /></li>'+
 			'<li><img src="${contextPath}/resources/images/facility/server_2.jpg" /></li>';
 		break;
-	case "FC0000000859" :	
+	case "FC0000000859" :
+		title = "회의실";
 		tag += '<li><img src="${contextPath}/resources/images/facility/con_1.jpg" /></li>'+
 			'<li><img src="${contextPath}/resources/images/facility/con_2.jpg" /></li>'+
 			'<li><img src="${contextPath}/resources/images/facility/con_3.jpg" /></li>'+
@@ -122,6 +131,7 @@ function viewPhoto(){
 		break;
 	}
 	
+	$("#facilityTitle").text(title);
 	$("#facility_list").html(tag);
 }
 
@@ -155,7 +165,7 @@ function viewPhoto(){
 			<div class="mainBox facility">
 				<dl>
 					<dt>
-						<h2>녹음 스튜디오</h2>
+						<h2 id="facilityTitle">녹음 스튜디오</h2>
 					</dt>
 					<dd>
 						<div id="facility_list_Container">
