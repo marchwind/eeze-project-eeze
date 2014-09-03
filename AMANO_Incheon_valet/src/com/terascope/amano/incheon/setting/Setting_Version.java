@@ -2,6 +2,8 @@ package com.terascope.amano.incheon.setting;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -15,11 +17,22 @@ import com.terascope.amano.incheon.common.CommonSet;
 public class Setting_Version extends Activity implements OnClickListener {
 
 	private Intent i;
-	private TextView version_home, version_back;//,version_update_btn;
+	private TextView version_home, version_back, cur_version, new_version;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.setting_version);
+	    
+	    PackageInfo pi = null;
+	    String version = "";
+	    
+	    try {
+	    	pi = getPackageManager().getPackageInfo(getPackageName(), 0);
+	    	version = pi.versionName;
+	    } catch (NameNotFoundException e){
+	    	e.printStackTrace();
+	    }
 	    
 	    version_home=(TextView)findViewById(R.id.set_version_home);
 	    version_home.setOnClickListener(this);
@@ -27,6 +40,9 @@ public class Setting_Version extends Activity implements OnClickListener {
 	    version_back.setOnClickListener(this);
 	    /*version_update_btn = (LinearLayout)findViewById(R.id.version_update_btn);
 	    version_update_btn.setOnClickListener(this);*/
+	    
+	    cur_version = (TextView) findViewById(R.id.now_version);
+	    cur_version.setText("버전 " + version);
 	    
 	}
 	@Override

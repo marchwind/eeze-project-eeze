@@ -50,8 +50,8 @@ public class IvpFtpHelper extends FtpHelper {
 			super.ftpMakeDirectory(destPath+dd);
 		}
 		
-		desFileName = desFileName.substring(0, desFileName.lastIndexOf("."));
-		desFileName += ".avi";
+		/*desFileName = desFileName.substring(0, desFileName.lastIndexOf("."));
+		desFileName += ".avi";*/
 		
 		Log.i("uploadFile", "upLoadFileName : " + desFileName);
 		

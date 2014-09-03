@@ -71,6 +71,8 @@ public class LoginActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login);
 		
+		startMainService();
+		
 		this.myprefs = new Prefs(getApplicationContext());
 		
 		TAG = this.getClass().getName();
@@ -82,8 +84,6 @@ public class LoginActivity extends Activity implements OnClickListener {
 		} else {
 			mac_addr = myprefs.getMacAdress();
 		}
-		
-		startMainService();
 		
 		cah = new CheckAppHelper(this);
 		
@@ -108,7 +108,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 
 	public void getAuth() {
 		
-		if(myprefs.getAuth().equals("") || myprefs.getAuth().equals(null)) {
+		if(myprefs.getAuth().equals("") || myprefs.getAuth() == null) {
 			Log.i(TAG,"Auth connect and Send data");
 			
 			authdto.setMAC_ADRES(mac_addr);
@@ -116,6 +116,8 @@ public class LoginActivity extends Activity implements OnClickListener {
 			BusBuilder.getInstance().post(new AuthCommand(AUTH, authdto));
 			checkAuth = true;
 		} else {
+			Log.i(TAG,"Auth : " + myprefs.getAuth());
+			
 			checkAuth = true;
 			authdto.setAUTH_NO(myprefs.getAuth());
 			authdto.setDEVC_NO(myprefs.getDevNo());
@@ -127,7 +129,6 @@ public class LoginActivity extends Activity implements OnClickListener {
 		super.onResume();
 		IntentFilter intentFilter = new IntentFilter("android.intent.action.MAIN");
 		mReceiver = new BroadcastReceiver() {
-			
 			@Override
 			public void onReceive(Context context, Intent intent) {
 				String msg = intent.getStringExtra("bind");
@@ -247,32 +248,25 @@ public class LoginActivity extends Activity implements OnClickListener {
 		//stopService(new Intent("com.hsit.iqsc.IQSClientService"));
 	}
 	
-	@SuppressLint("HandlerLeak")
-	Handler m_close_handler = new Handler() {
-		public void handleMessage(Message msg) {
-			m_close_flag = false;
-		}
-	};
-	
 	@Override
 	public void onBackPressed() {
 		
-
-		if (m_close_flag == false) { // Back 키가 첫번째로 눌린 경우
-
-			// 안내 메세지를 토스트로 출력한다.
-			new AlertView().showAlert("Back 버튼을 한번 더 터치하시면 앱이 종료됩니다.", this);
-			// 상태값 변경
-			m_close_flag = true;
-
-			m_close_handler.sendEmptyMessageDelayed(0, 3000);
-		//	stopMainService();
-
-		} else { 
-			stopMainService();
-			super.onBackPressed();
-		}
-
+		new AlertDialog.Builder(this)
+        .setTitle("경고")
+        .setMessage("인천공항 발렛 서비스를 종료하시겠습니까?")
+        .setPositiveButton(getString(R.string.alert_Ok_text),
+              new DialogInterface.OnClickListener() {
+                 @Override
+                 public void onClick(DialogInterface dialog, int which) {
+                	 finish();
+                 }
+              })
+        .setNegativeButton(getString(R.string.alert_Cancel_text),
+              new DialogInterface.OnClickListener() {
+                 @Override
+                 public void onClick(DialogInterface dialog,int which) {}
+              }).show();
+		
 	}
 
 }
