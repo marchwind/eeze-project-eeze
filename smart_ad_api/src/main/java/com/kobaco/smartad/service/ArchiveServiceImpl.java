@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import org.slf4j.Logger;
@@ -18,6 +19,7 @@ import com.kobaco.smartad.dao.CommonDao;
 import com.kobaco.smartad.model.data.ParamsCommonFilter;
 import com.kobaco.smartad.model.data.ParamsCommonPage;
 import com.kobaco.smartad.model.data.SAArchive;
+import com.kobaco.smartad.model.data.SANotification;
 import com.kobaco.smartad.model.service.ArchiveInfo;
 import com.kobaco.smartad.model.service.CommonListResult;
 import com.kobaco.smartad.model.service.CommonPage;
@@ -75,6 +77,13 @@ public class ArchiveServiceImpl implements ArchiveService {
 		sa.setARCV_NO(info.getArchiveNo());
 				
 		if((sa = arcvDao.info(sa)) != null){			
+			ParamsCommonFilter filter = new ParamsCommonFilter();
+			Map<String, Object> cols = new HashMap<String, Object>();
+			cols.put("ARCV_NO", sa.getARCV_NO());
+			filter.addNamespace("Count");
+			filter.setColumns(cols);
+			
+			arcvDao.update(new SAArchive(), filter);
 			return new CommonSingleResult<ArchiveInfo>(new CommonResult(CommonMsg.successCode,CommonMsg.successMsg),
 					new ArchiveInfo(sa));
 			
