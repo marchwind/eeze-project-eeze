@@ -57,8 +57,16 @@ function statisticsLoadSuccess(res){
 
 	var options = {
 		legend : {position: 'none'},
-	  	hAxis: {title: 'Time',  titleTextStyle: {color: '#333'}},
-	  	vAxis: {minValue: 0},
+	  	hAxis: {
+	  		title: 'Time',  
+	  		titleTextStyle: {color: '#333'}
+	  	},
+	  	vAxis: {
+	  		viewWindow:{
+	            max:10,
+	            min:0
+      		}
+	  	},
 	  	pointShape : "circle",
 	  	pointSize : 5,
 	  	series : { 0 : {color : colors[0]} }
@@ -76,7 +84,7 @@ function memoryChartDraw(res){
 	$(res.info.memoryUse).each(function(){
 		var el = [];
 		el.push(this.gTime);
-		el.push(Number(this.gValue));
+		el.push(Number(this.gValue)/(1000*1000));
 		
 		memoryData.push(el);
 	});
@@ -86,7 +94,13 @@ function memoryChartDraw(res){
  	var options = {
  		legend : {position: 'none'},
  	  	hAxis: {title: 'Time',  titleTextStyle: {color: '#333'}},
- 	  	vAxis: {minValue: 0},
+ 	  	vAxis: {
+ 	  		format:'#,###MB',
+ 	  		viewWindow:{
+            	max:32000,
+            	min:0
+      		}
+ 	  	},
  	  	pointShape : "circle",
  	  	pointSize : 5,
  	  	series : { 0 : {color : colors[1]} }
@@ -207,7 +221,7 @@ function back() {
 					<dl>
 						<dt>
 							<h2>메모리 분포 그래프</h2>
-							<span>메모리 사용 현황</span>
+							<span>여유 메모리</span>
 						</dt>
 						<dd>
 							<div id="memoryChart" class="chart"></div>
