@@ -269,7 +269,8 @@
                         android:paddingLeft="@dimen/receipt_table_padding1"
                         android:textColorHint="@color/common_white_color"
                         android:textSize="@dimen/receipt_table_input_text"
-                        android:imeOptions="actionDone" />
+                        android:imeOptions="actionDone"
+                        android:maxLength="3" />
 
                     <TextView
                         android:id="@+id/term_text"
@@ -335,7 +336,8 @@
                         android:paddingLeft="@dimen/receipt_table_padding1"
                         android:textColorHint="@color/common_white_color"
                         android:textSize="@dimen/receipt_table_input_text"
-                        android:imeOptions="actionDone" />
+                        android:imeOptions="actionDone"
+                        android:maxLength="2" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -568,7 +570,8 @@
                             android:textColorHint="@color/common_white_color"
                             android:textSize="@dimen/receipt_edit_text_size"
                             android:imeOptions="actionDone"
-                            android:inputType="numberSigned" />
+                            android:inputType="numberSigned"
+                            android:maxLength="3" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -590,7 +593,8 @@
                             android:textColorHint="@color/common_white_color"
                             android:textSize="@dimen/receipt_edit_text_size"
                             android:imeOptions="actionDone"
-                            android:inputType="numberSigned" />
+                            android:inputType="numberSigned"
+                            android:maxLength="4" />
 
                         <TextView
                             android:layout_width="wrap_content"
