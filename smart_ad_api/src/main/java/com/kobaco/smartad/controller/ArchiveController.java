@@ -34,12 +34,6 @@ public class ArchiveController {
 	
 	@Autowired
 	public ArchiveService archiveService;
-	
-	@RequestMapping(value = "/form", method = RequestMethod.GET)
-	public String form(@RequestParam (value="id",defaultValue="" )String id){	
-      
-        return "pmcnoti/"+id+"Form";
-	}
 
 	@RequestMapping(value = "/get", method = RequestMethod.POST)
 	public @ResponseBody CommonSingleResult<ArchiveInfo> get(@ModelAttribute ArchiveInfo info){
@@ -52,7 +46,8 @@ public class ArchiveController {
 	
 	
 	@RequestMapping(value = "/list", method = RequestMethod.POST)
-	public @ResponseBody CommonListResult<ArchiveInfo>  list(@ModelAttribute CommonPage cp){	
+	public @ResponseBody CommonListResult<ArchiveInfo>  list(@ModelAttribute CommonPage cp,
+			@ModelAttribute ArchiveInfo info){	
 		new CommonListResult<SAArchive>();
 		if(cp.getCurrentPage()<=0 ||cp.getUnitPerPage() <=0){
 			return new CommonListResult<ArchiveInfo>(
@@ -60,6 +55,6 @@ public class ArchiveController {
 					null,
 					null);
 		}	
-		return archiveService.getList(cp);
+		return archiveService.getList(info, cp);
 	}
 }

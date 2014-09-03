@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import com.kobaco.smartad.controller.PmcArchiveController;
 import com.kobaco.smartad.dao.CommonDao;
+import com.kobaco.smartad.model.data.ParamsCommonAggregator;
 import com.kobaco.smartad.model.data.ParamsCommonFilter;
 import com.kobaco.smartad.model.data.ParamsCommonPage;
 import com.kobaco.smartad.model.data.SAArchive;
@@ -44,7 +45,7 @@ public class ArchiveServiceImpl implements ArchiveService {
 	private static final Logger logger = LoggerFactory.getLogger(ArchiveServiceImpl.class);
 
 	@Override
-	public CommonListResult<ArchiveInfo> getList(CommonPage page) {		
+	public CommonListResult<ArchiveInfo> getList(ArchiveInfo info, CommonPage page) {		
 		int totalCount = arcvDao.count(new SAArchive());
 		//int totalPage  =  (int) Math.ceil((double)totalCount /(double) page.getUnitPerPage() );
 		ParamsCommonPage pcp = new ParamsCommonPage();
@@ -53,7 +54,14 @@ public class ArchiveServiceImpl implements ArchiveService {
 		pcp.setTotalCount(totalCount);
 		//list.setTotalPage(totalPage);
 		
-		List<SAArchive> list = arcvDao.list(new SAArchive(), pcp);
+		ParamsCommonFilter filter = new ParamsCommonFilter();
+		filter.setColumns(new HashMap());
+		filter.getColumns().put("ARCV_SBJT", info.getArchiveSubject());
+		filter.getColumns().put("ARCV_CNTT", info.getArchiveContent());
+		
+		
+		
+		List<SAArchive> list = arcvDao.list(new SAArchive(), new ParamsCommonAggregator().filter(filter).page(pcp));
 		if(list.size()>0){
 			List<ArchiveInfo> resultList = new ArrayList<ArchiveInfo>();
 			for(SAArchive is : list){
@@ -96,7 +104,6 @@ public class ArchiveServiceImpl implements ArchiveService {
 	
 	@Override
 	public CommonSingleResult<ArchiveInfo> add(PmcMnagerInfo mng, ArchiveInfo info) {
-		// TODO Auto-generated method stub
 		CommonSingleResult<NotificationInfo> result = new CommonSingleResult<NotificationInfo>();	
 		
 		SAArchive sa =	new SAArchive();
@@ -110,7 +117,7 @@ public class ArchiveServiceImpl implements ArchiveService {
 		if(sa != null){
 			if (FileUtils.isFile(info.getFile())) {
 				try {
-					sa.setATT_FL_PTH(FileUtils.fileCopy(info.getFile(), paths.getProperty("archive.file") + File.separator + sa.getARCV_NO() + "_" ));
+					sa.setATT_FL_PTH(FileUtils.fileCopy(info.getFile(), paths.getProperty("archive.file"), sa.getARCV_NO() + "_" ));
 					sa.setATT_FL_NM(info.getFile().getOriginalFilename());
 					
 					ParamsCommonFilter filter = new ParamsCommonFilter();
