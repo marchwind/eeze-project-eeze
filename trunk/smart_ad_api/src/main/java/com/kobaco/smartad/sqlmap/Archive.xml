@@ -78,18 +78,6 @@
 		DELETE FROM TB_ARCV WHERE ARCV_NO = #{ARCV_NO}
 	</delete>	
 	
-	 <select id="listPage" parameterType="java.util.HashMap" resultType="com.kobaco.smartad.model.data.SAArchive">
-		SELECT
-			 ARCV_NO   	
-			,ARCV_SBJT  
-			,ARCV_CNTT 	
-			,ATT_FL_NM
-			,REG_DTT
-		 FROM TB_ARCV
-		ORDER BY ARCV_NO DESC
-		LIMIT #{startRow},#{endRow}
-	</select>
-	
 	<select id="count" parameterType="com.kobaco.smartad.model.data.SANotification" resultType="int">
 		SELECT
 			 count(ARCV_NO) as totalCount   

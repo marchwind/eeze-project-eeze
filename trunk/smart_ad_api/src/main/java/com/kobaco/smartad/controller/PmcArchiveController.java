@@ -66,6 +66,7 @@ public class PmcArchiveController {
 	@RequestMapping(value = "/list", method = RequestMethod.POST)
 	public @ResponseBody CommonListResult<ArchiveInfo>  list(@ModelAttribute CommonPage cp,
 														 @ModelAttribute("sessionManagerInfo") PmcSessionInfo sessUser,
+														 @ModelAttribute ArchiveInfo info,
 														 @RequestParam (value="managerMode",defaultValue="" ) String mode ){	
 		new CommonListResult<SAArchive>();
 		if(cp.getCurrentPage()<=0 ||cp.getUnitPerPage() <=0){
@@ -79,7 +80,7 @@ public class PmcArchiveController {
 					null,
 					null);
 		}	
-		return archiveService.getList(cp);
+		return archiveService.getList(info, cp);
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)

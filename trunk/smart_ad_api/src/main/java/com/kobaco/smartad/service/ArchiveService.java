@@ -10,7 +10,7 @@ import com.kobaco.smartad.model.service.UploadedFile;
 public interface ArchiveService {
 
 	public CommonListResult<ArchiveInfo> getList(
-			CommonPage cp);
+			ArchiveInfo info, CommonPage cp);
 
 	public CommonSingleResult<ArchiveInfo> getInfo(
 			ArchiveInfo info);
