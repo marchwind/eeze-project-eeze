@@ -25,7 +25,7 @@ function dataDetailSuccess(res){
 		$("#dataContentEle").val(res.info.archiveContent);		
 		
 		if(res.info.attachedFileName != null){
-			var downloadTag = "<a href='" + window.location.host + uri.fileDownloadUrl + "/" +res.info.attachedFileName + "?filePath=c:/'>"+res.info.attachedFileName+"</a>";
+			var downloadTag = "<a href='" + uri.serverUrl + uri.fileDownloadUrl + "?fileName=" +res.info.attachedFileName + "&filePath="+res.info.attachedFilePath+"'>"+res.info.attachedFileName+"</a>";
 			
 			$("#dataFile").html(downloadTag);	
 		}
