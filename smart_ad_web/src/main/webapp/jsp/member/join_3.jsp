@@ -48,10 +48,10 @@
                         <div class="memberResult">
                         	<span class="memberResultComment">
                         		<img src="${contextPath}/resources/images/common/kobaco_logo.png" />
-                                <p>스마트광고창작공간AD 회원가입을 환영합니다!</p>
-                                <!-- <p>창작공간AD회원계정으로 사용하실 이메일로 인증 메일을 발송하였습니다!</p>
+                                <!-- <p>스마트광고창작공간AD 회원가입을 환영합니다!</p> -->
+                                <p>창작공간AD회원계정으로 사용하실 이메일로 인증 메일을 발송하였습니다!</p>
                                 <p class="userEmail">${email}</p>
-                                <p>위 메일주소로 발송된 메일의 인증링크를 클릭하여 창작지원시설 회원계정 만들기를 완료해주세요.</p> -->
+                                <p>위 메일주소로 발송된 메일의 인증링크를 클릭하여 창작지원시설 회원계정 만들기를 완료해주세요.</p>
                             </span>
                         </div>
                     </div>                    

@@ -138,6 +138,7 @@ function fadeAnimation(){
                          	<div id="subMenu_guide">
 	                             <ul>
 	                                 <li><a href="${contextPath}/guide/noticeList.do">공지사항</a></li>
+	                                 <li><a href="${contextPath}/guide/dataList.do">자료실</a></li>
 	                                 <li><a href="${contextPath}/guide/faq.do">FAQ</a></li>
 	                                 <li><a href="${contextPath}/guide/inquiry.do">1:1문의하기</a></li>
 	                                 <li><a href="${contextPath}/guide/networking.do">네트워킹</a></li>

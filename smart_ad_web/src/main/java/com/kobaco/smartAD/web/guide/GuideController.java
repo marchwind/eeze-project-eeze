@@ -28,6 +28,20 @@ public class GuideController {
 		return mav;
 	}
 	
+	@RequestMapping("/guide/dataList.do")
+	public ModelAndView dataList() {
+		ModelAndView mav = new ModelAndView("jsp/guide/data_list");		
+		return mav;
+	}
+	
+	@RequestMapping("/guide/dataDetail.do")
+	public ModelAndView dataDetail(@RequestParam (value="no",defaultValue="" )String no) {
+		ModelAndView mav = new ModelAndView("jsp/guide/data_detail");		
+		
+		mav.addObject("no", no);
+		return mav;
+	}
+	
 	@RequestMapping("/guide/inquiry.do")
 	public ModelAndView inquiry() {
 		ModelAndView mav = new ModelAndView("jsp/guide/inquiry");		
