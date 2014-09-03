@@ -76,7 +76,8 @@
   </util:properties>
   
   <util:properties id="paths">
-	<prop key="archive.file">D:/workspace</prop>
-	<prop key="notification.file">D:/workspace</prop>
+<!-- 	<prop key="archive.file">D:/workspace</prop> -->
+	<prop key="archive.file">/apps/smartad/files</prop>
+<!-- 	<prop key="notification.file">D:/workspace</prop> -->
   </util:properties>
 </beans>
