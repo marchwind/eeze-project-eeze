@@ -85,7 +85,7 @@ function keyEvent(e) {
 }
 
 function error() {
-	alert(msg.noticeListFail);
+	alert(msg.dataListFail);
 }
 
 </script>

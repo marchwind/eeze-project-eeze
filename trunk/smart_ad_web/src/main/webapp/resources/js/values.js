@@ -77,6 +77,7 @@ var msg = {
 	failJoin : "회원가입에 실패하였습니다.\n다시 시도해 주세요.",
 	certiFail : "이메일 인증에 실패하였습니다.\n관리자에게 문의해 주세요.",
 	noticeListFail : "공지사항을 로드하는데 실패하였습니다.\n페이지를 reload해 주세요.",
+	dataListFail : "자료실을 로드하는데 실패하였습니다.\n페이지를 reload해 주세요.",
 	mostSubject : "제목은 필수 입니다.",
 	mostContent : "내용은 필수 입니다.",
 	qnaFail : "1:1문의 작성에 실패하였습니다.\n다시 시도해 주세요.",
