@@ -102,7 +102,7 @@ class Preview extends SurfaceView implements SurfaceHolder.Callback {
 	        mHolder.addCallback(this);
 	        mHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);      
 	  	}catch (Exception e) {
-		
+	  		e.printStackTrace();
 		}
 	
     } 

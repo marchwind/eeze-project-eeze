@@ -14,6 +14,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.hardware.Camera;
+import android.media.CamcorderProfile;
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.Environment;
@@ -62,9 +63,9 @@ public class Car_Video extends Activity implements SurfaceHolder.Callback {
 	private MediaRecorder recorder = null;
 	// 아웃풋 파일 경로
 	private static final String OUTPUT_FILE = Environment.getExternalStorageDirectory() + "/";
-	private static final String OUTPUT_FILE_NAME = "_VDO.mp4";
+	private static final String OUTPUT_FILE_NAME = "_VDO.avi";
 	// 녹화 시간 - 10초
-	private static final int RECORDING_TIME = 30000;
+	//private static final int RECORDING_TIME = 30000;
 	private Boolean btnindex = true, index = true;
 	private Button video_onoff_btn, video_cancel_btn;
 	private CheckBox video_flash_btn;
@@ -80,9 +81,52 @@ public class Car_Video extends Activity implements SurfaceHolder.Callback {
 	private Util util;
 	private BluetoothPrinterHelper bp;
 	private int vwidth=640, vheight=480;
-
 	
 	ProgressDialog dialog;
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.car_video);
+
+		startMainService();
+		
+		TAG = this.getClass().getName();
+		
+		util = new Util(this);
+		bp = new BluetoothPrinterHelper(this);
+
+		this.myprefs = new Prefs(getApplicationContext());
+		
+		today = myprefs.getToday();
+		SimpleDateFormat sdfDay = new SimpleDateFormat("yyyyMMdd");
+		SimpleDateFormat sdfTime = new SimpleDateFormat("HHmmss");
+		long now = System.currentTimeMillis();
+		Date date = new Date(now);
+
+		mac_Addr = myprefs.getMacAdress();
+		// SimpleDateFormat sdfAll = new SimpleDateFormat("yyyyMMddHHmmss");
+		strDay = sdfDay.format(date);
+		strTime = sdfTime.format(date);
+
+		Bundle bundle = getIntent().getExtras();
+		rec = (RectDto) bundle.getSerializable(CommonSet.RECEIPT_DATA_NAME);
+		upd = new UpdDto();
+		layout2 = (LinearLayout) findViewById(R.id.layout2);
+		
+		Log.e("dto", rec.getVL_NO());
+		video_onoff_btn = (Button) findViewById(R.id.video_onoff_btn);
+		video_flash_btn = (CheckBox) findViewById(R.id.video_flash_btn);
+		video_cancel_btn = (Button) findViewById(R.id.video_cancel_btn);
+		rec_icon = (ImageView) findViewById(R.id.rec_icon);
+
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+		// 프리뷰를 설정한다
+		prepareDirectory();
+		setPreview();
+		// 버튼을 설정한다
+		setButtons();
+	}
 
 	public static Car_Video getInstance() {
 		if (singleton == null) {
@@ -95,7 +139,6 @@ public class Car_Video extends Activity implements SurfaceHolder.Callback {
 	}
 
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		// on Pause 상태에서 카메라 ,레코더 객체를 정리한다
 		if (mCamera != null) {
 			mCamera.release();
@@ -121,9 +164,7 @@ public class Car_Video extends Activity implements SurfaceHolder.Callback {
 			mCamera.setDisplayOrientation(90);
 			mCamera.setPreviewDisplay(holder);
 			
-			Log.i(TAG, "resolution : " + this.myprefs.getResolution());
-			
-			if(this.myprefs.getResolution().equals("") || this.myprefs.getResolution().equals(null)){
+			if(this.myprefs.getResolution().equals("") || this.myprefs.getResolution() == null){
 				String[] rwh = CommonSet.Resolution.SD.split("_");
 				vwidth = Integer.parseInt(rwh[0]);
 				vheight = Integer.parseInt(rwh[1]);
@@ -133,20 +174,23 @@ public class Car_Video extends Activity implements SurfaceHolder.Callback {
 				vheight = Integer.parseInt(r[1]);
 			}
 			
+			Log.i(TAG, "resolution : width = " + vwidth + ", height = " + vheight);
+			
 			params.setPictureSize(vwidth, vheight);
+			params.setPreviewSize(vwidth, vheight);
+			
 			mCamera.setParameters(params);
 			
 			mCamera.startPreview();
 
 			camera_flash_prefer();
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 	}
 
 	@Override
 	public void surfaceCreated(SurfaceHolder holder) {
-		// TODO Auto-generated method stub
 		// 서피스가 만들어졌을 때의 대응 루틴
 		setCameraPreview(holder);
 	}
@@ -155,24 +199,22 @@ public class Car_Video extends Activity implements SurfaceHolder.Callback {
 	public void surfaceChanged(SurfaceHolder holder, int format, int width,
 			int height) {
 
-		// TODO Auto-generated method stub
 		// 서피스 변경되었을 때의 대응 루틴
 		/*
-		 * if (mCamera != null) { Camera.Parameters parameters =
-		 * mCamera.getParameters(); // 프리뷰 사이즈 값 재조정
-		 * parameters.setPreviewSize(width, height);
-		 * mCamera.setParameters(parameters);
-		 * 
-		 * mCamera.setDisplayOrientation(90);
-		 * 
-		 * // 프리뷰 다시 시작 mCamera.startPreview(); }
+		  if (mCamera != null) { 
+			  Camera.Parameters parameters = mCamera.getParameters();
+			  parameters.setPreviewSize(width, height);
+			  mCamera.setParameters(parameters);
+		  
+			  mCamera.setDisplayOrientation(90);
+		  
+			  mCamera.startPreview(); 
+		  }
 		 */
 	}
 
 	@Override
 	public void surfaceDestroyed(SurfaceHolder holder) {
-		// TODO Auto-generated method stub
-
 		// 서피스 소멸시의 대응 루틴
 
 		// 프리뷰를 멈춘다
@@ -184,16 +226,11 @@ public class Car_Video extends Activity implements SurfaceHolder.Callback {
 
 	}
 
-	// 프리뷰(카메라가 찍고 있는 화상을 보여주는 화면) 설정 함수
 	private void setPreview() {
-		// 1) 레이아웃의 videoView 를 멤버 변수에 매핑한다
+
 		mVideoView = (VideoView) findViewById(R.id.car_video_view);
-		// 2) surface holder 변수를 만들고 videoView로부터 인스턴스를 얻어온다
 		final SurfaceHolder holder = mVideoView.getHolder();
-		// 3)표면의 변화를 통지받을 콜백 객체를 등록한다
 		holder.addCallback(this);
-		// 4)Surface view의 유형을 설정한다, 아래 타입은 버퍼가 없이도 화면을 표시할 때 사용된다.카메라 프리뷰는 별도의
-		// 버퍼가 필요없다
 		holder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
 
 	}
@@ -242,12 +279,7 @@ public class Car_Video extends Activity implements SurfaceHolder.Callback {
 					beginRecording(mVideoView.getHolder());
 
 				} else {
-					/*
-					 * video_onoff_btn.setCompoundDrawablesWithIntrinsicBounds(R.
-					 * drawable.video_on_icon, 0, 0, 0);
-					 * video_onoff_btn.setText("촬영");
-					 */
-
+					
 					btnindex = true;
 					if (recorder != null) {
 
@@ -256,12 +288,13 @@ public class Car_Video extends Activity implements SurfaceHolder.Callback {
 						recorder.release();
 						recorder = null;
 					}
-					// 프리뷰가 없을 경우 다시 가동 시킨다
+					
 					if (mCamera == null) {
 						Log.e("CAM TEST", "Preview Restart!!!!!"); // 프리뷰 다시 설정
 						setCameraPreview(mVideoView.getHolder()); // 프리뷰 재시작
 						mCamera.startPreview();
 					}
+					
 					sendRecieptData();
 				}
 
@@ -281,7 +314,6 @@ public class Car_Video extends Activity implements SurfaceHolder.Callback {
 	public void sendRecieptData(){
 		dialogLoadingView();
 		BusBuilder.getInstance().post(new RectCommand("RECIEPT", rec));
-		
 	}
 	
 
@@ -477,23 +509,23 @@ public class Car_Video extends Activity implements SurfaceHolder.Callback {
 
 			recorder.setVideoSource(MediaRecorder.VideoSource.CAMERA);
 			recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-			recorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
-			// 비디오 사이즈를 수정하면 prepare 에러가 난다, 왜 그럴까? -> 특정 해상도가 있으며 이 해상도에만 맞출 수가
-			// 있다
-			/*
-			 * CamcorderProfile profile =
-			 * CamcorderProfile.get(CamcorderProfile.QUALITY_HIGH);
-			 * recorder.setVideoSize(profile.videoFrameWidth,
-			 * profile.videoFrameHeight);
-			 */
-			recorder.setVideoSize(vwidth, vheight);
-			// recorder.setVideoFrameRate(25);
-			// Video/Audio 인코더 설정
-			// 오디오와영상 인코더 설정
-			recorder.setAudioEncoder(MediaRecorder.AudioEncoder.DEFAULT);
-			recorder.setVideoEncoder(MediaRecorder.VideoEncoder.DEFAULT);
-
-			// 녹화 시간 한계 , 10초
+			
+			Log.i(TAG, "record : width = " + vwidth + ", height = " + vheight);
+			
+			CamcorderProfile profile = CamcorderProfile.get(CamcorderProfile.QUALITY_HIGH);
+			profile.videoFrameWidth = vwidth;
+			profile.videoFrameHeight = vheight;
+			profile.videoFrameRate = 30;
+			profile.fileFormat = MediaRecorder.OutputFormat.MPEG_4;
+			profile.audioCodec = MediaRecorder.AudioEncoder.DEFAULT;
+			profile.videoCodec = MediaRecorder.VideoEncoder.DEFAULT;
+			recorder.setProfile(profile);
+			
+			//recorder.setVideoSize(vwidth, vheight);
+			//recorder.setVideoFrameRate(30);
+			//recorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
+			//recorder.setAudioEncoder(MediaRecorder.AudioEncoder.DEFAULT);
+			//recorder.setVideoEncoder(MediaRecorder.VideoEncoder.DEFAULT);
 
 			filename = rec.getVL_NO() + OUTPUT_FILE_NAME;
 			Log.i("filename", filename);
@@ -501,20 +533,16 @@ public class Car_Video extends Activity implements SurfaceHolder.Callback {
 			outfile = CommonSet.SAVE_PATH + filename;
 			recorder.setOutputFile(outfile);
 
-			recorder.setMaxDuration(RECORDING_TIME);
-			// 프리뷰를 보여줄 서피스 설정
+			//recorder.setMaxDuration(RECORDING_TIME);
 
 			recorder.setOrientationHint(90);
 			recorder.setPreviewDisplay(holder.getSurface());
-			// 녹화할 대상 파일 설정
-			// recorder.setOutputFile(OUTPUT_FILE);
 			recorder.prepare();
 			recorder.start();
 
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO: handle exception
 			Log.e("CAM TEST", "Error Occur???!!!");
 			e.printStackTrace();
 		}
@@ -533,7 +561,6 @@ public class Car_Video extends Activity implements SurfaceHolder.Callback {
 
 	public void camera_flash(Boolean c) {
 		Camera.Parameters params = mCamera.getParameters();
-		// Camera params = mCamera.getParameters();
 		mCamera.setParameters(params);
 		List<String> flashlist = params.getSupportedFlashModes();
 
@@ -568,9 +595,6 @@ public class Car_Video extends Activity implements SurfaceHolder.Callback {
 			 else
 			{
 				 camera_flash(false);
-				 
-				 Log.d("time11111",myprefs.getFlashFromTime());
-					Log.d("time22222",myprefs.getFlashToTime());
 			}
 
 		}
@@ -611,55 +635,6 @@ public class Car_Video extends Activity implements SurfaceHolder.Callback {
 	@Override
 	public void onBackPressed() {
 		cancelReciept();
-	}
-
-	
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.car_video);
-
-		startMainService();
-		
-		TAG = this.getClass().getName();
-		
-		util = new Util(this);
-		bp = new BluetoothPrinterHelper(this);
-
-		this.myprefs = new Prefs(getApplicationContext());
-		
-		today = myprefs.getToday();
-		SimpleDateFormat sdfDay = new SimpleDateFormat("yyyyMMdd");
-		SimpleDateFormat sdfTime = new SimpleDateFormat("HHmmss");
-		long now = System.currentTimeMillis();
-		Date date = new Date(now);
-
-		mac_Addr = myprefs.getMacAdress();
-		// SimpleDateFormat sdfAll = new SimpleDateFormat("yyyyMMddHHmmss");
-		strDay = sdfDay.format(date);
-		strTime = sdfTime.format(date);
-
-		Bundle bundle = getIntent().getExtras();
-		rec = (RectDto) bundle.getSerializable(CommonSet.RECEIPT_DATA_NAME);
-		upd = new UpdDto();
-		layout2 = (LinearLayout) findViewById(R.id.layout2);
-		
-		Log.e("dto", rec.getVL_NO());
-		video_onoff_btn = (Button) findViewById(R.id.video_onoff_btn);
-		video_flash_btn = (CheckBox) findViewById(R.id.video_flash_btn);
-		video_cancel_btn = (Button) findViewById(R.id.video_cancel_btn);
-		rec_icon = (ImageView) findViewById(R.id.rec_icon);
-		// 세로화면 고정으로 처리한다
-		// SCREEN_ORIENTATION_LANDSCAPE - 가로화면 고정
-		// SCREEN_ORIENTATION_PORTRAIT - 세로화면 고정
-		// setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-		// 프리뷰를 설정한다
-		prepareDirectory();
-		setPreview();
-
-		// 버튼을 설정한다
-		setButtons();
 	}
 
 	public void dialogLoadingView() {

@@ -578,7 +578,7 @@ public class Receipt extends Activity implements OnClickListener {
 	@Override
 	protected void onDestroy() {
 		Log.w("GetSignature", "onDestory");
-		stopMainService();
+		//stopMainService();
 		super.onDestroy();
 	}
 	

@@ -154,7 +154,13 @@ public class BluetoothPrinterHelper {
 				hThread.start();
 				bluetoothConnected = true;
 				
-				Toast.makeText(ac, "프린트가 연결 되었습니다. 프린트를 사용하실 수 있습니다.", Toast.LENGTH_SHORT).show();
+				ResultDto res = statusCheck();
+				
+				if(res.getRTN_ST() == CPCLConst.LK_STS_CPCL_NORMAL){
+					Toast.makeText(ac, "프린트가 연결 되었습니다. 프린트를 사용하실 수 있습니다.", Toast.LENGTH_SHORT).show();
+				} else {
+					Toast.makeText(ac, res.getRTN_MSG(), Toast.LENGTH_SHORT).show();
+				}
 				
 			} else {
 				
@@ -191,42 +197,45 @@ public class BluetoothPrinterHelper {
 		Log.i(TAG, "bluetooth print status >>> " + posPtr.status() );
 	
 		posPtr.printerCheck();
-    	if(posPtr.status() != 0){
-    		result.setRTN_ST(posPtr.status());
-    		result.setRTN_CD(CommonSet.BLUETHOOTH_ERROR_CODE);
-			result.setRTN_MSG("프린터 연결안됨.");
-    	} else {
-    		int sts = posPtr.status();
-			if(sts == CPCLConst.LK_STS_CPCL_NORMAL) {
-				result.setRTN_CD(CommonSet.RESULT_SUCCESS_CODE);
-				result.setRTN_MSG("프린터 연결됨");
+		int sts = posPtr.status();
+		
+    	if(posPtr.status() != CPCLConst.LK_STS_CPCL_NORMAL){
+    		if((sts & CPCLConst.LK_STS_CPCL_BUSY) > 0){
+				result.setRTN_CD(CommonSet.BLUETHOOTH_ERROR_CODE);
+				result.setRTN_MSG("프린터 출력중");
+			} else if((sts & CPCLConst.LK_STS_CPCL_PAPER_EMPTY) > 0){
+				result.setRTN_CD(CommonSet.BLUETHOOTH_ERROR_CODE);
+				result.setRTN_MSG("프린터 용지부족");
+			} else if((sts & CPCLConst.LK_STS_CPCL_COVER_OPEN) > 0){
+				result.setRTN_CD(CommonSet.BLUETHOOTH_ERROR_CODE);
+				result.setRTN_MSG("프린터 덮개 열려 있음");
+			} else if((sts & CPCLConst.LK_STS_CPCL_BATTERY_LOW) > 0){
+				result.setRTN_CD(CommonSet.BLUETHOOTH_ERROR_CODE);
+				result.setRTN_MSG("프린터 전원부족");
 			} else {
-				if((sts & CPCLConst.LK_STS_CPCL_BUSY) > 0){
-					result.setRTN_CD(CommonSet.BLUETHOOTH_ERROR_CODE);
-					result.setRTN_MSG("프린터 출력중");
-				} else if((sts & CPCLConst.LK_STS_CPCL_PAPER_EMPTY) > 0){
-					result.setRTN_CD(CommonSet.BLUETHOOTH_ERROR_CODE);
-					result.setRTN_MSG("프린터 용지부족");
-				} else if((sts & CPCLConst.LK_STS_CPCL_COVER_OPEN) > 0){
-					result.setRTN_CD(CommonSet.BLUETHOOTH_ERROR_CODE);
-					result.setRTN_MSG("프린터 덮개 열려 있음");
-				} else if((sts & CPCLConst.LK_STS_CPCL_BATTERY_LOW) > 0){
-					result.setRTN_CD(CommonSet.BLUETHOOTH_ERROR_CODE);
-					result.setRTN_MSG("프린터 전원부족");
-				}
+	    		result.setRTN_CD(CommonSet.BLUETHOOTH_ERROR_CODE);
+				result.setRTN_MSG("프린터 연결안됨.");	
 			}
-			result.setRTN_ST(sts);
+    	} else {
+    		result.setRTN_CD(CommonSet.RESULT_SUCCESS_CODE);
+			result.setRTN_MSG("프린터 연결됨");
+		
 		} 
-		return result;
+    	
+    	result.setRTN_ST(sts);
+		
+    	return result;
 	};
 	
 	// Bluetooth Disconnection method.
 	public void btDisconn()
 	{
-		try {
-			bp.disconnect();
-		} catch (Exception e) {
-			Log.w(TAG, e.getMessage(), e);
+		if(bp != null){
+			try {
+				bp.disconnect();
+			} catch (Exception e) {
+				Log.w(TAG, e.getMessage(), e);
+			}
 		}
 	}
 	
@@ -305,7 +314,7 @@ public class BluetoothPrinterHelper {
 	        posPtr.printNormal(ESC + "|lA"+ ESC + "|bC"  +"※고지사항 : 뒷면 약관내용 고객 필독 사항임. " + LF);
 	    	posPtr.lineFeed(3);
 		} else {
-			Toast.makeText(ac, res.getRTN_MSG(), Toast.LENGTH_LONG).show();
+			Toast.makeText(ac, res.getRTN_MSG(), Toast.LENGTH_SHORT).show();
 		}
 		return res;
 
@@ -401,7 +410,7 @@ public class BluetoothPrinterHelper {
 	        
 	    	posPtr.lineFeed(3);
 		} else {
-			Toast.makeText(ac, res.getRTN_MSG(), Toast.LENGTH_LONG).show();
+			Toast.makeText(ac, res.getRTN_MSG(), Toast.LENGTH_SHORT).show();
 		}
 
 		return res;

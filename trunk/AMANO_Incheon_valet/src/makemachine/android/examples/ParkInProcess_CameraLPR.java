@@ -221,6 +221,16 @@ public class ParkInProcess_CameraLPR extends Activity {
 					.show();	
 				} else {
 					
+					try{
+						if (mPreview.mCamera != null) {
+							mPreview.mCamera.stopPreview();
+							mPreview.mCamera.release();
+							mPreview.mCamera = null;
+						}
+					} catch(Exception e){
+						e.printStackTrace();
+					}
+					
 					Intent i = new Intent(ParkInProcess_CameraLPR.this, Receipt.class);
 					
 					dto.setCAR_NO(ev.getText().toString());
@@ -231,7 +241,7 @@ public class ParkInProcess_CameraLPR extends Activity {
 					i.putExtras(bundle);
 
 					startActivity(i);
-					mPreview.mCamera.stopPreview();
+					
 					finish();
 				}
 				break;
