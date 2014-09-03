@@ -14,7 +14,7 @@ $(document).ready(function(){
 function ceriSuccess(res){
 	if(res.result.resultCode == "0000"){
 		$("#certTitle").text("스마트광고창작공간AD 회원가입을 환영합니다!");
-		$("#certMsg").html('메일 계정 <span class="userEmail">'+res.info+'</span>');
+		$("#certMsg").html('메일 계정 <span class="userEmail">'+res.info.userEmail+'</span>');
 	} else {
 		error();
 	}
