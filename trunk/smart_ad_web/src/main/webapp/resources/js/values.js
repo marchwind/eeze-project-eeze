@@ -29,8 +29,8 @@ var facility = {
 }
 
 var uri = {
-	serverUrl : window.location.protocol + "//" + window.location.host + "/smart_ad_api",
-	//serverUrl : window.location.protocol + "//" + window.location.host + "/api",
+	//serverUrl : window.location.protocol + "//" + window.location.host + "/smart_ad_api",
+	serverUrl : window.location.protocol + "//" + window.location.host + "/api",
 	loginUrl : "/user/login",
 	logoutUrl : "/user/logout",
 	sessionCheck : "/user/session",
