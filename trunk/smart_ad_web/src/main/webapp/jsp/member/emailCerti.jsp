@@ -77,7 +77,7 @@ function error(){
                         </div>
                     </div>                    
                     <div class="btnContainer">
-                    	<input type="button" class="btn_3" value="로그인하기" onclick="${contextPath}/member/login.do" />
+                    	<input type="button" class="btn_3" value="로그인하기" onclick="goPage('${contextPath}/member/login.do')" />
                     </div>
                 </div>
             </div>
