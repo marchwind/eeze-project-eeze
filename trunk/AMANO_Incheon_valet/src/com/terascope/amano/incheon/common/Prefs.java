@@ -17,8 +17,6 @@ public class Prefs {
 	private SharedPreferences _prefs = null;
 	private Editor _editor = null;
 	
-	private String _emailaddress = "admin@logiceye.com";
-//	private String _bluetoothid = "00:13:7B:51:B8:BF";
 	private String _bluetoothid = "";
 	private String _ProgramVersion = "Version 1";
 	private String _FlashFromTime = "";
@@ -30,6 +28,8 @@ public class Prefs {
 	
 	private String _auth = "";
 	private String _devNo = "";
+	
+	private String _userType = "";
 	
 	private String _Company="";
 	private String _ParkName="";
@@ -109,15 +109,6 @@ public class Prefs {
 
 		this._editor.putString(key, value);
 
-	}
-
-	public String getEmail() {
-		if (this._prefs == null) {
-			return _emailaddress;
-		}
-		this._emailaddress = this._prefs.getString("emailaddress",
-				_emailaddress);
-		return this._emailaddress;
 	}
 
 	public String getBluetoothID() {
@@ -523,6 +514,24 @@ public class Prefs {
 		
 		this._devNo = _devNo;
 		this._editor.putString("DevNo", _devNo);
+	}
+	
+	public String getUserType() {
+		if (this._prefs == null) {
+			return _userType;
+		}
+		
+		this._userType = this._prefs.getString("userType",_userType);
+		return _userType;
+	}
+
+	public void setUserType(String _userType) {
+		if (this._editor == null) {
+			return;
+		}
+		
+		this._userType = _userType;
+		this._editor.putString("userType", _userType);
 	}
 
 	public String getFlashFromTime() {

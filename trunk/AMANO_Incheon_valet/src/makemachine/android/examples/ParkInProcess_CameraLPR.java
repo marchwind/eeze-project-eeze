@@ -192,6 +192,7 @@ public class ParkInProcess_CameraLPR extends Activity {
 	@Override
 	protected void onResume() {
 		if (mPreview.mCamera == null) {
+			mPreview.surfaceCreated(mPreview.getHolder());
 			mPreview.startView();
 		}
 		super.onResume();
@@ -223,6 +224,8 @@ public class ParkInProcess_CameraLPR extends Activity {
 					
 					try{
 						if (mPreview.mCamera != null) {
+							mPreview.mCamera.setPreviewCallback(null);
+							mPreview.getHolder().removeCallback(mPreview);
 							mPreview.mCamera.stopPreview();
 							mPreview.mCamera.release();
 							mPreview.mCamera = null;
@@ -350,10 +353,13 @@ public class ParkInProcess_CameraLPR extends Activity {
 
 	@Override
 	protected void onPause() {
+		
 		if (mPreview != null) {
 			Log.e("onDestroy", "onDestroy...");
 
 			if (mPreview.mCamera != null) {
+				mPreview.mCamera.setPreviewCallback(null);
+				mPreview.getHolder().removeCallback(mPreview);
 				mPreview.mCamera.stopPreview();
 				mPreview.mCamera.release();
 				mPreview.mCamera = null;
@@ -368,6 +374,8 @@ public class ParkInProcess_CameraLPR extends Activity {
 			Log.e("onDestroy", "onDestroy...");
 
 			if (mPreview.mCamera != null) {
+				mPreview.mCamera.setPreviewCallback(null);
+				mPreview.getHolder().removeCallback(mPreview);
 				mPreview.mCamera.stopPreview();
 				mPreview.mCamera.release();
 				mPreview.mCamera = null;

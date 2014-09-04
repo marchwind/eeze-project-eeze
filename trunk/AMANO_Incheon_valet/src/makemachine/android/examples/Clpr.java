@@ -4,21 +4,19 @@ package makemachine.android.examples;
 public class Clpr {
     static
     {
-        System.loadLibrary("LprSub");               
-        System.loadLibrary("CppLpr");         
-        
+        System.loadLibrary("LprSub");         // ¶óÀÌºê·¯¸®¸¦ ·ÎµåÇÏ´Â static ÇÔ¼ö      
+        System.loadLibrary("CppLpr");         // ¶óÀÌºê·¯¸®¸¦ ·ÎµåÇÏ´Â static ÇÔ¼ö
     }
 
-    public native byte[] libProc(int[] img, int w, int h, byte[] Limg, int[] WH);        // native ï¿½Ô¼ï¿½ libProc ï¿½ï¿½ï¿½ï¿½
+    public native byte[] libProc(int[] img, int w, int h, byte[] Limg, int[] WH, int lprType);        // native ÇÔ¼ö libProc ¼±¾ð
 
-    public byte[] proc(int[] img, int w, int h, byte[] Limg, int[] WH)                     // native ï¿½Ô¼ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½É¹ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
+    public byte[] proc(int[] img, int w, int h, byte[] Limg, int[] WH, int lprType)                     // native ÇÔ¼ö¸¦ È£ÃâÇÏ´Â ¸É¹ö ¸Þ¼­µå
     {
-        return libProc(img, w, h, Limg, WH);
+        return libProc(img, w, h, Limg, WH, lprType);
         
     }
+    
     public native String getString(String str);
     public native String getFileRead();
-     
-     
-
+    
 }
