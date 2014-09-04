@@ -107,21 +107,16 @@ class Preview extends SurfaceView implements SurfaceHolder.Callback {
 	
     } 
   
-
     @Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-		// TODO Auto-generated method stub
-       
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-	}    
+	}
     
 	public void surfaceCreated(SurfaceHolder holder) {
 
 		try{
-			
-			mCamera = Camera.open();
-			if( mCamera == null){
-				
+			if(mCamera == null){
+				mCamera = Camera.open();	
 			}
 			
 			if (mCamera != null)
@@ -208,7 +203,6 @@ class Preview extends SurfaceView implements SurfaceHolder.Callback {
 			  		
 			  		mCamera.startPreview();
 			  		
-					
 			  		mParent.camera_flash_prefer();
 				}
 				
@@ -290,7 +284,8 @@ class Preview extends SurfaceView implements SurfaceHolder.Callback {
 					
 					byte[] Limg = new byte[300*300]; 
 					int[] WH = new int[8]; 
-					byte[] Br = myLpr.libProc(rgb, w, h, Limg, WH);
+					//byte[] Br = myLpr.libProc(rgb, w, h, Limg, WH, 1); // normal
+					byte[] Br = myLpr.libProc(rgb, w, h, Limg, WH, 3); // speed
 					
 			    	int w2 = WH[3]-WH[2];
 			    	int h2 = WH[5]-WH[4];
@@ -360,117 +355,6 @@ class Preview extends SurfaceView implements SurfaceHolder.Callback {
 		    	}
 			}
 			
-			
-			/*if (format == ImageFormat.NV21  || format == ImageFormat.YUY2 || format == ImageFormat.NV16){
-				
-				if( nLprStartFlag == 1){
-				
-					
-					int w = parameters.getPreviewSize().width;
-					int h = parameters.getPreviewSize().height;
-					YuvImage yuv_image = new YuvImage(data, format, w, h, null);
-					byte yuv[] = yuv_image.getYuvData();
-				
-					int rgb[] = decodeYUV420SP(yuv, w, h);
-					//Log.e(Integer.toString(yuv[0]), Integer.toString(yuv[1]) + ":" + Integer.toString(yuv[2]));
-
-					Bitmap tBmp = Bitmap.createBitmap( rgb, w, h, Config.ARGB_8888 );
-					Bitmap tBmpRotate = ImageUtil.GetRotatedBitmap( tBmp, 90 );
-					w = tBmpRotate.getWidth();
-					h = tBmpRotate.getHeight();
-					tBmpRotate.getPixels( rgb, 0, w, 0, 0, w, h );
-					
-					byte[] Limg = new byte[300*300]; 
-					int[] WH = new int[8]; 
-					byte[] Br = null;
-					
-					//번호인식모듈과 연계시킴.
-					try{
-						Br = myLpr.libProc(rgb, w, h, Limg, WH);					
-				  	}catch (Exception e) {
- 			            Log.i(TAG,"Log+++ libProc Error +++ >> " + output);	
-					
-					}
-					
-			    	int w2 = WH[3]-WH[2];
-			    	int h2 = WH[5]-WH[4];
-			    	
-			    	//Log.e(Integer.toString(w2), Integer.toString(h2));
-			    	
-			    	try {
-						output = new String(Br, "KSC5601");
-						output = output.replace("?", "").trim();
-						
-						Log.i(TAG,"output >>> " + output);
-						str_num[nLoopCount] = output;
-						
-						if(OrgCarNumber.equalsIgnoreCase(output)){
-							// 직전인식값과 현재 인식값이 같은 경우
-							
-							boolean value1 = output.contains("No");
-
-							if(!value1){
-								// 인식 및 부분인식된 경우
-								nSameCount = nSameCount+1;
-								
-								if(nSameCount > 1 || output.length() > 7){
-									nLprStartFlag =0;
-									mParent.setReButtonEnable();
-									nLoopCount=0;
-								} else {
-									mParent.setReButtonText(mParent.getResources().getString(R.string.camera_regonizing_text));
-								}
-							} else {
-								nLoopCount = nLoopCount +1;
-								if(nLoopCount > 3){
-									nLprStartFlag =0;
-									mParent.setReButtonEnable();
-								} else {
-									mParent.setReButtonText(mParent.getResources().getString(R.string.camera_regonizing_text));
-								}
-								
-							}
-						} else {
-							if(output.equalsIgnoreCase(null)) output = "No Detection";
-							
-							OrgCarNumber = output;
-							nSameCount = 1;						
-							
-							if(nLoopCount > 3) {
-								nLprStartFlag =0;
-								mParent.setReButtonEnable();
-							} else {
-								nLoopCount = nLoopCount +1;
-								mParent.setReButtonText(mParent.getResources().getString(R.string.camera_regonizing_text));
-							}	
-						}
-						
-					} catch (UnsupportedEncodingException e) {
-					
-						nLprStartFlag =0;
- 						nSameCount=0;
- 						mParent.setReButtonEnable();
- 						nLoopCount=0;
-					
-						e.printStackTrace();
-					}
-			    	
-			    	Log.e(Integer.toString(w2), output);
-			    	
-			    	if(nSameCount >= 2 || nLprStartFlag == 0){
-				    	//if(output != null || !output.contains("No")){
-				    		if ( nSameCount >= 2){
-				    			tvCarNo1.setText(output);
-				    		} else {
-				    			output = setFinalCarData(nLoopCount);
-			    				tvCarNo1.setText(output);
-				    		}
-				    	//}
-			    	}
-			    	
-				}
-			}*/
-
 
 		}
 	};

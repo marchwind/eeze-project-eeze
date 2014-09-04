@@ -196,7 +196,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	@Override
 	protected void onDestroy() {
-		stopMainService();
+		//stopMainService();
 		super.onDestroy();
 
 	}
@@ -428,7 +428,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		if (requestCode == CommonSet.SETTING_VIEW) {
 			if (resultCode == CommonSet.LOGOUT) {
-				stopMainService();
+				//stopMainService();
 				startActivity(new Intent(MainActivity.this, LoginActivity.class));
 
 				finish();

@@ -15,6 +15,7 @@ import android.widget.FrameLayout;
 
 import com.terascope.amano.R;
 import com.terascope.amano.incheon.common.CommonSet;
+import com.terascope.amano.incheon.common.Prefs;
 import com.terascope.amano.incheon.setting.Setting_Bluetooth_Print;
 import com.terascope.amano.incheon.setting.Setting_DeviceIp;
 import com.terascope.amano.incheon.setting.Setting_Flash;
@@ -30,11 +31,15 @@ public class Setting extends Activity implements OnClickListener, OnTouchListene
 						set_status_btn, set_version_btn,set_deviceip_btn, set_logout_btn, set_resolution_btn;
 	private Intent i;
 	private Button home;
+	
+	private Prefs myprefs;
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.setting);
+	    
+	    this.myprefs = new Prefs(getApplicationContext());
 	    
 	    home = (Button)findViewById(R.id.set_bhome_btn);
 	    set_btooth_btn = (FrameLayout)findViewById(R.id.set_btoothbtn);
@@ -66,6 +71,12 @@ public class Setting extends Activity implements OnClickListener, OnTouchListene
 	    set_version_btn.setOnTouchListener(this);
 	    set_deviceip_btn.setOnTouchListener(this);
 	    set_resolution_btn.setOnTouchListener(this);
+	    
+	    if(this.myprefs.getUserType().equals("03") || this.myprefs.getUserType().equals("04") 
+	    	|| this.myprefs.getUserType().equals("05")|| this.myprefs.getUserType() == null){
+	    	set_version_btn.setVisibility(View.GONE);
+	    	set_deviceip_btn.setVisibility(View.GONE);
+	    }
 	}
 	
 	@SuppressLint("ClickableViewAccessibility")

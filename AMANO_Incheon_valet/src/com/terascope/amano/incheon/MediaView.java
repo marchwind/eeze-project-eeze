@@ -19,15 +19,11 @@ public class MediaView extends Activity implements OnCompletionListener{
 	
 	private static String TAG = "";
 	
-	private int mVideoWidth;
-	private int mVideoHeight;
-	private MediaPlayer mMediaPlayer;
 	private VideoView mPreview;
 	private SurfaceHolder holder;
 	//private String path;
 	private Bundle extras;
-	private boolean mIsVideoSizeKnown = false;
-	private boolean mIsVideoReadyToBePlayed = false;
+	private MediaController mMediaController;
 	  
 	@SuppressWarnings("deprecation")
 	@Override
@@ -44,21 +40,20 @@ public class MediaView extends Activity implements OnCompletionListener{
 	    mPreview.setOnCompletionListener(this);
 	    mPreview.setVideoPath(extras.getString(CommonSet.MEDIA_PATH_NAME));
 	    
-	    MediaController mMediaController = new MediaController(this){
+	    mMediaController = new MediaController(this){
 	    	@Override
 	    	public void hide() {}
 	    	
 	    	@Override
 	    	public boolean dispatchKeyEvent(KeyEvent event) {
+	    		mMediaController.hide();
 	    		if(event.getKeyCode() == KeyEvent.KEYCODE_BACK){
 	    			
 	    			try{
-		    			//mPreview.pause();
-	    				//mPreview.stopPlayback();
 		    			mPreview = null;
 		    			finish();
 	    			} catch (Exception e) {
-	    				e.getStackTrace();
+	    				e.printStackTrace();
 	    			}
 	    		}
 	    		return true;
@@ -81,124 +76,25 @@ public class MediaView extends Activity implements OnCompletionListener{
 			
 			@Override
 			public boolean onError(MediaPlayer mp, int what, int extra) {
-				// TODO Auto-generated method stub
 				return true;
 			}
 		});
-	    
-	    //holder.addCallback(this);
-	    //holder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
-	    
 	}
 
-//	private void playVideo(String path) {
-//	    doCleanUp();
-//	    
-//	    Log.i(TAG, "play path : "+ path);
-//	    
-//	    try {
-//	      mMediaPlayer = new MediaPlayer();
-//	      mMediaPlayer.setDataSource(path);
-//	      mMediaPlayer.setDisplay(holder);
-//	      mMediaPlayer.prepare();
-//	      mMediaPlayer.setOnBufferingUpdateListener(this);
-//	      mMediaPlayer.setOnCompletionListener(this);
-//	      mMediaPlayer.setOnPreparedListener(this);
-//	      mMediaPlayer.setOnVideoSizeChangedListener(this);
-//	      mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-//
-//	    } catch (Exception e) {
-//	      Log.e(TAG, "error: " + e.getMessage(), e);
-//	    }
-//	}
-	
-//	@Override
-//	public void onBufferingUpdate(MediaPlayer mp, int percent) {
-//		 Log.i(TAG, "onBufferingUpdate percent:" + percent);
-//		
-//	}
-//	
 	@Override
 	public void onCompletion(MediaPlayer mp) {
 		Log.i(TAG, "onCompletion called");
 		
 	}
 	
-//	@Override
-//	public void onVideoSizeChanged(MediaPlayer mp, int width, int height) {
-//		Log.i(TAG, "onVideoSizeChanged called");
-//	    if (width == 0 || height == 0) {
-//	      Log.e(TAG, "invalid video width(" + width + ") or height(" + height + ")");
-//	      return;
-//	    }
-//	    mIsVideoSizeKnown = true;
-//	    mVideoWidth = width;
-//	    mVideoHeight = height;
-//	    if (mIsVideoReadyToBePlayed && mIsVideoSizeKnown) {
-//	      startVideoPlayback();
-//	    }
-//		
-//	}
-	
-//	private void startVideoPlayback() {
-//	    Log.i(TAG, "startVideoPlayback");
-//	    holder.setFixedSize(mVideoWidth, mVideoHeight);
-//	    mMediaPlayer.start();
-//	}
-//	
-//	@Override
-//	public void onPrepared(MediaPlayer mp) {
-//		Log.i(TAG, "onPrepared called");
-//	    mIsVideoReadyToBePlayed = true;
-//	    if (mIsVideoReadyToBePlayed && mIsVideoSizeKnown) {
-//	      startVideoPlayback();
-//	    }
-//		
-//	}
-//	
-//	@Override
-//	public void surfaceCreated(SurfaceHolder holder) {
-//		playVideo(extras.getString(CommonSet.MEDIA_PATH_NAME));
-//	}
-//	
-//	@Override
-//	public void surfaceChanged(SurfaceHolder holder, int format, int width,
-//			int height) {
-//		Log.i(TAG, "surfaceChanged called");
-//		
-//	}
-//	
-//	@Override
-//	public void surfaceDestroyed(SurfaceHolder holder) {
-//		Log.i(TAG, "surfaceDestroyed called");
-//		
-//	}
-//	
-//	private void doCleanUp() {
-//	    mVideoWidth = 0;
-//	    mVideoHeight = 0;
-//	    mIsVideoReadyToBePlayed = false;
-//	    mIsVideoSizeKnown = false;
-//	}
-	
 	@Override
   	protected void onPause() {
 		super.onPause();
-		//releaseMediaPlayer();
-		//doCleanUp();
   	}
 
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		//releaseMediaPlayer();
-		//doCleanUp();
 	}
 
-//	private void releaseMediaPlayer() {
-//		if (mMediaPlayer != null) {
-//			mMediaPlayer.release();
-//			mMediaPlayer = null;
-//		}
-//	}
 }

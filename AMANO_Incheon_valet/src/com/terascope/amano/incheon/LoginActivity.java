@@ -219,6 +219,9 @@ public class LoginActivity extends Activity implements OnClickListener {
 				List<LoginDto> list = new JsonToDto<LoginDto>().setJson(cr.getJson()).parse((LoginDto)logindto).getInstances();
 				logindto.setUSR_NM(list.get(0).getUSR_NM());
 				
+				myprefs.setUserType(list.get(0).getUSR_TY_CD());
+				myprefs.save();
+				
 				Bundle bundle = new Bundle();
 				bundle.putSerializable(CommonSet.LOGIN_DATA_NAME, logindto);
 				bundle.putSerializable(CommonSet.AUTH_DATA_NAME, authdto);
@@ -227,7 +230,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 				i.putExtras(bundle);
 				startActivity(i);
 				
-				stopMainService();
+				//stopMainService();
 				finish();
 				
 			} else {
