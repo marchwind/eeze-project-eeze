@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <color name="common_white_color">#ffffff</color>
+    <color name="common_black_color">#000000</color>
+    <color name="login_etext_color">#b4cecc</color>
+    <color name="login_hint_color">#dadada</color>
+    
+    <color name="main_text_color">#323232</color>
+    
+    <color name="camera_box_back_color">#323232</color>
+    <color name="camera_red_box_stroke_color">#ff0000</color>
+     
+    <color name="receipt_backgroud_color">#323232</color>
+    <color name="receipt_line_color">#529c95</color>
+    <color name="receipt_text1_color">#5ba09a</color>
+    <color name="receipt_text2_color">#606060</color>
+    <color name="receipt_editcheck_color">#ddebea</color>
+    <color name="receipt_agreement_color">#529c96</color>
+    <color name="receipt_btntext_color">#3c3c3c</color>
+    
+    <color name="video_common_color">#323232</color>
+    <color name="video_line_color">#4d4d4d</color>
+    
+    <color name="camera_common_color">#323232</color>
+    <color name="camera_line_color">#4d4d4d</color>
+    
+    <color name="search_common_color">#606060</color>
+    <color name="search_line_color">#4c4c4c</color>
+    <color name="search_linear_color">#d0d0d0</color>
+    <color name="search_edit_color">#d9d9d9</color>
+    <color name="search_btn_color">#323232</color>
+    
+    <color name="setcommon_background_color">#eeeeee</color>
+    <color name="setcommon_color">#606060</color>
+    
+    <color name="set_list_touch_down_color">#e1f0ec</color>
+    <color name="set_list_touch_up_color">#ffffff</color>
+    
+    
+    <color name="bluetooth_blue_color">#5E83D2</color>
+    <color name="bluetooth_gray_color">#818181</color>
+    <color name="bluetooth_connection_color">#929292</color>
+    <color name="bluetooth_line_color">#4c4c4c</color>
+    
+    
+    <color name="send_line1_color">#757575</color>
+     <color name="send_linear_color">#d0d0d0</color>
+     <color name="send_text_color">#a8a8a8</color>
+     <color name="send_line2_color">#969696</color>
+     <color name="send_btn_color">#323232</color>
+    
+     
+     <color name="flash_line_color">#474747</color>
+    
+     <color name="print_color">#606060</color>
+    <color name="print_line_color">#c5c5c5</color>
+     <color name="print_btn_color">#3c3c3c</color>
+     
+     <color name="use_line_color">#4c4c4c</color>
+     
+      <color name="setvideo_line_color">#474747</color>
+      
+      <color name="setting_line_color">#4c4c4c</color>
+     
+      <color name="version_text">#2a2a2a</color>
+      <color name="version_new">#5a7dc8</color>
+    <color name="popup_date">#5fb6ae</color>
+     
+</resources>

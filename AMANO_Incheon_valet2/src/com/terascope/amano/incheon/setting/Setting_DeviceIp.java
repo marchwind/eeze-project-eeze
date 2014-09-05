@@ -1,0 +1,17 @@
+package com.terascope.amano.incheon.setting;
+
+
+import android.app.Activity;
+import android.os.Bundle;
+import com.terascope.amano.R;
+public class Setting_DeviceIp extends Activity {
+
+	/** Called when the activity is first created. */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+	    super.onCreate(savedInstanceState);
+	    setContentView(R.layout.setting_device);
+	    // TODO Auto-generated method stub
+	}
+
+}

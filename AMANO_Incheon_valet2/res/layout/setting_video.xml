@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+       android:background="@color/setcommon_background_color" >
+	
+    <LinearLayout
+        android:id="@+id/video_setting_head"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/headline_heigh"
+        android:background="@color/setcommon_color"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/set_video_home"
+            android:layout_width="@dimen/setting_head_home_icon_width"
+            android:layout_height="@dimen/setting_head_home_icon_height" 
+            android:drawableTop="@drawable/home_icon"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/setting_head_margin_left"
+            android:text="@string/home"
+            android:textStyle="bold"
+            android:textColor="@color/common_white_color"
+            android:textSize="@dimen/setting_head_icon_text_size"
+            android:background="@null"
+            />
+        
+        <Button
+            android:id="@+id/set_video_back"
+            android:layout_width="@dimen/setting_head_home_icon_width"
+            android:layout_height="@dimen/setting_head_home_icon_height" 
+            android:drawableTop="@drawable/return_icon"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/setting_head_margin_left"
+            android:text="@string/back"
+            android:textStyle="bold"
+            android:textColor="@color/common_white_color"
+            android:textSize="@dimen/setting_head_icon_text_size"
+            android:background="@null"
+            />
+        
+        <TextView
+            android:id="@+id/set_video_head"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:text="차량 손상부위 촬영 설정"
+            android:textStyle="bold"
+            android:textColor="@color/common_white_color"
+            android:textSize="@dimen/setting_head_text_size" />
+        
+    </LinearLayout>
+    
+    
+    
+     <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/video_setting_head"
+        android:background="@color/common_white_color" >
+
+        <RelativeLayout
+            android:id="@+id/videocheck_btn"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/setting_damage_text_height">
+
+            <TextView
+                android:id="@+id/video_btn_set"
+                android:layout_width="@dimen/setting_damage_text_width"
+                android:layout_height="wrap_content"
+                android:text="동영상 촬영"
+                android:textColor="@color/setcommon_color" 
+                android:paddingLeft="@dimen/setting_damage_text_padding"
+                android:layout_marginTop="@dimen/setting_damage_text_top"
+                android:textSize="@dimen/setting_damage_text_size"/>
+
+            <CheckBox
+                android:id="@+id/ch_video"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/setting_damage_check_top"
+                android:layout_toRightOf="@id/video_btn_set"
+                android:background="@drawable/ischecked"
+                 android:checked="true"
+                android:button="@null" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/videocheck_btn"
+            android:background="@color/setting_line_color" />
+
+        <RelativeLayout
+            android:id="@+id/cameracheck_btn"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/setting_damage_text_height"
+            android:layout_below="@id/videocheck_btn" >
+
+            <TextView
+                android:id="@+id/camera_btn_set"
+                android:layout_width="@dimen/setting_damage_text_width"
+                android:layout_height="wrap_content"
+                android:text="사진 촬영"
+                android:textColor="@color/setcommon_color" 
+                android:paddingLeft="@dimen/setting_damage_text_padding"
+                android:layout_marginTop="@dimen/setting_damage_text_top"
+                android:textSize="@dimen/setting_damage_text_size"
+                />
+
+            <CheckBox
+                android:id="@+id/ch_camera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+               android:layout_marginTop="@dimen/setting_damage_check_top"
+                android:layout_toRightOf="@id/camera_btn_set"
+                android:background="@drawable/ischecked"
+                android:checked="false"
+                android:button="@null" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/cameracheck_btn"
+            android:background="@color/setting_line_color" />
+        </RelativeLayout> 
+
+</RelativeLayout>

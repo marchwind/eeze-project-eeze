@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="@color/camera_common_color">
+	
+     <LinearLayout
+        android:id="@+id/url_setting_head"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/headline_heigh"
+        android:background="@color/setcommon_color"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/set_url_home"
+            android:layout_width="@dimen/setting_head_home_icon_width"
+            android:layout_height="@dimen/setting_head_home_icon_height" 
+            android:drawableTop="@drawable/home_icon"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/setting_head_margin_left"
+            android:text="@string/home"
+            android:textStyle="bold"
+            android:textColor="@color/common_white_color"
+            android:textSize="@dimen/setting_head_icon_text_size"
+            android:background="@null"
+            />
+        
+        <Button
+            android:id="@+id/set_url_back"
+            android:layout_width="@dimen/setting_head_home_icon_width"
+            android:layout_height="@dimen/setting_head_home_icon_height" 
+            android:drawableTop="@drawable/return_icon"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/setting_head_margin_left"
+            android:text="@string/back"
+            android:textStyle="bold"
+            android:textColor="@color/common_white_color"
+            android:textSize="@dimen/setting_head_icon_text_size"
+            android:background="@null"
+            />
+        
+        <TextView
+            android:id="@+id/set_url_head"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:text="통신 설정"
+            android:textStyle="bold"
+            android:textColor="@color/common_white_color"
+            android:textSize="@dimen/setting_head_text_size" />
+        
+    </LinearLayout>
+    
+    <RelativeLayout
+        android:layout_below="@id/url_setting_head"
+        android:id="@+id/urlview"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/device_text_height" >
+
+        <TextView
+            android:id="@+id/urltext"
+            android:layout_width="@dimen/device_text_width"
+            android:layout_height="@dimen/device_text_height"
+            android:layout_marginLeft="10dp"
+            android:paddingTop="10dp"
+            android:gravity="center"
+            android:text="HTTP\nURL"
+            android:textSize="@dimen/device_text_size" />
+
+        <EditText
+            android:id="@+id/urledit"
+            android:layout_width="@dimen/device_ed_width"
+            android:layout_height="@dimen/device_text_height"
+            android:layout_toRightOf="@id/urltext"
+            android:textSize="@dimen/device_text_size" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/serverview"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/device_text_height"
+        android:layout_below="@id/urlview" >
+
+        <TextView
+            android:id="@+id/servertext"
+            android:layout_width="@dimen/device_text_width"
+            android:layout_height="@dimen/device_text_height"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:text="FTP\nSERVER" 
+            android:textSize="@dimen/device_text_size" />
+
+        <EditText
+            android:id="@+id/serveredit"
+            android:layout_width="@dimen/device_ed_width"
+            android:layout_height="@dimen/device_text_height"
+            android:layout_toRightOf="@id/servertext"
+            android:textSize="@dimen/device_text_size" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/portview"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/device_text_height"
+        android:layout_below="@id/serverview" >
+
+        <TextView
+            android:id="@+id/porttext"
+            android:layout_width="@dimen/device_text_width"
+            android:layout_height="@dimen/device_text_height"
+            android:layout_marginLeft="10dp"
+            android:paddingTop="10dp"
+            android:gravity="center"
+            android:text="FTP\nPORT"
+            android:textSize="@dimen/device_text_size" />
+
+        <EditText
+            android:id="@+id/portedit"
+            android:layout_width="@dimen/device_ed_width"
+            android:layout_height="@dimen/device_text_height"
+            android:layout_toRightOf="@id/porttext"
+            android:textSize="@dimen/device_text_size" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/usridview"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/device_text_height"
+        android:layout_below="@id/portview" >
+
+        <TextView
+            android:id="@+id/usridtext"
+            android:layout_width="@dimen/device_text_width"
+            
+            android:layout_height="@dimen/device_text_height"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:text="FTP\nUSERID"
+            android:textSize="@dimen/device_text_size" />
+
+        <EditText
+            android:id="@+id/useridedit"
+            android:layout_width="@dimen/device_ed_width"
+            android:layout_height="@dimen/device_text_height"
+            android:layout_marginLeft="10dp"
+            android:paddingTop="10dp"
+            android:layout_toRightOf="@id/usridtext"
+            android:textSize="@dimen/device_text_size" />
+    </RelativeLayout>
+    
+        <RelativeLayout
+        android:id="@+id/usrpwview"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/device_text_height"
+        android:layout_below="@id/usridview" >
+
+        <TextView
+            android:id="@+id/usrpwtext"
+            android:layout_width="@dimen/device_text_width"
+            android:layout_height="@dimen/device_text_height"
+            android:layout_marginLeft="10dp"
+            android:paddingTop="10dp"
+            android:gravity="center"
+            android:text="FTP\nUSERPW"
+            android:textSize="@dimen/device_text_size" />
+
+        <EditText
+            android:id="@+id/usrpwedit"
+            android:layout_width="@dimen/device_ed_width"
+            android:layout_height="@dimen/device_text_height"
+            android:layout_toRightOf="@id/usrpwtext"
+            android:textSize="@dimen/device_text_size" />
+    </RelativeLayout>
+    
+        <Button 
+            android:id="@+id/device_updaate"
+            android:layout_below="@id/usrpwview"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="변경하기"
+            android:textSize="@dimen/device_text_size"/>
+
+</RelativeLayout>

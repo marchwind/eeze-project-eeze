@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/popuplinear"
+    android:padding="22.5dp"
+    android:background="@color/common_white_color" >
+    
+    <FrameLayout 
+        android:id="@+id/notice_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        
+    	<TextView 
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_gravity="center"
+		    android:text="공지사항"
+		    android:textSize="25sp"
+		    android:textColor="@color/common_black_color"
+		    android:textStyle="bold"
+		    />
+    	
+    	<Button 
+    	    android:id="@+id/notice_close"
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+    	    android:layout_gravity="top|right"
+    	    android:drawableTop="@drawable/popup_close"
+    	    android:text="닫기"
+    	    android:background="@null"/>
+    	
+    </FrameLayout>
+    
+    <LinearLayout 
+        android:id="@+id/notice_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/notice_top"
+        android:layout_marginTop="35dp"
+        android:orientation="vertical">
+        
+        <TextView
+            android:id="@+id/notice_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="22sp"
+            android:textColor="#5fb6ae"
+            />
+        
+        <TextView
+            android:id="@+id/notice_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:singleLine="false"
+            android:maxLines="15"
+            android:text=""
+            android:textSize="20sp"
+            android:textColor="@color/common_black_color"
+            />
+        
+    </LinearLayout>
+        
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:paddingLeft="11.5dp"
+        android:paddingRight="11.5dp"
+        android:gravity="center">
+        
+        <Button
+            android:layout_alignParentLeft="true" 
+            android:id="@+id/noti_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이전"
+            android:textSize="22.5sp"
+            android:background="@drawable/popup_btn"/>
+        
+        
+        <Button
+            android:layout_alignParentRight="true" 
+            android:id="@+id/noti_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="다음"
+            android:textSize="22.5sp"
+            android:background="@drawable/popup_btn"/>
+        
+    </RelativeLayout>
+</RelativeLayout>
