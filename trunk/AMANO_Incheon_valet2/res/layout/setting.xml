@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+    android:background="@color/setcommon_background_color" >
+
+    <LinearLayout
+        android:id="@+id/setting_head"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/headline_heigh"
+        android:background="@color/setcommon_color"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/set_bhome_btn"
+            android:layout_width="@dimen/setting_head_home_icon_width"
+            android:layout_height="@dimen/setting_head_home_icon_height" 
+            android:drawableTop="@drawable/home_icon"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/setting_head_margin_left"
+            android:text="@string/home"
+            android:textStyle="bold"
+            android:textColor="@color/common_white_color"
+            android:textSize="@dimen/setting_head_icon_text_size"
+            android:background="@null"
+            />
+        
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="설정"
+            android:textStyle="bold"
+            android:textColor="@color/common_white_color"
+            android:textSize="@dimen/setting_head_text_size" />
+        
+    </LinearLayout>
+    
+    <ScrollView 
+        android:layout_below="@id/setting_head"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        
+	    <RelativeLayout 
+	        
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:background="@color/setting_line_color">
+	    
+		    <FrameLayout 
+		        android:id="@+id/set_btoothbtn"
+		        android:layout_width="fill_parent"
+		        android:layout_height="@dimen/setting_list_height"
+		        android:background="@color/common_white_color"
+		        android:layout_marginBottom="1px"
+		        >
+		        
+		        <TextView
+		            android:layout_width="@dimen/setting_width"
+		            android:layout_height="wrap_content"
+		            android:layout_marginLeft="@dimen/setting_list_side_margin"
+		            android:layout_gravity="left|center_vertical"
+		            android:drawableLeft="@drawable/print_icon"
+		            android:drawablePadding="@dimen/setting_list_icon_padding"
+		            android:text="블루투스 프린트 연결"
+		            android:textColor="@color/setcommon_color"
+		            android:textSize="@dimen/setting_list_text_size" />
+		        
+		        <ImageView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_gravity="right|center_vertical"
+		            android:layout_marginRight="@dimen/setting_list_side_margin"
+		            android:background="@drawable/next_icon" />
+		        
+			</FrameLayout>
+		
+		   	<FrameLayout 
+		        android:id="@+id/set_flashbtn"
+		        android:layout_below="@id/set_btoothbtn"
+		        android:layout_width="fill_parent"
+		        android:layout_height="@dimen/setting_list_height"
+		        android:background="@color/common_white_color"
+		        android:layout_marginBottom="1px"
+		        >
+		        
+		        <TextView
+		            android:layout_width="@dimen/setting_width"
+		            android:layout_height="wrap_content"
+		            android:layout_marginLeft="@dimen/setting_list_side_margin"
+		            android:layout_gravity="left|center_vertical"
+		            android:drawableLeft="@drawable/flash_icon"
+		            android:drawablePadding="@dimen/setting_list_icon_padding"
+		            android:text="후레쉬 설정"
+		            android:textColor="@color/setcommon_color"
+		            android:textSize="@dimen/setting_list_text_size" />
+		        
+		        <ImageView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_gravity="right|center_vertical"
+		            android:layout_marginRight="@dimen/setting_list_side_margin"
+		            android:background="@drawable/next_icon" />
+		        
+			</FrameLayout>
+			
+		   	<FrameLayout 
+		        android:id="@+id/set_resolutionbtn"
+		        android:layout_below="@id/set_flashbtn"
+		        android:layout_width="fill_parent"
+		        android:layout_height="@dimen/setting_list_height"
+		        android:background="@color/common_white_color"
+		        android:layout_marginBottom="1px"
+		        >
+		        
+		        <TextView
+		            android:layout_width="@dimen/setting_width"
+		            android:layout_height="wrap_content"
+		            android:layout_marginLeft="@dimen/setting_list_side_margin"
+		            android:layout_gravity="left|center_vertical"
+		            android:drawableLeft="@drawable/video_icon"
+		            android:drawablePadding="@dimen/setting_list_icon_padding"
+		            android:text="해상도 설정"
+		            android:textColor="@color/setcommon_color"
+		            android:textSize="@dimen/setting_list_text_size" />
+		        
+		        <ImageView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_gravity="right|center_vertical"
+		            android:layout_marginRight="@dimen/setting_list_side_margin"
+		            android:background="@drawable/next_icon" />
+		        
+			</FrameLayout>
+	        
+			<FrameLayout 
+		        android:id="@+id/set_videobtn"
+		        android:layout_below="@id/set_resolutionbtn"
+		        android:layout_width="fill_parent"
+		        android:layout_height="@dimen/setting_list_height"
+		        android:background="@color/common_white_color"
+		        android:layout_marginBottom="1px"
+		        >
+		        
+		        <TextView
+		            android:layout_width="@dimen/setting_width"
+		            android:layout_height="wrap_content"
+		            android:layout_marginLeft="@dimen/setting_list_side_margin"
+		            android:layout_gravity="left|center_vertical"
+		            android:drawableLeft="@drawable/video_icon"
+		            android:drawablePadding="@dimen/setting_list_icon_padding"
+		            android:text="차량 손상부위 촬영 설정"
+		            android:textColor="@color/setcommon_color"
+		            android:textSize="@dimen/setting_list_text_size" />
+		        
+		        <ImageView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_gravity="right|center_vertical"
+		            android:layout_marginRight="@dimen/setting_list_side_margin"
+		            android:background="@drawable/next_icon" />
+		        
+			</FrameLayout>
+	    
+			<FrameLayout 
+		        android:id="@+id/set_sendbtn"
+		        android:layout_below="@id/set_videobtn"
+		        android:layout_width="fill_parent"
+		        android:layout_height="@dimen/setting_list_height"
+		        android:background="@color/common_white_color"
+		        android:layout_marginBottom="1px"
+		        >
+		        
+		        <TextView
+		            android:layout_width="@dimen/setting_width"
+		            android:layout_height="wrap_content"
+		            android:layout_marginLeft="@dimen/setting_list_side_margin"
+		            android:layout_gravity="left|center_vertical"
+		            android:drawableLeft="@drawable/data_send_icon"
+		            android:drawablePadding="@dimen/setting_list_icon_padding"
+		            android:text="데이터 전송 현황"
+		            android:textColor="@color/setcommon_color"
+		            android:textSize="@dimen/setting_list_text_size" />
+		        
+		        <ImageView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_gravity="right|center_vertical"
+		            android:layout_marginRight="@dimen/setting_list_side_margin"
+		            android:background="@drawable/next_icon" />
+		        
+			</FrameLayout>
+	    
+			<FrameLayout 
+		        android:id="@+id/set_statusbtn"
+		        android:layout_below="@id/set_sendbtn"
+		        android:layout_width="fill_parent"
+		        android:layout_height="@dimen/setting_list_height"
+		        android:background="@color/common_white_color"
+		        android:layout_marginBottom="1px"
+		        >
+		        
+		        <TextView
+		            android:layout_width="@dimen/setting_width"
+		            android:layout_height="wrap_content"
+		            android:layout_marginLeft="@dimen/setting_list_side_margin"
+		            android:layout_gravity="left|center_vertical"
+		            android:drawableLeft="@drawable/use_status_icon"
+		            android:drawablePadding="@dimen/setting_list_icon_padding"
+		            android:text="사용 현황"
+		            android:textColor="@color/setcommon_color"
+		            android:textSize="@dimen/setting_list_text_size" />
+		        
+		        <ImageView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_gravity="right|center_vertical"
+		            android:layout_marginRight="@dimen/setting_list_side_margin"
+		            android:background="@drawable/next_icon" />
+		        
+			</FrameLayout>
+	   
+	    	<FrameLayout 
+		        android:id="@+id/set_versionbtn"
+		        android:layout_below="@id/set_statusbtn"
+		        android:layout_width="fill_parent"
+		        android:layout_height="@dimen/setting_list_height"
+		        android:background="@color/common_white_color"
+		        android:layout_marginBottom="1px"
+		        >
+		        
+		        <TextView
+		            android:layout_width="@dimen/setting_width"
+		            android:layout_height="wrap_content"
+		            android:layout_marginLeft="@dimen/setting_list_side_margin"
+		            android:layout_gravity="left|center_vertical"
+		            android:drawableLeft="@drawable/version_icon"
+		            android:drawablePadding="@dimen/setting_list_icon_padding"
+		            android:text="버전 관리"
+		            android:textColor="@color/setcommon_color"
+		            android:textSize="@dimen/setting_list_text_size" />
+		        
+		        <ImageView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_gravity="right|center_vertical"
+		            android:layout_marginRight="@dimen/setting_list_side_margin"
+		            android:background="@drawable/next_icon" />
+		        
+			</FrameLayout>
+			
+	    	<FrameLayout 
+		        android:id="@+id/set_logout_btn"
+		        android:layout_below="@id/set_versionbtn"
+		        android:layout_width="fill_parent"
+		        android:layout_height="@dimen/setting_list_height"
+		        android:background="@color/common_white_color"
+		        android:layout_marginBottom="1px"
+		        >
+		        
+		        <TextView
+		            android:layout_width="@dimen/setting_width"
+		            android:layout_height="wrap_content"
+		            android:layout_marginLeft="@dimen/setting_list_side_margin"
+		            android:layout_gravity="left|center_vertical"
+		            android:drawableLeft="@drawable/use_status_icon"
+		            android:drawablePadding="@dimen/setting_list_icon_padding"
+		            android:text="로그아웃"
+		            android:textColor="@color/setcommon_color"
+		            android:textSize="@dimen/setting_list_text_size" />
+		        
+		        <ImageView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_gravity="right|center_vertical"
+		            android:layout_marginRight="@dimen/setting_list_side_margin"
+		            android:background="@drawable/next_icon" />
+		        
+			</FrameLayout>
+	    	
+	    	<FrameLayout 
+		        android:id="@+id/set_deviceip_btn"
+		        android:layout_below="@id/set_logout_btn"
+		        android:layout_width="fill_parent"
+		        android:layout_height="@dimen/setting_list_height"
+		        android:background="@color/common_white_color"
+		        android:layout_marginBottom="1px"
+		        >
+		        
+		        <TextView
+		            android:layout_width="@dimen/setting_width"
+		            android:layout_height="wrap_content"
+		            android:layout_marginLeft="@dimen/setting_list_side_margin"
+		            android:layout_gravity="left|center_vertical"
+		            android:drawableLeft="@drawable/version_icon"
+		            android:drawablePadding="@dimen/setting_list_icon_padding"
+		            android:text="IP 설정"
+		            android:textColor="@color/setcommon_color"
+		            android:textSize="@dimen/setting_list_text_size" />
+		        
+		        <ImageView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_gravity="right|center_vertical"
+		            android:layout_marginRight="@dimen/setting_list_side_margin"
+		            android:background="@drawable/next_icon" />
+		        
+			</FrameLayout>
+	    
+	   
+		</RelativeLayout>
+	</ScrollView>
+</RelativeLayout>

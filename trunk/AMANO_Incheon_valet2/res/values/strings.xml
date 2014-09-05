@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">인천국제공항 발렛 서비스</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="login_ktext">인천국제공항\n발렛파킹서비스</string>
+    <string name="login_etext">Incheon International Airport\nValet Parking Service</string>
+    <string name="login_id_hint">아이디를 입력하세요</string>
+    <string name="login_pw_hint">비밀번호를 입력하세요</string>
+    <string name="login_btn_text">로그인</string>
+    
+    <string name="main_text">인천국제공항\n발렛파킹서비스</string>
+    <string name="receipt_car">차종을 검색하세요</string>
+    
+    <string name="main_notice_text">공지사항</string>
+    <string name="wifialert">Wifi를 키고 실행해주시기 바랍니다.</string>
+    <string name="alert_title_text">경고</string>
+    <string name="receipt_cancel_alert">접수를 취소하시겠습니까?</string>
+    <string name="alert_receipt_cancel_title">취소 확인</string>
+    <string name="alert_Ok_text">확인</string>
+    <string name="alert_Cancel_text">취소</string>
+     <string name="receipt_title_text">완료</string>
+    <string name="carNumber_need_alert">차량번호는 필수로 입력하셔야 합니다.</string>
+    <string name="setCamera_need_alert">아직 지원하지 않는 기능입니다.</string>
+    <string name="receipt_need_alert">모든 사항을 다 입력해 주세요.</string>
+    <string name="receipt_save_alert">성공적으로 접수되었습니다.</string>
+    
+    
+    <string name="camera_flash_text">후레쉬</string>
+    <string name="camera_rebtn_text">재인식</string>
+    <string name="camera_regonizing_text">차량번호 인식중.</string>    
+    <string name="receipt_text">접수</string>
+    <string name="cacel_text">취소</string>
+    
+    <string name="receipt_carType_hint">차종을 검색하세요</string>
+    <string name="receipt_travelDate_hint">00</string>
+    <string name="receipt_endDateTime_hint">00</string>
+    
+    <string name="home">메인</string>
+    <string name="back">뒤로</string>
+    
+    <string name="bluetooth_title">블루투스 프린트 연결</string>
+    <string name="bluetooth_connect_txt">●연결</string>
+    <string name="bluetooth_search_text">프린트 찾기</string>
+    <string name="bluetooth_searching_text">프린트 찾는중...</string>
+    <string name="connect_txt">연결</string>
+    <string name="not_connect_text">연결안됨</string>
+    <string name="disconnect_text">해제</string>
+    
+    
+</resources>

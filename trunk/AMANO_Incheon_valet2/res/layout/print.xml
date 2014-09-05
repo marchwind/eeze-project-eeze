@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/print_color"
+    android:orientation="vertical" >
+	
+    <LinearLayout
+        android:id="@+id/print_setting_head"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/headline_heigh"
+        android:background="@color/setcommon_color"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/print_home_btn"
+            android:layout_width="@dimen/setting_head_home_icon_width"
+            android:layout_height="@dimen/setting_head_home_icon_height" 
+            android:drawableTop="@drawable/home_icon"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/setting_head_margin_left"
+            android:text="@string/home"
+            android:textStyle="bold"
+            android:textColor="@color/common_white_color"
+            android:textSize="@dimen/setting_head_icon_text_size"
+            android:background="@null"
+            />
+        
+        <Button
+            android:id="@+id/print_back_btn"
+            android:layout_width="@dimen/setting_head_home_icon_width"
+            android:layout_height="@dimen/setting_head_home_icon_height" 
+            android:drawableTop="@drawable/return_icon"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/setting_head_margin_left"
+            android:text="@string/back"
+            android:textStyle="bold"
+            android:textColor="@color/common_white_color"
+            android:textSize="@dimen/setting_head_icon_text_size"
+            android:background="@null"
+            />
+        
+        <TextView
+            android:id="@+id/print_headline_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:text="38무6617"
+            android:textStyle="bold"
+            android:textColor="@color/common_white_color"
+            android:textSize="@dimen/setting_head_text_size" />
+        
+    </LinearLayout>
+
+    <ScrollView 
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+	    <LinearLayout 
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical">
+	   
+		    <RelativeLayout
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_margin="@dimen/receipt_scrollview_padding" 
+		       >
+		
+		       	<TableLayout
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:background="@color/common_white_color"
+		            android:padding="@dimen/receipt_table_padding1" >
+		
+		
+		           	<TableRow
+		                android:layout_width="match_parent"
+		                android:layout_height="wrap_content" 
+		                android:background="@color/print_color">
+		
+		                <TextView
+		                    android:layout_width="@dimen/receipt_table_col1_text_width"
+		                    android:layout_height="@dimen/receipt_table_row_height"
+		                    android:gravity="center_vertical"
+		                    android:paddingLeft="@dimen/receipt_table_padding1"
+		                    android:layout_marginBottom="1px"
+		                    android:layout_marginLeft="2px"
+		                    android:layout_marginRight="1px"
+		                    android:layout_marginTop="2px"
+		                    android:background="@color/common_white_color"
+		                    android:text="접수번호"
+		                    android:textColor="@color/print_color"
+		                    android:textSize="@dimen/receipt_table_title_text"
+		                    android:textStyle="bold" />
+		
+		                <TextView
+		                    android:id="@+id/print_receipt_num"
+		                    android:layout_width="0dp"
+		                    android:layout_height="match_parent"
+		                    android:layout_marginBottom="1px"
+		                    android:layout_marginLeft="1px"
+		                    android:layout_marginRight="2px"
+		                    android:layout_marginTop="2px"
+		                    android:layout_weight="1"
+		                    android:background="@color/common_white_color"
+		                    android:gravity="center_vertical"
+		                    android:paddingLeft="@dimen/receipt_table_padding1"
+		                    android:text="700200"
+		                    android:textColor="@color/receipt_text2_color"
+		                    android:textSize="@dimen/receipt_table_text2_size" />
+		
+		            </TableRow>
+		
+		
+		           	<TableRow
+		                android:layout_width="match_parent"
+		                android:layout_height="wrap_content" 
+		                android:background="@color/print_color">
+		
+						<TextView
+		                    android:layout_width="@dimen/receipt_table_col1_text_width"
+		                    android:layout_height="@dimen/receipt_table_row_height"
+		                    android:gravity="center_vertical"
+		                    android:paddingLeft="@dimen/receipt_table_padding1"
+		                    android:layout_marginBottom="1px"
+		                    android:layout_marginLeft="2px"
+		                    android:layout_marginRight="1px"
+		                    android:layout_marginTop="2px"
+		                    android:background="@color/common_white_color"
+		                    android:text="접수자"
+		                    android:textColor="@color/print_color"
+		                    android:textSize="@dimen/receipt_table_title_text"
+		                    android:textStyle="bold" />
+		
+		                <TextView
+		                    android:id="@+id/print_receipt_name"
+		                    android:layout_width="0dp"
+		                    android:layout_height="match_parent"
+		                    android:layout_marginBottom="1px"
+		                    android:layout_marginLeft="1px"
+		                    android:layout_marginRight="2px"
+		                    android:layout_marginTop="2px"
+		                    android:layout_weight="1"
+		                    android:background="@color/common_white_color"
+		                    android:gravity="center_vertical"
+		                    android:paddingLeft="@dimen/receipt_table_padding1"
+		                    android:text="홍길동"
+		                    android:textColor="@color/receipt_text2_color"
+		                    android:textSize="@dimen/receipt_table_text2_size" />
+		                
+		            </TableRow>
+		
+		           	<TableRow
+		                android:layout_width="match_parent"
+		                android:layout_height="wrap_content" 
+		                android:background="@color/print_color">
+		
+						<TextView
+		                    android:layout_width="@dimen/receipt_table_col1_text_width"
+		                    android:layout_height="@dimen/receipt_table_row_height"
+		                    android:gravity="center_vertical"
+		                    android:paddingLeft="@dimen/receipt_table_padding1"
+		                    android:layout_marginBottom="1px"
+		                    android:layout_marginLeft="2px"
+		                    android:layout_marginRight="1px"
+		                    android:layout_marginTop="2px"
+		                    android:background="@color/common_white_color"
+		                    android:text="접수일시"
+		                    android:textColor="@color/print_color"
+		                    android:textSize="@dimen/receipt_table_title_text"
+		                    android:textStyle="bold" />
+		
+		                <TextView
+		                    android:id="@+id/print_receipt_date"
+		                    android:layout_width="0dp"
+		                    android:layout_height="match_parent"
+		                    android:layout_marginBottom="1px"
+		                    android:layout_marginLeft="1px"
+		                    android:layout_marginRight="2px"
+		                    android:layout_marginTop="2px"
+		                    android:layout_weight="1"
+		                    android:background="@color/common_white_color"
+		                    android:gravity="center_vertical"
+		                    android:paddingLeft="@dimen/receipt_table_padding1"
+		                    android:text="2014-07-04 12:11"
+		                    android:textColor="@color/receipt_text2_color"
+		                    android:textSize="@dimen/receipt_table_text2_size" />
+		                
+		            </TableRow>
+		           	
+		           	<TableRow
+		                android:layout_width="match_parent"
+		                android:layout_height="wrap_content" 
+		                android:background="@color/print_color">
+		
+						<TextView
+		                    android:layout_width="@dimen/receipt_table_col1_text_width"
+		                    android:layout_height="@dimen/receipt_table_row_height"
+		                    android:gravity="center_vertical"
+		                    android:paddingLeft="@dimen/receipt_table_padding1"
+		                    android:layout_marginBottom="1px"
+		                    android:layout_marginLeft="2px"
+		                    android:layout_marginRight="1px"
+		                    android:layout_marginTop="2px"
+		                    android:background="@color/common_white_color"
+		                    android:text="차량번호"
+		                    android:textColor="@color/print_color"
+		                    android:textSize="@dimen/receipt_table_title_text"
+		                    android:textStyle="bold" />
+		
+		                <TextView
+		                    android:id="@+id/print_car_num"
+		                    android:layout_width="0dp"
+		                    android:layout_height="match_parent"
+		                    android:layout_marginBottom="1px"
+		                    android:layout_marginLeft="1px"
+		                    android:layout_marginRight="2px"
+		                    android:layout_marginTop="2px"
+		                    android:layout_weight="1"
+		                    android:background="@color/common_white_color"
+		                    android:gravity="center_vertical"
+		                    android:paddingLeft="@dimen/receipt_table_padding1"
+		                    android:text="38무 6617"
+		                    android:textColor="@color/receipt_text2_color"
+		                    android:textSize="@dimen/receipt_table_text2_size" />
+		                
+		            </TableRow>
+		
+		           	<TableRow
+		                android:layout_width="match_parent"
+		                android:layout_height="wrap_content" 
+		                android:background="@color/print_color">
+		
+						<TextView
+		                    android:layout_width="@dimen/receipt_table_col1_text_width"
+		                    android:layout_height="@dimen/receipt_table_row_height"
+		                    android:gravity="center_vertical"
+		                    android:paddingLeft="@dimen/receipt_table_padding1"
+		                    android:layout_marginBottom="1px"
+		                    android:layout_marginLeft="2px"
+		                    android:layout_marginRight="1px"
+		                    android:layout_marginTop="2px"
+		                    android:background="@color/common_white_color"
+		                    android:text="차종"
+		                    android:textColor="@color/print_color"
+		                    android:textSize="@dimen/receipt_table_title_text"
+		                    android:textStyle="bold" />
+		
+		                <TextView
+		                    android:id="@+id/print_car_name"
+		                    android:layout_width="0dp"
+		                    android:layout_height="match_parent"
+		                    android:layout_marginBottom="1px"
+		                    android:layout_marginLeft="1px"
+		                    android:layout_marginRight="2px"
+		                    android:layout_marginTop="2px"
+		                    android:layout_weight="1"
+		                    android:background="@color/common_white_color"
+		                    android:gravity="center_vertical"
+		                    android:paddingLeft="@dimen/receipt_table_padding1"
+		                    android:text="제네시스"
+		                    android:textColor="@color/receipt_text2_color"
+		                    android:textSize="@dimen/receipt_table_text2_size" />
+		                
+		            </TableRow>
+		           	
+		           	<TableRow
+		                android:layout_width="match_parent"
+		                android:layout_height="wrap_content" 
+		                android:background="@color/print_color">
+		
+						<TextView
+		                    android:layout_width="@dimen/receipt_table_col1_text_width"
+		                    android:layout_height="@dimen/receipt_table_row_height"
+		                    android:gravity="center_vertical"
+		                    android:paddingLeft="@dimen/receipt_table_padding1"
+		                    android:layout_marginBottom="1px"
+		                    android:layout_marginLeft="2px"
+		                    android:layout_marginRight="1px"
+		                    android:layout_marginTop="2px"
+		                    android:background="@color/common_white_color"
+		                    android:text="귀국일시"
+		                    android:textColor="@color/print_color"
+		                    android:textSize="@dimen/receipt_table_title_text"
+		                    android:textStyle="bold" />
+		
+		                <TextView
+		                    android:id="@+id/print_return_date"
+		                    android:layout_width="0dp"
+		                    android:layout_height="match_parent"
+		                    android:layout_marginBottom="1px"
+		                    android:layout_marginLeft="1px"
+		                    android:layout_marginRight="2px"
+		                    android:layout_marginTop="2px"
+		                    android:layout_weight="1"
+		                    android:background="@color/common_white_color"
+		                    android:gravity="center_vertical"
+		                    android:paddingLeft="@dimen/receipt_table_padding1"
+		                    android:text="2014/06/15/ 15:00"
+		                    android:textColor="@color/receipt_text2_color"
+		                    android:textSize="@dimen/receipt_table_text2_size" />
+		                
+		            </TableRow>
+		            
+		            <TableRow
+		                android:layout_width="match_parent"
+		                android:layout_height="wrap_content" 
+		                android:background="@color/print_color">
+		
+						<TextView
+		                    android:layout_width="@dimen/receipt_table_col1_text_width"
+		                    android:layout_height="@dimen/receipt_table_row_height"
+		                    android:gravity="center_vertical"
+		                    android:paddingLeft="@dimen/receipt_table_padding1"
+		                    android:layout_marginBottom="1px"
+		                    android:layout_marginLeft="2px"
+		                    android:layout_marginRight="1px"
+		                    android:layout_marginTop="2px"
+		                    android:background="@color/common_white_color"
+		                    android:text="차량찾는곳"
+		                    android:textColor="@color/print_color"
+		                    android:textSize="@dimen/receipt_table_title_text"
+		                    android:textStyle="bold" />
+		
+		                <TextView
+		                    android:id="@+id/print_car_search"
+		                    android:layout_width="0dp"
+		                    android:layout_height="match_parent"
+		                    android:layout_marginBottom="1px"
+		                    android:layout_marginLeft="1px"
+		                    android:layout_marginRight="2px"
+		                    android:layout_marginTop="2px"
+		                    android:layout_weight="1"
+		                    android:background="@color/common_white_color"
+		                    android:gravity="center_vertical"
+		                    android:paddingLeft="@dimen/receipt_table_padding1"
+		                    android:text="지하 3층 A32(동측)"
+		                    android:textColor="@color/receipt_text2_color"
+		                    android:textSize="@dimen/receipt_table_text2_size" />
+		                
+		            </TableRow>
+		            
+		            <TableRow
+		                android:layout_width="match_parent"
+		                android:layout_height="wrap_content"
+		                android:background="@color/print_color" >
+		                
+		                <RelativeLayout 
+		                    android:layout_width="match_parent"
+		                    android:layout_height="wrap_content"
+		                    android:layout_span="2"
+		                    android:layout_weight="1"
+		                    android:gravity="center_horizontal"
+		                    android:background="@color/common_white_color"
+		                    android:layout_marginBottom="2px"
+		                    android:layout_marginLeft="2px"
+		                    android:layout_marginRight="2px"
+		                    android:layout_marginTop="1px" >
+		                    
+		                    <ImageView 
+		                        android:id="@+id/print_car_img"
+		                        android:layout_width="284dp"
+		                        android:layout_height="160dp"
+		                        android:layout_centerHorizontal="true"
+		                        android:src="@drawable/carimage"
+		                        android:scaleType="fitStart"/>
+			                
+			               
+		                </RelativeLayout>
+		            </TableRow>
+		
+		            
+		        </TableLayout>
+		        
+			</RelativeLayout>
+			
+			<RelativeLayout
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content" 
+			    android:layout_margin="@dimen/receipt_scrollview_padding" >
+			
+			    <FrameLayout 
+			        android:id="@+id/print_top_btn"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        >
+			        
+			        <Button
+				        android:id="@+id/print_customer_btn"
+				        android:layout_width="@dimen/print_ckbtn_width"
+				        android:layout_height="@dimen/print_ckbtn_height"
+				        android:background="@drawable/receipt_customers_selector"
+				        android:text="보관증 재출력\n고객용"
+				        android:textStyle="bold"
+				        android:textColor="@color/print_btn_color"
+				        android:textSize="@dimen/print_ckbtn_text2_size" />	
+				   
+				    <Button
+				        android:id="@+id/print_keep_btn"
+				        android:layout_gravity="right"
+				        android:layout_width="@dimen/print_ckbtn_width"
+				        android:layout_height="@dimen/print_ckbtn_height"
+				        android:background="@drawable/receipt_cancel_selector"
+				        android:text="보관증 재출력\n보관용"
+				        android:textColor="@color/print_btn_color"
+				        android:textStyle="bold"
+				        android:textSize="@dimen/print_ckbtn_text2_size"
+				        />
+			        
+			    </FrameLayout>
+			    
+				<FrameLayout 
+				    android:layout_marginTop="18dp"
+				    android:layout_below="@id/print_top_btn"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        >
+			    
+				    <Button
+				        android:id="@+id/video_view_btn"
+				        android:layout_width="@dimen/print_ckbtn_width"
+				        android:layout_height="@dimen/print_ckbtn_height"
+				        android:background="@drawable/video_vr_selector"
+				        android:text="촬영영상보기"
+				        android:textColor="@color/print_btn_color"
+				        android:textStyle="bold"
+				        android:textSize="@dimen/print_ckbtn_text2_size" />
+				
+				   
+				    <Button
+				        android:id="@+id/video_resend_btn"
+				        android:layout_gravity="right"
+				        android:layout_width="@dimen/print_ckbtn_width"
+				        android:layout_height="@dimen/print_ckbtn_height"
+				       android:background="@drawable/video_vr_selector"
+				        android:text="촬영영상전송"
+				        android:textColor="@color/print_btn_color"
+				        android:textStyle="bold"
+				        android:textSize="@dimen/print_ckbtn_text2_size" />
+			    </FrameLayout>
+			</RelativeLayout>
+	 	</LinearLayout>    
+	</ScrollView>
+
+</LinearLayout>

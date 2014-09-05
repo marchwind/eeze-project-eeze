@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+     android:background="@color/setcommon_background_color"
+	>
+
+    <LinearLayout
+        android:id="@+id/blutooth_setting_head"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/headline_heigh"
+        android:background="@color/setcommon_color"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/bluetooth_home_btn"
+            android:layout_width="@dimen/setting_head_home_icon_width"
+            android:layout_height="@dimen/setting_head_home_icon_height" 
+            android:drawableTop="@drawable/home_icon"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/setting_head_margin_left"
+            android:text="@string/home"
+            android:textStyle="bold"
+            android:textColor="@color/common_white_color"
+            android:textSize="@dimen/setting_head_icon_text_size"
+            android:background="@null"
+            />
+        
+        <Button
+            android:id="@+id/bluetooth_back_btn"
+            android:layout_width="@dimen/setting_head_home_icon_width"
+            android:layout_height="@dimen/setting_head_home_icon_height" 
+            android:drawableTop="@drawable/return_icon"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/setting_head_margin_left"
+            android:text="@string/back"
+            android:textStyle="bold"
+            android:textColor="@color/common_white_color"
+            android:textSize="@dimen/setting_head_icon_text_size"
+            android:background="@null"
+            />
+        
+        <TextView
+            android:id="@+id/bluetoot_headline_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:text="@string/bluetooth_title"
+            android:textStyle="bold"
+            android:textColor="@color/common_white_color"
+            android:textSize="@dimen/setting_head_text_size" />
+        
+    </LinearLayout>
+	<RelativeLayout 
+	    android:id="@+id/blueview"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@id/blutooth_setting_head">
+	    <ListView 
+	        
+	        android:id="@+id/bluetooth_list"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content">
+	    </ListView>    
+	    
+	    <Button
+	        android:id="@+id/bluetooth_search"
+	        android:layout_below="@id/bluetooth_list"
+	        android:layout_width="@dimen/setting_bottom_btn_width"
+	        android:layout_height="@dimen/setting_bottom_btn_height"
+	        android:gravity="center"
+	        android:layout_centerHorizontal="true"
+	        android:layout_marginTop="@dimen/setting_bottom_btn_top"
+	        android:background="@drawable/long_width_btn"
+	        android:text="프린터 찾기"
+	        android:textColor="@color/send_btn_color"
+	        android:textSize="@dimen/setting_bottom_text_size"
+	        />
+    
+    </RelativeLayout>
+</RelativeLayout>

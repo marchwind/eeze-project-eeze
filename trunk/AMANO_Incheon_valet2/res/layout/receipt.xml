@@ -1,0 +1,709 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.terascope.amano.incheon.LockScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lockScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_x="0px"
+    android:layout_y="0px"
+    android:background="@color/receipt_backgroud_color"
+    android:padding="@dimen/receipt_scrollview_padding" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TableLayout
+            android:id="@+id/receipt_table"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/common_white_color"
+            android:padding="@dimen/receipt_table_padding1" >
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/receipt_line_color" >
+
+                <TextView
+                    android:layout_width="@dimen/receipt_table_col1_text_width"
+                    android:layout_height="@dimen/receipt_table_row_height"
+                    android:layout_marginBottom="1px"
+                    android:layout_marginLeft="2px"
+                    android:layout_marginRight="1px"
+                    android:layout_marginTop="2px"
+                    android:background="@color/common_white_color"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/receipt_table_padding1"
+                    android:text="접수번호"
+                    android:textColor="@color/receipt_text1_color"
+                    android:textSize="@dimen/receipt_table_title_text"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/receipt_num"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="1px"
+                    android:layout_marginLeft="1px"
+                    android:layout_marginRight="2px"
+                    android:layout_marginTop="2px"
+                    android:layout_weight="1"
+                    android:background="@color/common_white_color"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/receipt_table_padding1"
+                    android:text="700200"
+                    android:textColor="@color/receipt_text2_color"
+                    android:textSize="@dimen/receipt_table_text2_size" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/receipt_line_color" >
+
+                <TextView
+                    android:layout_width="@dimen/receipt_table_col1_text_width"
+                    android:layout_height="@dimen/receipt_table_row_height"
+                    android:layout_marginBottom="1px"
+                    android:layout_marginLeft="2px"
+                    android:layout_marginRight="1px"
+                    android:layout_marginTop="1px"
+                    android:background="@color/common_white_color"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/receipt_table_padding1"
+                    android:text="접수자"
+                    android:textColor="@color/receipt_text1_color"
+                    android:textSize="@dimen/receipt_table_title_text"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/receipt_name"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="1px"
+                    android:layout_marginLeft="1px"
+                    android:layout_marginRight="2px"
+                    android:layout_marginTop="1px"
+                    android:layout_weight="1"
+                    android:background="@color/common_white_color"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/receipt_table_padding1"
+                    android:text="홍길동"
+                    android:textColor="@color/receipt_text2_color"
+                    android:textSize="@dimen/receipt_table_text2_size" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/receipt_line_color" >
+
+                <TextView
+                    android:layout_width="@dimen/receipt_table_col1_text_width"
+                    android:layout_height="@dimen/receipt_table_row_height"
+                    android:layout_marginBottom="1px"
+                    android:layout_marginLeft="2px"
+                    android:layout_marginRight="1px"
+                    android:layout_marginTop="1px"
+                    android:background="@color/common_white_color"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/receipt_table_padding1"
+                    android:text="접수일시"
+                    android:textColor="@color/receipt_text1_color"
+                    android:textSize="@dimen/receipt_table_title_text"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/receipt_date"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="1px"
+                    android:layout_marginLeft="1px"
+                    android:layout_marginRight="2px"
+                    android:layout_marginTop="1px"
+                    android:layout_weight="1"
+                    android:background="@color/common_white_color"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/receipt_table_padding1"
+                    android:text="2014/06/12 14:12"
+                    android:textColor="@color/receipt_text2_color"
+                    android:textSize="@dimen/receipt_table_text2_size" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/receipt_line_color" >
+
+                <TextView
+                    android:layout_width="@dimen/receipt_table_col1_text_width"
+                    android:layout_height="@dimen/receipt_table_row_height"
+                    android:layout_marginBottom="1px"
+                    android:layout_marginLeft="2px"
+                    android:layout_marginRight="1px"
+                    android:layout_marginTop="1px"
+                    android:background="@color/common_white_color"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/receipt_table_padding1"
+                    android:text="차량번호"
+                    android:textColor="@color/receipt_text1_color"
+                    android:textSize="@dimen/receipt_table_title_text"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/car_num"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="1px"
+                    android:layout_marginLeft="1px"
+                    android:layout_marginRight="2px"
+                    android:layout_marginTop="1px"
+                    android:layout_weight="1"
+                    android:background="@color/common_white_color"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/receipt_table_padding1"
+                    android:text="38무 6617"
+                    android:textColor="@color/receipt_text2_color"
+                    android:textSize="@dimen/receipt_table_text2_size" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/receipt_line_color" >
+
+                <TextView
+                    android:layout_width="@dimen/receipt_table_col1_text_width"
+                    android:layout_height="@dimen/receipt_table_row_height"
+                    android:layout_marginBottom="1px"
+                    android:layout_marginLeft="2px"
+                    android:layout_marginRight="1px"
+                    android:layout_marginTop="1px"
+                    android:background="@color/common_white_color"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/receipt_table_padding1"
+                    android:text="차종"
+                    android:textColor="@color/receipt_text1_color"
+                    android:textSize="@dimen/receipt_table_title_text"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="1px"
+                    android:layout_marginLeft="1px"
+                    android:layout_marginRight="2px"
+                    android:layout_marginTop="1px"
+                    android:layout_weight="1"
+                    android:background="@color/common_white_color"
+                    android:orientation="vertical"
+                    android:padding="@dimen/receipt_table_padding2"
+                    android:paddingLeft="@dimen/receipt_table_padding1" >
+
+           <!--          <Spinner
+                        android:id="@+id/car_name"
+                        android:layout_width="@dimen/receipt_table_carType_width"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/car_checkbox"
+                        android:paddingLeft="@dimen/receipt_table_padding2"
+                        android:textSize="@dimen/receipt_table_input_text"
+                        android:entries="@array/car_name_spin"
+                        android:prompt="@string/receipt_car" /> -->
+
+          
+                         <EditText
+                        android:id="@+id/car_name"
+                        android:layout_width="@dimen/receipt_table_carType_width"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/car_checkbox"
+                        android:paddingLeft="@dimen/receipt_table_padding2"
+                        android:textSize="@dimen/receipt_table_input_text"
+                        android:textColorHint="@color/common_white_color"
+                        android:hint="@string/receipt_carType_hint"
+                        android:inputType="text"/>
+                        
+                    
+                </LinearLayout>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/receipt_line_color" >
+
+                <TextView
+                    android:layout_width="@dimen/receipt_table_col1_text_width"
+                    android:layout_height="@dimen/receipt_table_row_height"
+                    android:layout_marginBottom="1px"
+                    android:layout_marginLeft="2px"
+                    android:layout_marginRight="1px"
+                    android:layout_marginTop="1px"
+                    android:background="@color/common_white_color"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/receipt_table_padding1"
+                    android:text="여행기간"
+                    android:textColor="@color/receipt_text1_color"
+                    android:textSize="@dimen/receipt_table_title_text"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="1px"
+                    android:layout_marginLeft="1px"
+                    android:layout_marginRight="2px"
+                    android:layout_marginTop="1px"
+                    android:layout_weight="1"
+                    android:background="@color/common_white_color"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/receipt_table_padding2"
+                    android:paddingLeft="@dimen/receipt_table_padding1" >
+
+                    <EditText
+                        android:id="@+id/travel_term"
+                        android:layout_width="@dimen/receipt_table_number_width"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/spinner_icon"
+                        android:hint="@string/receipt_travelDate_hint"
+                        android:inputType="numberSigned"
+                        android:paddingLeft="@dimen/receipt_table_padding1"
+                        android:textColorHint="@color/common_white_color"
+                        android:textSize="@dimen/receipt_table_input_text"
+                        android:imeOptions="actionDone"
+                        android:maxLength="3" />
+
+                    <TextView
+                        android:id="@+id/term_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="일"
+                        android:textColor="@color/receipt_text2_color"
+                        android:textSize="@dimen/receipt_table_text2_size" />
+                </LinearLayout>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/receipt_line_color" >
+
+                <TextView
+                    android:layout_width="@dimen/receipt_table_col1_text_width"
+                    android:layout_height="@dimen/receipt_table_row_height"
+                    android:layout_marginBottom="1px"
+                    android:layout_marginLeft="2px"
+                    android:layout_marginRight="1px"
+                    android:layout_marginTop="1px"
+                    android:background="@color/common_white_color"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/receipt_table_padding1"
+                    android:text="귀국일시"
+                    android:textColor="@color/receipt_text1_color"
+                    android:textSize="@dimen/receipt_table_title_text"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="1px"
+                    android:layout_marginLeft="1px"
+                    android:layout_marginRight="2px"
+                    android:layout_marginTop="1px"
+                    android:layout_weight="1"
+                    android:background="@color/common_white_color"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/receipt_table_padding2"
+                    android:paddingLeft="@dimen/receipt_table_padding1" >
+
+                    <TextView
+                        android:id="@+id/return_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="@color/receipt_text2_color"
+                        android:textSize="@dimen/receipt_table_text2_size" />
+
+                    <EditText
+                        android:id="@+id/return_time"
+                        android:layout_width="@dimen/receipt_table_number_width"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/receipt_table_margin"
+                        android:background="@drawable/spinner_icon"
+                        android:hint="@string/receipt_travelDate_hint"
+                        android:inputType="numberSigned"
+                        android:paddingLeft="@dimen/receipt_table_padding1"
+                        android:textColorHint="@color/common_white_color"
+                        android:textSize="@dimen/receipt_table_input_text"
+                        android:imeOptions="actionDone"
+                        android:maxLength="2" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="시"
+                        android:textColor="@color/receipt_text2_color"
+                        android:textSize="@dimen/receipt_table_text2_size" />
+                </LinearLayout>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/receipt_line_color" >
+
+                <TextView
+                    android:layout_width="@dimen/receipt_table_col1_text_width"
+                    android:layout_height="@dimen/receipt_table_row_height"
+                    android:layout_marginBottom="1px"
+                    android:layout_marginLeft="2px"
+                    android:layout_marginRight="1px"
+                    android:layout_marginTop="1px"
+                    android:background="@color/common_white_color"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/receipt_table_padding1"
+                    android:text="차량확인"
+                    android:textColor="@color/receipt_text1_color"
+                    android:textSize="@dimen/receipt_table_title_text"
+                    android:textStyle="bold" />
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="1px"
+                    android:layout_marginLeft="1px"
+                    android:layout_marginRight="2px"
+                    android:layout_marginTop="1px"
+                    android:layout_weight="1"
+                    android:background="@color/common_white_color"
+                    android:paddingLeft="@dimen/receipt_table_padding1" >
+
+                    <TextView
+                        android:id="@+id/car_yn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="손상없음"
+                        android:textColor="@color/receipt_text2_color"
+                        android:textSize="@dimen/receipt_table_text2_size" />
+
+                    <CheckBox
+                        android:id="@+id/car_yn_checkbox"
+                        android:layout_width="@dimen/receipt_table_carcheck"
+                        android:layout_height="@dimen/receipt_table_carcheck"
+                        android:layout_gravity="right|center_vertical"
+                        android:layout_marginRight="@dimen/receipt_table_carcheck_right_margin"
+                        android:background="@drawable/check_box"
+                        android:button="@null"
+                        android:checked="true" />
+                </FrameLayout>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/receipt_line_color" >
+                
+                <RelativeLayout 
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_span="2"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:background="@color/common_white_color"
+                    android:layout_marginBottom="1px"
+                    android:layout_marginLeft="2px"
+                    android:layout_marginRight="2px"
+                    android:layout_marginTop="1px" >
+                    
+                    <ImageView 
+                        android:id="@+id/car_image_map"
+                        android:layout_width="284dp"
+                        android:layout_height="160dp"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/carimage"
+                        android:scaleType="fitStart"/>
+	                
+	                <TextView 
+	                    android:layout_below="@id/car_image_map"
+                        android:id="@+id/car_image_desc_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="위 사항이 틀림없음을 확인합니다."
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center"
+                        android:textColor="@color/receipt_text1_color"
+                        android:textSize="12sp"/>
+                </RelativeLayout>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/receipt_line_color" >
+
+                <TextView
+                    android:layout_width="@dimen/receipt_table_col1_text_width"
+                    android:layout_height="@dimen/receipt_table_row2_height"
+                    android:layout_marginBottom="1px"
+                    android:layout_marginLeft="2px"
+                    android:layout_marginRight="1px"
+                    android:layout_marginTop="1px"
+                    android:background="@color/common_white_color"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/receipt_table_padding1"
+                    android:text="차량\n찾는곳"
+                    android:textColor="@color/receipt_text1_color"
+                    android:textSize="@dimen/receipt_table_title_text"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="1px"
+                    android:layout_marginLeft="1px"
+                    android:layout_marginRight="2px"
+                    android:layout_marginTop="1px"
+                    android:layout_weight="1"
+                    android:background="@color/common_white_color"
+                    android:orientation="vertical" >
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/receipt_table_row_height" >
+
+                        <TextView
+                            android:id="@+id/car_east"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:paddingLeft="@dimen/receipt_table_cartext_padding"
+                            android:text="지하 3층 A32 (동측)"
+                            android:textColor="@color/receipt_text2_color"
+                            android:textSize="@dimen/receipt_table_text2_size" />
+
+                        <CheckBox
+                            android:id="@+id/car_check_east"
+                            android:layout_width="@dimen/receipt_table_carcheck"
+                            android:layout_height="@dimen/receipt_table_carcheck"
+                            android:layout_gravity="right|center_vertical"
+                            android:layout_marginRight="@dimen/receipt_table_carcheck_right_margin"
+                            android:background="@drawable/check_box"
+                            android:button="@null"
+                            android:checked="false" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/receipt_table_row_height" >
+
+                        <TextView
+                            android:id="@+id/car_west"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:paddingLeft="@dimen/receipt_table_cartext_padding"
+                            android:text="지하 3층 H38 (서측)"
+                            android:textColor="@color/receipt_text2_color"
+                            android:textSize="@dimen/receipt_table_text2_size" />
+
+                        <CheckBox
+                            android:id="@+id/car_check_west"
+                            android:layout_width="@dimen/receipt_table_carcheck"
+                            android:layout_height="@dimen/receipt_table_carcheck"
+                            android:layout_gravity="right|center_vertical"
+                            android:layout_marginRight="@dimen/receipt_table_carcheck_right_margin"
+                            android:background="@drawable/check_box"
+                            android:button="@null"
+                            android:checked="false" />
+                    </FrameLayout>
+                </LinearLayout>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/receipt_line_color" >
+
+                <TextView
+                    android:layout_width="@dimen/receipt_table_col1_text_width"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="1px"
+                    android:layout_marginLeft="2px"
+                    android:layout_marginRight="1px"
+                    android:layout_marginTop="1px"
+                    android:background="@color/common_white_color"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/receipt_table_padding1"
+                    android:text="연락처"
+                    android:textColor="@color/receipt_text1_color"
+                    android:textSize="@dimen/receipt_table_title_text"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="1px"
+                    android:layout_marginLeft="1px"
+                    android:layout_marginRight="2px"
+                    android:layout_marginTop="1px"
+                    android:layout_weight="1"
+                    android:background="@color/common_white_color"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/receipt_table_phon_linear_height"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/receipt_table_padding2" >
+
+                        <EditText
+                            android:id="@+id/phon_num1"
+                            android:layout_width="@dimen/receipt_table_phon_et_width"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="@dimen/receipt_table_phon_et_right"
+                            android:background="@drawable/phon_edit_box"
+                            android:gravity="center"
+                            android:text="010"
+                            android:textColorHint="@color/common_white_color"
+                            android:textSize="@dimen/receipt_edit_text_size"
+                            android:imeOptions="actionDone"
+                            android:inputType="numberSigned"
+                            android:maxLength="3" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/receipt_table_phon_et_right"
+                            android:gravity="center_vertical"
+                            android:text="-"
+                            android:textColor="@color/receipt_text2_color"
+                            android:textSize="@dimen/receipt_table_text2_size" />
+
+                        <EditText
+                            android:id="@+id/phon_num2"
+                            android:layout_width="@dimen/receipt_table_phon_et_width"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="@dimen/receipt_table_phon_et_right"
+                            android:background="@drawable/phon_edit_box"
+                            android:gravity="center"
+                            android:hint="1234"
+                            android:textColorHint="@color/common_white_color"
+                            android:textSize="@dimen/receipt_edit_text_size"
+                            android:imeOptions="actionDone"
+                            android:inputType="numberSigned"
+                            android:maxLength="4" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/receipt_table_phon_et_right"
+                            android:gravity="center_vertical"
+                            android:text="-"
+                            android:textColor="@color/receipt_text2_color"
+                            android:textSize="@dimen/receipt_table_text2_size" />
+
+                        <EditText
+                            android:id="@+id/phon_num3"
+                            android:layout_width="@dimen/receipt_table_phon_et_width"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/phon_edit_box"
+                            android:gravity="center"
+                            android:hint="5678"
+                            android:maxLength="4"
+                            android:textColorHint="@color/common_white_color"
+                            android:textSize="@dimen/receipt_edit_text_size" 
+                            android:imeOptions="actionDone"
+                            android:inputType="numberSigned"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/receipt_table_phon_linear_height"
+                        android:layout_marginTop="@dimen/receipt_table_phon_linear_top"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/receipt_table_phon_et_right"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="@dimen/receipt_table_padding1"
+                            android:text="발렛파킹 서비스를 이용함에 있어 개인정보 사용에 동의합니다."
+                            android:textColor="@color/receipt_agreement_color"
+                            android:textSize="@dimen/receipt_table_phon_et_text_size" />
+                    </LinearLayout>
+                </LinearLayout>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/receipt_line_color" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="1px"
+                    android:layout_marginLeft="2px"
+                    android:layout_marginRight="2px"
+                    android:layout_marginTop="1px"
+                    android:layout_span="2"
+                    android:layout_weight="1"
+                    android:background="@color/common_white_color"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/receipt_table_row_height"
+                        android:text="고객서명"
+                        android:textColor="@color/receipt_text1_color"
+                        android:textSize="@dimen/receipt_table_title_text"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/sign"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/receipt_table_sign_height"
+                        android:orientation="vertical"
+                        android:padding="@dimen/receipt_table_padding1"
+                        android:scrollbars="none" >
+                    </LinearLayout>
+                </LinearLayout>
+            </TableRow>
+        </TableLayout>
+
+        <FrameLayout
+            android:id="@+id/camera_btn_box"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/receipt_table"
+            android:layout_margin="@dimen/receipt_scrollview_padding"
+            >
+
+            <Button
+                android:id="@+id/receipt_finsh"
+                android:layout_width="@dimen/camera_btn_width"
+                android:layout_height="@dimen/camera_btn_height"
+                android:background="@drawable/receipt_btn_selector"
+                android:text="@string/receipt_text"
+                android:textColor="@color/camera_common_color"
+                android:textSize="@dimen/camera_btn_text2_size"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/receipt_cancel"
+                android:layout_width="@dimen/camera_btn_width"
+                android:layout_height="@dimen/camera_btn_height"
+                android:layout_gravity="right"
+                android:background="@drawable/receipt_cancel_selector"
+                android:text="@string/cacel_text"
+                android:textColor="@color/camera_common_color"
+                android:textSize="@dimen/camera_btn_text2_size"
+                android:textStyle="bold" />
+        </FrameLayout>
+    </RelativeLayout>
+
+</com.terascope.amano.incheon.LockScrollView>

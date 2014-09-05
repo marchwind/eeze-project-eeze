@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/setcommon_background_color" >
+
+    <LinearLayout
+        android:id="@+id/flash_setting_head"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/headline_heigh"
+        android:background="@color/setcommon_color"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/flash_home_btn"
+            android:layout_width="@dimen/setting_head_home_icon_width"
+            android:layout_height="@dimen/setting_head_home_icon_height" 
+            android:drawableTop="@drawable/home_icon"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/setting_head_margin_left"
+            android:text="@string/home"
+            android:textStyle="bold"
+            android:textColor="@color/common_white_color"
+            android:textSize="@dimen/setting_head_icon_text_size"
+            android:background="@null"
+            />
+        
+        <Button
+            android:id="@+id/flash_back_btn"
+            android:layout_width="@dimen/setting_head_home_icon_width"
+            android:layout_height="@dimen/setting_head_home_icon_height" 
+            android:drawableTop="@drawable/return_icon"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/setting_head_margin_left"
+            android:text="@string/back"
+            android:textStyle="bold"
+            android:textColor="@color/common_white_color"
+            android:textSize="@dimen/setting_head_icon_text_size"
+            android:background="@null"
+            />
+        
+        <TextView
+            android:id="@+id/flash_headline_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:text="후레쉬 설정"
+            android:textStyle="bold"
+            android:textColor="@color/common_white_color"
+            android:textSize="@dimen/setting_head_text_size" />
+        
+    </LinearLayout>
+    
+    <RelativeLayout 
+        android:layout_below="@id/flash_setting_head"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/setting_line_color">
+    
+        <FrameLayout 
+	        android:id="@+id/alway_btn"
+	        android:layout_width="fill_parent"
+	        android:layout_height="@dimen/setting_list_height"
+	        android:background="@color/common_white_color"
+	        android:layout_marginBottom="1px"
+	        >
+	        
+	        <TextView
+	            android:layout_width="@dimen/setting_width"
+	            android:layout_height="wrap_content"
+	            android:layout_marginLeft="@dimen/setting_list_side_margin"
+	            android:layout_gravity="left|center_vertical"
+	            android:text="항상 켜짐"
+	            android:textColor="@color/setcommon_color"
+	            android:textSize="@dimen/setting_list_text_size" />
+	        
+	        <CheckBox
+		        android:id="@+id/always_check"
+		        android:layout_gravity="right|center_vertical"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:button="@drawable/ischecked"
+		        android:checked="false"
+		        android:paddingLeft="@dimen/camera_flash_padding"/>
+	        
+		</FrameLayout>
+        
+        <FrameLayout 
+	        android:id="@+id/customer_btn"
+	        android:layout_below="@id/alway_btn"
+	        android:layout_width="fill_parent"
+	        android:layout_height="@dimen/setting_list_height"
+	        android:background="@color/common_white_color"
+	        android:layout_marginBottom="1px"
+	        >
+	        
+	        <TextView
+	            android:layout_width="@dimen/setting_width"
+	            android:layout_height="wrap_content"
+	            android:layout_marginLeft="@dimen/setting_list_side_margin"
+	            android:layout_gravity="left|center_vertical"
+	            android:text="사용자 선택"
+	            android:textColor="@color/setcommon_color"
+	            android:textSize="@dimen/setting_list_text_size" />
+	        
+	        <CheckBox
+		        android:id="@+id/customer_check"
+		        android:layout_gravity="right|center_vertical"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:button="@drawable/ischecked"
+		        android:checked="true"
+		        android:paddingLeft="@dimen/camera_flash_padding"/>
+	        
+		</FrameLayout>
+        
+        <FrameLayout 
+	        android:id="@+id/time_btn"
+	        android:layout_below="@id/customer_btn"
+	        android:layout_width="fill_parent"
+	        android:layout_height="@dimen/setting_list_height"
+	        android:background="@color/common_white_color"
+	        android:layout_marginBottom="1px"
+	        >
+	        
+            <LinearLayout 
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="left|center_vertical"
+                android:orientation="horizontal">
+            
+                <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="match_parent"
+		            android:layout_marginLeft="@dimen/setting_list_side_margin"
+		            android:gravity="center_vertical"
+		            android:text="시간 설정"
+		            android:textColor="@color/setcommon_color"
+		            android:textSize="@dimen/setting_list_text_size" />
+		        
+		        <Spinner
+	                android:id="@+id/time1"
+	                android:layout_width="@dimen/receipt_table_number_width"
+	                android:layout_height="@dimen/receipt_table_number_width"
+	                android:layout_gravity="left|center_vertical"
+	                android:layout_marginLeft="5dp"
+	                android:gravity="center"
+	                android:background="@drawable/spinner_icon"                
+	                android:entries="@array/time"
+	                android:spinnerMode="dropdown" 
+	                android:textColorHint="@color/common_white_color"
+                    android:textSize="@dimen/receipt_edit_text_size"/>
+	
+	            <TextView
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_gravity="left|center_vertical"
+	                android:text=" 시 ~"
+	                android:textColor="@color/setcommon_color"
+	                android:textSize="@dimen/flash_list_time_text_size" />
+	
+	            <Spinner
+	                android:id="@+id/time2"
+	                android:layout_width="@dimen/receipt_table_number_width"
+	                android:layout_height="@dimen/receipt_table_number_width"
+	                android:layout_gravity="left|center_vertical"
+	                android:background="@drawable/spinner_icon"    
+	                android:gravity="center"
+	                android:entries="@array/time"
+	                android:spinnerMode="dropdown"
+	                android:textColorHint="@color/common_white_color"
+                    android:textSize="@dimen/receipt_edit_text_size" />
+	
+	            <TextView
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_gravity="left|center_vertical"
+	                android:text=" 시 "
+	                android:textColor="@color/setcommon_color"
+	                android:textSize="@dimen/flash_list_time_text_size" />
+                
+            </LinearLayout>
+	        
+	        <CheckBox
+		        android:id="@+id/time_check"
+		        android:layout_gravity="right|center_vertical"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:button="@drawable/ischecked"
+		        android:checked="false"
+		        android:paddingLeft="@dimen/camera_flash_padding"/>
+	        
+		</FrameLayout>
+	</RelativeLayout>
+</RelativeLayout>
