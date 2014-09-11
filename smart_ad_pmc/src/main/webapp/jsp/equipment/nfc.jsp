@@ -29,8 +29,19 @@ function nfcCallSuccess(res) {
 		$("#equipIp").text(res.info.equipIp);
 		$("#equipMac").text(res.info.equipMac);
 		$("#equipOs").text(res.info.equipOs);
-		$("#equipSpec").text(res.info.equipSpec);
-		$("#equipMemo").text(res.info.equipMemo);
+		
+		var spec = res.info.equipSpec;
+		if(spec != null){
+			spec = spec.replaceAll("\n","<br/>");
+		}
+		$("#equipSpec").text(spec);
+		
+		var memo = res.info.equipMemo;
+		if(memo != null){
+			memo = memo.replaceAll("\n","<br/>");
+		}
+		$("#equipMemo").text(memo);
+		
 	} else if(res.result.resultCode == "0400") {
 		alert("해당하는 장비가 없습니다.");
 	}
