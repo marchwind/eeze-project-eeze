@@ -178,7 +178,7 @@ function fadeAnimation(){
              </div>
              <div id="footDescript">
              	<ul>
-                 	<li>서울시 송파구 올림픽로35길 137 광고문화센터5층</li>
+                 	<li>서울시 송파구 올림픽로35길 137 한국광고문화회관 5층</li>
                      <li>T.02-2144-0320</li>
                      <li>F.02-2144-0323</li>
                  </ul>

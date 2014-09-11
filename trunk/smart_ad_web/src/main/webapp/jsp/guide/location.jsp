@@ -46,7 +46,7 @@ function printLocation() {
 	               		<div id="location_txt">
 	               			<ul>
 	               				<li><img src="${contextPath}/resources/images/common/bullet_1.png" /><b>주소</b></li>
-	               				<li><img src="${contextPath}/resources/images/common/bullet_2.png" />서울시 송파구 올림픽로 35길 137</li>
+	               				<li><img src="${contextPath}/resources/images/common/bullet_2.png" />서울시 송파구 올림픽로35길 137 한국광고문화회관 5층</li>
 	               			</ul>
 	               			<ul>
 	               				<li><img src="${contextPath}/resources/images/common/bullet_1.png" /><b>교통편</b></li>

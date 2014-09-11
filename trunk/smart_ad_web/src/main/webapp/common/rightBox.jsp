@@ -113,7 +113,7 @@ function rightNoticeerror() {
 		         	</div>
 		            <div>
 		            	<select onchange="goNewSite(this)">
-		                	<option value='none'>관계사이트</option>
+		                	<option value='none'>관련사이트</option>
 		                	<option value='http://www.msip.go.kr'>미래창조과학부</option>
 		                	<option value='https://www.kobaco.co.kr/'>한국방송광고진흥공사</option>
 		                	<option value='http://edu.kobaco.co.kr/'>kobaco광고교육원</option>
