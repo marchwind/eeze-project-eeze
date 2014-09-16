@@ -34,13 +34,13 @@ function nfcCallSuccess(res) {
 		if(spec != null){
 			spec = spec.replaceAll("\n","<br/>");
 		}
-		$("#equipSpec").text(spec);
+		$("#equipSpec").html(spec);
 		
 		var memo = res.info.equipMemo;
 		if(memo != null){
 			memo = memo.replaceAll("\n","<br/>");
 		}
-		$("#equipMemo").text(memo);
+		$("#equipMemo").html(memo);
 		
 	} else if(res.result.resultCode == "0400") {
 		alert("해당하는 장비가 없습니다.");
