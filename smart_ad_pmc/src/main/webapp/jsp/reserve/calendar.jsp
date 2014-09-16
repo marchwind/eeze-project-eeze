@@ -98,7 +98,7 @@ function buttonSet(){
 			}
 			reserveParamInfo.reserveArray.remove(day + "/" + $obj.data("time"));
 		} else {
-			if(reserveParamInfo.reserveArray.length > 11) {
+			if(reserveParamInfo.reserveArray.length > reserve.limit) {
 				alert(msg.overPeriod);
 			} else {
 				$obj.addClass("on");
