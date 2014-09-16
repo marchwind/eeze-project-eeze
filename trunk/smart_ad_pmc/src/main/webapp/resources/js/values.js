@@ -16,7 +16,8 @@ var reserve = {
 	facilityNo : "FC0000000852",
 	reserveYear : "",
 	reserveMonth : "",
-	month : ""
+	month : "",
+	limit : 11	
 }
 
 var facility = {
