@@ -82,8 +82,8 @@ public class PmcReserveServiceImpl implements PmcReserveService{
 		set.setFCLT_MGMT_NO(rev.getFacilityNo());
 		set.setUSR_NO(user.getUserNo());
 		set.setRSRV_VSTN(rev.getVisitCount());
-		set.setREG_ID(user.getUserId());
-		set.setUPD_ID(user.getUserId());
+		set.setREG_ID("PMC");
+		set.setUPD_ID("PMC");
 		set.setCNCL_YN("N");
 		set.setENTP_NM(rev.getEnterpriseName());
 		set.setWRKR_NM(rev.getWorkerName());
@@ -101,8 +101,8 @@ public class PmcReserveServiceImpl implements PmcReserveService{
 				for(int i=0; i<rev.getReserveDetail().size(); i++){
 					SAFacilityReserveDate date = new SAFacilityReserveDate();
 					date.setRSRV_NO(setResult.getRSRV_NO());
-					date.setREG_ID(user.getUserId());
-					date.setUPD_ID(user.getUserId());
+					date.setREG_ID("PMC");
+					date.setUPD_ID("PMC");
 					date.setRSRV_DT(rev.getReserveDetail().get(i).getReserveDate());
 					
 					if(rev.getReserveDetail().get(i).getReserveTimeZone()==CommonCode.ReserveCode.Time_Zone_Am_Return){
