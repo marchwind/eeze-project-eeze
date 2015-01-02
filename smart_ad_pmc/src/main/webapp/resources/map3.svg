@@ -76,12 +76,12 @@
 		<polyline fill="none" stroke="#666766" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
 		78.25,229.5 78.25,208.75 103.75,208.75 103.75,121.25 9,121.25 9,199.75 8.75,199.75 8.75,255 78.25,255 	"/>
 </g>
-<circle id="FC0000000856_c" class="map_circle" title="녹음스튜디오" fill="#D71D48" cx="367.745" cy="278.414" r="13.917"/>
-<circle id="FC0000000852_c" class="map_circle" title="창작지원1실" fill="#D71D48" cx="250.745" cy="278.414" r="13.917"/>
-<circle id="FC0000000853_c" class="map_circle" title="창작지원2실" fill="#D71D48" cx="154.745" cy="278.414" r="13.917"/>
-<circle id="FC0000000858_c" class="map_circle" title="서버실" fill="#D71D48" cx="53.745" cy="288.414" r="13.917"/>
-<circle id="FC0000000857_c" class="map_circle" title="매체적합테스트실" fill="#D71D48" cx="53.745" cy="181.414" r="13.917"/>
-<circle id="FC0000000854_c" class="map_circle" title="창작지원3실" fill="#D71D48" cx="53.745" cy="68.914" r="13.917"/>
-<circle id="FC0000000855_c" class="map_circle" title="창작지원4실" fill="#D71D48" cx="172.245" cy="68.914" r="13.917"/>
-<circle id="FC0000000859_c" class="map_circle" title="회의실" fill="#D71D48" cx="370.745" cy="68.914" r="13.917"/>
+<circle id="FC0000000856_c" class="map_circle" title="녹음스튜디오" fill="#80efa6" cx="367.745" cy="278.414" r="13.917"/>
+<circle id="FC0000000852_c" class="map_circle" title="창작지원1실" fill="#80efa6" cx="250.745" cy="278.414" r="13.917"/>
+<circle id="FC0000000853_c" class="map_circle" title="창작지원2실" fill="#80efa6" cx="154.745" cy="278.414" r="13.917"/>
+<circle id="FC0000000858_c" class="map_circle" title="서버실" fill="#80efa6" cx="53.745" cy="288.414" r="13.917"/>
+<circle id="FC0000000857_c" class="map_circle" title="매체적합테스트실" fill="#80efa6" cx="53.745" cy="181.414" r="13.917"/>
+<circle id="FC0000000854_c" class="map_circle" title="창작지원3실" fill="#80efa6" cx="53.745" cy="68.914" r="13.917"/>
+<circle id="FC0000000855_c" class="map_circle" title="창작지원4실" fill="#80efa6" cx="172.245" cy="68.914" r="13.917"/>
+<circle id="FC0000000859_c" class="map_circle" title="회의실" fill="#80efa6" cx="370.745" cy="68.914" r="13.917"/>
 </svg>

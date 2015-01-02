@@ -100,6 +100,7 @@ var uri = {
 	managerGetUrl : "/pmc/manager/get",
 	managerAddUrl : "/pmc/manager/add",
 	managerUpdateUrl : "/pmc/manager/update",
+	managerDeleteUrl : "/pmc/manager/delete",
 	managerAckUrl : "/pmc/manager/ack",
 	managerPwdResetUrl : "/pmc/manager/passwordReset",
 	statisticsFacilityUrl : "/pmc/statistics/facility",
@@ -184,6 +185,7 @@ var msg = {
 	managerFail : "계정관련 통신에 실패하였습니다.\n다시 시도해 주세요.",
 	managerAdd : "계정을 등록하였습니다.",
 	managerModify : "계정 수정을 하였습니다.",
+	managerDelete : "계정 삭제를 하였습니다.",
 	ackSuccess : "계정상태를 수정하였습니다.",
 	
 	mainError : "통계관련 통신에 실패하였습니다.\n다시 시도해 주세요.",

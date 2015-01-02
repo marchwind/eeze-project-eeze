@@ -130,6 +130,7 @@ function emailChange(obj) {
                         	<option value="041">041</option>
                         	<option value="042">042</option>
                         	<option value="043">043</option>
+							<option value="043">044</option>
                         	<option value="051">051</option>
                         	<option value="052">052</option>
                         	<option value="053">053</option>
@@ -139,6 +140,7 @@ function emailChange(obj) {
                         	<option value="062">062</option>
                         	<option value="063">063</option>
                         	<option value="064">064</option>
+							<option value="070">070</option>
                         </select> -
 						<input id="tel1" type="text" class="input_red input_type2" /> - 
 						<input id="tel2" type="text" class="input_red input_type2" />
@@ -173,11 +175,11 @@ function emailChange(obj) {
 				</dl>
 				<dl>
 					<dt>소속</dt>
-					<dd class="input"><input id="enterpriseName" type="text" class="input_red  input_type1" /></dd>
+					<dd class="input"><input id="enterpriseName" name="enterpriseName" type="text" class="input_red  input_type1" /></dd>
 				</dl>
 				<dl>
 					<dt>직장주소</dt>
-					<dd class="input"><input id="enterpriseAddress" type="text" class="input_red input_type1" /></dd>
+					<dd class="input"><input id="enterpriseAddress" name="enterpriseAddress" type="text" class="input_red input_type1" /></dd>
 				</dl>
 				</form>
 			</div>
