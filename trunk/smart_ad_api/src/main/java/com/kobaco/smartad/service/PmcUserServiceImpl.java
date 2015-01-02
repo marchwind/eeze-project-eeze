@@ -112,7 +112,7 @@ public class PmcUserServiceImpl implements PmcUserService{
 	@Override
 	public CommonSingleResult<UserInfo> getPmcUserGet(PmcMnagerInfo info,
 			PmcMnagerInfo sessUser, UserInfo user) {
-		// TODO Auto-generated method stub
+
 		CommonSingleResult<UserInfo> result = new CommonSingleResult<UserInfo>();
 		System.out.println("sess "+sessUser.isLogin() );
 		System.out.println("sess "+info.getManagerMode() );
