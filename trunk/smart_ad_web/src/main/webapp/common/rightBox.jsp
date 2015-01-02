@@ -120,6 +120,13 @@ function rightNoticeerror() {
 		                	<option value='http://adlib.kobaco.co.kr/'>kobaco광고도서관</option>
 		                	<option value='http://hrd.kobaco.co.kr '>kobaco연수원</option>
 		                	<option value='http://admuseum.kobaco.co.kr '>광고박물관</option>
+                        <option value="http://www.kaaa.co.kr/">한국광고산업협회</option>
+                        <option value="http://www.koreacf.or.kr/">한국광고영상제작사협회</option>
+                        <option value="http://www.koeba.com/">한국전광방송협회</option> 
+                        <option value="http://www.dea.or.kr/">한국디지털기업협회</option>
+                        <option value="http://www.kapa.or.kr/">한국광고사진가협회</option>
+                        <option value="http://www.kosmedia.or.kr/">한국스마트미디어협회</option>
+                        <option value="http://onlinead.or.kr/">한국온라인광고협회</option>
 		                </select>
 		            </div>
 		        </div>
