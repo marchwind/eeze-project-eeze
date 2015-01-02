@@ -189,8 +189,8 @@
 			,R.WRK_CNTT
 			,R.REG_DTT   		
 			,R.UPD_DTT   		
-			,R.REG_ID    		
-			,R.UPD_ID		
+			,U.USR_ID AS REG_ID    		
+			,U.USR_ID AS UPD_ID		
 			,D.RSRV_DT		
 			,D.TZ_TP_CD
 			,D.RSRV_DTL_NO
