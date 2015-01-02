@@ -39,7 +39,8 @@ function listSuccess(res) {
 		
 		$(res.list).each(function(){
 			
-			var timeZone = (this.reserveTimeZone == 'R01001') ? '오전' : '오후';
+			//var timeZone = (this.reserveTimeZone == 'R01001') ? '오전' : '오후';
+			var timeZone = (this.reserveTimeZone == '1') ? '오전' : '오후';
 			
 			var tag = '<tr>' +
 					'<td>'+numberToDate(this.reserveStartDate)+' ' + timeZone + '</td>' +

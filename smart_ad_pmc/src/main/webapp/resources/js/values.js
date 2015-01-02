@@ -39,7 +39,7 @@ var pageValue = {
 
 var uri = {
 	//serverUrl : window.location.protocol + "//" + window.location.host + "/smart_ad_api",
-	serverUrl : window.location.protocol + "//" + window.location.host + "/api",
+	serverUrl : window.location.protocol + "//" + window.location.host + "/api",	
 	loginUrl : "/pmc/manager/login",
 	logoutUrl : "/pmc/manager/logout",
 	sessionCheck : "/pmc/manager/getSession",
