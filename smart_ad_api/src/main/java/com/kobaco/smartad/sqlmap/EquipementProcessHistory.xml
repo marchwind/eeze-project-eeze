@@ -56,7 +56,7 @@
 		) VALUES (
 		     #{HIST_CNTT}
 			,#{SW_MGMT_NO}
-			,#{GTH_DTT} 
+			,NOW()
 			,#{EQPM_NO}			
 		)
 	</insert>
