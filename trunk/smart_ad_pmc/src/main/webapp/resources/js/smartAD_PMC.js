@@ -162,14 +162,17 @@ function reserveDate(data, dateId) {
 	if(toY > Number(dateArr[0]) ||
 		toY == Number(dateArr[0]) && toM > Number(dateArr[1]) ||
 		toY == Number(dateArr[0]) && toM == Number(dateArr[1]) && toD >= Number(dateArr[2])) {
-		tagArr["1"] = '<input type="button" value="기간종료" class="btn_over_period"/>';
-		tagArr["2"] = '<input type="button" value="기간종료" class="btn_over_period"/>';
+		//tagArr["1"] = '<input type="button" value="기간종료" class="btn_over_period"/>';
+		//tagArr["2"] = '<input type="button" value="기간종료" class="btn_over_period"/>';
+		tagArr["1"] = '<input type="button" class="btn_possible_period clickable" data-time="1" value="오전가능">';
+		tagArr["2"] = '<input type="button" class="btn_possible_period clickable" data-time="2" value="오후가능">';
 	} else {
 		tagArr["1"] = '<input type="button" class="btn_possible_period clickable" data-time="1" value="오전가능">';
 		tagArr["2"] = '<input type="button" class="btn_possible_period clickable" data-time="2" value="오후가능">';
 	}	
 		
-
+	
+	
 	$(data).each(function() {
 		
 		if(dateId == this.date){
@@ -178,16 +181,19 @@ function reserveDate(data, dateId) {
 				toY == Number(dateArr[0]) && toM == Number(dateArr[1]) && toD > Number(dateArr[2])){
 				tagArr[this.state] = "<input type='button' class='btn_used_period' data-reserveno='"+this.reserveNo+"' data-reservedetailno='"+this.reserveDetailNo+"' onclick='usedPopup(this)' value='"+this.enterpriseName+"'>";
 			} else if(toY == Number(dateArr[0]) && toM == Number(dateArr[1]) && toD == Number(dateArr[2])) {
+				//tagArr[this.state] = "<input type='button' class='btn_today_period' data-reserveno='"+this.reserveNo+"' data-reservedetailno='"+this.reserveDetailNo+"' onclick='checkinPopup(this)' value='"+this.enterpriseName+"'>";
+				
 				if(toH == this.state){
-					if(this.checkInYn == "Y") {
+					tagArr[this.state] = "<input type='button' class='btn_today_period' data-reserveno='"+this.reserveNo+"' data-reservedetailno='"+this.reserveDetailNo+"' onclick='checkinPopup(this)' value='"+this.enterpriseName+"'>";
+					/*if(this.checkInYn == "Y") {
 						tagArr[this.state] = "<input type='button' class='btn_today_period' data-reserveno='"+this.reserveNo+"' data-reservedetailno='"+this.reserveDetailNo+"' onclick='checkinPopup(this)' value='"+this.enterpriseName+"'>";	
 					}
 					if(this.checkOutYn == "Y") {
 						tagArr[this.state] = "<input type='button' class='btn_used_period' data-reserveno='"+this.reserveNo+"' data-reservedetailno='"+this.reserveDetailNo+"' onclick='usedPopup(this)' value='"+this.enterpriseName+"'>";	
-					}	
-				} else if(toH < this.state){
+					}	*/
+				}/* else if(toH < this.state){
 					tagArr[this.state] = "<input type='button' class='btn_reserve_period' data-reserveno='"+this.reserveNo+"' data-date='"+this.date+"' data-reservedetailno='"+this.reserveDetailNo+"' onclick='reserveCheckPopup(this)' value='"+this.enterpriseName+"'>";
-				} else {
+				}*/ else {
 					tagArr[this.state] = "<input type='button' class='btn_used_period' data-reserveno='"+this.reserveNo+"' data-reservedetailno='"+this.reserveDetailNo+"' onclick='usedPopup(this)' value='"+this.enterpriseName+"'>";
 				}
 				
@@ -196,9 +202,9 @@ function reserveDate(data, dateId) {
 			}
 		}
 		
-		
 	});
-	
+	//alert(tagArr.length);
+	//alert(tagArr["1"] + " : " + tagArr["2"]);
 	returnValue = tagArr["1"] + tagArr["2"];
 	
 	return returnValue; 

@@ -19,7 +19,7 @@ function detailContSuceess(res) {
 	case "P02001" : state = "대기"; $("#managerAckInput").val("승인").data("cd", "P02002"); break;
 	case "P02002" : state = "정상"; $("#managerAckInput").hide(); break;
 	case "P02003" : state = "차단"; $("#managerAckInput").val("승인").data("cd", "P02002"); break;
-	case "P02004" : state = "삭제"; $("#managerAckInput").val("승인").data("cd", "P02002"); break;
+	case "P02004" : state = "삭제"; $("#managerAckInput").val("승인").data("cd", "P02002"); $("#managerDeleteInput").hide(); break;
 	}
 	
 	$("#managerName").text(res.info.managerName);
@@ -135,6 +135,27 @@ function error(){
 	alert(msg.managerFail);
 }
 
+function deleteSubmit(){
+	var mobile = $("#tel1").val() + "-" + $("#tel2").val() + "-" + $("#tel3").val();
+	var email = $("#email1").val() + "@" + $("#email2").val();
+	
+	var param = $("#managerModifyForm").serializeObject();
+	param['managerNo'] = no;
+	param['managerPhone'] = mobile;
+	param['managerEmail'] = email;
+	
+	var url = uri.serverUrl + uri.managerDeleteUrl;
+	sendRequestJson(url, param, deleteSuccess, error);
+}
+
+function deleteSuccess(res) {
+	if(res.result.resultCode == "0000") {
+		alert(msg.managerDelete);
+		location.reload();
+	} else {
+		error();
+	}
+}
 </script>
 </head>
 
@@ -208,6 +229,7 @@ function error(){
 					<ul>
 <!-- 						<li><input type="button" value="암호초기화" class="btn_normal_red" onclick="pwdReset()" /></li> -->
 						<li class="detailView"><input type="button" id="managerAckInput" value="승인" class="btn_normal_red" onclick="ackChange(this)" /></li>
+						<li class="detailView"><input type="button" id="managerDeleteInput" value="삭제" class="btn_normal_red" onclick="deleteSubmit()"/></li>
 						<li class="detailView"><input type="button" value="수정" class="btn_normal_red" onclick="modifyChange()"/></li>
 						
 						<li class="modifyView"><input type="button" value="수정완료" class="btn_normal_red" onclick="modifySubmit()" /></li>

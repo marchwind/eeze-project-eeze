@@ -72,6 +72,7 @@ function emailChange(obj) {
         	<option value="041">041</option>
         	<option value="042">042</option>
         	<option value="043">043</option>
+			<option value="043">044</option>
         	<option value="051">051</option>
         	<option value="052">052</option>
         	<option value="053">053</option>
@@ -81,6 +82,7 @@ function emailChange(obj) {
         	<option value="062">062</option>
         	<option value="063">063</option>
         	<option value="064">064</option>
+			<option value="070">070</option>
         </select> - 
 		<input type="text" id="tel1" value="" class="input_red input_type2" /> - 
 		<input type="text" id="tel2" value="" class="input_red input_type2" />

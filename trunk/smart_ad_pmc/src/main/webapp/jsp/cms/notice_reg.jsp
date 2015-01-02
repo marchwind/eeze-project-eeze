@@ -47,10 +47,10 @@ function noticeAddError(res){
 						<td>제목</td>
 						<td class="tl"><input type="text" id="notiSubject" name="notiSubject" class="input_red input_fill" /></td>
 					</tr>
-					<tr>
+					<!-- <tr>
 						<td>첨부파일</td>
 						<td class="tl"><input type="file" id="notiFile" name="notiFile" class="input_red input_fill" /></td>
-					</tr>
+					</tr> -->
 					<tr>
 						<td>내용</td>
 						<td class="tl">

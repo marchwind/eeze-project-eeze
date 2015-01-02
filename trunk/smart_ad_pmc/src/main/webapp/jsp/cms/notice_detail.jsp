@@ -97,10 +97,10 @@ function noticeModifyError(res){
 						<td>제목</td>
 						<td class="tl" id="notiSubject"></td>
 					</tr>
-					<tr>
+					<!-- <tr>
 						<td>첨부파일</td>
 						<td class="tl" id="notiFile"></td>
-					</tr>
+					</tr> -->
 					<tr>
 						<td>내용</td>
 						<td class="tl">
@@ -122,10 +122,10 @@ function noticeModifyError(res){
 						<td>제목</td>
 						<td class="tl"><input type="text" id="notiSubjectEle" name="notiSubject" class="input_red input_fill" /></td>
 					</tr>
-					<tr>
+					<!-- <tr>
 						<td>첨부파일</td>
 						<td class="tl"><input type="file" id="notiFile" name="notiFile" class="input_red input_fill" /></td>
-					</tr>
+					</tr> -->
 					<tr>
 						<td>내용</td>
 						<td class="tl">
