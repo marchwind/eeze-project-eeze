@@ -215,12 +215,12 @@
 			,B.ENTP_ADDR  
 		FROM TB_USR  A
 		     LEFT JOIN TB_ENTP B ON (A.ENTP_NO = B.ENTP_NO)
-		ORDER BY A.USR_NO DESC
 	<where>	 
 		<if test = "userId !=null and  userId!='' "> A.USR_ID   LIKE CONCAT('%', #{userId},'%')  </if>
 	 	<if test = "userName !=null and  userName!=''"> A.USR_NM  LIKE CONCAT('%', #{userName},'%')  </if>
 	 	<if test = "enterpriseName!=null  and  enterpriseName!='' "> B.ENTP_NM  LIKE CONCAT('%',#{enterpriseName},'%')  </if>	
 	</where>
+		ORDER BY A.USR_NO DESC
 	 LIMIT #{startRow},#{endRow} 
 	</select>
 	<select id="infoPmc" parameterType="com.kobaco.smartad.model.data.SAUser" resultType="com.kobaco.smartad.model.data.SAUser">

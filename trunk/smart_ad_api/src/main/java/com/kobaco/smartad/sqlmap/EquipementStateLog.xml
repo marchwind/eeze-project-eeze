@@ -50,7 +50,7 @@
 			,UPD_ID     		
 		) VALUES (
 		     #{EQPM_NO}
-			,#{LOG_GTH_DTT} 
+			,NOW()
 			,#{LOG_TP_CD}
 			,#{LOG_CNTT}
 			,NOW()

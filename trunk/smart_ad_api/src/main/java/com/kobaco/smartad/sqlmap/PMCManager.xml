@@ -147,6 +147,7 @@
 			,MNGR_STTS_CD  	    		
 		 FROM TB_PMC_MNGR
 		 WHERE MNGR_ID = #{managerId} AND PWD = #{managerPassword}
+		 AND MNGR_STTS_CD != 'P02004'
 	</select>
 	
 		<select id="countFilter" parameterType="hashMap" resultType="int">
