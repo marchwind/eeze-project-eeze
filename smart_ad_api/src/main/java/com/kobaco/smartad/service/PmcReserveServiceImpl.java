@@ -83,7 +83,7 @@ public class PmcReserveServiceImpl implements PmcReserveService{
 		set.setUSR_NO(user.getUserNo());
 		set.setRSRV_VSTN(rev.getVisitCount());
 		set.setREG_ID(user.getUserId());
-		set.setUPD_ID("PMC");
+		set.setUPD_ID(user.getUserId());
 		set.setCNCL_YN("N");
 		set.setENTP_NM(rev.getEnterpriseName());
 		set.setWRKR_NM(rev.getWorkerName());
@@ -312,7 +312,7 @@ public class PmcReserveServiceImpl implements PmcReserveService{
 		t.setCHKIN_DTT(new Date());
 		t.setCHKIN_CNFMR(sessUser.getManagerId());
 		t.setREG_ID(sessUser.getManagerId());
-		t.setUPD_ID("PMC");
+		t.setUPD_ID(sessUser.getManagerId());
 		t.setRSRV_NO(rev.getReserveNo());
 		t.setRSRV_DTL_NO(rev.getReserveDetailNo());
 		SAFacilityVisitHistory visit = revhDao.insert(t);

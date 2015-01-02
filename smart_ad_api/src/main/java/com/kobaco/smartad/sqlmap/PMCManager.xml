@@ -196,11 +196,12 @@
 		 WHERE MNGR_NO 	 = #{managerNo}
 	</update>
 	
-		<update id="updateDelete"  parameterType="hashMap">
-		UPDATE TB_PMC_MNGR
-		   SET 				
-			MNGR_STTS_CD   = 'P02004'			
-		 WHERE MNGR_NO 	 = #{managerNo}
+	<update id="updateDelete"  parameterType="hashMap">
+<!-- 		UPDATE TB_PMC_MNGR -->
+<!-- 		   SET 				 -->
+<!-- 			MNGR_STTS_CD   = 'P02004'			 -->
+<!-- 		 WHERE MNGR_NO 	 = #{managerNo} -->
+		DELETE FROM TB_PMC_MNGR WHERE MNGR_NO = #{managerNo}
 	</update>
 	<update id="updateAck"  parameterType="hashMap">
 		UPDATE TB_PMC_MNGR
