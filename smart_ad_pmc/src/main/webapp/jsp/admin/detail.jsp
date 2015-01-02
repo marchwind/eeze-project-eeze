@@ -151,7 +151,8 @@ function deleteSubmit(){
 function deleteSuccess(res) {
 	if(res.result.resultCode == "0000") {
 		alert(msg.managerDelete);
-		location.reload();
+		//location.reload();
+		goPage('${contextPath}/admin/list.do')
 	} else {
 		error();
 	}
