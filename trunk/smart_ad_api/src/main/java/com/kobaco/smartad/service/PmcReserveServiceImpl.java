@@ -102,7 +102,7 @@ public class PmcReserveServiceImpl implements PmcReserveService{
 					SAFacilityReserveDate date = new SAFacilityReserveDate();
 					date.setRSRV_NO(setResult.getRSRV_NO());
 					date.setREG_ID(user.getUserId());
-					date.setUPD_ID("PMC");
+					date.setUPD_ID(user.getUserId());
 					date.setRSRV_DT(rev.getReserveDetail().get(i).getReserveDate());
 					
 					if(rev.getReserveDetail().get(i).getReserveTimeZone()==CommonCode.ReserveCode.Time_Zone_Am_Return){
