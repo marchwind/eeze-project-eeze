@@ -159,13 +159,11 @@ function reserveDate(data, dateId) {
 	var dateArr = dateId.split("-");
 	var tagArr = [];
 	
-	if(toY > Number(dateArr[0]) ||
-		toY == Number(dateArr[0]) && toM > Number(dateArr[1]) ||
-		toY == Number(dateArr[0]) && toM == Number(dateArr[1]) && toD >= Number(dateArr[2])) {
-		//tagArr["1"] = '<input type="button" value="기간종료" class="btn_over_period"/>';
-		//tagArr["2"] = '<input type="button" value="기간종료" class="btn_over_period"/>';
-		tagArr["1"] = '<input type="button" class="btn_possible_period clickable" data-time="1" value="오전가능">';
-		tagArr["2"] = '<input type="button" class="btn_possible_period clickable" data-time="2" value="오후가능">';
+	if(toY > Number(dateArr[0]) 
+			|| toY == Number(dateArr[0]) && toM > Number(dateArr[1]) 
+			|| toY == Number(dateArr[0]) && toM == Number(dateArr[1]) && toD > Number(dateArr[2])) {
+		tagArr["1"] = '<input type="button" value="기간종료" class="btn_over_period"/>';
+		tagArr["2"] = '<input type="button" value="기간종료" class="btn_over_period"/>';
 	} else {
 		tagArr["1"] = '<input type="button" class="btn_possible_period clickable" data-time="1" value="오전가능">';
 		tagArr["2"] = '<input type="button" class="btn_possible_period clickable" data-time="2" value="오후가능">';

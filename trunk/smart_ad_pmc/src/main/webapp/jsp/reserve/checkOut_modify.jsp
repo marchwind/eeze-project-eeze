@@ -46,6 +46,20 @@ function reserveCheckOutModifyCallSuccess(res) {
 	}
 }
 
+function reserveCancleCall() {
+	var url = uri.serverUrl + uri.reserveCancelUrl;
+	sendRequestJson(url, reserveUser, reserveCancelSuccess, error);
+}
+
+function reserveCancelSuccess(res) {
+	if(res.result.resultCode == "0000"){
+		reserveListCall();
+		closePopup();
+	} else {
+		error();
+	}
+}
+
 </script>
 
 <input type="button" class="btn_popup_close" onclick="closePopup()" />
@@ -88,6 +102,7 @@ function reserveCheckOutModifyCallSuccess(res) {
 </table>
 
 <div class="popupBtnContainer">
+	<input type="button" value="삭제" class="btn_normal_red" onclick="reserveCancleCall()"/>
 	<input type="button" value="수정완료" class="btn_normal_red" onclick="reserveCheckOutModifyCall()"/>
 	<input type="button" value="닫기" class="btn_normal_red" onclick="closePopup()" />
 </div>
