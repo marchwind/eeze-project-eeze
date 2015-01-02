@@ -20,5 +20,6 @@
 <script type="text/javascript" src="${contextPath}/resources/js/values.js"></script>
 <script type="text/javascript" src="${contextPath}/resources/js/smartAD.js"></script>
 <script type="text/javascript" src="${contextPath}/resources/js/smartAD_left_navi.js"></script>
+<script type="text/javascript" src="${contextPath}/resources/js/holiday.js"></script>
 
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/smartADBase.css">

@@ -111,6 +111,9 @@ function makeCalendar(y, m, data) {
 	
 	var date = new Date(m+"/1/"+y);
 	var monthName = date.toLocaleString("en-us", {month:"long"});
+	var tempYear = y + "";
+	var tempMonth = m + "";
+	tempMonth = tempMonth.length == 1 ? "0" + tempMonth : tempMonth;
 	
 	var title = "<div class='cal_title'>";
 	title += "<input type='button' class='btn_6' value='<' onclick='setReserveCall("+(m==1?(y-1)+","+12:y+","+(m-1))+",\""+reserve.fac+"\")' />";
@@ -126,6 +129,7 @@ function makeCalendar(y, m, data) {
           +m*2+(m*5-m*5%9)/9-(m<3?y%4||y%100==0&&y%400?2:3:4))%7;
     var d2 = d1+(m*9-m*9%8) / 8%2+( m == 2?y%4 || y%100 == 0 && y%400 ? 28:29:30);
     log("d1 : " + d1 + ", d2 : " + d2);
+    
     
     var isBlank = false;
     for (var i = 0; i < 42; i++) {    	
@@ -147,16 +151,26 @@ function makeCalendar(y, m, data) {
     	if(!isBlank){
     		var holiday = "";
     		log("cal i value : " + i);
+    		
+    		var tempDay = (i+1-d1) + "";
+        	tempDay = tempDay.length == 1 ? "0" + tempDay : tempDay;
+        	
+        	
+        	if(isHoliday(tempYear + tempMonth + tempDay)){
+        		holiday = "holiday";	
+        	}
+    		
     		if (i % 7 == 0 || i == 6 || i == 13 || i == 20 || i == 27 || i == 34 || i == 41) {
-    			holiday = "holiday";	
+    			holiday = "holiday";
     		}
+    		
     		if (i % 7 == 0) text += "</tr>\n<tr>";
             if (i < d1 || i >= d2) { 
                 text += '<td> </td>';
             } else { 
             	var dayId = (i+1-d1); 
                 text += '<td id="' + y + '-' + ((m < 10) ? ("0" + m) : m) + '-' + ((dayId < 10) ? ("0" + dayId) : dayId) +'" class="cal_day ' + holiday + '">';
-            	text += '<p>' + (i+1-d1) + '</p></td>';
+               	text += '<p>'+ (i+1-d1) + '</p></td>';
             }
     	}
     } 

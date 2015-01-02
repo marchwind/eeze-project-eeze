@@ -72,6 +72,90 @@ function rightNoticeerror() {
 }
 
 </script>
+<script language="JavaScript">
+
+ function setCookie( name, value, expiredays ) {
+
+var todayDate = new Date();
+
+  todayDate.setDate( todayDate.getDate() + expiredays );
+
+     document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";"
+
+    }
+
+ 
+
+ function closeWin(layerNum) {
+
+  if ( document.getElementById("layer_chkbox"+layerNum).checked ){
+
+  setCookie( "maindiv"+layerNum, "done" , 1 );
+
+    }
+
+    document.all['divpop'+layerNum].style.visibility = "hidden";
+
+   }
+
+</script> 
+
+ 
+
+
+  <!--레이어팝업 시작-->   
+
+ <div id="divpop1" style="position: absolute; left: 50%; top: 36%;margin-left:135px;;margin-top:-330px; border: 5px solid rgb(f, f, f); z-index: 201; visibility: visible;">
+
+   <table cellpadding="0" cellspacing="0">
+
+   <tbody><tr>
+
+      <td>
+
+   <a href=""><img src="http://smartad.or.kr/resources/images/main/naward2014.jpg"></a>
+
+      </td>
+
+   </tr>
+
+   <tr>
+
+    <td align="right" style="background:#000;">
+
+   <input type="checkbox" name="layer_chkbox1" id="layer_chkbox1" value="checkbox"><span style=" font-size:12px;color:#fff;">오늘 하루 이 창을 열지 않음</span><a href="#" onclick="closeWin(1);return false" ><span style="font-size:12px;color:#fff;">[닫기]</span></a>
+
+    </td>
+
+   </tr>
+
+   </tbody></table>
+
+  </div>
+ 
+
+  <script language="JavaScript">  
+
+   cookiedata = document.cookie;
+
+   var layerCount =1;  // 레이어팝업갯수는 꼭 조정
+
+   for(var i=1 ; i<=layerCount ; i++) {
+
+     if ( cookiedata.indexOf("maindiv"+i+"=done") < 0 ) {
+
+     document.all['divpop'+i].style.visibility = "visible";
+
+     } else {
+
+     document.all['divpop'+i].style.visibility = "hidden";
+
+     }
+
+   }
+  
+
+  </script>
 </head>
 <body>
 <div id="wrap">
@@ -149,9 +233,18 @@ function rightNoticeerror() {
 	                	<option value='https://www.kobaco.co.kr/'>한국방송광고진흥공사</option>
 	                	<option value='http://edu.kobaco.co.kr/'>kobaco광고교육원</option>
 	                	<option value='http://adlib.kobaco.co.kr/'>kobaco광고도서관</option>
-	                	<option value='http://hrd.kobaco.co.kr '>kobaco연수원</option>
-	                	<option value='http://admuseum.kobaco.co.kr '>광고박물관</option>
-	                </select>
+	                	<option value='http://hrd.kobaco.co.kr/'>kobaco연수원</option>
+	                	<option value='http://admuseum.kobaco.co.kr/'>광고박물관</option>
+					    <option value="http://onlinead.or.kr/">한국온라인광고협회</option>
+						<option value="http://www.smicenter.or.kr/">스마트미디어이노베이션센터</option>
+                        <option value="http://www.smpa.or.kr/">스마트미디어산업진흥협회</option>
+                        <option value="http://www.kaaa.co.kr/">한국광고산업협회</option>
+                        <option value="http://www.koreacf.or.kr/">한국광고영상제작사협회</option>
+                        <option value="http://www.koeba.com/">한국전광방송협회</option>
+                        <option value="http://www.dea.or.kr/">한국디지털기업협회</option>
+                        <option value="http://www.kapa.or.kr/">한국광고사진가협회</option>
+                        <option value="http://www.kosmedia.or.kr/">한국스마트미디어협회</option>
+                       </select>
 	            </div>
 	        </div>
 	    </div>	    
