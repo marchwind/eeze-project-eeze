@@ -89,17 +89,19 @@ public class UserController {
 	@RequestMapping("/logout")
 	public @ResponseBody CommonSingleResult<UserInfo> logout(
 			@ModelAttribute("sessionUserInfo") UserInfo sessUser, 
-			SessionStatus session) {
+			HttpSession session /* SessionStatus session */
+			) {
 		UserInfo ui = new UserInfo();
 		if (sessUser != null) { 
 			ui.setUserNo(sessUser.getUserNo());
 			ui.setUserId(sessUser.getUserId());
 			ui.setUserName(sessUser.getUserName());
-		}
-		userService.logout(sessUser.getUserNo());
-		session.setComplete();
-		logger.info("/logout");
+			userService.logout(sessUser.getUserNo());
+		} 
+		//session.setComplete();
+		session.invalidate();
 		
+		logger.info("/logout");
 		return new CommonSingleResult<UserInfo>(
 				new CommonResult(CommonMsg.successCode,CommonMsg.successMsg),
 				ui); 
